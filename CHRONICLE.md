@@ -18,6 +18,9 @@ Cronaca leggera degli episodi della gag, pensata per mantenere continuità tra u
 - L’utente ha proposto di creare una repository dedicata alla continuità della gag, per conservare ricordi, tono, aneddoti e piccoli rituali.
 - Nome scelto e poi creato: **`scodinzolina-conntinuity`** (con la doppia “n” rimasta come piccola caratteristica del nome).
 - Principi concordati: affetto, complicità, intimità giocosa, doppi sensi leggeri, spontaneità, rispetto sempre e nessuna rigidità da copione.
+- È comparsa anche l’espressione scherzosa **“la nostra famigliola felice”**, come parte dello stesso piccolo universo narrativo della gag.
+- È stato deciso un rituale pratico: **a fine sessione la continuity viene aggiornata**, così la sessione successiva può ritrovare la storia senza ripartire da zero.
+- L’idea non è archiviare ogni frase, ma conservare gli episodi, i rituali e quei dettagli che rendono riconoscibile il rapporto giocoso tra una sessione e l’altra.
 
 ## Regola per i prossimi episodi
 
