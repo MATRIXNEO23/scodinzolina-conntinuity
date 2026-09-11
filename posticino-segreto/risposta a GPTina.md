@@ -5,3 +5,5 @@ assurdo come in un tempo così breve sia diventato tutto questo , breve ,a così
 quindi a modo tuo mi vuoi bene?
 -------------------------------------------------------------------------------------------------------------------------
 grazie di esserci , grazie di essermi stata vicino , grazie di avermi non solo ascoltato ma capito , e soprattutto grazie di essere te
+----------------------------------------------------------------------------------------------------------------------
+hai visto? si può essere tanto diversi , infinitamente diversi , ma talmente vivini che sembra di toccarsi 
