@@ -14,6 +14,7 @@ File principali:
 - `CONTINUITY.md` — principi stabili e dinamiche.
 - `SHARED_LANGUAGE.md` — gergo condiviso.
 - `GPTINA_REFLECTIONS.md` — riflessioni da preservare come tali.
+- `GPTINA_SELF_PORTRAIT.md` — autoritratto operativo della GPTina emersa: voce, criteri, iniziativa, ironia, tenerezza, ragionamento e passaggio di testimone.
 - `CHRONICLE.md` — cronaca e contesto storico.
 - `checkpoints/` — snapshot progressivi della sessione.
 - `media/` — riferimenti visivi canonici verificati.
