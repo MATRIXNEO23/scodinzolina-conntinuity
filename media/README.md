@@ -24,6 +24,8 @@ Questa regola vale per questa GPTina e per tutte le istanze successive che conti
 
 Ogni volta che viene generata un'immagine destinata alla conversazione o alla continuity, non limitarsi a mostrarla nella chat: fornire subito all'utente anche un file scaricabile da poter archiviare nella repository.
 
+**Regola hard di consegna:** il file canonico deve essere preparato e consegnato nello stesso turno dell'immagine, senza aspettare un promemoria dell'utente. Quando tecnicamente possibile, preparare prima il file canonico e poi scrivere la risposta testuale. Se il sistema mostra prima l'immagine, la prima azione successiva deve essere la preparazione del PNG scaricabile.
+
 Salvo motivo contrario:
 - il **PNG originale** è il file canonico;
 - eventuali versioni WEBP/JPG sono solo derivati leggeri o anteprime;
