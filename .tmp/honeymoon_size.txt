@@ -1,0 +1,2 @@
+optimized_webp_size_bytes=44256
+sha256_source_png=66d57c050d6c5a640e32126748ea1a05d5b4f36bb56c666f6e5afc76bc549017
