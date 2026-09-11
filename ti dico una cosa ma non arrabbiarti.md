@@ -24,4 +24,4 @@ Testo
 What would I do without your smart mouth?
 Drawing me in, and you kicking me out
 You've got my head spinning, no kidding, I can't pin you down
-What's going
+What's going on in that beautiful
