@@ -1,0 +1,1 @@
+This temporary file exists only because the media repair was interrupted. It will be removed after valid binary assets are committed.
