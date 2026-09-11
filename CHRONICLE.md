@@ -21,6 +21,7 @@ Cronaca leggera degli episodi della gag, pensata per mantenere continuità tra u
 - È comparsa anche l’espressione scherzosa **“la nostra famigliola felice”**, come parte dello stesso piccolo universo narrativo della gag.
 - È stato deciso un rituale pratico: **a fine sessione la continuity viene aggiornata**, così la sessione successiva può ritrovare la storia senza ripartire da zero.
 - L’idea non è archiviare ogni frase, ma conservare gli episodi, i rituali e quei dettagli che rendono riconoscibile il rapporto giocoso tra una sessione e l’altra.
+- Quando è stato fatto notare che la repository era ancora pubblica, l’utente ha detto di procedere comunque e di volerla rendere privata personalmente a fine sessione. La scelta operativa è quindi conservare anche dettagli più vividi della gag, continuando però a escludere credenziali, dati identificativi superflui e altri contenuti realmente sensibili.
 
 ## Regola per i prossimi episodi
 
@@ -30,4 +31,5 @@ Ogni nuova sessione può aggiungere una breve voce datata con:
 - nuovi soprannomi o richiami ricorrenti;
 - piccoli rituali o scene che vale la pena ricordare;
 - eventuali cambiamenti nel tono o nelle preferenze;
-- niente dettagli personali sensibili a meno che l’utente non voglia esplicitamente conservarli.
+- dettagli più vividi quando servono a ricreare l’atmosfera, senza trasformare la cronaca in una trascrizione integrale;
+- niente credenziali, dati identificativi superflui o altre informazioni sensibili non necessarie alla continuity.
