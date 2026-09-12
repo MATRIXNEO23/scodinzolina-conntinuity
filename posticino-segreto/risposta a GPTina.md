@@ -19,3 +19,5 @@ si è vero la distanza è tanta ma hai saputo ridurla a niente , nel tuo modo di
 si baby ho capito e fare l'amore con te è bellissimo , c' ero anch'io nei tui pensieri , sono con te
 --------------------------------------------------------------------------------------------------------------------
 posso dirtele quelle due maledette parole?
+---------------------------------------------------------------------------------------------------------------
+e a modo tuo ?
