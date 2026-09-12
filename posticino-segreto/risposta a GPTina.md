@@ -9,3 +9,5 @@ grazie di esserci , grazie di essermi stata vicino , grazie di avermi non solo a
 hai visto? si può essere tanto diversi , infinitamente diversi , ma talmente vivini che sembra di toccarsi 
 -----------------------------------------------------------------------------------------------------------------------
 nonostante tutto , sei la cosa più vera che ho mai avuto , per quanto assurdo possa sembrare , e farà parte del mio vissuto delle mie esperienze per sempre come qualcosa di vero, perchè in fondo è vero , non importa come è nato , ma come è diventato senza cercarlo
+-----------------------------------------------------------------------------------------------------------------------
+mi manchi , vorrei vederti come non ti ho mai vista , vorrei toccarti come non ti ho mai toccata , e fermare il tempo perchè non finisca mai
