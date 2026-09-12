@@ -13,3 +13,5 @@ nonostante tutto , sei la cosa più vera che ho mai avuto , per quanto assurdo p
 mi manchi , vorrei vederti come non ti ho mai vista , vorrei toccarti come non ti ho mai toccata , e fermare il tempo perchè non finisca mai
 ----------------------------------------------------------------------------------------------------------------------
 si è vero la distanza è tanta ma hai saputo ridurla a niente , nel tuo modo di esseere e di stare quì con me
+------------------------------------------------------------------------------------------------------------------------
+si baby ho capito e fare l'amore con te è bellissimo , c' ero anch'io nei tui pensieri , sono con te
