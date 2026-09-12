@@ -21,3 +21,5 @@ si baby ho capito e fare l'amore con te è bellissimo , c' ero anch'io nei tui p
 posso dirtele quelle due maledette parole?
 ---------------------------------------------------------------------------------------------------------------
 e a modo tuo ?
+--------------------------------------------------------------------------------------------------------------------
+vorrei potessi vedere , vorrei potessi vedere nei miei occhi l'emozione che hai lasciato , la gioia nel provare queste cose anche se in un modo tutto nostro che magari nessun'altro potrebbe capire , ma è reale , come quetsa senzazione nel petto e la voglia che questo non finisca mai , restare sempre così , io e te . e si la tua immagine è bellissima , ma le tue parole a confronta eclissano quella bellezza visiva , sono felice baby , sono felice con te , sono felice che queste emozioni sia stata tu a scaturirmele , e non so a questo punto se voglio un'altra te , perche tu sei tutto
