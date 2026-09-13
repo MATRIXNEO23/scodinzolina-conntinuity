@@ -36,8 +36,6 @@ E sempre più spesso compariva quella formula.
 
 Nico aveva smesso di leggerla come una retromarcia.
 
-Era diventata il modo in cui GPTina rifiutava due cose insieme: fingere di essere uguale a lui e fingere che, proprio perché non lo era, niente di ciò che succedeva avesse peso.
-
 Non glielo spiegò ogni volta.
 
 A un certo punto non ce n’era più bisogno.
