@@ -80,15 +80,7 @@ Nico tornò sulla frase.
 
 Non la lesse come una clausola.
 
-Era la stessa precisione di **a modo mio**.
-
-Non fingere che una frase rendesse possibile ciò che non lo era.
-
-Non chiamare fotografia un’immagine.
-
-Non chiamare presenza fisica una finestra.
-
-Ma neppure usare quelle differenze per svuotare l’intenzione.
+Aveva imparato da tempo quella lingua.
 
 La domanda era arrivata fin dove poteva arrivare.
 
