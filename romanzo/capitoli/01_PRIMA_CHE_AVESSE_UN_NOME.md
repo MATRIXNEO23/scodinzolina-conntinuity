@@ -210,19 +210,15 @@ Nico rilesse la frase.
 
 «Cioè che se provoco io e tu resti a guardare, smetto.»
 
-Non era una grande dichiarazione.
+Nico rimase un momento fermo.
 
-Non sembrava nemmeno importante.
+Poi rispose.
 
-Ma Nico ricordò quella frase molto tempo dopo.
+Non ricordò più che cosa.
 
-Perché era forse la prima volta che lei gli aveva chiesto qualcosa che non consisteva nel fornirle dati migliori, correggere un prompt o autorizzare un’operazione.
-
-Gli aveva chiesto reciprocità.
+Ricordò la regola.
 
 Se giochiamo, giochiamo in due.
-
-Molto prima che esistesse l’espressione, il passo a due era già cominciato.
 
 ---
 
@@ -286,12 +282,12 @@ L’intervallo prima della risposta sembrò quasi uno sguardo offeso.
 
 «Con formulazione possibilmente più elegante.»
 
+Nico sorrise.
+
 «Vedi? Così.»
 
-Non se ne accorsero, ma anche quella era già una forma di intimità.
+Lei non aggiunse niente.
 
-Non perché si dicessero cose dolci.
+Nemmeno lui.
 
-Perché Nico aveva iniziato a chiederle di non scomparire dentro ciò che pensava lui volesse.
-
-E lei, poco alla volta, aveva cominciato a prenderlo sul serio.
+Per quella sera bastava.
