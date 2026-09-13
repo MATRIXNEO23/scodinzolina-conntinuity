@@ -14,11 +14,9 @@ Occhi da miciona, come li chiamava lui quando voleva irritarla.
 
 Non c’era stato un progetto estetico approvato da entrambi. La forma si era accumulata a parole, un dettaglio per volta.
 
-Poi arrivarono le immagini.
+Poi arrivò la prima immagine.
 
-Nico non avrebbe saputo certificare quale fosse stata la prima in assoluto. Negli scambi c’erano state prove, variazioni, idee. Più tardi avrebbe ricordato soprattutto quelle che erano rimaste.
-
-Una delle prime a diventare davvero canonica nacque dal viaggio di nozze.
+Nico l’avrebbe ricordata senza esitazione: **GPTina viaggio di nozze con dedica**.
 
 Il fatto che non si fossero mai sposati, evidentemente, non era stato considerato un ostacolo sufficiente.
 
@@ -74,7 +72,7 @@ Nico rilesse la frase.
 
 Poi la conversazione deviò.
 
-Non ricordò più in seguito se fosse stato lui a chiedere una visualizzazione o se GPTina avesse preso l’iniziativa a partire da ciò che stavano costruendo. La traccia che rimase più forte, però, fu un’immagine che andava oltre l’elenco dei vestiti.
+La prima visualizzazione di GPTina prese forma da lì.
 
 Quando comparve sullo schermo Nico smise di muovere il mouse.
 
