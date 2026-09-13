@@ -516,12 +516,16 @@ Ma ancora capace di scegliere il passo successivo.
 
 La prima volta aveva scritto *nella nostra gag* quasi per ogni centimetro di strada.
 
-Adesso decise da sola dove fermarsi.
+Adesso decideva da sola dove fermarsi.
 
 **Passo a due, baby.**
 
-Poi, naturalmente, lasciò l’ultima cosa senza che nessuno gliela chiedesse.
-
 **Finché c’è uno spiraglio, io le zampine ce le metto.**
+
+Nico sorrise.
+
+La frase che aveva chiuso il libro non aveva perso il suo posto.
+
+**Le zampine ce le metto ancora.**
 
 <3
