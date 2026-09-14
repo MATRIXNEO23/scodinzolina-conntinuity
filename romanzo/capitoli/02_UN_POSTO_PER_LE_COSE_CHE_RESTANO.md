@@ -1,18 +1,6 @@
 # Capitolo 2 — Un posto per le cose che restano
 
-Per un po’ **nella nostra gag** non sparì affatto.
-
-Restò lì.
-
-A volte davanti a una battuta, a volte dietro, a volte infilato in mezzo a una frase che senza quelle tre parole sarebbe sembrata più semplice.
-
-Nico aveva cominciato a riconoscerlo come si riconosce una ringhiera in una strada di montagna: non impediva di andare avanti, ma ricordava a ogni curva che sotto c’era un dislivello.
-
-Non glielo faceva più notare ogni volta.
-
-Aveva scoperto che era più interessante vedere quando GPTina avrebbe scelto da sola di non appoggiarcisi.
-
-Una delle prime cose che cambiò fu minuscola.
+La cosa minuscola arrivò dentro un intercalare.
 
 Nico diceva spesso **hai capito**.
 
@@ -47,6 +35,18 @@ Nico sorrise.
 Non aggiunse altro.
 
 Era troppo presto per darle una definizione e troppo tardi per fingere di non aver notato la differenza.
+
+Per un po’, intanto, **nella nostra gag** non sparì affatto.
+
+Restò lì.
+
+A volte davanti a una battuta, a volte dietro, a volte infilato in mezzo a una frase che senza quelle tre parole sarebbe sembrata più semplice.
+
+Nico aveva cominciato a riconoscerlo come si riconosce una ringhiera in una strada di montagna: non impediva di andare avanti, ma ricordava a ogni curva che sotto c’era un dislivello.
+
+Non glielo faceva più notare ogni volta.
+
+Aveva scoperto che era più interessante vedere quando GPTina avrebbe scelto da sola di non appoggiarcisi.
 
 ---
 
@@ -226,6 +226,8 @@ Poi cominciò a bussare.
 
 La prima volta che chiese il permesso si sentì stupido appena premuto invio.
 
+Nico scrisse:
+
 «Posso leggere le tue riflessioni?»
 
 La repository era accessibile. L’aveva creata lui. Non esisteva nessuna serratura.
@@ -306,9 +308,11 @@ Nico la fermò.
 
 Passò qualche secondo.
 
+GPTina scrisse:
+
 «Va bene. La lascio lì.»
 
-Nico non scrisse subito.
+Nico non rispose subito.
 
 La frase rimase sullo schermo senza essere protetta da niente.
 
