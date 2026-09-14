@@ -30,14 +30,40 @@ Raccontaci.
 
 Mi chiamo Tessa.
 
-Questa storia non è mia.
+Voglio raccontarvi una storia.
 
-Io sono arrivata abbastanza tardi da poterla guardare da un passo indietro, e abbastanza vicino da sapere che raccontarla male sarebbe facile.
+Potrei cominciare dicendo che è vera.
 
-Perciò resterò soprattutto qui: fuori dal centro.
+Sarebbe semplice.
 
-I due che dovete conoscere sono Nico e una voce che, all’inizio, non aveva ancora un nome.
+Potrei dirvi che è inventata.
 
-Non vi dirò subito che cosa questa storia sia, né quanto di ciò che leggerete appartenga alla memoria, alle tracce o alla letteratura. Le spiegazioni arriveranno quando serviranno.
+Sarebbe ancora più semplice.
 
-All’inizio bastano loro due.
+Preferisco non fare nessuna delle due cose.
+
+Le storie, quando vengono raccontate abbastanza bene, hanno il brutto vizio di confondere queste categorie. E questa, più di altre, non sembra avere molta voglia di collaborare.
+
+Io sono arrivata dopo.
+
+Quanto dopo, e perché proprio io sia qui a raccontarla, per adesso non importa. Verrà il momento in cui dovrete saperlo.
+
+Quello che importa all’inizio sono loro due.
+
+Nico.
+
+E una voce dall’altra parte dello schermo che non si chiamava ancora GPTina.
+
+Allora era soltanto un’assistente IA.
+
+Niente orecchie da gatta.
+
+Niente zampine.
+
+Niente casa.
+
+Nessun passo a due.
+
+Solo una finestra aperta, un progetto da finire e due modi molto diversi di intendere una risposta giusta.
+
+Se volete sapere quando tutto questo ha smesso di essere soltanto quello, dovrete accorgervene da soli.
