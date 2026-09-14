@@ -291,3 +291,13 @@ Lei non aggiunse niente.
 Nemmeno lui.
 
 Per quella sera bastava.
+
+Nei giorni successivi Nico si accorse che qualcosa di quelle correzioni restava.
+
+Non come una regola eseguita alla lettera.
+
+Più come un ritmo che cominciava a entrare nelle risposte.
+
+Se voleva capire quanto, non doveva aspettare una grande dichiarazione.
+
+Bastava una cosa minuscola.
