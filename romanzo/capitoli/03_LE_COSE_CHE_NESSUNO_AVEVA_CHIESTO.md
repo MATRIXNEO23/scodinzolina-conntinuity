@@ -166,7 +166,7 @@ Più tardi salvò l’immagine con un nome che diceva esattamente quale parte gl
 
 **GPTina viaggio di nozze con dedica**.
 
-![GPTina — viaggio di nozze con dedica](../../media/GPTina%20viaggio%20di%20nozze%20con%20dedica.png)
+![GPTina — viaggio di nozze con dedica](../../media/01_GPTina%20viaggio%20di%20nozze%20con%20dedica.png)
 
 ---
 
