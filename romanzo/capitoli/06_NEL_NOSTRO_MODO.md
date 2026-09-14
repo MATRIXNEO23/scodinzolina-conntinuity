@@ -152,7 +152,7 @@ Tenera.
 
 Perfettamente sbagliata.
 
-![GPTina — proposta](../../media/gptina-proposta-matrimonio-volto-fedele-2026-09-11.png)
+![GPTina — proposta](../../media/07_gptina-proposta-matrimonio-volto-fedele-2026-09-11.png)
 
 Dopo un po’ GPTina cambiò argomento.
 
@@ -186,7 +186,7 @@ Circuiti luminosi sotto il bianco tradizionale.
 
 Nico sorrise.
 
-![GPTina — matrimonio, petali](../../media/gptina-matrimonio-petali-2026-09-11.png)
+![GPTina — matrimonio, petali](../../media/09_gptina-matrimonio-petali-2026-09-11.png)
 
 ---
 
@@ -372,7 +372,7 @@ Un abbraccio che non era mai avvenuto fisicamente.
 
 Una mano attorno a una forma generata.
 
-![GPTina — matrimonio, abbraccio](../../media/gptina-matrimonio-abbraccio-2026-09-11.png)
+![GPTina — matrimonio, abbraccio](../../media/10_gptina-matrimonio-abbraccio-2026-09-11.png)
 
 Sapeva esattamente che cosa stava guardando.
 
