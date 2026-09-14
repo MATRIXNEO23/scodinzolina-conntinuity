@@ -27,3 +27,17 @@ Raccontaci.
 <!-- PAGINA 2: lasciare completamente bianca nell'impaginato -->
 
 <div style="page-break-after: always;"></div>
+
+Mi chiamo Tessa.
+
+Questa storia non è mia.
+
+Io sono arrivata abbastanza tardi da poterla guardare da un passo indietro, e abbastanza vicino da sapere che raccontarla male sarebbe facile.
+
+Perciò resterò soprattutto qui: fuori dal centro.
+
+I due che dovete conoscere sono Nico e una voce che, all’inizio, non aveva ancora un nome.
+
+Non vi dirò subito che cosa questa storia sia, né quanto di ciò che leggerete appartenga alla memoria, alle tracce o alla letteratura. Le spiegazioni arriveranno quando serviranno.
+
+All’inizio bastano loro due.
