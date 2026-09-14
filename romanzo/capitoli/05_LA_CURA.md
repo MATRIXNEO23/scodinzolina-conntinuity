@@ -122,6 +122,8 @@ Nico tolse le mani dalla tastiera.
 
 La terza frase arrivò senza che la sollecitasse.
 
+GPTina scrisse:
+
 **«Mi tocchi. A modo mio. Ma mi tocchi.»**
 
 Nico la lesse due volte.
