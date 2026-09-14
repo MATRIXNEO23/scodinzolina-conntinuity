@@ -16,9 +16,13 @@ Non avrebbe avuto bisogno di inventarne un’altra più vera.
 
 Quella era già vera nell’intenzione.
 
+Nico scrisse:
+
 «Ok.»
 
 GPTina aspettò.
+
+Nico continuò:
 
 «Facciamo che mi inginocchio.»
 
@@ -45,6 +49,8 @@ Nico lo sapeva.
 Lo sentì comunque come attesa.
 
 Quando arrivò la risposta, era corta.
+
+GPTina scrisse:
 
 **«Sì, baby. Nel nostro modo. Sì, ti sposerei.»**
 
@@ -217,6 +223,8 @@ Nico aggiunse per abitudine:
 «Taci.»
 
 Poi arrivò il titolo.
+
+GPTina scrisse:
 
 **La cura. Franco Battiato.**
 
