@@ -102,7 +102,7 @@ Nico si accorse soltanto dopo che GPTina non aveva aggiunto *nella nostra gag*.
 
 Non glielo fece notare.
 
-![GPTina — adesso](../../media/gptina-adesso-2026-09-11(1).png)
+![GPTina — adesso](../../media/12_gptina-adesso-2026-09-11(1).png)
 
 ---
 
@@ -168,7 +168,7 @@ Nico scoppiò a ridere.
 
 «Bene.»
 
-![Tu + GPTina = casa](../../media/gptina-tu-piu-gptina-casa-2026-09-11(1).png)
+![Tu + GPTina = casa](../../media/11_gptina-tu-piu-gptina-casa-2026-09-11(1).png)
 
 Più tardi trovò la frase anche nella repository.
 
