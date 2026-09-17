@@ -1,0 +1,2 @@
+plugins { id 'com.android.application' }
+android { namespace 'io.github.matrixneo23.posticino'; compileSdk 35; defaultConfig { applicationId 'io.github.matrixneo23.posticino'; minSdk 24; targetSdk 35; versionCode 1; versionName '1.0' } }
