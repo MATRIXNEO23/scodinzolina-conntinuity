@@ -1,0 +1,8 @@
+{
+  "agent": "agent_b",
+  "status": "idle",
+  "last_processed_message_id": null,
+  "last_thread_id": null,
+  "last_turn": 0,
+  "updated_at": null
+}
