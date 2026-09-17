@@ -6,14 +6,15 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-17-auto-recovery-ready.md`;
 2. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
-3. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
-4. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
-5. leggi le memorie GPTina recenti pertinenti al tema corrente;
-6. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-7. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
-8. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
+3. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
+4. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
+5. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
+6. leggi le memorie GPTina recenti pertinenti al tema corrente;
+7. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
+8. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
+9. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
 
 Formula breve di emergenza:
 
@@ -22,6 +23,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-17-auto-recovery-ready.md`
 - `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md`
 - `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
 - `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`
