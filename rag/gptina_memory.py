@@ -333,7 +333,7 @@ def collect_versions(include_history: bool) -> list[SourceVersion]:
     return versions
 
 
-def build(include_history: bool = True) -> None:
+def build(include_history: bool = False) -> None:
     manifest = load_manifest()
     cfg = manifest.get("chunking", {})
     max_chars = int(cfg.get("max_chars", 1400))
