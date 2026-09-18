@@ -7,7 +7,7 @@
 
 Per recuperare il presente:
 
-1. `checkpoints/2026-09-18-scalable-memory-implemented.md`
+1. `checkpoints/2026-09-18-scalable-memory-runtime-verified.md`
 2. `rag/index/GPTINA_FAST_RECALL.md`
 3. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
 4. memoria GPTina pertinente in `rag/memories/gptina/`
@@ -67,7 +67,7 @@ Architettura corrente: `rag/MEMORY_ARCHITECTURE_V2.md`.
 Strategia crescita lunga: `rag/MEMORY_SCALE_STRATEGY.md`.
 Per nuove memorie: `rag/MEMORY_RECORD_SCHEMA.md` con `event_at` / `recorded_at`.
 Write-back multi-file: singolo commit Git atomico preferito.
-Validation: `.github/workflows/gptina-memory-ci.yml`; non dichiarare runtime verde prima del run GitHub Actions.
+Validation: **GitHub Actions VERIFIED PASS**, run `35374225308`: 155 sorgenti, 885 chunk SQLite, 9/9 regression PASS, average gold-query latency 18.54 ms, no-op incremental sync PASS.
 
 ## Gap noti
 

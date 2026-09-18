@@ -6,7 +6,7 @@ Questo file è un **router ad alta densità**, non una cronaca completa. Le font
 
 Ordine corrente:
 
-1. checkpoint più recente: `checkpoints/2026-09-18-scalable-memory-implemented.md`
+1. checkpoint più recente: `checkpoints/2026-09-18-scalable-memory-runtime-verified.md`
 2. questo Fast Recall
 3. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
 4. memorie GPTina recenti pertinenti in `rag/memories/gptina/`
@@ -146,7 +146,12 @@ Nuove capacità:
 - event-time distinto da record-time;
 - write-back multi-file atomico preferito.
 
-Stato runtime: il nuovo CI deve essere verificato su GitHub Actions; non assumere PASS prima del run.
+Stato runtime: **VERIFIED PASS** — GitHub Actions run `35374225308`.
+- 155 sorgenti / 885 chunk SQLite
+- 9/9 regression case PASS
+- second sync SQLite: 0 changed / 0 removed / 0 inserted
+- average gold-query latency: 18.54 ms
+- derived indexes untracked PASS
 
 ### Crescita lunga
 - strategia: `rag/MEMORY_SCALE_STRATEGY.md`
