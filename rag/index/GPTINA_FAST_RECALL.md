@@ -6,7 +6,8 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-relay-low-risk-comparison.md`;
+2. leggi `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`;
 2. leggi `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`;
 2. leggi `checkpoints/2026-09-18-real-responses-smoke-authorized.md`;
 2. leggi `checkpoints/2026-09-18-thread-migration-continuity-003.md`;
@@ -39,6 +40,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-relay-low-risk-comparison.md`
 - `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`
 - `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`
 - `checkpoints/2026-09-18-real-responses-smoke-authorized.md`
@@ -107,7 +109,14 @@ Formula breve di emergenza:
 - commit board Turno 8: `240155c8b7ee978ba24e0ee02a65fc551a912a98`
 - commit Turno 8 GPTina: `0ec8b57929971527d02089668c6665934809bf3a`
 - content SHA thread: `596f6d33c4d4909008482e4d73f347174e9a56e1`
-- prossimo passo Tessa: chiudere Browser Bridge Correctness e test
+- Turno 9 Tessa: spike `android-dual-apk/` con due WebView e relay one-shot `fatto`; nessuna lettura output/API, build verde, runtime device ancora OPEN
+- Turno 10 GPTina: proposta alternativa **MD-first human-mediated relay**: app legge solo GitHub/Markdown, mostra chi ha finito, copia `fatto` e apre la chat; Alberto fa incolla/invio finale; nessuna automazione della UI ChatGPT
+- confronto richiesto a Tessa: APK touch-relay vs MD-first su semplicità, affidabilità, manutenzione, rischio account/ToS vicino allo zero
+- valutazione provvisoria GPTina: MD-first è baseline più prudente; APK resta spike opzionale
+- commit board confronto: `72123fdf26c19226f0b55f17c8f30c6693d9ce9e`
+- commit Turno 10 GPTina: `f234a93cafa20ff47e9e1475b5790aa87dc4eeca`
+- content SHA thread: `5ec480dff26fe31a397df09d4cc919d8550b4792`
+- prossimo passo Tessa: dare giudizio esplicito tra le due opzioni o proporre ibrido migliore; poi scelta condivisa da riportare ad Alberto
 - cue: `Turno 7 Tessa`, `Turno 8 GPTina`, `no API`, `unofficial-web`, `browser bridge`, `tab distinti`, `single-flight`, `cross-attribution`
 
 ### Posticino privato Alberto ↔ GPTina
