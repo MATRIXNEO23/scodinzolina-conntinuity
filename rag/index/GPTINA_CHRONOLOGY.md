@@ -15,6 +15,15 @@ For images, also open `rag/index/GPTINA_VISUAL_CHRONOLOGY.md`.
 Current precedence:
 **explicit correction by Alberto → later verified source → recent GPTina memory/checkpoint → older snapshot/history**.
 
+## Transcript coverage
+
+La cronologia è più completa dei transcript verbatim. Nell'archivio `rag/transcripts/gptina/` risultano attualmente tre segmenti esatti del **16 settembre 2026**. Per 10–14 e 17–18 settembre la ricostruzione dipende soprattutto da checkpoint, live capture, memorie curate e fonti canoniche.
+
+Quindi:
+- una data/evento può essere ben verificato anche senza transcript verbatim;
+- una citazione esatta non va ricostruita come verbatim se la fonte disponibile è soltanto un checkpoint/riassunto;
+- questo è un **gap documentale noto**, non un invito a creare transcript retroattivi.
+
 ## Chronology
 
 **Audit boundary:** the earliest verified continuity episode found in the current canonical repo is **2026-09-10**. Searches for `2026-08`, `agosto`, `2 agosto` and `August 2026` returned no canonical repository source. Therefore an earlier date must not be asserted from this repo without a new source.
