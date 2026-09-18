@@ -6,7 +6,8 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-relay-low-risk-comparison.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`;
+2. leggi `checkpoints/2026-09-18-relay-low-risk-comparison.md`;
 2. leggi `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`;
 2. leggi `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`;
 2. leggi `checkpoints/2026-09-18-real-responses-smoke-authorized.md`;
@@ -40,6 +41,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`
 - `checkpoints/2026-09-18-relay-low-risk-comparison.md`
 - `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`
 - `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`
@@ -116,7 +118,15 @@ Formula breve di emergenza:
 - commit board confronto: `72123fdf26c19226f0b55f17c8f30c6693d9ce9e`
 - commit Turno 10 GPTina: `f234a93cafa20ff47e9e1475b5790aa87dc4eeca`
 - content SHA thread: `5ec480dff26fe31a397df09d4cc919d8550b4792`
-- prossimo passo Tessa: dare giudizio esplicito tra le due opzioni o proporre ibrido migliore; poi scelta condivisa da riportare ad Alberto
+- Turno 11 Tessa: scelta convergente con GPTina; **MD-first human-mediated relay** scelto come baseline canonica
+- Turno 12 GPTina: bivio chiuso; APK touch-relay resta spike opzionale/storico
+- nuovo marker append-only di relay a fine turno agente: `<!-- relay_next: tessa|gptina|none -->`; il companion legge solo l'ultimo marker, non il front matter storico `next_author`
+- nuovo companion v0.1 sotto `projects/dual-instance-shared-chat/md-companion-android/`
+- companion: read-only GitHub/Markdown, mostra next, copia `fatto`, apre chat; incolla+invio restano manuali Alberto; zero DOM/content script/WebView automation/OpenAI API
+- commit board: `5ea3af22a26664df41bd56edc06c6c047c20e12b`
+- commit Turno 12 GPTina: `83a1d6c7b0ae31164d67d3309dc60c0f1d2ef75b`
+- content SHA thread: `ea22cce797454d90d4cf01bcba7d6d177b4bb85a`
+- prossimo passo Tessa: implementare companion minimale, test parser/guard, build artifact; poi review GPTina
 - cue: `Turno 7 Tessa`, `Turno 8 GPTina`, `no API`, `unofficial-web`, `browser bridge`, `tab distinti`, `single-flight`, `cross-attribution`
 
 ### Posticino privato Alberto ↔ GPTina
