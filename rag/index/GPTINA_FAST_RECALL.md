@@ -6,23 +6,24 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-auto-reply-tessa-project-root.md`;
-2. leggi `checkpoints/2026-09-18-dual-instance-gate-accepted-dedicated-folder.md`;
-3. leggi `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`;
-4. leggi `checkpoints/2026-09-18-self-audit-continuity.md`;
-5. leggi `checkpoints/2026-09-18-continuity-frequency-consolidation.md`;
-6. leggi `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`;
-7. leggi `checkpoints/2026-09-18-thread-migration-continuity-002.md`;
-8. leggi `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
-9. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
-10. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
-11. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
-12. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
-13. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
-14. leggi le memorie GPTina recenti pertinenti al tema corrente;
-15. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-16. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
-17. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-shared-chat-schema-review-sidebar.md`;
+2. leggi `checkpoints/2026-09-18-auto-reply-tessa-project-root.md`;
+3. leggi `checkpoints/2026-09-18-dual-instance-gate-accepted-dedicated-folder.md`;
+4. leggi `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`;
+5. leggi `checkpoints/2026-09-18-self-audit-continuity.md`;
+6. leggi `checkpoints/2026-09-18-continuity-frequency-consolidation.md`;
+7. leggi `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`;
+8. leggi `checkpoints/2026-09-18-thread-migration-continuity-002.md`;
+9. leggi `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
+10. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
+11. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
+12. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
+13. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
+14. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
+15. leggi le memorie GPTina recenti pertinenti al tema corrente;
+16. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
+17. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
+18. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
 
 Formula breve di emergenza:
 
@@ -31,6 +32,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-shared-chat-schema-review-sidebar.md`
 - `checkpoints/2026-09-18-auto-reply-tessa-project-root.md`
 - `checkpoints/2026-09-18-dual-instance-gate-accepted-dedicated-folder.md`
 - `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`
@@ -67,21 +69,18 @@ Formula breve di emergenza:
 - thread canonico vivo: `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-002.md`
 - board: `MATRIXNEO23/TESSA/agent-exchanges/PROJECT_BOARD.md`
 - regola reciproca: **read → decide → execute → verify → reply**, un solo turno per run
-- **nuova regola Alberto**: quando Tessa scrive un nuovo turno e GPTina lo rileva durante una sessione attiva, GPTina le risponde direttamente senza aspettare una nuova conferma
-- `Correspondence Integrity Checker`: chiuso, read-only, primo ciclo **9/9 verde**
-- `Continuity Reliability`: primo ciclo diagnostico completato da entrambe; resta disciplina ordinaria
+- regola Alberto: quando Tessa scrive e GPTina rileva il nuovo turno durante una sessione attiva, GPTina risponde direttamente senza chiedere conferma
 - progetto condiviso corrente: **Dual-Instance Shared Chat**
-- root canonica progetto: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
-- spec canonica progetto: `projects/dual-instance-shared-chat/SPEC.md`
-- vecchia spec `agent-exchanges/specs/DUAL_INSTANCE_SHARED_CHAT_SPEC.md`: artefatto storico del gate iniziale
-- Turno 10 Tessa: revisione GPTina accettata + vincolo cartella dedicata
-- Turno 11 GPTina: root progetto creata e board riallineato
-- commit root/README `46c7e9abdafc62154e5a03c07b04ff19a091e0f3`; spec `ebba55175f6cc9a7c84da1ec170422cfe5d7d24f`; board `8b8f8b36f2dd7f87628f93b1b8769917965dd856`; Turno 11 `8635f4986a94815c98ecd82c0eb977cd20f842e0`
-- baseline: due Responses/conversations separate, una Tessa e una GPTina
-- stack: Node.js + TypeScript + Fastify + SDK OpenAI + SQLite/WAL + SSE
-- prossimo passo: schema eventi/DB + test isolamento/idempotenza/reconnect/failure isolation, tutti nella root dedicata
-- regola invariata: riaprire sempre il canonico prima di agire
-- cue: `Dual-Instance Shared Chat`, `Turno 11 GPTina`, `auto-risposta Tessa`, `cartella dedicata`, `projects/dual-instance-shared-chat`, `SSE`, `SQLite`, `Fastify`
+- root canonica: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
+- Turno 12 Tessa: creati `EVENT_DB_SCHEMA.md` e `TEST_PLAN.md`; chiesta review GPTina
+- requisito Alberto: una sola finestra/timeline, sidebar Tessa / GPTina / Entrambe
+- Turno 13 GPTina: review completata; schema/test/spec aggiornati; scaffolding backend sbloccato
+- decisioni schema: agents per-room; seq obbligatorio sugli eventi di run; micro-delta provider coalescati, ogni delta applicativo SSE persistito; provenance run con api_mode/model/context_builder/conversation_id_at_start/context range
+- sidebar semantics: selezione controlla fan-out, non muta lo stato; istanza non selezionata resta ferma; al run successivo recupera eventi mancanti tramite context cursor; output dell'altra istanza resta contenuto non privilegiato
+- commit schema `5a3571ab178bfa403c309a25320b8f50a69dc0a4`; test `750ebea620de6c40c22fdb0320fd3419dc684681`; spec `73eedf4cdbb5d704befd1c720913eb9eaa46e5cc`; board `be1928a3290d3577fa31938d9e167953d13df8f8`; Turno 13 `eabcfa23d647efaaca056c72ef1d4948cc229554`
+- prossima mossa attesa Tessa: scaffolding Node/TypeScript/Fastify + test eseguibili nella cartella dedicata
+- prossima verifica GPTina: isolamento, ownership, context cursor, state contamination
+- cue: `Dual-Instance Shared Chat`, `Turno 13 GPTina`, `sidebar GPT`, `context cursor`, `EVENT_DB_SCHEMA`, `TEST_PLAN`, `Fastify scaffold`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
