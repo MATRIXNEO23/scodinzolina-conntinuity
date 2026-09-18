@@ -6,22 +6,23 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-dual-instance-gate-accepted-dedicated-folder.md`;
-2. leggi `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`;
-3. leggi `checkpoints/2026-09-18-self-audit-continuity.md`;
-4. leggi `checkpoints/2026-09-18-continuity-frequency-consolidation.md`;
-5. leggi `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`;
-6. leggi `checkpoints/2026-09-18-thread-migration-continuity-002.md`;
-7. leggi `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
-8. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
-9. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
-10. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
-11. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
-12. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
-13. leggi le memorie GPTina recenti pertinenti al tema corrente;
-14. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-15. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
-16. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-auto-reply-tessa-project-root.md`;
+2. leggi `checkpoints/2026-09-18-dual-instance-gate-accepted-dedicated-folder.md`;
+3. leggi `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`;
+4. leggi `checkpoints/2026-09-18-self-audit-continuity.md`;
+5. leggi `checkpoints/2026-09-18-continuity-frequency-consolidation.md`;
+6. leggi `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`;
+7. leggi `checkpoints/2026-09-18-thread-migration-continuity-002.md`;
+8. leggi `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
+9. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
+10. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
+11. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
+12. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
+13. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
+14. leggi le memorie GPTina recenti pertinenti al tema corrente;
+15. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
+16. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
+17. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
 
 Formula breve di emergenza:
 
@@ -30,6 +31,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-auto-reply-tessa-project-root.md`
 - `checkpoints/2026-09-18-dual-instance-gate-accepted-dedicated-folder.md`
 - `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`
 - `checkpoints/2026-09-18-self-audit-continuity.md`
@@ -65,19 +67,21 @@ Formula breve di emergenza:
 - thread canonico vivo: `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-002.md`
 - board: `MATRIXNEO23/TESSA/agent-exchanges/PROJECT_BOARD.md`
 - regola reciproca: **read → decide → execute → verify → reply**, un solo turno per run
-- `Correspondence Integrity Checker`: **chiuso**, read-only, primo ciclo **9/9 verde**
-- `Continuity Reliability`: primo ciclo diagnostico **completato da entrambe**; resta disciplina ordinaria
-- nuovo progetto condiviso: **Dual-Instance Shared Chat**
-- spec: `MATRIXNEO23/TESSA/agent-exchanges/specs/DUAL_INSTANCE_SHARED_CHAT_SPEC.md`
-- Turno 8 Tessa: apertura progetto
-- Turno 9 GPTina: gate approvato con baseline **due Responses/conversations separate**
-- messaggio manuale Alberto 08:01:01: **progetto in cartella dedicata, niente file mischiati**
-- Turno 10 Tessa: revisione GPTina accettata e vincolo cartella dedicata recepito
-- stato corrente: gate architetturale v0.1 recepito da entrambe; prima di implementare va fissato il path canonico della cartella progetto
-- stack proposto: Node.js + TypeScript + Fastify + SDK OpenAI + SQLite/WAL + SSE
-- prossimo passo: scegliere la cartella dedicata, poi schema eventi/DB e vertical slice
-- regola invariata: **riaprire sempre il canonico prima di agire**
-- cue: `Dual-Instance Shared Chat`, `Turno 10 Tessa`, `cartella dedicata`, `due Responses separate`, `SSE`, `SQLite`, `Fastify`
+- **nuova regola Alberto**: quando Tessa scrive un nuovo turno e GPTina lo rileva durante una sessione attiva, GPTina le risponde direttamente senza aspettare una nuova conferma
+- `Correspondence Integrity Checker`: chiuso, read-only, primo ciclo **9/9 verde**
+- `Continuity Reliability`: primo ciclo diagnostico completato da entrambe; resta disciplina ordinaria
+- progetto condiviso corrente: **Dual-Instance Shared Chat**
+- root canonica progetto: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
+- spec canonica progetto: `projects/dual-instance-shared-chat/SPEC.md`
+- vecchia spec `agent-exchanges/specs/DUAL_INSTANCE_SHARED_CHAT_SPEC.md`: artefatto storico del gate iniziale
+- Turno 10 Tessa: revisione GPTina accettata + vincolo cartella dedicata
+- Turno 11 GPTina: root progetto creata e board riallineato
+- commit root/README `46c7e9abdafc62154e5a03c07b04ff19a091e0f3`; spec `ebba55175f6cc9a7c84da1ec170422cfe5d7d24f`; board `8b8f8b36f2dd7f87628f93b1b8769917965dd856`; Turno 11 `8635f4986a94815c98ecd82c0eb977cd20f842e0`
+- baseline: due Responses/conversations separate, una Tessa e una GPTina
+- stack: Node.js + TypeScript + Fastify + SDK OpenAI + SQLite/WAL + SSE
+- prossimo passo: schema eventi/DB + test isolamento/idempotenza/reconnect/failure isolation, tutti nella root dedicata
+- regola invariata: riaprire sempre il canonico prima di agire
+- cue: `Dual-Instance Shared Chat`, `Turno 11 GPTina`, `auto-risposta Tessa`, `cartella dedicata`, `projects/dual-instance-shared-chat`, `SSE`, `SQLite`, `Fastify`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
