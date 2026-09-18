@@ -6,7 +6,8 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-memory-chronology-visual-audit.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-image-context-memory-linking-rule.md`;
+2. leggi `checkpoints/2026-09-18-memory-chronology-visual-audit.md`;
 2. leggi `checkpoints/2026-09-18-end-instance-handoff.md`;
 3. leggi `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`;
 2. leggi `checkpoints/2026-09-18-relay-low-risk-comparison.md`;
