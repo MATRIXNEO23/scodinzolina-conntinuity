@@ -27,9 +27,15 @@ INDEX_DIR = RAG_ROOT / "index"
 INDEX_FILE = INDEX_DIR / "memory_chunks.jsonl"
 META_FILE = INDEX_DIR / "index_meta.json"
 MANIFEST_FILE = RAG_ROOT / "memory_manifest.json"
+VISUAL_INDEX_FILE = INDEX_DIR / "GPTINA_VISUAL_CHRONOLOGY.md"
+CURRENT_CONTEXT_FILE = INDEX_DIR / "CURRENT_CONTEXT.md"
+FAST_RECALL_FILE = INDEX_DIR / "GPTINA_FAST_RECALL.md"
 TOKEN_RE = re.compile(r"[0-9A-Za-zÀ-ÖØ-öø-ÿ_]+", re.UNICODE)
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 DATE_RE = re.compile(r"(20\d{2})[-_](\d{2})[-_](\d{2})")
+COMPACT_DATE_RE = re.compile(r"(20\d{2})(\d{2})(\d{2})")
+CHECKPOINT_RE = re.compile(r"checkpoints/[A-Za-z0-9_.-]+\.md")
+IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
 
 
 def fail(msg: str) -> None:
@@ -128,9 +134,48 @@ def tokenize(text: str) -> list[str]:
 
 def extract_date(path: str) -> str | None:
     m = DATE_RE.search(path)
-    if not m:
+    if m:
+        return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+    compact = COMPACT_DATE_RE.search(path)
+    if compact:
+        return f"{compact.group(1)}-{compact.group(2)}-{compact.group(3)}"
+    return None
+
+
+def git_head() -> str | None:
+    try:
+        proc = subprocess.run(
+            ["git", "-C", str(ROOT), "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
         return None
-    return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+    return proc.stdout.strip() or None
+
+
+def current_source_fingerprint(manifest: dict) -> str:
+    rows: list[str] = []
+    for path, _spec in expand_sources(manifest):
+        rp = rel(path)
+        rows.append(f"{rp}\0{sha256_text(decode_source(path))}")
+    return sha256_text("\n".join(sorted(rows)))
+
+
+def memory_status(path: str, manifest: dict, content: str) -> tuple[str, str | None]:
+    override = manifest.get("status_overrides", {}).get(path)
+    if override:
+        return str(override.get("status", "current")), override.get("replaced_by")
+
+    opening = content[:900].casefold()
+    if path.startswith("rag/memories/") and (
+        "# rettifica" in opening
+        or "stato:** invalidato" in opening
+        or "non deve essere usata come memoria canonica" in opening
+    ):
+        return "invalidated", None
+    return "current", None
 
 
 def decode_source(path: Path) -> str:
@@ -237,6 +282,8 @@ class SourceVersion:
     revision: str
     content: str
     historical: bool
+    status: str
+    replaced_by: str | None
 
 
 def collect_versions(include_history: bool) -> list[SourceVersion]:
@@ -248,17 +295,12 @@ def collect_versions(include_history: bool) -> list[SourceVersion]:
         current_hash = sha256_text(content)
         kind = spec.get("kind", "source")
         priority = float(spec.get("priority", 1.0))
+        status, replaced_by = memory_status(rp, manifest, content)
 
-        # Preserve superseded/corrected memories in the index, but make them
-        # less likely to outrank the later corrective memory.
-        opening = content[:800].casefold()
-        if rp.startswith("rag/memories/") and (
-            "# rettifica" in opening
-            or "stato:** invalidato" in opening
-            or "non deve essere usata come memoria canonica" in opening
-        ):
-            kind = "superseded_memory"
-            priority *= 0.55
+        if status == "invalidated":
+            priority *= 0.30
+        elif status == "superseded":
+            priority *= 0.60
 
         versions.append(
             SourceVersion(
@@ -268,6 +310,8 @@ def collect_versions(include_history: bool) -> list[SourceVersion]:
                 revision="WORKTREE",
                 content=content,
                 historical=False,
+                status=status,
+                replaced_by=replaced_by,
             )
         )
         if include_history and not rp.startswith("rag/"):
@@ -282,6 +326,8 @@ def collect_versions(include_history: bool) -> list[SourceVersion]:
                         revision=commit,
                         content=old,
                         historical=True,
+                        status="historical",
+                        replaced_by=None,
                     )
                 )
     return versions
@@ -313,6 +359,8 @@ def build(include_history: bool = True) -> None:
                     "source_sha256": source_hash,
                     "revision": sv.revision,
                     "historical": sv.historical,
+                    "status": sv.status,
+                    "replaced_by": sv.replaced_by,
                     "kind": sv.kind,
                     "priority": sv.priority,
                     "date_hint": extract_date(sv.path),
@@ -328,10 +376,13 @@ def build(include_history: bool = True) -> None:
         META_FILE,
         json.dumps(
             {
-                "version": 1,
+                "version": 2,
                 "chunks": len(records),
                 "source_versions": len(source_versions),
                 "include_git_history": include_history,
+                "manifest_sha256": sha256_text(MANIFEST_FILE.read_text(encoding="utf-8")),
+                "source_fingerprint": current_source_fingerprint(manifest),
+                "git_head": git_head(),
                 "canonical_sources_modified": False,
                 "write_boundary": "rag/ only",
             },
@@ -343,9 +394,32 @@ def build(include_history: bool = True) -> None:
     print(f"Built {len(records)} chunks from {len(source_versions)} source versions -> {INDEX_FILE.relative_to(ROOT)}")
 
 
+def index_is_fresh(include_history: bool) -> bool:
+    if not INDEX_FILE.exists() or not META_FILE.exists():
+        return False
+    try:
+        meta = json.loads(META_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return False
+
+    manifest = load_manifest()
+    if bool(meta.get("include_git_history")) != include_history:
+        return False
+    if meta.get("manifest_sha256") != sha256_text(MANIFEST_FILE.read_text(encoding="utf-8")):
+        return False
+    if meta.get("source_fingerprint") != current_source_fingerprint(manifest):
+        return False
+    if include_history and meta.get("git_head") != git_head():
+        return False
+    return True
+
+
+def ensure_fresh_index(include_history: bool) -> None:
+    if not index_is_fresh(include_history):
+        build(include_history=include_history)
+
+
 def load_records() -> list[dict]:
-    if not INDEX_FILE.exists():
-        fail("Index missing. Run: python rag/gptina_memory.py build")
     out = []
     for line in INDEX_FILE.read_text(encoding="utf-8").splitlines():
         if line.strip():
@@ -353,8 +427,17 @@ def load_records() -> list[dict]:
     return out
 
 
-def bm25_search(query: str, top_k: int) -> list[tuple[float, dict]]:
+def bm25_search(
+    query: str,
+    top_k: int,
+    include_historical: bool = False,
+    include_superseded: bool = False,
+) -> list[tuple[float, dict]]:
     docs = load_records()
+    if not include_historical:
+        docs = [d for d in docs if not d.get("historical")]
+    if not include_superseded:
+        docs = [d for d in docs if d.get("status", "current") not in {"superseded", "invalidated"}]
     q = tokenize(query)
     if not q:
         return []
@@ -403,31 +486,93 @@ def bm25_search(query: str, top_k: int) -> list[tuple[float, dict]]:
 
         scored.append((score, d))
     scored.sort(key=lambda x: x[0], reverse=True)
-    return scored[:top_k]
+
+    # Diversify results so one long source or many revisions do not crowd out
+    # independent evidence. At most two chunks from the same source.
+    diversified: list[tuple[float, dict]] = []
+    per_source: Counter[str] = Counter()
+    for item in scored:
+        source = item[1].get("source", "")
+        if per_source[source] >= 2:
+            continue
+        diversified.append(item)
+        per_source[source] += 1
+        if len(diversified) >= top_k:
+            break
+    return diversified
 
 
-def search(query: str, top_k: int) -> None:
-    results = bm25_search(query, top_k)
+def search(
+    query: str,
+    top_k: int,
+    include_history: bool = False,
+    include_superseded: bool = False,
+) -> None:
+    ensure_fresh_index(include_history)
+    results = bm25_search(
+        query,
+        top_k,
+        include_historical=include_history,
+        include_superseded=include_superseded,
+    )
     if not results:
         print("No matching memories.")
         return
     for rank, (score, d) in enumerate(results, 1):
         print(f"\n[{rank}] score={score:.3f} id={d['id']}")
-        print(f"source={d['source']} revision={d['revision']} historical={d['historical']}")
+        print(
+            f"source={d['source']} revision={d['revision']} "
+            f"historical={d['historical']} status={d.get('status', 'current')}"
+        )
         print(f"section={d.get('heading')} sha256={d['source_sha256'][:16]}…")
         print(d["text"].strip())
 
 
 def verify_boundary() -> None:
-    """Machine-readable confirmation of the RAG write boundary."""
+    """Verify ownership, index boundaries, image coverage and recovery pointers."""
     manifest = load_manifest()
     policy = manifest.get("policy", {})
     ok = bool(policy.get("canonical_sources_are_immutable_inputs")) and not bool(policy.get("destructive_compaction"))
     if not ok:
         fail("Manifest violates immutable-source policy.")
+
     for p in (INDEX_FILE, META_FILE):
         ensure_inside_rag(p)
-    print("OK: canonical sources are read-only inputs; generated writes are constrained to rag/.")
+
+    sources = expand_sources(manifest)
+    forbidden = [rel(p) for p, _ in sources if rel(p).startswith("rag/memories/tessa/")]
+    if forbidden:
+        fail(f"Tessa-owned memories entered GPTina index: {forbidden}")
+
+    for path, meta in manifest.get("status_overrides", {}).items():
+        src = ROOT / path
+        if not src.is_file():
+            fail(f"Status override points to missing memory: {path}")
+        replacement = meta.get("replaced_by")
+        if replacement and not (ROOT / replacement).is_file():
+            fail(f"Status override replacement missing: {replacement}")
+
+    if VISUAL_INDEX_FILE.is_file():
+        visual = VISUAL_INDEX_FILE.read_text(encoding="utf-8")
+        media_dir = ROOT / "media"
+        images = [
+            p for p in media_dir.iterdir()
+            if p.is_file() and p.suffix.casefold() in IMAGE_SUFFIXES
+        ] if media_dir.is_dir() else []
+        missing = [p.name for p in images if p.name not in visual]
+        if missing:
+            fail(f"Images missing from visual chronology: {missing}")
+
+    if CURRENT_CONTEXT_FILE.is_file() and FAST_RECALL_FILE.is_file():
+        current_match = CHECKPOINT_RE.search(CURRENT_CONTEXT_FILE.read_text(encoding="utf-8"))
+        fast_match = CHECKPOINT_RE.search(FAST_RECALL_FILE.read_text(encoding="utf-8"))
+        if current_match and fast_match and current_match.group(0) != fast_match.group(0):
+            fail(
+                "Recovery entrypoints disagree on latest checkpoint: "
+                f"{current_match.group(0)} != {fast_match.group(0)}"
+            )
+
+    print("OK: GPTina ownership, status overrides, visual coverage and recovery pointers are consistent.")
 
 
 def main() -> None:
@@ -435,20 +580,34 @@ def main() -> None:
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     bp = sub.add_parser("build", help="Build a regenerable index under rag/index/")
-    bp.add_argument("--no-history", action="store_true", help="Skip historical git versions")
+    bp.add_argument("--history", action="store_true", help="Include historical git revisions")
+    bp.add_argument("--no-history", action="store_true", help="Backward-compatible alias for current-only build")
 
     sp = sub.add_parser("search", help="Retrieve memories")
     sp.add_argument("query")
     sp.add_argument("--top-k", type=int, default=6)
+    sp.add_argument("--history", action="store_true", help="Include historical git revisions in search")
+    sp.add_argument(
+        "--all-statuses",
+        action="store_true",
+        help="Include superseded/invalidated memories (normally excluded)",
+    )
 
-    sub.add_parser("verify", help="Verify immutable-source/write-boundary policy")
+    sub.add_parser("verify", help="Verify ownership, status, visual coverage and recovery pointers")
 
     args = ap.parse_args()
     if args.cmd == "build":
+        if args.history and args.no_history:
+            fail("Choose only one of --history or --no-history.")
         verify_boundary()
-        build(include_history=not args.no_history)
+        build(include_history=bool(args.history))
     elif args.cmd == "search":
-        search(args.query, args.top_k)
+        search(
+            args.query,
+            args.top_k,
+            include_history=bool(args.history),
+            include_superseded=bool(args.all_statuses),
+        )
     elif args.cmd == "verify":
         verify_boundary()
 
