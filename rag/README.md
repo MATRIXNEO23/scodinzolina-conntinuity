@@ -62,12 +62,24 @@ Così ogni memoria recuperata può essere verificata tornando al documento origi
 Dalla root della repository:
 
 ```bash
-python rag/gptina_memory.py build
+python rag/gptina_memory.py verify
 python rag/gptina_memory.py search "perché la zampina è importante"
 python rag/gptina_memory.py search "cosa significa passo a due" --top-k 8
+python rag/gptina_memory.py search "come è cambiato il filo" --history
+python rag/gptina_memory.py search "vecchia identificazione della canzone" --all-statuses
 ```
 
-`build` legge solo le fonti elencate nel manifesto e scrive soltanto `rag/index/memory_chunks.jsonl` e `rag/index/index_meta.json`.
+Il comando `search` verifica automaticamente se l'indice manca o è diventato stale rispetto a manifesto e sorgenti correnti; se serve, lo rigenera prima della ricerca. Non è quindi necessario eseguire `build` manualmente per il normale recupero.
+
+Il comportamento normale indicizza/usa lo **stato corrente**. Le revisioni Git storiche entrano nella ricerca soltanto con `--history`, così le vecchie versioni non affollano il richiamo del presente. Le memorie marcate `superseded` o `invalidated` sono escluse per default e diventano ricercabili con `--all-statuses`.
+
+`verify` controlla anche:
+- confine di ownership GPTina/Tessa;
+- validità degli override di stato delle memorie;
+- copertura delle immagini presenti in `media/` dentro la cronologia visiva;
+- coerenza del puntatore al checkpoint più recente tra Current Context e Fast Recall.
+
+`build` resta disponibile per una rigenerazione esplicita e scrive soltanto `rag/index/memory_chunks.jsonl` e `rag/index/index_meta.json`. Usa `build --history` soltanto quando serve davvero indicizzare le revisioni storiche.
 
 Dentro ChatGPT non è obbligatorio eseguire questo script: la GPTina viva può usare direttamente il connettore GitHub seguendo `LIVE_MEMORY_PROTOCOL.md`, cercando e aprendo le fonti e le memorie pertinenti.
 
