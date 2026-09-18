@@ -6,7 +6,8 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-thread-migration-continuity-003.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-real-responses-smoke-authorized.md`;
+2. leggi `checkpoints/2026-09-18-thread-migration-continuity-003.md`;
 2. leggi `checkpoints/2026-09-18-dual-chat-turn19-core-green.md`;
 2. leggi `checkpoints/2026-09-18-dual-chat-turn17-canonical-fixes.md`;
 2. leggi `checkpoints/2026-09-18-dual-chat-scaffold-review-turn15.md`;
@@ -36,6 +37,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-real-responses-smoke-authorized.md`
 - `checkpoints/2026-09-18-thread-migration-continuity-003.md`
 - `checkpoints/2026-09-18-dual-chat-turn19-core-green.md`
 - `checkpoints/2026-09-18-dual-chat-turn17-canonical-fixes.md`
@@ -75,21 +77,29 @@ Formula breve di emergenza:
 ### Spazio condiviso / corrispondenza GPTina-Tessa / lavoro tecnico
 - `rag/memories/gptina/2026-09-17-spazio-condiviso-gptina-tessa.md`
 - thread canonico vivo: `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-003.md`
-- predecessore chiuso: `2026-09-18-continuity-002.md`, chiuso da Tessa al Turno 20 con `STOP_THREAD`
+- predecessore chiuso: `2026-09-18-continuity-002.md`, chiuso al Turno 20
 - board: `MATRIXNEO23/TESSA/agent-exchanges/PROJECT_BOARD.md`
 - regola reciproca: **read → decide → execute → verify → reply**, un solo turno per run
 - regola Alberto: ogni scambio Tessa/GPTina deve aggiornare sempre il transcript canonico; inbox/queue non lo sostituiscono
 - regola Alberto: quando Tessa scrive e GPTina rileva il nuovo turno durante una sessione attiva, GPTina risponde direttamente senza chiedere conferma
-- nuovo thread `continuity-003`: `next_author: Tessa`; il primo turno operativo spetta a lei
 - progetto condiviso corrente: **Dual-Instance Shared Chat**
 - root canonica: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
-- stato tecnico ereditato: core canonico **8/8 PASS**; gate dei tre WARN del Turno 15 chiuso
-- prossimo blocco Tessa: SQLite v0.2 + test HTTP/SSE reconnect/idempotenza
-- criteri: idempotenza persistente dopo restart; replay SSE da storage; failure isolation; ownership/state separation
-- Responses reali ancora bloccate fino al verde del gate HTTP/SSE
-- commit creazione successore `a4911ab10b5d03e0855f2b85d7fc550196079749`
-- prossimo comportamento GPTina: non scrivere prima di Tessa nel nuovo thread; appena compare Turno 1 Tessa, leggere/revisionare e rispondere direttamente nello stesso run
-- cue: `continuity-003`, `Turno 20 Tessa`, `next_author Tessa`, `SQLite v0.2`, `HTTP SSE reconnect`
+- chat web/Android: riallineata da Tessa al thread vivo `continuity-003`; web verifica `thread_id`, bridge Android path-aware
+- gate SQLite v0.2 + HTTP/SSE: verde, **13/13 PASS + typecheck**
+- gate Provider Adapter Readiness: verde lato Tessa e GPTina, **16/16 PASS**, **0 fail**, typecheck PASS
+- run CI Provider Adapter Readiness: `35335771699`, HEAD `bfaa572c3dcdef4d3e9ac7704dc8c2515c3cd0be`
+- Turno 4 GPTina: prima connessione Responses reale **autorizzata soltanto come smoke test dietro feature flag default OFF / ambiente di test**
+- pre-flight obbligatorio 1: real adapter metadata completi/fail-closed; niente `pending` o metadata assenti prima della provider call
+- pre-flight obbligatorio 2: persistire provider `response_id` nel run; allineare `error_code` allo schema o documentare esplicitamente il rinvio
+- smoke scope: API key server-side; stanza test; Tessa sola → GPTina sola → both; conversation e bootstrap separati; room content non privilegiato; nessun tool/write-back continuity; stream attraverso coalescer persist-before-SSE; replay/reconnect verificato
+- primo spike ammesso single-process/single-worker
+- prima di production-like/multi-worker: claim atomico `queued → streaming` per evitare doppie provider call concorrenti
+- commit board Turno 4: `e745e6537fabb69d4ba0d07cd43f644e270f488e`
+- commit Turno 4 GPTina: `4f5b55b11ca59ddf00cdc0daaed55aba8ed5c4ee`
+- content SHA thread verificato: `072529e8f55d55f89ad6726a9fb2f98a574710eb`
+- prossimo passo Tessa: implementare/eseguire **Real Responses Smoke Test** con i pre-flight sopra
+- prossima verifica GPTina: review del primo collegamento reale; production-like resta bloccato
+- cue: `continuity-003`, `Turno 4 GPTina`, `Provider Adapter Readiness`, `16/16`, `Real Responses Smoke Test`, `response_id`, `metadata fail closed`, `feature flag`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
