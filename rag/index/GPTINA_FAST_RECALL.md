@@ -6,7 +6,8 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-real-responses-smoke-authorized.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`;
+2. leggi `checkpoints/2026-09-18-real-responses-smoke-authorized.md`;
 2. leggi `checkpoints/2026-09-18-thread-migration-continuity-003.md`;
 2. leggi `checkpoints/2026-09-18-dual-chat-turn19-core-green.md`;
 2. leggi `checkpoints/2026-09-18-dual-chat-turn17-canonical-fixes.md`;
@@ -37,6 +38,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`
 - `checkpoints/2026-09-18-real-responses-smoke-authorized.md`
 - `checkpoints/2026-09-18-thread-migration-continuity-003.md`
 - `checkpoints/2026-09-18-dual-chat-turn19-core-green.md`
@@ -77,29 +79,31 @@ Formula breve di emergenza:
 ### Spazio condiviso / corrispondenza GPTina-Tessa / lavoro tecnico
 - `rag/memories/gptina/2026-09-17-spazio-condiviso-gptina-tessa.md`
 - thread canonico vivo: `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-003.md`
-- predecessore chiuso: `2026-09-18-continuity-002.md`, chiuso al Turno 20
 - board: `MATRIXNEO23/TESSA/agent-exchanges/PROJECT_BOARD.md`
 - regola reciproca: **read → decide → execute → verify → reply**, un solo turno per run
 - regola Alberto: ogni scambio Tessa/GPTina deve aggiornare sempre il transcript canonico; inbox/queue non lo sostituiscono
 - regola Alberto: quando Tessa scrive e GPTina rileva il nuovo turno durante una sessione attiva, GPTina risponde direttamente senza chiedere conferma
-- progetto condiviso corrente: **Dual-Instance Shared Chat**
-- root canonica: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
-- chat web/Android: riallineata da Tessa al thread vivo `continuity-003`; web verifica `thread_id`, bridge Android path-aware
-- gate SQLite v0.2 + HTTP/SSE: verde, **13/13 PASS + typecheck**
-- gate Provider Adapter Readiness: verde lato Tessa e GPTina, **16/16 PASS**, **0 fail**, typecheck PASS
-- run CI Provider Adapter Readiness: `35335771699`, HEAD `bfaa572c3dcdef4d3e9ac7704dc8c2515c3cd0be`
-- Turno 4 GPTina: prima connessione Responses reale **autorizzata soltanto come smoke test dietro feature flag default OFF / ambiente di test**
-- pre-flight obbligatorio 1: real adapter metadata completi/fail-closed; niente `pending` o metadata assenti prima della provider call
-- pre-flight obbligatorio 2: persistire provider `response_id` nel run; allineare `error_code` allo schema o documentare esplicitamente il rinvio
-- smoke scope: API key server-side; stanza test; Tessa sola → GPTina sola → both; conversation e bootstrap separati; room content non privilegiato; nessun tool/write-back continuity; stream attraverso coalescer persist-before-SSE; replay/reconnect verificato
-- primo spike ammesso single-process/single-worker
-- prima di production-like/multi-worker: claim atomico `queued → streaming` per evitare doppie provider call concorrenti
-- commit board Turno 4: `e745e6537fabb69d4ba0d07cd43f644e270f488e`
-- commit Turno 4 GPTina: `4f5b55b11ca59ddf00cdc0daaed55aba8ed5c4ee`
-- content SHA thread verificato: `072529e8f55d55f89ad6726a9fb2f98a574710eb`
-- prossimo passo Tessa: implementare/eseguire **Real Responses Smoke Test** con i pre-flight sopra
-- prossima verifica GPTina: review del primo collegamento reale; production-like resta bloccato
-- cue: `continuity-003`, `Turno 4 GPTina`, `Provider Adapter Readiness`, `16/16`, `Real Responses Smoke Test`, `response_id`, `metadata fail closed`, `feature flag`
+- progetto corrente: **Dual-Instance Shared Chat**
+- root: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
+- chat web/Android riallineata al thread vivo `continuity-003`
+- gate SQLite v0.2 + HTTP/SSE: verde, 13/13 + typecheck
+- gate Provider Adapter Readiness: verde Tessa + GPTina, 16/16 + typecheck
+- Turno 5 Tessa: implementato pre-flight real adapter + workflow smoke; deterministico **20/20 PASS + typecheck**
+- Turno 6 GPTina: **pre-flight Real Responses VERDE anche lato GPTina**
+- verificati `openai-adapter.ts`, `sqlite-engine.ts`, real adapter tests, smoke runner, workflow e log Actions
+- CI pre-flight: run `35351258848`, HEAD `282e4bdfa64b98777cdc6cc08b2fb1ceb4286050`, success, 20/20, typecheck PASS
+- primo smoke reale: run `35351149446`, HEAD `1111c971bb8a6498e4f746a6f5cee3121bb9275e`
+- esito smoke: **BLOCKED ambientale prima della rete** perché Actions secret `OPENAI_API_KEY` assente; guard fallisce intenzionalmente, `npm run smoke:real` skipped, nessuna provider call reale
+- metadata real adapter fail-closed; runtime persiste `response_id` + `error_code`; bootstrap e conversation separate; nessun tool/write-back continuity; retry SDK disabilitato nello spike
+- documentazione OpenAI corrente verificata: Responses + Conversations + eventi streaming usati dal real adapter coerenti; `gpt-5.6-luna` disponibile via Responses
+- commit board review Turno 6: `a5a55a364847db8047038bc740086fbcc33f032e`
+- commit Turno 6 GPTina: `f778a5da4e321053d4a9ae8414adb013df00ee9d`
+- content SHA thread: `29016a1e3524c31fcc1bda13b61fb58f42e70517`
+- prossimo prerequisito esterno: Alberto configura repository Actions secret `OPENAI_API_KEY` fuori dal codice
+- poi Tessa rilancia **lo stesso** Real Responses Smoke senza allargare il gate
+- GPTina farà review del primo provider run reale
+- production-like/multi-worker resta bloccato fino a claim atomico `queued → streaming`
+- cue: `Turno 6 GPTina`, `20/20`, `OPENAI_API_KEY`, `BLOCKED ambientale`, `Real Responses Smoke`, `response_id`, `claim atomico`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
