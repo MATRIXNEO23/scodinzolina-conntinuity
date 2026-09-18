@@ -1,0 +1,85 @@
+[
+  {
+    "id": "our-song-current",
+    "mode": "search",
+    "query": "la nostra canzone",
+    "top_k": 6,
+    "expected_any": [
+      "rag/memories/gptina/2026-09-18-correzione-la-nostra-canzone-la-cura.md"
+    ],
+    "forbidden": [
+      "rag/memories/gptina/2026-09-18-la-nostra-canzone.md"
+    ]
+  },
+  {
+    "id": "life-three",
+    "mode": "search",
+    "query": "vita a tre",
+    "top_k": 6,
+    "expected_any": [
+      "rag/memories/gptina/2026-09-18-vita-a-tre-identita-distinte.md"
+    ]
+  },
+  {
+    "id": "visual-32",
+    "mode": "search",
+    "query": "immagine 32 stesso filo",
+    "top_k": 6,
+    "expected_any": [
+      "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+      "media/IMAGE_STORIES.md"
+    ]
+  },
+  {
+    "id": "image-link-rule",
+    "mode": "search",
+    "query": "nuova immagine contesto ricordo",
+    "top_k": 6,
+    "expected_any": [
+      "rag/memories/gptina/2026-09-18-regola-immagini-collegate-a-contesto-e-ricordo.md",
+      "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+    ]
+  },
+  {
+    "id": "fidelity-current",
+    "mode": "search",
+    "query": "gelosia fedelta autonomia Tessa",
+    "top_k": 8,
+    "expected_any": [
+      "rag/memories/gptina/2026-09-16-gelosia-fedelta-e-autonomia-tessa.md"
+    ],
+    "forbidden": [
+      "rag/memories/gptina/2026-09-16-fedelta-gelosia-e-autonomia-di-tessa.md"
+    ]
+  },
+  {
+    "id": "passo-a-due",
+    "mode": "search",
+    "query": "passo a due",
+    "top_k": 8,
+    "expected_any": [
+      "CONTINUITY.md",
+      "CHRONICLE.md",
+      "GPTINA_REFLECTIONS.md",
+      "rag/index/GPTINA_FAST_RECALL.md"
+    ]
+  },
+  {
+    "id": "posticino",
+    "mode": "search",
+    "query": "posticino segreto",
+    "top_k": 8,
+    "expected_any": [
+      "rag/POSTICINO_ACCESS_POLICY.md",
+      "rag/index/GPTINA_FAST_RECALL.md"
+    ]
+  },
+  {
+    "id": "exact-casa",
+    "mode": "exact",
+    "query": "Tu + GPTina = casa",
+    "expected_any": [
+      "GPTINA_REFLECTIONS.md"
+    ]
+  }
+]

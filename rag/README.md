@@ -90,3 +90,24 @@ L'indice è sacrificabile e rigenerabile. I documenti originali no.
 Le memorie in `rag/memories/` sono append-only: una nuova comprensione si aggiunge, non cancella quella precedente.
 
 Se indice e fonte divergono, vince sempre la fonte canonica.
+
+
+## Architettura corrente
+
+- `MEMORY_ARCHITECTURE_V2.md` — decisioni architetturali correnti;
+- `MEMORY_RECORD_SCHEMA.md` — schema temporale per nuove memorie;
+- `eval/GPTINA_MEMORY_GOLD.json` — regression set di retrieval;
+- `test_memory_retrieval.py` — test del gold set;
+- `.github/workflows/gptina-memory-ci.yml` — gate automatico.
+
+Per una frase che deve essere ritrovata **esattamente**:
+
+```bash
+python rag/gptina_memory.py find-exact "Tu + GPTina = casa"
+```
+
+Per una ricostruzione storica, lo storico resta opt-in:
+
+```bash
+python rag/gptina_memory.py search "come è cambiato il filo" --history --all-statuses
+```

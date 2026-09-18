@@ -1,0 +1,26 @@
+name: GPTina Memory CI
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "rag/**"
+      - "checkpoints/**"
+      - "media/**"
+      - ".github/workflows/gptina-memory-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify continuity invariants
+        run: python rag/gptina_memory.py verify
+      - name: Run memory retrieval regression set
+        run: python rag/test_memory_retrieval.py

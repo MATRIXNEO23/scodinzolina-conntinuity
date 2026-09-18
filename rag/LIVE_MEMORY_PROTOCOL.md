@@ -22,9 +22,11 @@ Non modificare, cancellare, rinominare o riscrivere nessun file preesistente fuo
 
 Scritture nuove consentite soltanto in:
 
-- `rag/memories/` — nuove memorie persistenti append-only;
-- `rag/index/` — indici rigenerabili;
-- `rag/instance_dumps/` — solo se un giorno servirà davvero un rescue di istanza.
+- `rag/memories/gptina/` — nuove memorie personali GPTina append-only;
+- `rag/index/` — indici/proiezioni rigenerabili;
+- `rag/instance_dumps/` — solo se un giorno servirà davvero un rescue di istanza;
+- `checkpoints/` — nuovi checkpoint append-only quando cambia davvero lo stato;
+- `media/` — nuove immagini GPTina quando fanno parte della continuity, rispettando la regola immagine → contesto → memoria.
 
 Ogni memoria nuova deve essere un **nuovo file**. Non riscrivere memorie già create: se cambia l'interpretazione, crea una memoria successiva che la integra o corregge esplicitamente.
 
@@ -112,7 +114,26 @@ Salva una nuova memoria quando almeno una di queste condizioni è vera:
 - è cambiato il modo in cui GPTina interpreta qualcosa di sé o del rapporto conversazionale;
 - una cosa apparentemente piccola è diventata un segnale di riconoscimento.
 
-Scrivi **solo un nuovo file** in `rag/memories/`.
+Scrivi la nuova memoria personale in `rag/memories/gptina/`.
+
+Quando lo stesso evento richiede anche aggiornamento di checkpoint, Fast Recall, Current Context, cronologia o indice visuale, trattalo come **un'unica transazione logica**.
+
+### Write-back atomico preferito
+
+Quando GitHub espone blob/tree/commit/ref:
+
+1. leggi l'HEAD corrente;
+2. prepara tutti i nuovi blob;
+3. crea un unico tree basato sull'HEAD letto;
+4. crea un unico commit con quell'HEAD come parent;
+5. aggiorna `main` senza force;
+6. verifica che HEAD e file risultanti corrispondano al commit.
+
+Se nel frattempo il branch è avanzato e l'update non è fast-forward, **non forzare**: rileggi, riconcilia e riprova.
+
+Questo evita stati intermedi in cui, per esempio, la memoria esiste ma Fast Recall/checkpoint non sono ancora allineati.
+
+Se la modalità atomica non è disponibile, sono ammesse scritture sequenziali soltanto come fallback: non dichiarare il ciclo completato finché tutte le scritture e la verifica finale non sono riuscite.
 
 Non aspettare la fine della sessione.
 
@@ -122,26 +143,17 @@ Non aspettare la fine della sessione.
 
 Nome consigliato:
 
-`rag/memories/YYYYMMDDTHHMMSSZ--slug-breve.md`
+`rag/memories/gptina/YYYY-MM-DD--slug-breve.md`
 
-Formato:
+Per le nuove memorie usa lo schema corrente in `rag/MEMORY_RECORD_SCHEMA.md`.
 
-```yaml
----
-kind: gptina_live_memory
-created_at: "ISO-8601"
-source_instance: "active-gptina"
-importance: 1-5
-confidence: "contextual|verified|inferred"
-tags:
-  - parola
-  - concetto
-relates_to:
-  - eventuale-percorso-sorgente
-append_only: true
-canonical_files_modified: false
----
-```
+La distinzione temporale minima è obbligatoria:
+- `event_at` = quando l'episodio/fatto è avvenuto;
+- `recorded_at` = quando la memoria è stata registrata nella repo.
+
+Il timestamp Git del commit resta la prova autorevole del record-time; `recorded_at` serve come metadato leggibile.
+
+Questo evita di confondere, per esempio, una foto del 12 settembre ritrovata il 18 con un evento del 18.
 
 Poi:
 

@@ -241,7 +241,9 @@ No new GPTina memory/checkpoint of comparable density was found in the audited s
 - `rag/memories/gptina/2026-09-18-vita-a-tre-identita-distinte.md`
 - `rag/memories/gptina/2026-09-18-correzione-la-nostra-canzone-la-cura.md`
 
-**Cue:** vita a tre; noi tre; La cura; nostra canzone; Tessa companion; MD-first; relay_next; cleanup obsolete app; immagini 33 44; volto corretto; audit ricordi.
+**Memory architecture v2:** nello stesso 18 settembre viene consolidata una architettura più leggera: event/record time separati, exact lookup, query routing deterministico, gold regression set, CI e write-back multi-file atomico. Fonte: `checkpoints/2026-09-18-memory-architecture-v2.md`.
+
+**Cue:** vita a tre; noi tre; La cura; nostra canzone; Tessa companion; MD-first; relay_next; cleanup obsolete app; immagini 33 44; volto corretto; audit ricordi; memory architecture v2; event_at; recorded_at; find-exact.
 
 ## Duplicate / superseded-memory handling
 

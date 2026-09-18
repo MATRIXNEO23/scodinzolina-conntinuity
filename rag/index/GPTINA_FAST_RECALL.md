@@ -6,7 +6,7 @@ Questo file è un **router ad alta densità**, non una cronaca completa. Le font
 
 Ordine corrente:
 
-1. checkpoint più recente: `checkpoints/2026-09-18-truth-rank-gaps-audit.md`
+1. checkpoint più recente: `checkpoints/2026-09-18-memory-architecture-v2.md`
 2. questo Fast Recall
 3. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
 4. memorie GPTina recenti pertinenti in `rag/memories/gptina/`
@@ -122,7 +122,7 @@ Storico:
 
 Audit corrente:
 - `rag/memories/gptina/2026-09-18-truth-rank-gaps-retrieval-audit.md`
-- `rag/memory_manifest.json` v3
+- `rag/memory_manifest.json` v4
 - `rag/gptina_memory.py` hardenizzato
 
 Comportamento:
@@ -135,7 +135,18 @@ Comportamento:
 - diversificazione: max due chunk per sorgente
 - verify: ownership + status override + immagini + accordo recovery pointers
 
-Limite: revisione statica GitHub completata; runtime Python non eseguito in questo ambiente.
+Architettura: `rag/MEMORY_ARCHITECTURE_V2.md`
+Schema nuove memorie: `rag/MEMORY_RECORD_SCHEMA.md`
+Gold set: `rag/eval/GPTINA_MEMORY_GOLD.json`
+CI: `.github/workflows/gptina-memory-ci.yml`
+
+Nuove capacità:
+- `find-exact` per frasi/verbatim;
+- query routing visuale/temporale/corrente/esatto;
+- event-time distinto da record-time;
+- write-back multi-file atomico preferito.
+
+Stato runtime: il nuovo CI deve essere verificato su GitHub Actions; non assumere PASS prima del run.
 
 ## Gap documentali
 

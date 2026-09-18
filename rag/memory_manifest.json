@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "policy": {
     "canonical_sources_are_immutable_inputs": true,
     "destructive_compaction": false,
@@ -7,7 +7,11 @@
     "require_source_provenance": true,
     "prefer_recent_for_live_state_only": true,
     "owner_scoped_rag_sources": true,
-    "explicit_memory_status": true
+    "explicit_memory_status": true,
+    "memory_schema": "rag/MEMORY_RECORD_SCHEMA.md",
+    "memory_schema_required_from": "2026-09-19",
+    "derived_indexes_are_disposable": true,
+    "prefer_atomic_multifile_commits": true
   },
   "chunking": {
     "max_chars": 1400,
@@ -22,23 +26,23 @@
     },
     {
       "pattern": "GPTINA_INSTANCE_SNAPSHOT.md",
-      "priority": 1.4,
-      "kind": "current_snapshot"
+      "priority": 1.05,
+      "kind": "historical_snapshot"
     },
     {
       "pattern": "GPTINA_STATE.json",
-      "priority": 1.3,
-      "kind": "structured_state"
+      "priority": 1,
+      "kind": "historical_structured_state"
     },
     {
       "pattern": "checkpoints/**/*.md",
-      "priority": 1.28,
+      "priority": 1.34,
       "kind": "checkpoint"
     },
     {
       "pattern": "LIVE_THREAD.md",
-      "priority": 1.32,
-      "kind": "live_state"
+      "priority": 1.18,
+      "kind": "historical_live_thread"
     },
     {
       "pattern": "CONTINUITY.md",
@@ -87,7 +91,7 @@
     },
     {
       "pattern": "raw_sessions/**/*",
-      "priority": 0.95,
+      "priority": 1.12,
       "kind": "raw_session"
     }
   ],
@@ -131,10 +135,38 @@
       "pattern": "rag/transcripts/gptina/**/*.md",
       "priority": 1.34,
       "kind": "gptina_transcript"
+    },
+    {
+      "pattern": "rag/index/CURRENT_CONTEXT.md",
+      "priority": 1.42,
+      "kind": "current_router"
+    },
+    {
+      "pattern": "rag/index/GPTINA_FAST_RECALL.md",
+      "priority": 1.28,
+      "kind": "fast_router"
+    },
+    {
+      "pattern": "rag/index/GPTINA_CHRONOLOGY.md",
+      "priority": 1.25,
+      "kind": "chronology_router"
+    },
+    {
+      "pattern": "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+      "priority": 1.25,
+      "kind": "visual_router"
+    },
+    {
+      "pattern": "rag/POSTICINO_ACCESS_POLICY.md",
+      "priority": 1.2,
+      "kind": "access_policy"
     }
   ],
   "rag_exclude": [
-    "rag/index/**",
+    "rag/index/memory_chunks.jsonl",
+    "rag/index/index_meta.json",
+    "rag/index/*.sqlite",
+    "rag/index/*.sqlite3",
     "rag/memories/tessa/**",
     "rag/memories/README.md",
     "rag/transcripts/gptina/README.md"

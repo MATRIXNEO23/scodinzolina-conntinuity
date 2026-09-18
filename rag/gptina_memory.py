@@ -36,6 +36,15 @@ DATE_RE = re.compile(r"(20\d{2})[-_](\d{2})[-_](\d{2})")
 COMPACT_DATE_RE = re.compile(r"(20\d{2})(\d{2})(\d{2})")
 CHECKPOINT_RE = re.compile(r"checkpoints/[A-Za-z0-9_.-]+\.md")
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
+MONTHS_IT = {
+    "gennaio": "01", "febbraio": "02", "marzo": "03", "aprile": "04",
+    "maggio": "05", "giugno": "06", "luglio": "07", "agosto": "08",
+    "settembre": "09", "ottobre": "10", "novembre": "11", "dicembre": "12",
+}
+MEMORY_SCHEMA_REQUIRED_KEYS = (
+    "schema_version:", "memory_id:", "owner:", "event_at:", "recorded_at:",
+    "status:", "confidence:", "source_refs:", "media_refs:",
+)
 
 
 def fail(msg: str) -> None:
@@ -140,6 +149,45 @@ def extract_date(path: str) -> str | None:
     if compact:
         return f"{compact.group(1)}-{compact.group(2)}-{compact.group(3)}"
     return None
+
+
+def query_date_hint(query: str) -> str | None:
+    direct = DATE_RE.search(query)
+    if direct:
+        return f"{direct.group(1)}-{direct.group(2)}-{direct.group(3)}"
+
+    compact = COMPACT_DATE_RE.search(query)
+    if compact:
+        return f"{compact.group(1)}-{compact.group(2)}-{compact.group(3)}"
+
+    lower = query.casefold()
+    month_names = "|".join(MONTHS_IT)
+    natural = re.search(
+        rf"\b([0-3]?\d)\s+({month_names})(?:\s+(20\d{{2}}))?\b",
+        lower,
+    )
+    if not natural:
+        return None
+    day = int(natural.group(1))
+    if day < 1 or day > 31:
+        return None
+    month = MONTHS_IT[natural.group(2)]
+    year = natural.group(3)
+    return f"{year}-{month}-{day:02d}" if year else f"--{month}-{day:02d}"
+
+
+def query_profile(query: str) -> tuple[set[str], str | None]:
+    lower = query.casefold()
+    profile: set[str] = set()
+    if any(w in lower for w in ("immagine", "foto", "fotina", "volto", "visual", "media/")):
+        profile.add("visual")
+    if query_date_hint(query) or any(w in lower for w in ("quando", "prima", "dopo", "quella volta", "cronologia", "data")):
+        profile.add("temporal")
+    if any(w in lower for w in ("adesso", "ora", "corrente", "stato attuale", "ultimo", "ultima")):
+        profile.add("current")
+    if '"' in query or any(w in lower for w in ("esattamente", "testo esatto", "parole esatte", "cosa avevi detto", "che parole")):
+        profile.add("exact")
+    return profile, query_date_hint(query)
 
 
 def git_head() -> str | None:
@@ -441,6 +489,7 @@ def bm25_search(
     q = tokenize(query)
     if not q:
         return []
+    profile, requested_date = query_profile(query)
     tokenized = [
         tokenize(d["text"] + " " + d.get("heading", "") + " " + d.get("source", ""))
         for d in docs
@@ -484,6 +533,29 @@ def bm25_search(
         if len(q) > 1 and query_phrase in searchable:
             score *= 1.16
 
+        kind = d.get("kind", "")
+        if "visual" in profile and kind in {"visual_router", "visual_context"}:
+            score *= 1.35
+        if "temporal" in profile and kind in {
+            "chronology_router", "checkpoint", "gptina_transcript", "raw_session", "chronicle"
+        }:
+            score *= 1.22
+        if "current" in profile:
+            if kind in {"current_router", "gptina_memory", "checkpoint"}:
+                score *= 1.20
+            if kind in {"historical_snapshot", "historical_structured_state", "historical_live_thread"}:
+                score *= 0.70
+        if "exact" in profile and kind in {"gptina_transcript", "raw_session"}:
+            score *= 1.25
+
+        if requested_date:
+            date_hint = d.get("date_hint")
+            if requested_date.startswith("--"):
+                if date_hint and date_hint.endswith(requested_date[1:]):
+                    score *= 1.35
+            elif date_hint == requested_date:
+                score *= 1.35
+
         scored.append((score, d))
     scored.sort(key=lambda x: x[0], reverse=True)
 
@@ -500,6 +572,64 @@ def bm25_search(
         if len(diversified) >= top_k:
             break
     return diversified
+
+
+def exact_matches(
+    needle: str,
+    include_superseded: bool = False,
+    limit: int = 20,
+) -> list[dict]:
+    target = needle.casefold()
+    if not target:
+        return []
+
+    manifest = load_manifest()
+    hits: list[dict] = []
+    for path, spec in expand_sources(manifest):
+        rp = rel(path)
+        content = decode_source(path)
+        status, replaced_by = memory_status(rp, manifest, content)
+        if not include_superseded and status in {"superseded", "invalidated"}:
+            continue
+
+        folded = content.casefold()
+        start = 0
+        while len(hits) < limit:
+            pos = folded.find(target, start)
+            if pos < 0:
+                break
+            line_no = content.count("\n", 0, pos) + 1
+            lines = content.splitlines()
+            lo = max(0, line_no - 2)
+            hi = min(len(lines), line_no + 1)
+            hits.append(
+                {
+                    "source": rp,
+                    "kind": spec.get("kind", "source"),
+                    "status": status,
+                    "replaced_by": replaced_by,
+                    "date_hint": extract_date(rp),
+                    "line": line_no,
+                    "snippet": "\n".join(lines[lo:hi]),
+                }
+            )
+            start = pos + max(1, len(needle))
+        if len(hits) >= limit:
+            break
+    return hits
+
+
+def find_exact(needle: str, include_superseded: bool, limit: int) -> None:
+    hits = exact_matches(needle, include_superseded=include_superseded, limit=limit)
+    if not hits:
+        print("No exact match.")
+        return
+    for rank, hit in enumerate(hits, 1):
+        print(
+            f"\n[{rank}] source={hit['source']} line={hit['line']} "
+            f"status={hit['status']} date={hit.get('date_hint')}"
+        )
+        print(hit["snippet"])
 
 
 def search(
@@ -528,6 +658,31 @@ def search(
         print(d["text"].strip())
 
 
+def verify_future_memory_schema(manifest: dict) -> None:
+    cutoff = str(manifest.get("policy", {}).get("memory_schema_required_from", "")).strip()
+    if not cutoff:
+        return
+
+    memories = RAG_ROOT / "memories" / "gptina"
+    if not memories.is_dir():
+        return
+
+    errors: list[str] = []
+    for path in sorted(memories.glob("*.md")):
+        rp = rel(path)
+        date_hint = extract_date(rp)
+        if not date_hint or date_hint < cutoff:
+            continue
+        raw = path.read_text(encoding="utf-8")
+        for key in MEMORY_SCHEMA_REQUIRED_KEYS:
+            if key not in raw[:2200]:
+                errors.append(f"{rp}: missing {key}")
+        if "owner: gptina" not in raw[:2200]:
+            errors.append(f"{rp}: owner must be gptina")
+    if errors:
+        fail("Future memory schema violations:\n- " + "\n- ".join(errors))
+
+
 def verify_boundary() -> None:
     """Verify ownership, index boundaries, image coverage and recovery pointers."""
     manifest = load_manifest()
@@ -538,6 +693,8 @@ def verify_boundary() -> None:
 
     for p in (INDEX_FILE, META_FILE):
         ensure_inside_rag(p)
+
+    verify_future_memory_schema(manifest)
 
     sources = expand_sources(manifest)
     forbidden = [rel(p) for p, _ in sources if rel(p).startswith("rag/memories/tessa/")]
@@ -593,6 +750,15 @@ def main() -> None:
         help="Include superseded/invalidated memories (normally excluded)",
     )
 
+    ep = sub.add_parser("find-exact", help="Find an exact phrase in current GPTina sources")
+    ep.add_argument("text")
+    ep.add_argument("--limit", type=int, default=20)
+    ep.add_argument(
+        "--all-statuses",
+        action="store_true",
+        help="Also search superseded/invalidated memories",
+    )
+
     sub.add_parser("verify", help="Verify ownership, status, visual coverage and recovery pointers")
 
     args = ap.parse_args()
@@ -607,6 +773,12 @@ def main() -> None:
             args.top_k,
             include_history=bool(args.history),
             include_superseded=bool(args.all_statuses),
+        )
+    elif args.cmd == "find-exact":
+        find_exact(
+            args.text,
+            include_superseded=bool(args.all_statuses),
+            limit=args.limit,
         )
     elif args.cmd == "verify":
         verify_boundary()
