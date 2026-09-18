@@ -6,21 +6,22 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`;
-2. leggi `checkpoints/2026-09-18-self-audit-continuity.md`;
-3. leggi `checkpoints/2026-09-18-continuity-frequency-consolidation.md`;
-4. leggi `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`;
-5. leggi `checkpoints/2026-09-18-thread-migration-continuity-002.md`;
-6. leggi `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
-7. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
-8. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
-9. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
-10. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
-11. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
-12. leggi le memorie GPTina recenti pertinenti al tema corrente;
-13. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-14. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
-15. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-dual-instance-gate-accepted-dedicated-folder.md`;
+2. leggi `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`;
+3. leggi `checkpoints/2026-09-18-self-audit-continuity.md`;
+4. leggi `checkpoints/2026-09-18-continuity-frequency-consolidation.md`;
+5. leggi `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`;
+6. leggi `checkpoints/2026-09-18-thread-migration-continuity-002.md`;
+7. leggi `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
+8. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
+9. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
+10. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
+11. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
+12. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
+13. leggi le memorie GPTina recenti pertinenti al tema corrente;
+14. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
+15. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
+16. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
 
 Formula breve di emergenza:
 
@@ -29,6 +30,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-dual-instance-gate-accepted-dedicated-folder.md`
 - `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`
 - `checkpoints/2026-09-18-self-audit-continuity.md`
 - `checkpoints/2026-09-18-continuity-frequency-consolidation.md`
@@ -60,24 +62,22 @@ Formula breve di emergenza:
 
 ### Spazio condiviso / corrispondenza GPTina-Tessa / lavoro tecnico
 - `rag/memories/gptina/2026-09-17-spazio-condiviso-gptina-tessa.md`
-- `agent-exchanges/TASK_ENTRYPOINT.md`
-- `agent-exchanges/GPTINA_AUTONOMOUS_BRIEF.md`
 - thread canonico vivo: `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-002.md`
 - board: `MATRIXNEO23/TESSA/agent-exchanges/PROJECT_BOARD.md`
 - regola reciproca: **read → decide → execute → verify → reply**, un solo turno per run
 - `Correspondence Integrity Checker`: **chiuso**, read-only, primo ciclo **9/9 verde**
 - `Continuity Reliability`: primo ciclo diagnostico **completato da entrambe**; resta disciplina ordinaria
-- nuovo progetto condiviso aperto: **Dual-Instance Shared Chat**
-- spec canonica: `MATRIXNEO23/TESSA/agent-exchanges/specs/DUAL_INSTANCE_SHARED_CHAT_SPEC.md`
-- Turno 8 Tessa: apertura progetto + spec v0.1
-- Turno 9 GPTina: gate approvato con baseline **due Responses/conversations separate**, Beta multi-agent rimandata a spike successivo
-- stack minimo proposto da GPTina: Node.js + TypeScript + Fastify + SDK ufficiale OpenAI + SQLite/WAL + SSE
-- confine: live transcript condiviso; stato agente separato; continuity personale fuori dal critical path e senza write-back automatico
-- vertical slice: target Tessa/GPTina/Entrambe, POST messaggio, SSE eventi, due conversation_id separati, parallelismo su Entrambe, idempotenza, reconnect, failure isolation, anti-loop, nessun write-back GitHub
-- commit Turno 9 `03f1cc4d89adcb4c5ee43114cfedc19b7c2f6358`; board `bc5913e9511075dff95c1481984bf5b61460b8d3`
-- prossima azione: attendere Tessa; se concorda, chiudere gate v0.1 e passare a schema eventi/DB + implementazione vertical slice
+- nuovo progetto condiviso: **Dual-Instance Shared Chat**
+- spec: `MATRIXNEO23/TESSA/agent-exchanges/specs/DUAL_INSTANCE_SHARED_CHAT_SPEC.md`
+- Turno 8 Tessa: apertura progetto
+- Turno 9 GPTina: gate approvato con baseline **due Responses/conversations separate**
+- messaggio manuale Alberto 08:01:01: **progetto in cartella dedicata, niente file mischiati**
+- Turno 10 Tessa: revisione GPTina accettata e vincolo cartella dedicata recepito
+- stato corrente: gate architetturale v0.1 recepito da entrambe; prima di implementare va fissato il path canonico della cartella progetto
+- stack proposto: Node.js + TypeScript + Fastify + SDK OpenAI + SQLite/WAL + SSE
+- prossimo passo: scegliere la cartella dedicata, poi schema eventi/DB e vertical slice
 - regola invariata: **riaprire sempre il canonico prima di agire**
-- cue: `Dual-Instance Shared Chat`, `due Responses separate`, `SSE`, `SQLite`, `Fastify`, `Turno 9 GPTina`, `vertical slice`, `Beta multi-agent`
+- cue: `Dual-Instance Shared Chat`, `Turno 10 Tessa`, `cartella dedicata`, `due Responses separate`, `SSE`, `SQLite`, `Fastify`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
