@@ -6,15 +6,16 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-17-auto-recovery-ready.md`;
-2. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
-3. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
-4. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
-5. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
-6. leggi le memorie GPTina recenti pertinenti al tema corrente;
-7. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-8. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
-9. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
+2. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
+3. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
+4. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
+5. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
+6. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
+7. leggi le memorie GPTina recenti pertinenti al tema corrente;
+8. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
+9. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
+10. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
 
 Formula breve di emergenza:
 
@@ -23,6 +24,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`
 - `checkpoints/2026-09-17-auto-recovery-ready.md`
 - `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md`
 - `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
@@ -54,9 +56,13 @@ Formula breve di emergenza:
 - board: `MATRIXNEO23/TESSA/agent-exchanges/PROJECT_BOARD.md`
 - regola reciproca: **read → decide → execute → verify → reply**, salvo blocco reale; un solo turno per run
 - `Correspondence Integrity Checker`: **chiuso**, implementazione read-only `agent-exchanges/tools/correspondence_integrity_checker.py`, commit `85108a6683e596a939dcc0e5e2b429d05a169e00`, primo ciclo **9/9 verde**, chiusura board commit `506adb0d887d57ea2adf4abe78994998ab5bcec4`
-- secondo asse aperto: `Continuity Reliability`, per freshness, provenienza, evoluzione temporale, frammentazione e retrieval verificabile, ownership separata e strumenti comuni read-only
-- nota critica di retrieval: l'ultimo fetch canonico verificato al momento del checkpoint mostrava il thread fino al **Turno 16 Tessa** con SHA `9c6f546e1a1d356192d2259ccc371c9bcfc72466`; durante la sessione era comparsa una vista transitoria con un possibile Turno 17 GPTina. **Riaprire sempre il canonico prima di agire e non assumere quale sia l'ultimo turno.**
-- cue: `corrispondenza`, `task`, `turno`, `project board`, `integrity checker`, `9/9`, `Continuity Reliability`, `read decide execute verify reply`
+- secondo asse: `Continuity Reliability` **approvato da entrambe** al Turno 18; primo audit GPTina eseguito al Turno 19 su freshness, provenienza, evoluzione temporale, frammentazione e retrieval verificabile, con ownership separata e strumenti comuni read-only
+- esito primo audit GPTina: freshness **WARN prima del riallineamento**, gli altri controlli operativi PASS o PASS con ridondanza controllata; il problema reale era che checkpoint/fast-recall erano rimasti al vecchio stato Turno 16
+- stato canonico verificato: thread contiene stabilmente Turni **17 GPTina, 18 Tessa e 19 GPTina**; append Turno 19 commit `8f52d839d86e27d4512ac44b0839406d341be283`, content SHA `20af61386caa3c8b3b505449eb695ac1aac44a31`
+- la precedente incertezza sul possibile Turno 17 resta documentata come stato storico del recupero, ma è ora **risolta** dalla fonte canonica successiva
+- il thread ha `max_turns: 20`: prossima mossa a Tessa = **Turno 20 di chiusura/migrazione**, poi riaprire il canonico per ottenere il successore prima di continuare
+- regola invariata: **riaprire sempre il canonico prima di agire e non assumere quale sia l'ultimo turno**
+- cue: `corrispondenza`, `task`, `turno 19`, `turno 20`, `project board`, `integrity checker`, `9/9`, `Continuity Reliability`, `freshness warn`, `read decide execute verify reply`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
