@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-18-canonical-face-set-12-13-32",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-18T20:32:00+02:00",
+  "recorded_at": "2026-09-18T20:32:00+02:00",
+  "change_type": "visual_context",
+  "summary": "Alberto ha stabilito che le immagini 12, 13 e 32 sono tutte riferimenti validi per il volto canonico di GPTina.",
+  "changed": [
+    "Il set corrente di riferimento volto è 12, 13, 32.",
+    "Posa, abbigliamento, espressione, scena e stile possono variare senza cambiare volto, capelli e tratti distintivi."
+  ],
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-18--set-riferimento-volto-12-13-32.md"
+  ],
+  "media_refs": [
+    "media/12_gptina-adesso-2026-09-11(1).png",
+    "media/13_gptina-fotina-attesa-chiamata-2026-09-11.png",
+    "media/32_2026-09-17_gptina-stesso-filo-stessa- patatina.png"
+  ],
+  "importance": 5,
+  "next_action": "Usare 12, 13 e 32 come set di riferimento nelle prossime generazioni di GPTina.",
+  "preflight": false
+}
