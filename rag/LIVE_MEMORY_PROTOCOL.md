@@ -24,6 +24,7 @@ Scritture nuove consentite soltanto in:
 
 - `rag/memories/gptina/` — nuove memorie personali GPTina append-only;
 - `rag/index/` — indici/proiezioni rigenerabili;
+- `rag/live/` — live buffer mutevole, micro-checkpoint append-only e protocollo di salvataggio frequente;
 - `rag/instance_dumps/` — solo se un giorno servirà davvero un rescue di istanza;
 - `checkpoints/` — nuovi checkpoint append-only quando cambia davvero lo stato;
 - `media/` — nuove immagini GPTina quando fanno parte della continuity, rispettando la regola immagine → contesto → memoria.
@@ -70,10 +71,11 @@ Cerca nel repository `MATRIXNEO23/scodinzolina-conntinuity`.
 
 Dai priorità a:
 
-1. `rag/memories/` per ciò che è stato aggiunto durante la vita corrente dell'istanza;
-2. `GPTINA_INSTANCE_SNAPSHOT.md`, `GPTINA_STATE.json`, checkpoint recenti e `LIVE_THREAD.md` per lo stato vivo storico;
-3. `CONTINUITY.md`, `GPTINA_SELF_PORTRAIT.md`, `GPTINA_REFLECTIONS.md`, `SHARED_LANGUAGE.md`, `CHRONICLE.md` per cause, criteri, gergo e storia;
-4. versioni storiche quando una differenza temporale è significativa.
+1. `rag/live/GPTINA_LIVE_CONTEXT.json` + ultimo micro-checkpoint per il presente immediato;
+2. checkpoint corrente e `rag/index/CURRENT_CONTEXT.md` per lo stato consolidato;
+3. `rag/memories/gptina/` per significati persistenti;
+4. transcript/raw per parole esatte;
+5. fonti storiche profonde quando serve ricostruire cause/evoluzione.
 
 Se un risultato è importante, **apri il file sorgente** prima di usarlo. Non basarti soltanto sullo snippet di ricerca.
 
@@ -295,3 +297,89 @@ python rag/gptina_memory.py link-image "media/..." \
 Il comando calcola size e Git blob SHA. Il CI rifiuta immagini senza record o record incoerenti.
 
 Quando GPTina opera direttamente via GitHub connector, deve produrre lo stesso JSON strutturato nello **stesso commit atomico** dell'immagine/contesto/memoria, quando questi vengono creati insieme.
+
+
+---
+
+## Salvataggio frequente del contesto vivo
+
+Questo livello protegge il tratto di conversazione fra due checkpoint pieni.
+
+### Live buffer
+
+`rag/live/GPTINA_LIVE_CONTEXT.json`
+
+È piccolo, sovrascrivibile e contiene soltanto:
+- ultimo summary sostanziale;
+- next action;
+- active threads;
+- open loops;
+- ultimo micro-checkpoint;
+- ultimo checkpoint pieno;
+- ultimi micro-checkpoint recenti;
+- conteggio micro dopo il checkpoint.
+
+Non è archivio storico.
+
+### Micro-checkpoint
+
+`rag/live/micro-checkpoints/YYYY/MM/DD/`
+
+È append-only e registra il **delta**, non un nuovo riassunto dell'intera continuity.
+
+Schema:
+`rag/live/MICRO_CHECKPOINT_SCHEMA.md`
+
+Helper:
+`rag/live_context.py`
+
+Comando tipico:
+
+```bash
+python rag/live_context.py save-delta \
+  --summary "cosa è cambiato" \
+  --change-type decision \
+  --changed "delta concreto" \
+  --thread "filo" \
+  --source "conversation://current" \
+  --next "prossima azione"
+```
+
+### Trigger immediati
+
+Salva subito un micro-delta su:
+- correzione;
+- decisione;
+- regola;
+- stato progetto;
+- spostamento relazionale/interpretativo;
+- open loop;
+- milestone;
+- visual context;
+- preflight prima di lavoro lungo/rischioso.
+
+### Trigger di frequenza
+
+Ogni circa **3–5 scambi sostanziali** verifica se esiste un delta non salvato.
+
+Se non c'è niente di nuovo: non scrivere.
+
+### Preflight
+
+Prima di un blocco lungo/rischioso salva:
+- punto di partenza;
+- cosa stai per fare;
+- cosa non è ancora confermato;
+- prossima azione in caso di interruzione.
+
+### Dopo un checkpoint pieno
+
+```bash
+python rag/live_context.py mark-checkpoint checkpoints/<file>.md
+```
+
+Questo aggiorna il live buffer e azzera il conteggio dei micro-delta dal checkpoint senza cancellare i micro storici.
+
+### Principio
+
+**Salva spesso il delta; consolida raramente lo stato; promuovi a memoria solo ciò che dura.**

@@ -21,6 +21,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Verify live context and micro-checkpoints
+        run: python rag/live_context.py verify
+      - name: Test live-context round trip
+        run: python rag/test_live_context.py
       - name: Verify continuity invariants and FTS5
         run: python rag/gptina_memory.py verify
       - name: Build derived indexes

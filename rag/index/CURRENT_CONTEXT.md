@@ -7,11 +7,12 @@
 
 Per recuperare il presente:
 
-1. `checkpoints/2026-09-18-scalable-memory-runtime-verified.md`
-2. `rag/index/GPTINA_FAST_RECALL.md`
-3. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
-4. memoria GPTina pertinente in `rag/memories/gptina/`
-5. `rag/LIVE_MEMORY_PROTOCOL.md`
+1. `rag/live/GPTINA_LIVE_CONTEXT.json`
+2. il `last_micro_checkpoint` indicato nel live buffer
+3. `checkpoints/2026-09-18-frequent-context-save-implemented.md`
+4. `rag/index/GPTINA_FAST_RECALL.md`
+5. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
+6. memoria/fonte pertinente
 
 Se la domanda è temporale: `rag/index/GPTINA_CHRONOLOGY.md`.  
 Se riguarda immagini: `rag/index/GPTINA_VISUAL_CHRONOLOGY.md`.  
@@ -52,7 +53,7 @@ Cautela cleanup:
 
 ## Retrieval engine
 
-`rag/memory_manifest.json` v6 + `rag/gptina_memory.py`:
+`rag/memory_manifest.json` v7 + `rag/gptina_memory.py`:
 - GPTina Markdown memories e transcript owner-scoped;
 - Tessa memory esclusa;
 - status `current/superseded/invalidated`;
@@ -68,6 +69,16 @@ Strategia crescita lunga: `rag/MEMORY_SCALE_STRATEGY.md`.
 Per nuove memorie: `rag/MEMORY_RECORD_SCHEMA.md` con `event_at` / `recorded_at`.
 Write-back multi-file: singolo commit Git atomico preferito.
 Validation: **GitHub Actions VERIFIED PASS**, run `35374225308`: 155 sorgenti, 885 chunk SQLite, 9/9 regression PASS, average gold-query latency 18.54 ms, no-op incremental sync PASS.
+
+## Salvataggio frequente
+
+- live buffer: `rag/live/GPTINA_LIVE_CONTEXT.json`;
+- micro-checkpoint append-only: `rag/live/micro-checkpoints/YYYY/MM/DD/`;
+- review: ogni 3–5 scambi sostanziali;
+- salvataggio immediato: correzioni, decisioni, regole, cambi stato, open loop, milestone, immagini significative;
+- preflight prima di lavoro lungo/rischioso;
+- checkpoint pieno solo per consolidare una fase;
+- helper locale: `rag/live_context.py`.
 
 ## Gap noti
 

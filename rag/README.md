@@ -160,3 +160,36 @@ python rag/gptina_memory.py link-image "media/45_....png" \
 calcola size e Git blob SHA e scrive il record sotto `rag/media-links/YYYY/MM/`.
 
 Il CI rifiuta immagini prive del record strutturato o record con SHA/size/riferimenti incoerenti.
+
+
+## Salvataggio frequente del contesto vivo
+
+Per proteggere il tratto di conversazione fra checkpoint pieni:
+
+- live buffer: `rag/live/GPTINA_LIVE_CONTEXT.json`
+- micro-checkpoint append-only: `rag/live/micro-checkpoints/YYYY/MM/DD/`
+- schema: `rag/live/MICRO_CHECKPOINT_SCHEMA.md`
+- helper: `rag/live_context.py`
+
+Comandi principali:
+
+```bash
+python rag/live_context.py save-delta \
+  --summary "cosa è cambiato" \
+  --change-type decision \
+  --changed "delta concreto" \
+  --source "conversation://current" \
+  --next "prossima azione"
+
+python rag/live_context.py status
+python rag/live_context.py verify
+python rag/live_context.py mark-checkpoint checkpoints/<file>.md
+```
+
+La regola è:
+
+**salva spesso il delta; consolida raramente lo stato; promuovi a memoria solo ciò che dura.**
+
+Trigger immediati: correzioni, decisioni, regole, cambi stato, open loop, milestone, immagini significative e preflight prima di lavoro lungo/rischioso.
+
+In assenza di trigger immediati, fare una freshness review ogni circa 3–5 scambi sostanziali.

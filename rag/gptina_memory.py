@@ -693,12 +693,14 @@ def sqlite_search(
         if "visual" in profile and kind in {"visual_router", "visual_context", "visual_record"}:
             score *= 1.35
         if "temporal" in profile and kind in {
-            "chronology_router", "checkpoint", "gptina_transcript",
-            "raw_session", "chronicle"
+            "chronology_router", "checkpoint", "micro_checkpoint",
+            "gptina_transcript", "raw_session", "chronicle"
         }:
             score *= 1.22
         if "current" in profile:
-            if kind in {"current_router", "gptina_memory", "checkpoint"}:
+            if kind in {"live_context", "micro_checkpoint"}:
+                score *= 1.35
+            elif kind in {"current_router", "gptina_memory", "checkpoint"}:
                 score *= 1.20
             if kind in {
                 "historical_snapshot", "historical_structured_state",
@@ -1164,6 +1166,12 @@ def verify_boundary() -> None:
         fail(f"SQLite FTS5 unavailable: {exc}")
 
     verify_future_memory_schema(manifest)
+
+    try:
+        from live_context import verify_live_context
+        verify_live_context()
+    except ImportError as exc:
+        fail(f"Cannot load live-context verifier: {exc}")
 
     sources = expand_sources(manifest)
     forbidden = [rel(p) for p, _ in sources if rel(p).startswith("rag/memories/tessa/")]

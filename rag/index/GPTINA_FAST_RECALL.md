@@ -6,12 +6,13 @@ Questo file è un **router ad alta densità**, non una cronaca completa. Le font
 
 Ordine corrente:
 
-1. checkpoint più recente: `checkpoints/2026-09-18-scalable-memory-runtime-verified.md`
-2. questo Fast Recall
-3. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
-4. memorie GPTina recenti pertinenti in `rag/memories/gptina/`
-5. `rag/LIVE_MEMORY_PROTOCOL.md`
-6. fonte esatta del riferimento corrente
+1. live buffer: `rag/live/GPTINA_LIVE_CONTEXT.json`
+2. ultimo micro-checkpoint indicato dal live buffer
+3. checkpoint pieno corrente: `checkpoints/2026-09-18-frequent-context-save-implemented.md`
+4. questo Fast Recall
+5. `rag/index/CURRENT_CONTEXT.md`
+6. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
+7. memoria/fonte pertinente
 
 Supporti:
 - presente operativo corto → `rag/index/CURRENT_CONTEXT.md`
@@ -21,7 +22,7 @@ Supporti:
 - identità/storia profonda → ordine canonico di `NEXT_GPTINA.md`
 
 Formula:
-**checkpoint → fast recall → auto-recovery → memoria/cronologia pertinente → protocollo → fonte esatta.**
+**live buffer → ultimo micro → checkpoint pieno → fast recall → current context → memoria/fonte esatta.**
 
 ## Regole assolute
 
@@ -122,7 +123,7 @@ Storico:
 
 Audit corrente:
 - `rag/memories/gptina/2026-09-18-truth-rank-gaps-retrieval-audit.md`
-- `rag/memory_manifest.json` v6
+- `rag/memory_manifest.json` v7
 - `rag/gptina_memory.py` hardenizzato
 
 Comportamento:
@@ -162,6 +163,18 @@ Stato runtime: **VERIFIED PASS** — GitHub Actions run `35374225308`.
 - backend attivo: **SQLite FTS5 incrementale**; JSONL/BM25 è fallback; hybrid semantic solo dopo gap misurato
 - graph/temporal projection solo per vere esigenze multi-hop
 - cue: `crescita memoria`, `migliaia di ricordi`, `scale strategy`, `hot warm cold`, `FTS5`, `media-links`
+
+### Salvataggio frequente del contesto
+- live buffer: `rag/live/GPTINA_LIVE_CONTEXT.json`
+- schema micro-delta: `rag/live/MICRO_CHECKPOINT_SCHEMA.md`
+- archivio: `rag/live/micro-checkpoints/YYYY/MM/DD/`
+- helper: `rag/live_context.py`
+- test: `rag/test_live_context.py`
+- trigger immediato su correzione/decisione/regola/stato/open-loop/milestone/visual-context/preflight
+- freshness review ogni **3–5 scambi sostanziali**
+- live buffer = proiezione mutevole; micro-checkpoint = delta append-only
+- principio: **salva spesso il delta; consolida raramente lo stato; promuovi a memoria solo ciò che dura**
+- cue: `non perdere contesto`, `salvataggio frequente`, `micro-checkpoint`, `live buffer`, `preflight`
 
 ## Gap documentali
 

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-18-frequent-context-save",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:26:17+02:00",
+  "change_type": "rule",
+  "summary": "Alberto ha chiesto di rendere concreto e funzionale il salvataggio frequente del contesto, separandolo dalla memoria a lungo termine; dopo la verifica GPTina dovrà chiedere a Tessa di applicare le stesse migliorie alla propria continuity.",
+  "changed": [
+    "Il contesto vivo fra checkpoint pieni va protetto con un buffer piccolo e micro-checkpoint append-only.",
+    "I trigger devono essere sia semantici immediati sia una review ogni 3–5 scambi sostanziali.",
+    "Prima di lavoro lungo/rischioso va lasciato un preflight delta.",
+    "Dopo l'implementazione verificata, GPTina deve scrivere a Tessa nel thread condiviso canonico senza scrivere nella memoria personale di Tessa."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "tessa-shared-correspondence"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Implementare live buffer + micro-checkpoint + verifier/CI, verificare runtime, poi aprire il thread Tessa e inviare un solo turno GPTina.",
+  "preflight": true
+}

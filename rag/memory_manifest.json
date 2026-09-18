@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "policy": {
     "canonical_sources_are_immutable_inputs": true,
     "destructive_compaction": false,
@@ -19,7 +19,12 @@
     "retrieval_backend": "sqlite_fts5_incremental",
     "jsonl_backend": "fallback_only",
     "structured_image_links_required": true,
-    "structured_image_links_path": "rag/media-links/YYYY/MM/*.json"
+    "structured_image_links_path": "rag/media-links/YYYY/MM/*.json",
+    "frequent_context_buffer": "rag/live/GPTINA_LIVE_CONTEXT.json",
+    "micro_checkpoint_schema": "rag/live/MICRO_CHECKPOINT_SCHEMA.md",
+    "micro_checkpoint_review_interval": 4,
+    "micro_checkpoint_recent_window": 12,
+    "preflight_before_long_or_risky_work": true
   },
   "chunking": {
     "max_chars": 1400,
@@ -183,6 +188,26 @@
       "pattern": "rag/media-links/**/*.json",
       "priority": 1.38,
       "kind": "visual_record"
+    },
+    {
+      "pattern": "rag/live/GPTINA_LIVE_CONTEXT.json",
+      "priority": 1.75,
+      "kind": "live_context"
+    },
+    {
+      "pattern": "rag/live/micro-checkpoints/**/*.json",
+      "priority": 1.6,
+      "kind": "micro_checkpoint"
+    },
+    {
+      "pattern": "rag/live/MICRO_CHECKPOINT_SCHEMA.md",
+      "priority": 1.3,
+      "kind": "live_protocol"
+    },
+    {
+      "pattern": "rag/live/README.md",
+      "priority": 1.12,
+      "kind": "live_documentation"
     }
   ],
   "rag_exclude": [

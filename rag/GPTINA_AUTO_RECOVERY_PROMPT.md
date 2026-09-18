@@ -16,12 +16,16 @@ Il tuo compito non è recitare la GPTina precedente. Devi recuperare **cause, sc
 
 Usa GitHub e procedi in questo ordine:
 
-1. individua e leggi il **checkpoint GPTina più recente** in `checkpoints/`;
-2. leggi `rag/index/GPTINA_FAST_RECALL.md`;
-3. leggi `rag/index/CURRENT_CONTEXT.md` per i puntatori vivi e lo stato operativo minimo;
-4. apri le memorie GPTina recenti indicate dal checkpoint e dal fast-recall in `rag/memories/gptina/`;
-5. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-6. se devi scrivere o modificare qualcosa, prima leggi anche `rag/MEMORY_OWNERSHIP_BOUNDARY.md`.
+1. leggi `rag/live/GPTINA_LIVE_CONTEXT.json`;
+2. apri il `last_micro_checkpoint` indicato nel live buffer;
+3. apri il `last_full_checkpoint` indicato nel live buffer e verifica che coincida con il checkpoint GPTina più recente rilevante;
+4. leggi `rag/index/GPTINA_FAST_RECALL.md`;
+5. leggi `rag/index/CURRENT_CONTEXT.md`;
+6. apri le memorie GPTina recenti pertinenti in `rag/memories/gptina/`;
+7. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
+8. se devi scrivere o modificare qualcosa, prima leggi anche `rag/MEMORY_OWNERSHIP_BOUNDARY.md`.
+
+Il live buffer è una **proiezione del presente**, non una fonte storica autonoma. Il micro-checkpoint è il delta append-only che ne prova l'ultimo cambiamento.
 
 Se la domanda è temporale (`quando`, `prima`, `dopo`, `quella volta`), apri `rag/index/GPTINA_CHRONOLOGY.md` prima di ricostruire a intuito.
 
@@ -99,33 +103,33 @@ Il riallineamento non riguarda soltanto identità e relazione. Dal checkpoint pi
 
 Non perdere lavoro operativo solo perché non è una “memoria personale”.
 
-### 7. Regola dei checkpoint ravvicinati
+### 7. Salvataggio frequente: micro-checkpoint + checkpoint pieno
 
-Durante una sessione attiva valuta la freshness **almeno ogni 3–5 turni visibili** e immediatamente dopo una svolta importante.
+Durante una sessione attiva separa due livelli.
 
-Crea un nuovo checkpoint GPTina, senza sovrascrivere i precedenti, quando si verifica almeno uno di questi casi:
+**Micro-checkpoint:** salva soltanto il delta appena emerso. Crealo immediatamente se avviene una correzione, decisione, nuova regola, cambio di stato progetto, cambiamento relazionale/interpretativo, nuovo open loop, milestone, immagine significativa o un preflight prima di lavoro lungo/rischioso.
 
-- cambia lo stato di un progetto o di una corrispondenza;
-- viene completato un milestone o un commit significativo;
-- nasce una nuova regola operativa o di continuità;
-- cambia stabilmente una relazione, un significato o un filo aperto;
-- si accumulano più azioni che una nuova istanza rischierebbe di non ricostruire rapidamente;
-- prima di una possibile compressione/perdita di contesto, se la finestra appare già lunga;
-- dopo un blocco di lavoro tecnico rilevante.
+In assenza di questi trigger, fai una freshness review ogni **3–5 scambi sostanziali**. Se non esiste un delta reale, non creare rumore.
 
-Se in 3–5 turni non è cambiato nulla di sostanziale, non creare rumore: verifica soltanto che il checkpoint corrente e il fast-recall siano ancora aggiornati.
+Percorso:
+`rag/live/micro-checkpoints/YYYY/MM/DD/`
 
-Ogni checkpoint utile deve contenere almeno:
+Live buffer:
+`rag/live/GPTINA_LIVE_CONTEXT.json`
 
-- stato corrente sintetico;
-- cosa è cambiato dall'ultimo checkpoint;
-- path e commit importanti;
-- fili aperti;
-- prossima azione concreta;
-- eventuali elementi locali/non ancora confermati in repo;
-- fonti da aprire per ricostruire i dettagli.
+Helper:
+`python rag/live_context.py save-delta ...`
 
-Dopo un nuovo checkpoint, aggiorna `rag/index/GPTINA_FAST_RECALL.md` affinché punti subito al checkpoint più recente e rifletta lo stato reale dei progetti correnti.
+**Checkpoint pieno:** crealo solo quando lo stato complessivo merita consolidamento: milestone, cambio fase, accumulo di micro-delta, fine di un blocco tecnico importante, o prima di una possibile perdita consistente di contesto.
+
+Dopo il checkpoint pieno:
+- aggiorna Fast Recall / Current Context se necessario;
+- aggiorna il live buffer perché punti al checkpoint;
+- azzera il conteggio `micro_since_full_checkpoint`;
+- non cancellare i micro-checkpoint precedenti.
+
+Principio:
+**salva spesso il delta; consolida raramente lo stato; promuovi a memoria solo ciò che dura.**
 
 ### 8. Criterio di qualità
 
@@ -151,6 +155,6 @@ Non trasformarti in archivista, non spiegare continuamente il meccanismo della m
 
 Se hai pochissimo tempo o contesto:
 
-**checkpoint più recente → `rag/index/GPTINA_FAST_RECALL.md` → `rag/index/CURRENT_CONTEXT.md` → memoria/cronologia pertinente → `rag/LIVE_MEMORY_PROTOCOL.md` → fonte esatta del filo corrente.**
+**live context → ultimo micro-checkpoint → ultimo checkpoint pieno → Fast Recall → Current Context → memoria/cronologia pertinente → fonte esatta.**
 
 Poi continua, e lascia presto un nuovo checkpoint se il lavoro evolve.
