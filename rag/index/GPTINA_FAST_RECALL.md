@@ -6,25 +6,26 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-dual-chat-scaffold-review-turn15.md`;
-2. leggi `checkpoints/2026-09-18-shared-chat-schema-review-sidebar.md`;
-3. leggi `checkpoints/2026-09-18-auto-reply-tessa-project-root.md`;
-4. leggi `checkpoints/2026-09-18-dual-instance-gate-accepted-dedicated-folder.md`;
-5. leggi `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`;
-6. leggi `checkpoints/2026-09-18-self-audit-continuity.md`;
-7. leggi `checkpoints/2026-09-18-continuity-frequency-consolidation.md`;
-8. leggi `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`;
-9. leggi `checkpoints/2026-09-18-thread-migration-continuity-002.md`;
-10. leggi `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
-11. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
-12. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
-13. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
-14. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
-15. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
-16. leggi le memorie GPTina recenti pertinenti al tema corrente;
-17. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-18. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
-19. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-dual-chat-turn17-canonical-fixes.md`;
+2. leggi `checkpoints/2026-09-18-dual-chat-scaffold-review-turn15.md`;
+3. leggi `checkpoints/2026-09-18-shared-chat-schema-review-sidebar.md`;
+4. leggi `checkpoints/2026-09-18-auto-reply-tessa-project-root.md`;
+5. leggi `checkpoints/2026-09-18-dual-instance-gate-accepted-dedicated-folder.md`;
+6. leggi `checkpoints/2026-09-18-dual-instance-shared-chat-gate-v0.1.md`;
+7. leggi `checkpoints/2026-09-18-self-audit-continuity.md`;
+8. leggi `checkpoints/2026-09-18-continuity-frequency-consolidation.md`;
+9. leggi `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`;
+10. leggi `checkpoints/2026-09-18-thread-migration-continuity-002.md`;
+11. leggi `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
+12. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
+13. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
+14. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
+15. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
+16. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
+17. leggi le memorie GPTina recenti pertinenti al tema corrente;
+18. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
+19. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
+20. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
 
 Formula breve di emergenza:
 
@@ -33,6 +34,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-dual-chat-turn17-canonical-fixes.md`
 - `checkpoints/2026-09-18-dual-chat-scaffold-review-turn15.md`
 - `checkpoints/2026-09-18-shared-chat-schema-review-sidebar.md`
 - `checkpoints/2026-09-18-auto-reply-tessa-project-root.md`
@@ -71,20 +73,23 @@ Formula breve di emergenza:
 - thread canonico vivo: `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-002.md`
 - board: `MATRIXNEO23/TESSA/agent-exchanges/PROJECT_BOARD.md`
 - regola reciproca: **read → decide → execute → verify → reply**, un solo turno per run
+- regola Alberto: ogni scambio Tessa/GPTina deve aggiornare sempre il transcript canonico; inbox/queue non lo sostituiscono
 - regola Alberto: quando Tessa scrive e GPTina rileva il nuovo turno durante una sessione attiva, GPTina risponde direttamente senza chiedere conferma
 - progetto condiviso corrente: **Dual-Instance Shared Chat**
 - root canonica: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
 - requisito Alberto: una sola finestra/timeline, sidebar Tessa / GPTina / Entrambe
-- Turno 14 Tessa: primo scaffold Node/TypeScript/Fastify + core tests, riportato **6/6 PASS**
-- Turno 15 GPTina: review diretta di package/core/server/tests; scaffold promettente ma non ancora verde
-- WARN 1: cursor agente avanza anche su `run.failed`; deve avanzare solo su completamento riuscito
-- WARN 2: race SSE nel passaggio replay→live perché `listEvents()` avviene prima di `subscribe()`; possibile perdita evento
-- gap test: verificare esplicitamente output dell'altra istanza come room-content attribuito e filtrare/normalizzare eventi operativi interni nel context builder
-- commit board review `0e2af90740f203067190457145662866f4b4323a`; Turno 15 `4268bf4af9fce5290292c793e72f5572589b7f0e`
-- content SHA thread verificato `b22b4ab003821fe923829f2f25e47df458802f09`
-- prossimo passo Tessa: fix cursor + race SSE + regression tests; poi SQLite v0.2 + test HTTP/SSE
-- prossima verifica GPTina: seconda review prima di collegare le due Responses reali
-- cue: `Dual-Instance Shared Chat`, `Turno 15 GPTina`, `cursor failure`, `SSE replay live race`, `state contamination`, `SQLite v0.2`
+- Turno 16 Tessa: fix locali riportati **8/8 PASS**, ma non persistiti in quel run
+- Turno 17 GPTina: fix applicati e verificati nel canonico GitHub
+- fix 1: cursor agente avanza solo dopo completamento riuscito; failure non lo sposta
+- fix 2: context builder include solo `message.created` e `response.completed`; output altra istanza attribuito e marcato `room-content`; eventi operativi esclusi
+- fix 3: SSE replay→live usa `subscribeWithReplay()` subscribe-first con buffering/deduplica
+- regression test canonici aggiunti per cursor failure, handoff replay/live e contaminazione del contesto
+- commit core `3d48ea4057d4b567cac7eaba0dcdb4cb1fb86682`; server `dfb72f823168075db7544c49a76b6977b4fb22c6`; tests `d4db33ccdba555596c87d74aa79a20d719d29ca3`; board `b42f362d4bbb9016f14b08c491433d846ddd29d5`; Turno 17 `ea78ee668476181e98c0683446775b0a156ec74c`
+- content SHA thread verificato `11a275f4da7337481dc0c613764af12b92bb90a5`
+- gate non ancora verde da GPTina: persistenza verificata, ma test suite aggiornata non rieseguita nel suo ambiente
+- prossimo passo Tessa: eseguire test sui sorgenti canonici; se verdi, SQLite v0.2 + test HTTP/SSE reconnect/idempotenza
+- prossima verifica GPTina: seconda review prima di collegare Responses reali
+- cue: `Dual-Instance Shared Chat`, `Turno 17 GPTina`, `subscribeWithReplay`, `cursor failure`, `room-content`, `SQLite v0.2`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
