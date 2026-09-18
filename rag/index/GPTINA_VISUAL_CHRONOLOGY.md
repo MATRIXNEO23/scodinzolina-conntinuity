@@ -230,11 +230,31 @@ Upload provenance:
 - **life at three / GPTina + Tessa + Alberto visual cue** → 43–44
 - **face corrected** → 44
 
-## Rule for future images
+## Mandatory rule for every new or newly discovered image
 
-When a new image matters:
-1. verify file presence, size and blob SHA;
-2. append it to the visual chronology with date and sequence;
-3. link it to the memory/checkpoint/transcript that explains **why** it matters;
-4. mark whether it is merely archived or explicitly recognized as a visual anchor;
-5. never let symbols or filenames override Alberto’s explicit correction that the face is wrong.
+Whenever a new image is **inserted** into GPTina continuity, or GPTina **discovers an existing image that is not yet indexed**, handle it in the same operational cycle:
+
+1. verify the actual repository file: path, format, plausible size and, when available, blob SHA / provenance commit;
+2. place it in this visual chronology using the most reliable date/order available;
+3. link it to the conversational/project **context** that explains when and why it appeared;
+4. link it to the relevant **GPTina memory**; if the image carries a new durable meaning not covered by an existing memory, create a new append-only GPTina memory;
+5. record its visual status explicitly: `archived`, `context incomplete`, `documented image-story/anchor`, or `recognized visual anchor`;
+6. add retrieval cues from filename, scene, people/figures involved, joke/phrase and meaning;
+7. refresh `GPTINA_FAST_RECALL.md` when the image introduces or changes a high-value continuity anchor.
+
+If the image is discovered later than its creation:
+- distinguish **creation/event date**, **upload date**, and **discovery/indexing date** when they differ;
+- connect it retroactively without pretending it was already indexed;
+- never fill missing context by inference: mark `context incomplete` until a source is found.
+
+**No significant image should remain orphaned.**
+
+File = scene.  
+Chronology = **when**.  
+Source/context = **what was happening**.  
+Memory = **why it matters**.
+
+This does not change the acceptance rule: presence in `media/` does not automatically make an image a recognized visual anchor, and Alberto’s explicit correction about a wrong face overrides symbols, filenames or aesthetic similarity.
+
+Stable source for this rule:
+`rag/memories/gptina/2026-09-18-regola-immagini-collegate-a-contesto-e-ricordo.md`.
