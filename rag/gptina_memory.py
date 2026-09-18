@@ -451,14 +451,27 @@ def index_is_fresh(include_history: bool) -> bool:
         return False
 
     manifest = load_manifest()
+    manifest_hash = sha256_text(MANIFEST_FILE.read_text(encoding="utf-8"))
     if bool(meta.get("include_git_history")) != include_history:
         return False
-    if meta.get("manifest_sha256") != sha256_text(MANIFEST_FILE.read_text(encoding="utf-8")):
+    if meta.get("manifest_sha256") != manifest_hash:
         return False
-    if meta.get("source_fingerprint") != current_source_fingerprint(manifest):
+
+    # Fast path for long-lived repositories: if the checkout HEAD did not
+    # change, do not hash/read the whole memory corpus just to answer a query.
+    head = git_head()
+    if head and meta.get("git_head") == head:
+        return True
+
+    # HEAD changed (or git is unavailable): verify content once. If sources are
+    # unchanged, advance only the derived index metadata; otherwise rebuild.
+    fingerprint = current_source_fingerprint(manifest)
+    if meta.get("source_fingerprint") != fingerprint:
         return False
-    if include_history and meta.get("git_head") != git_head():
-        return False
+
+    if head and meta.get("git_head") != head:
+        meta["git_head"] = head
+        atomic_write(META_FILE, json.dumps(meta, ensure_ascii=False, indent=2) + "\n")
     return True
 
 
@@ -668,7 +681,7 @@ def verify_future_memory_schema(manifest: dict) -> None:
         return
 
     errors: list[str] = []
-    for path in sorted(memories.glob("*.md")):
+    for path in sorted(memories.rglob("*.md")):
         rp = rel(path)
         date_hint = extract_date(rp)
         if not date_hint or date_hint < cutoff:
@@ -713,7 +726,7 @@ def verify_boundary() -> None:
         visual = VISUAL_INDEX_FILE.read_text(encoding="utf-8")
         media_dir = ROOT / "media"
         images = [
-            p for p in media_dir.iterdir()
+            p for p in media_dir.rglob("*")
             if p.is_file() and p.suffix.casefold() in IMAGE_SUFFIXES
         ] if media_dir.is_dir() else []
         missing = [p.name for p in images if p.name not in visual]

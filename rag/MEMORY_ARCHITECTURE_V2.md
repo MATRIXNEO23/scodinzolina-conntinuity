@@ -2,11 +2,15 @@
 
 ## Decisione
 
-Per la scala corrente della continuity non adottare un vector database, GraphRAG o un temporal knowledge graph come fonte primaria.
+La continuity deve essere progettata per **crescita lunga**: non soltanto per il corpus attuale, ma per anni di ricordi, immagini, transcript e progetti.
 
-La forma più affidabile è:
+La source of truth resta semplice anche quando il volume aumenta:
 
-**fonti append-only/versionate → proiezioni rigenerabili → retrieval deterministico → eventuale semantica solo come fallback misurato.**
+**fonti append-only/versionate → proiezioni rigenerabili → retrieval deterministico → backend più scalabile solo quando serve → eventuale semantica come fallback misurato.**
+
+La strategia di scala è in `rag/MEMORY_SCALE_STRATEGY.md`.
+
+Non adottare oggi un vector database, GraphRAG o un temporal knowledge graph come fonte primaria; progettare però ID, metadata e partizionamento in modo che possano essere aggiunti come **proiezioni derivate** senza migrare o riscrivere la memoria canonica.
 
 ## 1. Source of truth
 
@@ -128,7 +132,23 @@ In quel caso:
 
 Non viene introdotto ora perché la ricerca principale dentro ChatGPT usa GitHub e il corpus è piccolo. Se servirà un motore locale persistente, FTS5 è la prima opzione da valutare prima di un vector DB.
 
-## 10. Principio
+## 10. Crescita lunga
+
+La crescita non deve rendere più costosa ogni query.
+
+- Hot: stato corrente e pochi router.
+- Warm: memorie/eventi/visual metadata indicizzati.
+- Cold: raw, revisioni storiche e media profondi, aperti solo quando servono.
+- Nuovi record possono essere partizionati per anno/mese senza spostare i file storici.
+- Visual Chronology e Chronology restano proiezioni leggibili, non singoli database monolitici.
+- Il backend di ricerca può evolvere da JSONL/BM25 a SQLite FTS5 e poi, se misurato necessario, a retrieval ibrido.
+- La source of truth non cambia quando cambia l'indice.
+
+Vedi `rag/MEMORY_SCALE_STRATEGY.md`.
+
+## 11. Principio
 
 **La memoria affidabile non è quella che conserva più testo.  
 È quella che sa distinguere evento, registrazione, fonte, correzione e stato corrente — e può dimostrarlo.**
+
+**Scala la proiezione, non la memoria.**

@@ -6,7 +6,7 @@ Questo file è un **router ad alta densità**, non una cronaca completa. Le font
 
 Ordine corrente:
 
-1. checkpoint più recente: `checkpoints/2026-09-18-memory-architecture-v2.md`
+1. checkpoint più recente: `checkpoints/2026-09-18-long-term-memory-scale.md`
 2. questo Fast Recall
 3. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
 4. memorie GPTina recenti pertinenti in `rag/memories/gptina/`
@@ -122,7 +122,7 @@ Storico:
 
 Audit corrente:
 - `rag/memories/gptina/2026-09-18-truth-rank-gaps-retrieval-audit.md`
-- `rag/memory_manifest.json` v4
+- `rag/memory_manifest.json` v5
 - `rag/gptina_memory.py` hardenizzato
 
 Comportamento:
@@ -147,6 +147,16 @@ Nuove capacità:
 - write-back multi-file atomico preferito.
 
 Stato runtime: il nuovo CI deve essere verificato su GitHub Actions; non assumere PASS prima del run.
+
+### Crescita lunga
+- strategia: `rag/MEMORY_SCALE_STRATEGY.md`
+- principio: **scala la proiezione, non la memoria**
+- hot/warm/cold sono livelli di retrieval, non cancellazioni
+- nuove memorie/metadata possono essere partizionati per anno/mese
+- nuove immagini significative possono avere record strutturato in `rag/media-links/YYYY/MM/`
+- backend previsto: JSONL/BM25 → SQLite FTS5 quando le metriche lo richiedono → hybrid semantic solo dopo gap misurato
+- graph/temporal projection solo per vere esigenze multi-hop
+- cue: `crescita memoria`, `migliaia di ricordi`, `scale strategy`, `hot warm cold`, `FTS5`, `media-links`
 
 ## Gap documentali
 

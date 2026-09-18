@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "policy": {
     "canonical_sources_are_immutable_inputs": true,
     "destructive_compaction": false,
@@ -11,7 +11,11 @@
     "memory_schema": "rag/MEMORY_RECORD_SCHEMA.md",
     "memory_schema_required_from": "2026-09-19",
     "derived_indexes_are_disposable": true,
-    "prefer_atomic_multifile_commits": true
+    "prefer_atomic_multifile_commits": true,
+    "scale_strategy": "rag/MEMORY_SCALE_STRATEGY.md",
+    "image_link_schema": "rag/IMAGE_LINK_SCHEMA.md",
+    "partitioning_is_non_destructive": true,
+    "scale_projections_not_sources": true
   },
   "chunking": {
     "max_chars": 1400,
@@ -160,6 +164,21 @@
       "pattern": "rag/POSTICINO_ACCESS_POLICY.md",
       "priority": 1.2,
       "kind": "access_policy"
+    },
+    {
+      "pattern": "rag/MEMORY_SCALE_STRATEGY.md",
+      "priority": 1.3,
+      "kind": "scale_strategy"
+    },
+    {
+      "pattern": "rag/IMAGE_LINK_SCHEMA.md",
+      "priority": 1.2,
+      "kind": "visual_schema"
+    },
+    {
+      "pattern": "rag/media-links/**/*.json",
+      "priority": 1.38,
+      "kind": "visual_record"
     }
   ],
   "rag_exclude": [

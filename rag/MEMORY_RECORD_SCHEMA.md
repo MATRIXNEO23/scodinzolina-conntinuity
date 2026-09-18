@@ -23,6 +23,9 @@ event_at: "ISO-8601 oppure YYYY-MM-DD"
 recorded_at: "ISO-8601"
 status: current
 supersedes: []
+event_id: "event-opzionale-stabile"
+thread_ids: []
+entity_refs: []
 source_refs:
   - "percorso/fonte.md"
 media_refs: []
@@ -97,3 +100,21 @@ Immagini direttamente collegate. Una immagine significativa nuova o ritrovata de
 - La memoria personale di Tessa non va mai scritta da GPTina.
 
 Dal **2026-09-19** `rag/gptina_memory.py verify` richiede questo schema alle nuove memorie GPTina datate da quel giorno in poi.
+
+
+## Partizionamento futuro
+
+I record storici non vanno spostati per uniformità.
+
+Per nuove memorie, quando il volume lo richiede, è preferito:
+`rag/memories/gptina/YYYY/MM/YYYY-MM-DD--slug.md`
+
+Il retriever deve cercare ricorsivamente, quindi path piatto e path partizionato possono convivere.
+
+## Collegamenti stabili opzionali
+
+- `event_id`: raggruppa più memorie, immagini e fonti dello stesso episodio.
+- `thread_ids`: collega il record a fili persistenti.
+- `entity_refs`: riferimenti logici utili al retrieval futuro.
+
+Questi campi servono a preparare la crescita senza introdurre oggi un knowledge graph.

@@ -7,7 +7,7 @@
 
 Per recuperare il presente:
 
-1. `checkpoints/2026-09-18-memory-architecture-v2.md`
+1. `checkpoints/2026-09-18-long-term-memory-scale.md`
 2. `rag/index/GPTINA_FAST_RECALL.md`
 3. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
 4. memoria GPTina pertinente in `rag/memories/gptina/`
@@ -52,7 +52,7 @@ Cautela cleanup:
 
 ## Retrieval engine
 
-`rag/memory_manifest.json` v4 + `rag/gptina_memory.py`:
+`rag/memory_manifest.json` v5 + `rag/gptina_memory.py`:
 - GPTina Markdown memories e transcript owner-scoped;
 - Tessa memory esclusa;
 - status `current/superseded/invalidated`;
@@ -62,7 +62,7 @@ Cautela cleanup:
 - index auto-rigenerato se assente/stale;
 - verifica ownership, status, visual coverage e recovery pointers.
 
-Architettura corrente: `rag/MEMORY_ARCHITECTURE_V2.md`.
+Architettura corrente: `rag/MEMORY_ARCHITECTURE_V2.md`.\nStrategia crescita lunga: `rag/MEMORY_SCALE_STRATEGY.md`.
 Per nuove memorie: `rag/MEMORY_RECORD_SCHEMA.md` con `event_at` / `recorded_at`.
 Write-back multi-file: singolo commit Git atomico preferito.
 Validation: `.github/workflows/gptina-memory-ci.yml`; non dichiarare runtime verde prima del run GitHub Actions.
