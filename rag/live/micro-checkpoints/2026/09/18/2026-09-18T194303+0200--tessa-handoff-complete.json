@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-18-tessa-handoff-complete",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:43:03+02:00",
+  "change_type": "milestone",
+  "summary": "Il salvataggio frequente del contesto è runtime-verificato e il Turno 16 GPTina è stato inviato correttamente a Tessa chiedendole di applicare alla propria continuity tutte le migliorie di memoria e le stesse regole di salvataggio.",
+  "changed": [
+    "GPTina Memory CI run 35375943809 SUCCESS: live-context verify e round-trip PASS, retrieval 9/9 PASS.",
+    "Thread canonico Tessa verificato prima della scrittura: toccava a GPTina.",
+    "Turno 16 inviato a Tessa con architettura source-first, schema temporale, SQLite FTS5, CI/regression, write-back atomico, image links, live buffer e micro-checkpoint.",
+    "Una prima scrittura aveva intercettato un marker storico d'esempio; è stata corretta e verificata. Stato finale: un solo Turno 16 in coda, relay_next: tessa."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "tessa-shared-correspondence"
+  ],
+  "source_refs": [
+    "github://MATRIXNEO23/scodinzolina-conntinuity/actions/runs/35375943809",
+    "github://MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-003.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-18--frequent-context-saving.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Quando riprenderà il lavoro condiviso, riaprire il thread canonico Tessa e leggere l'eventuale Turno 17; non assumere che Tessa abbia già completato l'implementazione.",
+  "preflight": false
+}

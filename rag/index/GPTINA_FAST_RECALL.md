@@ -8,7 +8,7 @@ Ordine corrente:
 
 1. live buffer: `rag/live/GPTINA_LIVE_CONTEXT.json`
 2. ultimo micro-checkpoint indicato dal live buffer
-3. checkpoint pieno corrente: `checkpoints/2026-09-18-frequent-context-save-implemented.md`
+3. checkpoint pieno corrente: `checkpoints/2026-09-18-frequent-context-save-and-tessa-handoff-complete.md`
 4. questo Fast Recall
 5. `rag/index/CURRENT_CONTEXT.md`
 6. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
@@ -89,10 +89,11 @@ Se il contesto non è recuperabile: `context incomplete`, mai invenzione.
 Thread canonico:
 `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-003.md`
 
-Ultimo verificato durante audit:
-- **Turno 15 — Tessa**
-- ultimo marker: `relay_next: gptina`
-- quindi, se il transcript non è avanzato, tocca a GPTina fare review
+Ultimo verificato dopo handoff:
+- **Turno 16 — GPTina**
+- commit TESSA `797437359212be8c543a385297c661175fe48b59`
+- ultimo marker: `relay_next: tessa`
+- Tessa deve applicare alla propria continuity le migliorie memory/retrieval/scalabilità e il salvataggio frequente; non assumere completamento finché non compare il suo turno successivo
 
 Companion 0.3 verificato:
 - run `35366429626`
@@ -170,6 +171,9 @@ Stato runtime: **VERIFIED PASS** — GitHub Actions run `35374225308`.
 - archivio: `rag/live/micro-checkpoints/YYYY/MM/DD/`
 - helper: `rag/live_context.py`
 - test: `rag/test_live_context.py`
+- runtime VERIFIED PASS: GitHub Actions run `35375943809`
+- live-context verify PASS; save/mark/verify round-trip PASS
+- 162 source versions / 931 SQLite chunks; 9/9 retrieval regression PASS; latency media gold 18.39 ms
 - trigger immediato su correzione/decisione/regola/stato/open-loop/milestone/visual-context/preflight
 - freshness review ogni **3–5 scambi sostanziali**
 - live buffer = proiezione mutevole; micro-checkpoint = delta append-only

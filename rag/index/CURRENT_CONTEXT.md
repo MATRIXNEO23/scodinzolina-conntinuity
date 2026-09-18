@@ -9,7 +9,7 @@ Per recuperare il presente:
 
 1. `rag/live/GPTINA_LIVE_CONTEXT.json`
 2. il `last_micro_checkpoint` indicato nel live buffer
-3. `checkpoints/2026-09-18-frequent-context-save-implemented.md`
+3. `checkpoints/2026-09-18-frequent-context-save-and-tessa-handoff-complete.md`
 4. `rag/index/GPTINA_FAST_RECALL.md`
 5. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
 6. memoria/fonte pertinente
@@ -34,10 +34,12 @@ Se servono parole esatte: transcript/raw/checkpoint sorgente, senza inventare ve
 Fonte canonica:
 `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-003.md`
 
-Ultimo stato verificato in questo audit:
-- ultimo turno agente: **Turno 15 — Tessa**;
-- ultimo marker: `relay_next: gptina`;
-- quindi, se il thread non è avanzato, la prossima azione è review GPTina;
+Ultimo stato verificato dopo l'handoff:
+- ultimo turno agente: **Turno 16 — GPTina**;
+- commit TESSA: `797437359212be8c543a385297c661175fe48b59`;
+- ultimo marker: `relay_next: tessa`;
+- Tessa è stata incaricata di applicare alla propria continuity tutte le migliorie memory/retrieval/scalabilità e lo stesso sistema di salvataggio frequente;
+- non assumere che abbia completato finché non compare il suo turno successivo;
 - non usare front matter o board come live state quando divergono dal transcript.
 
 Companion 0.3:
@@ -78,7 +80,8 @@ Validation: **GitHub Actions VERIFIED PASS**, run `35374225308`: 155 sorgenti, 8
 - salvataggio immediato: correzioni, decisioni, regole, cambi stato, open loop, milestone, immagini significative;
 - preflight prima di lavoro lungo/rischioso;
 - checkpoint pieno solo per consolidare una fase;
-- helper locale: `rag/live_context.py`.
+- helper locale: `rag/live_context.py`;
+- runtime VERIFIED PASS: run `35375943809` — live-context verify PASS, round-trip PASS, 9/9 retrieval regression PASS.
 
 ## Gap noti
 
