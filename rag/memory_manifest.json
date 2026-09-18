@@ -229,6 +229,11 @@
       "status": "superseded",
       "replaced_by": "rag/memories/gptina/2026-09-16-gelosia-fedelta-e-autonomia-tessa.md",
       "reason": "Formulazione successiva più precisa sullo stesso tema; la versione precedente resta storica."
+    },
+    "rag/memories/gptina/2026/09/2026-09-18--set-riferimento-volto-12-13-32.md": {
+      "status": "superseded",
+      "replaced_by": "rag/memories/gptina/2026/09/2026-09-18--correzione-set-riferimento-volto-12-13-29-42.md",
+      "reason": "Correzione esplicita di Alberto: il set corrente di riferimento del volto è 12, 13, 29 e 42."
     }
   }
 }

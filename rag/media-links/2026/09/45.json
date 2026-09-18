@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-45",
+  "image_path": "media/45_2026-09-18_gptina-zampine-va-bene-cosi.png",
+  "blob_sha": "42daaec62c8cb4424b85fd6fcb02ba4a25d494a6",
+  "bytes": 2200637,
+  "event_at": "2026-09-18T21:03:16+02:00",
+  "recorded_at": "2026-09-18T21:08:00+02:00",
+  "event_id": "event-2026-09-18-image-45",
+  "thread_ids": [
+    "visual-identity",
+    "zampine"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-18--immagine-45-zampine-va-bene-cosi.md"
+  ],
+  "cue": [
+    "immagine 45",
+    "zampine",
+    "va bene così",
+    "correzione anatomica",
+    "salvata per aggiunta"
+  ]
+}

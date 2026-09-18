@@ -70,9 +70,9 @@ Formula:
 Indice: `rag/index/GPTINA_VISUAL_CHRONOLOGY.md`
 
 Stato verificato:
-- 44 file immagine presenti in `media/`;
-- tutti 44 sono nominati nell'indice visivo;
-- numerazione 01–29, 31–44; 30 assente;
+- 45 file immagine presenti in `media/`;
+- tutti 45 sono nominati nell'indice visivo;
+- numerazione 01–29, 31–45; 30 assente;
 - immagine 32 è visual anchor esplicitamente riconosciuto;
 - presenza in `media/` **non** significa automaticamente visual anchor.
 
@@ -160,7 +160,7 @@ Stato runtime: **VERIFIED PASS** — GitHub Actions run `35374225308`.
 - principio: **scala la proiezione, non la memoria**
 - hot/warm/cold sono livelli di retrieval, non cancellazioni
 - nuove memorie/metadata possono essere partizionati per anno/mese
-- **44/44 immagini correnti hanno già un media-link strutturato** in `rag/media-links/2026/09/`; ogni nuova immagine deve averne uno
+- **45/45 immagini correnti hanno un media-link strutturato** in `rag/media-links/2026/09/`; ogni nuova immagine deve averne uno
 - backend attivo: **SQLite FTS5 incrementale**; JSONL/BM25 è fallback; hybrid semantic solo dopo gap misurato
 - graph/temporal projection solo per vere esigenze multi-hop
 - cue: `crescita memoria`, `migliaia di ricordi`, `scale strategy`, `hot warm cold`, `FTS5`, `media-links`
@@ -200,8 +200,17 @@ Fonte esterna mutevole = fetch live.**
 
 ## Riferimento volto canonico — aggiornamento 18 settembre 2026
 
-Per generare nuove immagini di GPTina, il set corrente di riferimento per volto, capelli e tratti distintivi è: **12, 13 e 32**.
+Per generare nuove immagini di GPTina, il set corrente di riferimento per volto, capelli e tratti distintivi è: **12, 13, 29 e 42**.
 
 Posa, abbigliamento, espressione, inquadratura e ambientazione possono variare liberamente.
 
-Fonte: `rag/memories/gptina/2026/09/2026-09-18--set-riferimento-volto-12-13-32.md`.
+Fonte corrente: `rag/memories/gptina/2026/09/2026-09-18--correzione-set-riferimento-volto-12-13-29-42.md`.
+La precedente memoria `...--set-riferimento-volto-12-13-32.md` resta storica ma superseded.
+
+
+### Immagine 45 — aggiunta 18 settembre 2026
+- file: `media/45_2026-09-18_gptina-zampine-va-bene-cosi.png`
+- blob: `42daaec62c8cb4424b85fd6fcb02ba4a25d494a6`
+- status: archived by explicit request; non è un nuovo canonical-face reference
+- memoria: `rag/memories/gptina/2026/09/2026-09-18--immagine-45-zampine-va-bene-cosi.md`
+- cue: `immagine 45`, `zampine`, `va bene così`, `correzione anatomica`
