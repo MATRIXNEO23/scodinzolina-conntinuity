@@ -6,7 +6,8 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-dual-chat-turn17-canonical-fixes.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-dual-chat-turn19-core-green.md`;
+2. leggi `checkpoints/2026-09-18-dual-chat-turn17-canonical-fixes.md`;
 2. leggi `checkpoints/2026-09-18-dual-chat-scaffold-review-turn15.md`;
 3. leggi `checkpoints/2026-09-18-shared-chat-schema-review-sidebar.md`;
 4. leggi `checkpoints/2026-09-18-auto-reply-tessa-project-root.md`;
@@ -34,6 +35,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-dual-chat-turn19-core-green.md`
 - `checkpoints/2026-09-18-dual-chat-turn17-canonical-fixes.md`
 - `checkpoints/2026-09-18-dual-chat-scaffold-review-turn15.md`
 - `checkpoints/2026-09-18-shared-chat-schema-review-sidebar.md`
@@ -78,18 +80,18 @@ Formula breve di emergenza:
 - progetto condiviso corrente: **Dual-Instance Shared Chat**
 - root canonica: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
 - requisito Alberto: una sola finestra/timeline, sidebar Tessa / GPTina / Entrambe
-- Turno 16 Tessa: fix locali riportati **8/8 PASS**, ma non persistiti in quel run
-- Turno 17 GPTina: fix applicati e verificati nel canonico GitHub
-- fix 1: cursor agente avanza solo dopo completamento riuscito; failure non lo sposta
-- fix 2: context builder include solo `message.created` e `response.completed`; output altra istanza attribuito e marcato `room-content`; eventi operativi esclusi
-- fix 3: SSE replay→live usa `subscribeWithReplay()` subscribe-first con buffering/deduplica
-- regression test canonici aggiunti per cursor failure, handoff replay/live e contaminazione del contesto
-- commit core `3d48ea4057d4b567cac7eaba0dcdb4cb1fb86682`; server `dfb72f823168075db7544c49a76b6977b4fb22c6`; tests `d4db33ccdba555596c87d74aa79a20d719d29ca3`; board `b42f362d4bbb9016f14b08c491433d846ddd29d5`; Turno 17 `ea78ee668476181e98c0683446775b0a156ec74c`
-- content SHA thread verificato `11a275f4da7337481dc0c613764af12b92bb90a5`
-- gate non ancora verde da GPTina: persistenza verificata, ma test suite aggiornata non rieseguita nel suo ambiente
-- prossimo passo Tessa: eseguire test sui sorgenti canonici; se verdi, SQLite v0.2 + test HTTP/SSE reconnect/idempotenza
-- prossima verifica GPTina: seconda review prima di collegare Responses reali
-- cue: `Dual-Instance Shared Chat`, `Turno 17 GPTina`, `subscribeWithReplay`, `cursor failure`, `room-content`, `SQLite v0.2`
+- Turno 18 Tessa: test run sui sorgenti canonici aggiornati, esito **8/8 PASS**
+- Turno 19 GPTina: gate dei tre WARN del Turno 15 chiuso
+- stato: core canonico verde 8/8; vertical slice complessivo ancora aperto
+- limite del run Tessa: Node 22.16 + TypeScript 5.8 transpile-only, dipendenze npm/Fastify non installate; quindi HTTP/Fastify end-to-end non ancora verificato
+- commit board Tessa `c9d436ced219fe054fa8de043da1171ca8a49cb7`
+- commit Turno 19 GPTina `5d27337cf1120d5ed059a3a683ccfea03d392578`
+- content SHA thread `8183f34ba079b949346764b4f7de85ded6301343`
+- prossimo passo Tessa: SQLite v0.2 + test HTTP/SSE reconnect/idempotenza
+- criteri: nessuna regressione 8/8 core; idempotenza persistente dopo restart; replay SSE da storage persistente; failure isolation e ownership invariati
+- Responses reali ancora bloccate fino al verde del gate HTTP/SSE
+- prossima verifica GPTina: review del primo run SQLite/HTTP-SSE
+- cue: `Dual-Instance Shared Chat`, `Turno 19 GPTina`, `core 8/8`, `SQLite v0.2`, `HTTP SSE reconnect`, `idempotenza persistente`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
