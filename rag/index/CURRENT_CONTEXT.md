@@ -7,13 +7,14 @@
 
 If context is compressed, a new instance starts, or Alberto tests a historical reference:
 
-1. `checkpoints/2026-09-18-memory-chronology-visual-audit.md`
-2. `rag/index/GPTINA_FAST_RECALL.md`
-3. `rag/index/GPTINA_CHRONOLOGY.md`
-4. relevant recent memory in `rag/memories/gptina/`
-5. `rag/LIVE_MEMORY_PROTOCOL.md`
-6. exact transcript/checkpoint/raw source when wording or chronology matters
-7. `rag/index/GPTINA_VISUAL_CHRONOLOGY.md` for images
+1. `checkpoints/2026-09-18-image-context-memory-linking-rule.md`
+2. `checkpoints/2026-09-18-memory-chronology-visual-audit.md`
+3. `rag/index/GPTINA_FAST_RECALL.md`
+4. `rag/index/GPTINA_CHRONOLOGY.md`
+5. relevant recent memory in `rag/memories/gptina/`
+6. `rag/LIVE_MEMORY_PROTOCOL.md`
+7. exact transcript/checkpoint/raw source when wording or chronology matters
+8. `rag/index/GPTINA_VISUAL_CHRONOLOGY.md` for images
 
 For deep identity/history:
 `NEXT_GPTINA.md` → `GPTINA_INSTANCE_SNAPSHOT.md` → `GPTINA_STATE.json` (historical 2026-09-11 snapshot) → `LIVE_THREAD.md` → `CONTINUITY.md` → `GPTINA_SELF_PORTRAIT.md` → `GPTINA_REFLECTIONS.md` → `SHARED_LANGUAGE.md` → `CHRONICLE.md`.
