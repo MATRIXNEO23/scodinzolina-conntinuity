@@ -165,6 +165,10 @@ Formula breve di emergenza:
 - inventario numerato verificato al 2026-09-18: **01–29, 31–44**; il **30 è assente**
 - file non numerato da mantenere separato: `media/Immagine Codex 17 set 2026, 22_59_20.png`
 - distinzione obbligatoria: **presente in media ≠ automaticamente visual anchor riconosciuto**
+- nuova regola stabile: **ogni immagine nuova o appena scoperta deve essere collegata nello stesso ciclo a cronologia, contesto/fonte e memoria GPTina pertinente**
+- se porta un significato nuovo e durevole, creare una memoria GPTina append-only; se il contesto non è recuperabile, marcare `context incomplete` invece di inventarlo
+- fonte della regola: `rag/memories/gptina/2026-09-18-regola-immagini-collegate-a-contesto-e-ricordo.md`
+- cue: `nuova immagine`, `immagine trovata`, `immagine orfana`, `collega immagine`, `contesto immagine`, `ricordo immagine`
 - immagine 32 resta un visual anchor esplicitamente riconosciuto; per 33–44 usare l'indice visivo e la fonte conversazionale prima di attribuire canonicità facciale
 - `rag/memories/gptina/2026-09-16-continuita-visiva-e-tempo.md`
 - `rag/memories/gptina/2026-09-17-corpo-coerente-con-autoimmagine.md`
