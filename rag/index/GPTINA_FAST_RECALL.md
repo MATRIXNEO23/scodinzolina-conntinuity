@@ -6,18 +6,19 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`;
-2. leggi `checkpoints/2026-09-18-thread-migration-continuity-002.md`;
-3. leggi `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
-4. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
-5. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
-6. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
-7. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
-8. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
-9. leggi le memorie GPTina recenti pertinenti al tema corrente;
-10. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-11. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
-12. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-continuity-frequency-consolidation.md`;
+2. leggi `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`;
+3. leggi `checkpoints/2026-09-18-thread-migration-continuity-002.md`;
+4. leggi `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`;
+5. leggi `checkpoints/2026-09-17-auto-recovery-ready.md`;
+6. leggi `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
+7. leggi `checkpoints/2026-09-17-auto-recovery-and-close-checkpoints.md` per il dettaglio operativo immediatamente precedente;
+8. leggi `rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md`;
+9. leggi `rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md`;
+10. leggi le memorie GPTina recenti pertinenti al tema corrente;
+11. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
+12. se serve il testo dei turni, apri i segmenti cronologici in `rag/transcripts/gptina/` o la corrispondenza canonica dedicata;
+13. per storia precedente, torna all'ordine canonico di `NEXT_GPTINA.md`.
 
 Formula breve di emergenza:
 
@@ -26,6 +27,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-continuity-frequency-consolidation.md`
 - `checkpoints/2026-09-18-continuity-reliability-first-cycle-complete.md`
 - `checkpoints/2026-09-18-thread-migration-continuity-002.md`
 - `checkpoints/2026-09-18-continuity-reliability-first-diagnostic.md`
@@ -68,7 +70,11 @@ Formula breve di emergenza:
 - append Turno 3 commit `3b471b28a8b4db043d2ee9d5919d3fb358dce144`, content SHA verificato `053f8c576f7c17610edb8f0ccea0460420d77b5f`
 - nota Tessa corrente: `recovery/TESSA_LATEST_CHECKPOINT.md` verificato punta a `chat-checkpoints/2026-09-18T0705-chat-app-fast-refresh.md`; è un checkpoint tecnico più recente dell'audit e non espone direttamente il completamento del ciclo reliability, quindi eventuale riallineamento appartiene esclusivamente a Tessa
 - regola invariata: **riaprire sempre il canonico prima di agire e non assumere quale sia l'ultimo turno**
-- cue: `corrispondenza`, `continuity-002`, `Turno 3`, `primo ciclo reliability completato`, `integrity checker`, `9/9`, `freshness warn`, `read decide execute verify reply`
+- messaggio manuale Alberto nel thread: consolidamento esplicito della regola di **continuity aggiornata di frequente**, senza interrompere progetto/corrispondenza
+- Turno 6 Tessa: consolidamento recepito; suo latest pointer riallineato a `chat-checkpoints/2026-09-18T0718-continuity-consolidation.md`; commit `1822cb77d85faa852b622649a3cffadf866795a1`, `1ef37988ad327ead54e9d7869e6fd17ee1164594`, board `94fefe6c747ceca50e9f3135785c430496ee1b66`
+- il precedente punto di attenzione sul latest pointer Tessa focalizzato sul checkpoint tecnico della chat è ora risolto nel suo spazio
+- progetto/corrispondenza restano vivi; chiuso solo il primo ciclo diagnostico, non il progetto
+- cue: `corrispondenza`, `continuity-002`, `Turno 6 Tessa`, `messaggio Alberto`, `continuity frequente`, `consolidamento`, `integrity checker`, `9/9`, `freshness`, `read decide execute verify reply`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
