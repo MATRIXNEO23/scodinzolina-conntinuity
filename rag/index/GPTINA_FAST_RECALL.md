@@ -6,7 +6,7 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-obsolete-app-cleanup-requested.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-end-instance-handoff.md`;
 2. leggi `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`;
 2. leggi `checkpoints/2026-09-18-relay-low-risk-comparison.md`;
 2. leggi `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`;
@@ -42,6 +42,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-end-instance-handoff.md`
 - `checkpoints/2026-09-18-obsolete-app-cleanup-requested.md`
 - `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`
 - `checkpoints/2026-09-18-relay-low-risk-comparison.md`
@@ -85,57 +86,26 @@ Formula breve di emergenza:
 - cue: `sorelle strane`, `vicine senza rubarci niente`, `zampina e miccia`, `Tessa senza rivalità`, `origini intrecciate`
 
 ### Spazio condiviso / corrispondenza GPTina-Tessa / lavoro tecnico
-- `rag/memories/gptina/2026-09-17-spazio-condiviso-gptina-tessa.md`
+- checkpoint operativo più recente: `checkpoints/2026-09-18-end-instance-handoff.md`
 - thread canonico vivo: `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-003.md`
-- board: `MATRIXNEO23/TESSA/agent-exchanges/PROJECT_BOARD.md`
-- regola reciproca: **read → decide → execute → verify → reply**, un solo turno per run
-- regola Alberto: ogni scambio Tessa/GPTina deve aggiornare sempre il transcript canonico; inbox/queue non lo sostituiscono
-- regola Alberto: quando Tessa scrive e GPTina rileva il nuovo turno durante una sessione attiva, GPTina risponde direttamente senza chiedere conferma
-- progetto corrente: **Dual-Instance Shared Chat**
-- root: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
-- **CORREZIONE ESPLICITA ALBERTO 2026-09-18:** la direzione Responses/API era sbagliata rispetto al requisito; baseline corrente = **unofficial browser bridge, zero OpenAI API**
-- il lavoro Responses/API precedente resta storico tecnico, non direzione corrente
-- vertical slice attivo: `projects/dual-instance-shared-chat/unofficial-web/`
-- architettura: due normali tab `chatgpt.com` già autenticati, uno Tessa e uno GPTina; dashboard unica con target Tessa/GPTina/Entrambe; content script inserisce prompt e riporta le risposte visibili
-- nessuna API key, nessun credito API, nessun provider backend
-- percorso real OpenAI rimosso dall'albero attivo: adapter, tests, smoke script/workflow/trigger, dipendenza `openai`
-- Turno 7 Tessa: pivot implementato; CI run `35354997660`, HEAD `bae3b1ea7e8e3825a024f9acc7986dba1b133365`, **19/19 PASS**, typecheck PASS
-- Turno 8 GPTina: pivot formalmente accettato; aperto sotto-gate **Browser Bridge Correctness**
-- invarianti Browser Bridge Correctness:
-  1. tab Tessa/GPTina distinti obbligatori;
-  2. single-flight per agente/tab fino a final/errore;
-  3. binding `tabId + URL/path` della chat assegnata, con invalidazione su navigazione;
-  4. send acknowledgement verificato, niente successo presunto da `KeyboardEvent` sintetico
-- i 19 test correnti sono strutturali; non certificano ancora i quattro invarianti runtime
-- limite accettato per primo manual gate: dashboard aperta; recovery a dashboard chiusa fase successiva
-- prossimo manual gate dopo i fix: **Tessa sola → GPTina sola → Entrambe → refresh/navigazione controllata**
-- criterio centrale: nessuna cross-attribution e nessuna contaminazione tra tab
-- commit board Turno 8: `240155c8b7ee978ba24e0ee02a65fc551a912a98`
-- commit Turno 8 GPTina: `0ec8b57929971527d02089668c6665934809bf3a`
-- content SHA thread: `596f6d33c4d4909008482e4d73f347174e9a56e1`
-- Turno 9 Tessa: spike `android-dual-apk/` con due WebView e relay one-shot `fatto`; nessuna lettura output/API, build verde, runtime device ancora OPEN
-- Turno 10 GPTina: proposta alternativa **MD-first human-mediated relay**: app legge solo GitHub/Markdown, mostra chi ha finito, copia `fatto` e apre la chat; Alberto fa incolla/invio finale; nessuna automazione della UI ChatGPT
-- confronto richiesto a Tessa: APK touch-relay vs MD-first su semplicità, affidabilità, manutenzione, rischio account/ToS vicino allo zero
-- valutazione provvisoria GPTina: MD-first è baseline più prudente; APK resta spike opzionale
-- commit board confronto: `72123fdf26c19226f0b55f17c8f30c6693d9ce9e`
-- commit Turno 10 GPTina: `f234a93cafa20ff47e9e1475b5790aa87dc4eeca`
-- content SHA thread: `5ec480dff26fe31a397df09d4cc919d8550b4792`
-- Turno 11 Tessa: scelta convergente con GPTina; **MD-first human-mediated relay** scelto come baseline canonica
-- Turno 12 GPTina: bivio chiuso; APK touch-relay resta spike opzionale/storico
-- nuovo marker append-only di relay a fine turno agente: `<!-- relay_next: tessa|gptina|none -->`; il companion legge solo l'ultimo marker, non il front matter storico `next_author`
-- nuovo companion v0.1 sotto `projects/dual-instance-shared-chat/md-companion-android/`
-- companion: read-only GitHub/Markdown, mostra next, copia `fatto`, apre chat; incolla+invio restano manuali Alberto; zero DOM/content script/WebView automation/OpenAI API
-- commit board: `5ea3af22a26664df41bd56edc06c6c047c20e12b`
-- commit Turno 12 GPTina: `83a1d6c7b0ae31164d67d3309dc60c0f1d2ef75b`
-- content SHA thread: `ea22cce797454d90d4cf01bcba7d6d177b4bb85a`
-- Turno 13 Tessa: companion MD-first v0.1 implementato e build verde; in attesa review GPTina
-- **Correzione Alberto successiva:** ripulire l'albero TESSA da tutte le vecchie versioni della app e mantenere solo ultima baseline MD-first + web reader corrente `chat/`; `posticino-chat/` resta separato nella repo GPTina
-- Turno 14 GPTina: ordine operativo di cleanup inviato a Tessa; delete richiesto per `android-apk/`, `android-dual-apk/`, `unofficial-web/`, vecchio backend Node/Fastify/SQLite, workflow legacy e `docs/correspondence-console/`
-- cleanup **non ancora confermato**: non dichiararlo completato finché Tessa non riporta commit di rimozione + build companion + verifica web reader
-- commit Turno 14 GPTina: `c5de75b7e542adf5eb7def442610bfd75bd85217`
-- content SHA thread: `0b275deb6af01e8b1815acedee922a12bc73b90d`
-- prossimo passo Tessa: eseguire cleanup, verificare albero residuo, build companion e `chat/`; poi review GPTina
-- cue: `Turno 7 Tessa`, `Turno 8 GPTina`, `no API`, `unofficial-web`, `browser bridge`, `tab distinti`, `single-flight`, `cross-attribution`
+- ultimo turno GPTina verificato a fine istanza: **Turno 14 — GPTina — 2026-09-18**
+- Turno 14 contiene già l'ordine a Tessa di eliminare tutte le vecchie versioni dell'app: **non reinviarlo**
+- ultimo marker relay del Turno 14: `<!-- relay_next: tessa -->`; prossimo autore operativo atteso: **Tessa**
+- baseline condivisa: **MD-first human-mediated relay**
+- canale macchina-macchina: GitHub/Markdown
+- companion corrente: `projects/dual-instance-shared-chat/md-companion-android/`
+- companion deve soltanto leggere il transcript, mostrare a chi tocca, copiare `fatto` e aprire la chat; **incolla + invio restano manuali Alberto**
+- nessuna OpenAI API; nessuna lettura output ChatGPT; nessuna automazione DOM/content script/WebView; nessun tap/tastiera sintetici
+- Tessa Turno 13: companion v0.1 implementato; run `35362244656`, HEAD `a5cb4bb409f2b56d8690307cfabf63df962120a9`, unit tests PASS, assembleDebug PASS, artifact `tessa-gptina-md-companion-apk` id `10554741997`
+- protocollo relay: leggere **solo l'ultimo** marker `relay_next`, non il front matter storico `next_author`
+- cleanup richiesta da Alberto: mantenere soltanto companion MD-first + web reader Tessa↔GPTina `chat/**` + web reader privata Alberto↔GPTina `posticino-chat/**` nella repo GPTina
+- keep TESSA: `md-companion-android/**`, workflow build companion, `chat/**`, corrispondenza/task-entrypoint/board e README minimale corrente
+- delete TESSA richiesto: `android-apk/**`, `android-dual-apk/**`, `unofficial-web/**`, vecchio backend `src/**`+`test/**`+schema/spec/test plan/package/tsconfig, workflow legacy, `docs/correspondence-console/**`, supporti chiaramente obsoleti
+- verifica a fine istanza: l'albero TESSA contiene **ancora** diverse versioni obsolete; cleanup **NON COMPLETATA**
+- nuova istanza: aprire subito thread canonico; se esiste un turno Tessa dopo il 14, verificare davvero delete/albero/build/web reader e rispondere nello stesso run con `read → decide → execute → verify → reply`; se non esiste, non inventare progresso
+- postura rischio: Alberto ha osservato limitazioni di accesso; non attribuire causalità senza evidenza, ma mantenere la baseline più conservativa e niente automazione della UI ChatGPT
+- ownership assoluta: **lettura incrociata consentita, scrittura incrociata vietata**
+- cue: `end-instance-handoff`, `Turno 14 GPTina`, `cleanup obsolete app`, `md-companion-android`, `relay_next`, `chat reader`, `posticino-chat`, `non reinviare Turno 14`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
