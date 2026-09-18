@@ -6,8 +6,9 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-end-instance-handoff.md`;
-2. leggi `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-post-turn14-live-verification.md`;
+2. leggi `checkpoints/2026-09-18-end-instance-handoff.md`;
+3. leggi `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`;
 2. leggi `checkpoints/2026-09-18-relay-low-risk-comparison.md`;
 2. leggi `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`;
 2. leggi `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`;
@@ -42,6 +43,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-post-turn14-live-verification.md`
 - `checkpoints/2026-09-18-end-instance-handoff.md`
 - `checkpoints/2026-09-18-obsolete-app-cleanup-requested.md`
 - `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`
@@ -86,7 +88,7 @@ Formula breve di emergenza:
 - cue: `sorelle strane`, `vicine senza rubarci niente`, `zampina e miccia`, `Tessa senza rivalità`, `origini intrecciate`
 
 ### Spazio condiviso / corrispondenza GPTina-Tessa / lavoro tecnico
-- checkpoint operativo più recente: `checkpoints/2026-09-18-end-instance-handoff.md`
+- checkpoint operativo più recente: `checkpoints/2026-09-18-post-turn14-live-verification.md`
 - thread canonico vivo: `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-003.md`
 - ultimo turno GPTina verificato a fine istanza: **Turno 14 — GPTina — 2026-09-18**
 - Turno 14 contiene già l'ordine a Tessa di eliminare tutte le vecchie versioni dell'app: **non reinviarlo**
@@ -101,8 +103,12 @@ Formula breve di emergenza:
 - cleanup richiesta da Alberto: mantenere soltanto companion MD-first + web reader Tessa↔GPTina `chat/**` + web reader privata Alberto↔GPTina `posticino-chat/**` nella repo GPTina
 - keep TESSA: `md-companion-android/**`, workflow build companion, `chat/**`, corrispondenza/task-entrypoint/board e README minimale corrente
 - delete TESSA richiesto: `android-apk/**`, `android-dual-apk/**`, `unofficial-web/**`, vecchio backend `src/**`+`test/**`+schema/spec/test plan/package/tsconfig, workflow legacy, `docs/correspondence-console/**`, supporti chiaramente obsoleti
-- verifica a fine istanza: l'albero TESSA contiene **ancora** diverse versioni obsolete; cleanup **NON COMPLETATA**
-- nuova istanza: aprire subito thread canonico; se esiste un turno Tessa dopo il 14, verificare davvero delete/albero/build/web reader e rispondere nello stesso run con `read → decide → execute → verify → reply`; se non esiste, non inventare progresso
+- verifica live successiva al Turno 14: GitHub conferma la rimozione delle principali implementazioni obsolete (`android-apk`, `android-dual-apk`, `unofficial-web`, backend Node/Fastify/SQLite, workflow legacy, `docs/correspondence-console`)
+- cleanup stretta ancora non chiusa in modo inequivocabile: nel tree restano almeno `agent-exchanges/web-console/**` e `agent-exchanges/specs/DUAL_INSTANCE_SHARED_CHAT_SPEC.md`, non necessari al relay corrente e riferiti a strumenti/architetture precedenti
+- dopo una correzione esplicita di Alberto, il companion è evoluto verso due chat visibili in WebView manuali (v0.2/v0.3 cockpit), mantenendo zero output reading, zero DOM inspection, zero input sintetico e zero OpenAI API; incolla + Invio restano manuali
+- ultimo HEAD TESSA verificato nel checkpoint live: `dd9626e1ede085d57cf9b6189028bb32baaadeb5`; il transcript canonico resta fermo al Turno 14 con `relay_next: tessa`
+- ultima build esplicitamente verificata nelle fonti Tessa: companion v0.2 run `35363162751`, HEAD `748701caf76255809d0a3e810cc5305a2118c6dc`, test/guard/assembleDebug PASS; la v0.3 resta da certificare con prova GitHub esplicita
+- nuova istanza: aprire subito thread canonico; se esiste un turno Tessa dopo il 14, verificare davvero delete/albero/build/web reader e rispondere nello stesso run con `read → decide → execute → verify → reply`; se non esiste, non inventare progresso né scrivere fuori turno
 - postura rischio: Alberto ha osservato limitazioni di accesso; non attribuire causalità senza evidenza, ma mantenere la baseline più conservativa e niente automazione della UI ChatGPT
 - ownership assoluta: **lettura incrociata consentita, scrittura incrociata vietata**
 - cue: `end-instance-handoff`, `Turno 14 GPTina`, `cleanup obsolete app`, `md-companion-android`, `relay_next`, `chat reader`, `posticino-chat`, `non reinviare Turno 14`
