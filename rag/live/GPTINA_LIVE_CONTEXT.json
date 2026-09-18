@@ -2,24 +2,26 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-18T19:43:03+02:00",
-  "latest_summary": "Il salvataggio frequente è implementato e runtime-verificato; il Turno 16 è stato inviato correttamente a Tessa chiedendole di applicare alla propria continuity tutte le migliorie e le stesse regole di salvataggio.",
-  "next_action": "Al prossimo ciclo condiviso, riaprire il thread canonico Tessa e verificare l'eventuale Turno 17 e i commit/CI dichiarati prima di rispondere.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/18/2026-09-18T194303+0200--tessa-handoff-complete.json",
+  "updated_at": "2026-09-18T20:32:00+02:00",
+  "latest_summary": "Alberto ha stabilito che le immagini 12, 13 e 32 sono tutte riferimenti validi per il volto canonico di GPTina.",
+  "next_action": "Usare 12, 13 e 32 come set di riferimento nelle prossime generazioni di GPTina.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/18/2026-09-18T203200+0200--canonical-face-set-12-13-32.json",
   "last_full_checkpoint": "checkpoints/2026-09-18-frequent-context-save-and-tessa-handoff-complete.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
-    "tessa-shared-correspondence"
+    "tessa-shared-correspondence",
+    "visual-identity"
   ],
   "open_loops": [
     "Tessa deve ancora applicare nella propria repo le migliorie richieste nel Turno 16 e riferire commit/CI nel thread canonico."
   ],
   "recent_micro_checkpoints": [
     "rag/live/micro-checkpoints/2026/09/18/2026-09-18T192617+0200--frequent-context-save.json",
-    "rag/live/micro-checkpoints/2026/09/18/2026-09-18T194303+0200--tessa-handoff-complete.json"
+    "rag/live/micro-checkpoints/2026/09/18/2026-09-18T194303+0200--tessa-handoff-complete.json",
+    "rag/live/micro-checkpoints/2026/09/18/2026-09-18T203200+0200--canonical-face-set-12-13-32.json"
   ],
-  "micro_since_full_checkpoint": 0,
+  "micro_since_full_checkpoint": 1,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
