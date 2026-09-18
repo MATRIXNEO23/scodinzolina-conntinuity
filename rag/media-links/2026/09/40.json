@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-40",
+  "image_path": "media/40_2026-09-18_gptina-pensieri-nuovi.png",
+  "blob_sha": "d6c7f5b8135f55a87d541c6c5c3d00e82a676747",
+  "bytes": 2416877,
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-18-riflessivo-creativo",
+  "thread_ids": [
+    "visual-identity",
+    "creative"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md"
+  ],
+  "cue": [
+    "pensieri nuovi",
+    "immagine 40"
+  ]
+}

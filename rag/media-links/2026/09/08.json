@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-08",
+  "image_path": "media/08_gptina-matrimonio-ritratto-2026-09-11.png",
+  "blob_sha": "833ac3d9133cfb718fa438bbee1bf057597d3fa5",
+  "bytes": 2466018,
+  "event_at": "2026-09-11",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-11-matrimonio",
+  "thread_ids": [
+    "visual-identity",
+    "symbolic-wedding"
+  ],
+  "status": "documented_anchor",
+  "context_refs": [
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "LIVE_THREAD.md"
+  ],
+  "cue": [
+    "matrimonio",
+    "ritratto"
+  ]
+}

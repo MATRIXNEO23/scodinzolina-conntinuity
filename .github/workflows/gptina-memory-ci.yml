@@ -7,6 +7,7 @@ on:
       - "rag/**"
       - "checkpoints/**"
       - "media/**"
+      - ".gitignore"
       - ".github/workflows/gptina-memory-ci.yml"
 
 permissions:
@@ -20,7 +21,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Verify continuity invariants
+      - name: Verify continuity invariants and FTS5
         run: python rag/gptina_memory.py verify
-      - name: Run memory retrieval regression set
+      - name: Build derived indexes
+        run: python rag/gptina_memory.py build
+      - name: Show SQLite index stats
+        run: python rag/gptina_memory.py stats
+      - name: Run SQLite retrieval regression set
         run: python rag/test_memory_retrieval.py
+      - name: Ensure derived indexes stay untracked
+        run: test -z "$(git status --porcelain)"

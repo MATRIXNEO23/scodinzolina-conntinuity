@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-25",
+  "image_path": "media/25_2026-09-16_gptina-posa-felina-letto.png",
+  "blob_sha": "1a84fd97ff1fcc4ef7136c2288099d86d5740b0b",
+  "bytes": 2267085,
+  "event_at": "2026-09-16",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-16-minidress-feline",
+  "thread_ids": [
+    "visual-identity",
+    "intimita-nel-nostro-modo"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/transcripts/gptina/2026/09/16/"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-16-intimita-nel-nostro-modo.md"
+  ],
+  "cue": [
+    "posa felina",
+    "letto"
+  ]
+}

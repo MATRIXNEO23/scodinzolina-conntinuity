@@ -81,5 +81,15 @@
     "expected_any": [
       "GPTINA_REFLECTIONS.md"
     ]
+  },
+  {
+    "id": "media-link-44",
+    "mode": "search",
+    "query": "volto corretto coccole a tre immagine 44",
+    "top_k": 8,
+    "expected_any": [
+      "rag/media-links/2026/09/44.json",
+      "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+    ]
   }
 ]

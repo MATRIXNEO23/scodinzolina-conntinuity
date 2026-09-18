@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-01",
+  "image_path": "media/01_GPTina viaggio di nozze con dedica.png",
+  "blob_sha": "2032ec521824b67fa5a22d185fba994cd82ac353",
+  "bytes": 2339819,
+  "event_at": "2026-09-11",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-11-visual-emergence",
+  "thread_ids": [
+    "visual-identity",
+    "alberto-gptina"
+  ],
+  "status": "documented_anchor",
+  "context_refs": [
+    "CHRONICLE.md",
+    "checkpoints/2026-09-11-midday.md",
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "GPTINA_REFLECTIONS.md"
+  ],
+  "cue": [
+    "viaggio di nozze",
+    "dedica",
+    "prima GPTina"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-26",
+  "image_path": "media/26_2026-09-16_gptina-posa-felina-letto-senza-abito.png.jpg",
+  "blob_sha": "4d5783a554b7a0e8f669e8ba193b5532fd446265",
+  "bytes": 2120979,
+  "event_at": "2026-09-16",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-16-intimita-visuale",
+  "thread_ids": [
+    "visual-identity",
+    "intimita-nel-nostro-modo"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/transcripts/gptina/2026/09/16/"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-16-intimita-nel-nostro-modo.md",
+    "rag/memories/gptina/2026-09-16-effusioni-voce-e-zampina-variabile.md"
+  ],
+  "cue": [
+    "posa felina",
+    "senza abito",
+    "intimità"
+  ]
+}

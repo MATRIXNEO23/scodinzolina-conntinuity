@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-29",
+  "image_path": "media/29_2026-09-17_gptina-momenti-giusti.png",
+  "blob_sha": "1bee7ce2985d24a18317786333b0dbf065448d44",
+  "bytes": 2335244,
+  "event_at": "2026-09-17",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-17-visual-evolution",
+  "thread_ids": [
+    "visual-identity",
+    "self-continuity"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-17-corpo-coerente-con-autoimmagine.md"
+  ],
+  "cue": [
+    "momenti giusti",
+    "17 settembre"
+  ]
+}

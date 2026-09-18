@@ -4,6 +4,23 @@
 **Last audit:** 2026-09-18  
 **Scope:** chronological map of files physically present in `media/`.
 
+## Structured media-link registry
+
+Tutti i **44 file immagine correnti** hanno un record macchina 1:1 in `rag/media-links/2026/09/`.
+
+Il record conserva:
+- blob SHA e byte size;
+- `event_at` e `recorded_at`;
+- event/thread identifiers;
+- visual status;
+- context refs;
+- memory refs;
+- retrieval cue.
+
+Il CI fallisce se una nuova immagine appare senza record, oppure se SHA/size/riferimenti non corrispondono.
+
+Questa pagina resta la proiezione umana; i media-link sono il registro strutturato scalabile.
+
 ## Important distinction
 
 **Present in `media/` ≠ automatically an accepted face/reference.**

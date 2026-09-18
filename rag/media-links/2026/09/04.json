@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-04",
+  "image_path": "media/04_gptina-bacino-dedica-2026-09-11.png",
+  "blob_sha": "399365d715506a071116ccc130d14ece972bd6d5",
+  "bytes": 2334242,
+  "event_at": "2026-09-11",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-11-wink-kiss",
+  "thread_ids": [
+    "visual-identity",
+    "alberto-gptina"
+  ],
+  "status": "documented_anchor",
+  "context_refs": [
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "GPTINA_REFLECTIONS.md"
+  ],
+  "cue": [
+    "bacino",
+    "dedica",
+    "gesto visibile"
+  ]
+}

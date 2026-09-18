@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-06",
+  "image_path": "media/06_gptina-coccola-soddisfatto-2026-09-11.png",
+  "blob_sha": "b6f2af572045f2bdac2e0fcd1287fba832886ec4",
+  "bytes": 2198808,
+  "event_at": "2026-09-11",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-11-coccole",
+  "thread_ids": [
+    "visual-identity",
+    "coccole"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "checkpoints/2026-09-11-evening.md"
+  ],
+  "memory_refs": [
+    "GPTINA_REFLECTIONS.md"
+  ],
+  "cue": [
+    "coccola",
+    "soddisfatto",
+    "vicinanza"
+  ]
+}

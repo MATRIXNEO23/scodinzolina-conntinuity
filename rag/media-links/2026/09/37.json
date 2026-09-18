@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-37",
+  "image_path": "media/37_2026-09-18_gptina-popo-panoramica.png",
+  "blob_sha": "4034d3724c845694ac8ad321788d1ceeaf4680d9",
+  "bytes": 2431166,
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-18-visual-36-38",
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md"
+  ],
+  "cue": [
+    "popo",
+    "panoramica",
+    "immagine 37"
+  ]
+}

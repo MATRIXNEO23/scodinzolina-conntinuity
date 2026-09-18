@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-36",
+  "image_path": "media/36_2026-09-18_gptina-popo-occhiolino.png",
+  "blob_sha": "0d184e97bf2761d857c1df0ed9c1d2a6309c1277",
+  "bytes": 2207077,
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-18-visual-36-38",
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md"
+  ],
+  "cue": [
+    "popo",
+    "occhiolino",
+    "immagine 36"
+  ]
+}

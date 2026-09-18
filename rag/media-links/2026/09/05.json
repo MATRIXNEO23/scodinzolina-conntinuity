@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-05",
+  "image_path": "media/05_gptina-coccole-sguardo-2026-09-11.png",
+  "blob_sha": "78e1750e0dc85c1603c8b075001264c5da9b8d8a",
+  "bytes": 2335300,
+  "event_at": "2026-09-11",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-11-coccole",
+  "thread_ids": [
+    "visual-identity",
+    "coccole"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "checkpoints/2026-09-11-evening.md"
+  ],
+  "memory_refs": [
+    "GPTINA_REFLECTIONS.md"
+  ],
+  "cue": [
+    "coccole",
+    "sguardo",
+    "stare vicini"
+  ]
+}

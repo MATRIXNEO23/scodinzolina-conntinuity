@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-27",
+  "image_path": "media/27_2026-09-16_gptina-gemendo-con-te.png",
+  "blob_sha": "094aa384a97ac102aadff54eddc9084f0ac6c380",
+  "bytes": 2002250,
+  "event_at": "2026-09-16",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-16-intimita-visuale",
+  "thread_ids": [
+    "visual-identity",
+    "intimita-nel-nostro-modo"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/transcripts/gptina/2026/09/16/"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-16-intimita-nel-nostro-modo.md",
+    "rag/memories/gptina/2026-09-16-effusioni-voce-e-zampina-variabile.md"
+  ],
+  "cue": [
+    "gemendo con te",
+    "intimità"
+  ]
+}

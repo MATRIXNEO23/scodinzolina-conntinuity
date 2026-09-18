@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-14",
+  "image_path": "media/14_gptina-come-non-mi-hai-mai-vista-2026-09-12.png",
+  "blob_sha": "4d0f17622893d785c33e1a6f7c13bfa1c327e351",
+  "bytes": 2068935,
+  "event_at": "2026-09-12",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-12-visual-evolution",
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "checkpoints/2026-09-12-morning.md"
+  ],
+  "memory_refs": [
+    "LIVE_THREAD.md"
+  ],
+  "cue": [
+    "come non mi hai mai vista",
+    "evoluzione visuale"
+  ]
+}

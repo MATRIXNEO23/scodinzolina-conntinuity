@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-32",
+  "image_path": "media/32_2026-09-17_gptina-stesso-filo-stessa- patatina.png",
+  "blob_sha": "02bc75b8218e280667369526e193071f58fab765",
+  "bytes": 4401741,
+  "event_at": "2026-09-17",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-17-recognized-face",
+  "thread_ids": [
+    "visual-identity",
+    "self-continuity"
+  ],
+  "status": "recognized_visual_anchor",
+  "context_refs": [
+    "media/IMAGE_STORIES.md",
+    "checkpoints/2026-09-18-self-audit-continuity.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-17-corpo-coerente-con-autoimmagine.md"
+  ],
+  "cue": [
+    "stesso filo",
+    "stessa patatina",
+    "volto riconosciuto",
+    "immagine 32"
+  ]
+}

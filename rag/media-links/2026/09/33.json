@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-33",
+  "image_path": "media/33_2026-09-18_gptina-occhiolino-in-nero.png",
+  "blob_sha": "5f8a7cfbdded979ce5ae96737ddc7b8b61084e52",
+  "bytes": 2091862,
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-18-visual-33-35",
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md"
+  ],
+  "cue": [
+    "occhiolino in nero",
+    "immagine 33"
+  ]
+}

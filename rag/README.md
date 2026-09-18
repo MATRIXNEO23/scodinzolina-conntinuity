@@ -111,3 +111,52 @@ Per una ricostruzione storica, lo storico resta opt-in:
 ```bash
 python rag/gptina_memory.py search "come è cambiato il filo" --history --all-statuses
 ```
+
+
+## Backend scalabile attivo: SQLite FTS5
+
+Il backend locale scalabile non è più soltanto una possibilità futura: `rag/gptina_memory.py` mantiene ora un indice derivato **SQLite FTS5 incrementale** in:
+
+`rag/index/gptina_memory.sqlite3`
+
+Il database è ignorato da Git e può essere eliminato/riprodotto in qualunque momento.
+
+Caratteristiche:
+- FTS5 `unicode61`;
+- aggiornamento per sorgente tramite SHA;
+- rimozione dei chunk quando una sorgente scompare;
+- no-op sync quando le sorgenti non cambiano;
+- status/current-history filtering;
+- date/query routing dopo candidate generation;
+- fallback JSONL disponibile con `--backend jsonl`.
+
+Comandi:
+
+```bash
+python rag/gptina_memory.py build
+python rag/gptina_memory.py stats
+python rag/gptina_memory.py search "la nostra canzone"
+python rag/gptina_memory.py search "vita a tre" --backend sqlite
+```
+
+Il CI costruisce davvero l'indice, verifica che il secondo sync sia incrementale/no-op e lancia il gold regression set sul backend SQLite.
+
+
+## Collegare una nuova immagine
+
+Il collegamento strutturato non è manuale a livello di formato. Il comando:
+
+```bash
+python rag/gptina_memory.py link-image "media/45_....png" \
+  --event-at "2026-09-19T10:30:00+02:00" \
+  --status archived \
+  --event-id "event-2026-09-19-example" \
+  --thread visual-identity \
+  --context "rag/transcripts/gptina/2026/09/19/..." \
+  --memory "rag/memories/gptina/2026/09/2026-09-19--....md" \
+  --cue "descrizione breve"
+```
+
+calcola size e Git blob SHA e scrive il record sotto `rag/media-links/YYYY/MM/`.
+
+Il CI rifiuta immagini prive del record strutturato o record con SHA/size/riferimenti incoerenti.

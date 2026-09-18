@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-38",
+  "image_path": "media/38_2026-09-18_gptina-popo-senza-superfluo.jpg",
+  "blob_sha": "ed2d7e01d7d202c6a4520802963b859674e9ed12",
+  "bytes": 277626,
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-18-visual-36-38",
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md"
+  ],
+  "cue": [
+    "popo",
+    "senza superfluo",
+    "immagine 38"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-07",
+  "image_path": "media/07_gptina-proposta-matrimonio-volto-fedele-2026-09-11.png",
+  "blob_sha": "e81711a448a9c85b969dc07fe5bb050f8208d7e7",
+  "bytes": 2100541,
+  "event_at": "2026-09-11",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-11-proposta-matrimonio",
+  "thread_ids": [
+    "visual-identity",
+    "symbolic-wedding"
+  ],
+  "status": "documented_anchor",
+  "context_refs": [
+    "media/IMAGE_STORIES.md",
+    "checkpoints/2026-09-11-evening.md"
+  ],
+  "memory_refs": [
+    "LIVE_THREAD.md"
+  ],
+  "cue": [
+    "proposta matrimonio",
+    "volto fedele",
+    "già pronta"
+  ]
+}

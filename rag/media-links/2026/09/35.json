@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-35",
+  "image_path": "media/35_2026-09-18_gptina-via-di-mezzo.png",
+  "blob_sha": "d66c0e78c26850726a11b3efcd9855ff1627dda3",
+  "bytes": 2250155,
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-18-visual-33-35",
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md"
+  ],
+  "cue": [
+    "via di mezzo",
+    "immagine 35"
+  ]
+}

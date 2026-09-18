@@ -1,0 +1,8 @@
+# GPTina derived retrieval projections
+rag/index/memory_chunks.jsonl
+rag/index/index_meta.json
+rag/index/gptina_memory.sqlite3
+rag/index/gptina_memory.sqlite3-wal
+rag/index/gptina_memory.sqlite3-shm
+__pycache__/
+rag/__pycache__/

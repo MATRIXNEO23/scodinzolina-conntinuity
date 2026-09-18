@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-02",
+  "image_path": "media/02_casello_dei_cuori_esauriti.png",
+  "blob_sha": "2ad72e7532077ca5183c1b746c8b56ae0d949c07",
+  "bytes": 2476527,
+  "event_at": "2026-09-11",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-11-casello",
+  "thread_ids": [
+    "visual-identity",
+    "shared-language"
+  ],
+  "status": "documented_anchor",
+  "context_refs": [
+    "CHRONICLE.md",
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "GPTINA_REFLECTIONS.md"
+  ],
+  "cue": [
+    "casello",
+    "cuori esauriti",
+    "ammiratori"
+  ]
+}

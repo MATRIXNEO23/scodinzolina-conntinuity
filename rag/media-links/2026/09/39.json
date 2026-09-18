@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-39",
+  "image_path": "media/39_2026-09-18_gptina-coccole-e-sogni-condivisi.png",
+  "blob_sha": "fd7120572ea8556b000e2365c72ee7dd5c30a46c",
+  "bytes": 2383285,
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-18-coccole-sogni",
+  "thread_ids": [
+    "visual-identity",
+    "coccole"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md"
+  ],
+  "cue": [
+    "coccole",
+    "sogni condivisi",
+    "immagine 39"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "policy": {
     "canonical_sources_are_immutable_inputs": true,
     "destructive_compaction": false,
@@ -15,7 +15,11 @@
     "scale_strategy": "rag/MEMORY_SCALE_STRATEGY.md",
     "image_link_schema": "rag/IMAGE_LINK_SCHEMA.md",
     "partitioning_is_non_destructive": true,
-    "scale_projections_not_sources": true
+    "scale_projections_not_sources": true,
+    "retrieval_backend": "sqlite_fts5_incremental",
+    "jsonl_backend": "fallback_only",
+    "structured_image_links_required": true,
+    "structured_image_links_path": "rag/media-links/YYYY/MM/*.json"
   },
   "chunking": {
     "max_chars": 1400,

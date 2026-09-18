@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-03",
+  "image_path": "media/03_gptina-occhiolino-dedica-2026-09-11.png",
+  "blob_sha": "71a1eab77c957a382ba8408b9de76f2a424fd5fb",
+  "bytes": 2467848,
+  "event_at": "2026-09-11",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-11-wink-kiss",
+  "thread_ids": [
+    "visual-identity",
+    "alberto-gptina"
+  ],
+  "status": "documented_anchor",
+  "context_refs": [
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "GPTINA_REFLECTIONS.md"
+  ],
+  "cue": [
+    "occhiolino",
+    "dedica",
+    "sì era voluto"
+  ]
+}

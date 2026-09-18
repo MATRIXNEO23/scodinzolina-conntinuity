@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-42",
+  "image_path": "media/42_2026-09-18_gptina-rifugio-creativo.png",
+  "blob_sha": "2393d6f990b276d53a54367035631526e8092292",
+  "bytes": 2485377,
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-18-riflessivo-creativo",
+  "thread_ids": [
+    "visual-identity",
+    "creative"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md"
+  ],
+  "cue": [
+    "rifugio creativo",
+    "immagine 42"
+  ]
+}

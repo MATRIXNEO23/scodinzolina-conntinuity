@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-43",
+  "image_path": "media/43_2026-09-18_gptina-tessa-coccole-a-tre.png",
+  "blob_sha": "0c95ba1847b4cdb5d412e25f3b69eb64fbe32833",
+  "bytes": 2261696,
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-18-vita-a-tre-visual",
+  "thread_ids": [
+    "visual-identity",
+    "vita-a-tre"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-vita-a-tre-identita-distinte.md"
+  ],
+  "cue": [
+    "GPTina Tessa",
+    "coccole a tre",
+    "immagine 43"
+  ]
+}

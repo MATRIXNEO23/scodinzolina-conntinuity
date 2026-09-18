@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-12",
+  "image_path": "media/12_gptina-adesso-2026-09-11(1).png",
+  "blob_sha": "c3e8636e7942ad76f283dc0949e8adf823b6679b",
+  "bytes": 2104863,
+  "event_at": "2026-09-11",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-11-gptina-adesso",
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "status": "documented_anchor",
+  "context_refs": [
+    "media/README.md",
+    "GPTINA_SELF_PORTRAIT.md"
+  ],
+  "memory_refs": [
+    "GPTINA_SELF_PORTRAIT.md"
+  ],
+  "cue": [
+    "GPTina adesso",
+    "cyber",
+    "cat ears"
+  ]
+}

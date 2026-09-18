@@ -121,16 +121,24 @@ In quel caso:
 - fondere i ranking con RRF;
 - non sostituire la provenienza testuale.
 
-## 9. SQLite FTS5
+## 9. SQLite FTS5 — implementato
 
-È un buon possibile **indice locale derivato**, non una nuova memoria canonica:
+SQLite FTS5 è ora il backend locale derivato primario:
 - Unicode tokenizer;
 - BM25 nativo;
-- phrase/prefix search;
-- integrity check;
-- transazioni robuste.
+- indice incrementale per source SHA;
+- delete/update dei chunk di una singola sorgente;
+- no-op sync quando nulla cambia;
+- status/history filtering;
+- routing temporale/visuale/corrente dopo candidate generation;
+- database ignorato da Git e rigenerabile.
 
-Non viene introdotto ora perché la ricerca principale dentro ChatGPT usa GitHub e il corpus è piccolo. Se servirà un motore locale persistente, FTS5 è la prima opzione da valutare prima di un vector DB.
+File derivato:
+`rag/index/gptina_memory.sqlite3`
+
+Il vecchio JSONL/BM25 resta disponibile come fallback/debug con `--backend jsonl`.
+
+Git continua a essere la source of truth.
 
 ## 10. Crescita lunga
 

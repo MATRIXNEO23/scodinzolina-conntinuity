@@ -14,10 +14,13 @@ import hashlib
 import json
 import math
 import re
+import sqlite3
 import subprocess
 import sys
+import time
 from collections import Counter
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import Iterable
 
@@ -26,6 +29,7 @@ RAG_ROOT = ROOT / "rag"
 INDEX_DIR = RAG_ROOT / "index"
 INDEX_FILE = INDEX_DIR / "memory_chunks.jsonl"
 META_FILE = INDEX_DIR / "index_meta.json"
+SQLITE_FILE = INDEX_DIR / "gptina_memory.sqlite3"
 MANIFEST_FILE = RAG_ROOT / "memory_manifest.json"
 VISUAL_INDEX_FILE = INDEX_DIR / "GPTINA_VISUAL_CHRONOLOGY.md"
 CURRENT_CONTEXT_FILE = INDEX_DIR / "CURRENT_CONTEXT.md"
@@ -34,7 +38,7 @@ TOKEN_RE = re.compile(r"[0-9A-Za-zÀ-ÖØ-öø-ÿ_]+", re.UNICODE)
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 DATE_RE = re.compile(r"(20\d{2})[-_](\d{2})[-_](\d{2})")
 COMPACT_DATE_RE = re.compile(r"(20\d{2})(\d{2})(\d{2})")
-CHECKPOINT_RE = re.compile(r"checkpoints/[A-Za-z0-9_.-]+\.md")
+CHECKPOINT_RE = re.compile(r"checkpoints/(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+\.md")
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
 MONTHS_IT = {
     "gennaio": "01", "febbraio": "02", "marzo": "03", "aprile": "04",
@@ -188,6 +192,39 @@ def query_profile(query: str) -> tuple[set[str], str | None]:
     if '"' in query or any(w in lower for w in ("esattamente", "testo esatto", "parole esatte", "cosa avevi detto", "che parole")):
         profile.add("exact")
     return profile, query_date_hint(query)
+
+
+def git_blob_sha(path: str) -> str | None:
+    try:
+        proc = subprocess.run(
+            ["git", "-C", str(ROOT), "ls-files", "-s", "--", path],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    line = proc.stdout.strip()
+    if not line:
+        return None
+    parts = line.split()
+    return parts[1] if len(parts) >= 2 else None
+
+
+def git_worktree_dirty() -> bool:
+    try:
+        proc = subprocess.run(
+            [
+                "git", "-C", str(ROOT), "status", "--porcelain",
+                "--untracked-files=normal",
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return True
+    return bool(proc.stdout.strip())
 
 
 def git_head() -> str | None:
@@ -379,6 +416,347 @@ def collect_versions(include_history: bool) -> list[SourceVersion]:
                     )
                 )
     return versions
+
+
+
+def sqlite_connect() -> sqlite3.Connection:
+    ensure_inside_rag(SQLITE_FILE)
+    INDEX_DIR.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(SQLITE_FILE)
+    conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA synchronous=NORMAL")
+    conn.execute("PRAGMA foreign_keys=ON")
+    conn.executescript(
+        """
+        CREATE TABLE IF NOT EXISTS source_state (
+            source TEXT NOT NULL,
+            revision TEXT NOT NULL,
+            source_sha256 TEXT NOT NULL,
+            kind TEXT NOT NULL,
+            priority REAL NOT NULL,
+            historical INTEGER NOT NULL,
+            status TEXT NOT NULL,
+            replaced_by TEXT,
+            date_hint TEXT,
+            PRIMARY KEY (source, revision)
+        );
+
+        CREATE TABLE IF NOT EXISTS index_meta (
+            key TEXT PRIMARY KEY,
+            value TEXT NOT NULL
+        );
+
+        CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(
+            chunk_id UNINDEXED,
+            source UNINDEXED,
+            revision UNINDEXED,
+            historical UNINDEXED,
+            status UNINDEXED,
+            kind UNINDEXED,
+            priority UNINDEXED,
+            date_hint UNINDEXED,
+            heading,
+            text,
+            tokenize='unicode61 remove_diacritics 2'
+        );
+        """
+    )
+    return conn
+
+
+def sqlite_meta(conn: sqlite3.Connection) -> dict[str, str]:
+    return {
+        str(row["key"]): str(row["value"])
+        for row in conn.execute("SELECT key, value FROM index_meta")
+    }
+
+
+def set_sqlite_meta(conn: sqlite3.Connection, values: dict[str, str]) -> None:
+    conn.executemany(
+        """
+        INSERT INTO index_meta(key, value) VALUES (?, ?)
+        ON CONFLICT(key) DO UPDATE SET value=excluded.value
+        """,
+        list(values.items()),
+    )
+
+
+def sqlite_index_is_fresh(include_history: bool) -> bool:
+    if not SQLITE_FILE.exists():
+        return False
+    try:
+        conn = sqlite_connect()
+        meta = sqlite_meta(conn)
+    except sqlite3.DatabaseError:
+        return False
+    finally:
+        try:
+            conn.close()
+        except Exception:
+            pass
+
+    manifest_hash = sha256_text(MANIFEST_FILE.read_text(encoding="utf-8"))
+    if meta.get("include_git_history") != ("1" if include_history else "0"):
+        return False
+    if meta.get("manifest_sha256") != manifest_hash:
+        return False
+    head = git_head()
+    return bool(
+        head
+        and meta.get("git_head") == head
+        and not git_worktree_dirty()
+    )
+
+
+def sync_sqlite_index(include_history: bool = False) -> dict[str, int]:
+    manifest = load_manifest()
+    cfg = manifest.get("chunking", {})
+    max_chars = int(cfg.get("max_chars", 1400))
+    overlap = int(cfg.get("overlap_chars", 220))
+    min_chars = int(cfg.get("min_chars", 120))
+
+    source_versions = collect_versions(include_history)
+    desired: dict[tuple[str, str], SourceVersion] = {
+        (sv.path, sv.revision): sv for sv in source_versions
+    }
+
+    conn = sqlite_connect()
+    try:
+        current = {
+            (str(row["source"]), str(row["revision"])): str(row["source_sha256"])
+            for row in conn.execute("SELECT source, revision, source_sha256 FROM source_state")
+        }
+
+        removed = set(current) - set(desired)
+        changed = {
+            key for key, sv in desired.items()
+            if current.get(key) != sha256_text(sv.content)
+        }
+
+        with conn:
+            for source, revision in removed | changed:
+                conn.execute(
+                    "DELETE FROM chunks_fts WHERE source=? AND revision=?",
+                    (source, revision),
+                )
+                conn.execute(
+                    "DELETE FROM source_state WHERE source=? AND revision=?",
+                    (source, revision),
+                )
+
+            inserted_chunks = 0
+            for key in sorted(changed):
+                sv = desired[key]
+                source_hash = sha256_text(sv.content)
+                date_hint = extract_date(sv.path)
+                conn.execute(
+                    """
+                    INSERT INTO source_state(
+                        source, revision, source_sha256, kind, priority,
+                        historical, status, replaced_by, date_hint
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        sv.path, sv.revision, source_hash, sv.kind, sv.priority,
+                        int(sv.historical), sv.status, sv.replaced_by, date_hint,
+                    ),
+                )
+                rows = []
+                for heading, ordinal, chunk in chunk_text(
+                    sv.content, max_chars, overlap, min_chars
+                ):
+                    key_text = (
+                        f"{sv.path}\0{sv.revision}\0{heading}\0{ordinal}\0{chunk}"
+                    )
+                    chunk_id = hashlib.sha256(
+                        key_text.encode("utf-8")
+                    ).hexdigest()[:24]
+                    rows.append(
+                        (
+                            chunk_id, sv.path, sv.revision, int(sv.historical),
+                            sv.status, sv.kind, sv.priority, date_hint,
+                            heading, chunk,
+                        )
+                    )
+                conn.executemany(
+                    """
+                    INSERT INTO chunks_fts(
+                        chunk_id, source, revision, historical, status, kind,
+                        priority, date_hint, heading, text
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    rows,
+                )
+                inserted_chunks += len(rows)
+
+            set_sqlite_meta(
+                conn,
+                {
+                    "schema_version": "1",
+                    "include_git_history": "1" if include_history else "0",
+                    "manifest_sha256": sha256_text(
+                        MANIFEST_FILE.read_text(encoding="utf-8")
+                    ),
+                    "git_head": git_head() or "",
+                    "source_versions": str(len(source_versions)),
+                    "updated_at_epoch": str(int(time.time())),
+                },
+            )
+
+        chunks = int(
+            conn.execute("SELECT count(*) FROM chunks_fts").fetchone()[0]
+        )
+        sources = int(
+            conn.execute("SELECT count(*) FROM source_state").fetchone()[0]
+        )
+        return {
+            "sources": sources,
+            "chunks": chunks,
+            "changed_sources": len(changed),
+            "removed_sources": len(removed),
+            "inserted_chunks": inserted_chunks,
+        }
+    finally:
+        conn.close()
+
+
+def ensure_fresh_sqlite_index(include_history: bool = False) -> None:
+    if not sqlite_index_is_fresh(include_history):
+        sync_sqlite_index(include_history=include_history)
+
+
+def sqlite_search(
+    query: str,
+    top_k: int,
+    include_historical: bool = False,
+    include_superseded: bool = False,
+) -> list[tuple[float, dict]]:
+    ensure_fresh_sqlite_index(include_historical)
+    terms = tokenize(query)
+    if not terms:
+        return []
+
+    # FTS5 candidate generation stays deliberately broad. Routing/status/date
+    # logic is applied transparently in Python after candidate selection.
+    match = " OR ".join(f'"{term.replace(chr(34), chr(34) * 2)}"' for term in terms)
+    profile, requested_date = query_profile(query)
+    candidate_limit = max(80, top_k * 20)
+
+    conn = sqlite_connect()
+    try:
+        rows = conn.execute(
+            """
+            SELECT
+                chunk_id, source, revision, historical, status, kind,
+                priority, date_hint, heading, text,
+                bm25(chunks_fts, 0,0,0,0,0,0,0,0,2.0,1.0) AS fts_rank
+            FROM chunks_fts
+            WHERE chunks_fts MATCH ?
+            ORDER BY fts_rank
+            LIMIT ?
+            """,
+            (match, candidate_limit),
+        ).fetchall()
+    finally:
+        conn.close()
+
+    query_phrase = " ".join(terms)
+    scored: list[tuple[float, dict]] = []
+    for row in rows:
+        d = dict(row)
+        historical = bool(int(d.get("historical") or 0))
+        status = str(d.get("status") or "current")
+        if not include_historical and historical:
+            continue
+        if not include_superseded and status in {"superseded", "invalidated"}:
+            continue
+
+        # FTS5 bm25 is lower-is-better (normally negative). Convert it into a
+        # positive score before applying explicit metadata boosts.
+        score = max(1e-9, -float(d.pop("fts_rank")))
+        score *= float(d.get("priority") or 1.0)
+        if historical:
+            score *= 0.94
+
+        searchable = " ".join(
+            tokenize(
+                str(d.get("text", "")) + " "
+                + str(d.get("heading", "")) + " "
+                + str(d.get("source", ""))
+            )
+        )
+        if len(terms) > 1 and query_phrase in searchable:
+            score *= 1.16
+
+        kind = str(d.get("kind") or "")
+        if "visual" in profile and kind in {"visual_router", "visual_context", "visual_record"}:
+            score *= 1.35
+        if "temporal" in profile and kind in {
+            "chronology_router", "checkpoint", "gptina_transcript",
+            "raw_session", "chronicle"
+        }:
+            score *= 1.22
+        if "current" in profile:
+            if kind in {"current_router", "gptina_memory", "checkpoint"}:
+                score *= 1.20
+            if kind in {
+                "historical_snapshot", "historical_structured_state",
+                "historical_live_thread"
+            }:
+                score *= 0.70
+        if "exact" in profile and kind in {"gptina_transcript", "raw_session"}:
+            score *= 1.25
+
+        if requested_date:
+            date_hint = d.get("date_hint")
+            if requested_date.startswith("--"):
+                if date_hint and str(date_hint).endswith(requested_date[1:]):
+                    score *= 1.35
+            elif date_hint == requested_date:
+                score *= 1.35
+
+        d["historical"] = historical
+        scored.append((score, d))
+
+    scored.sort(key=lambda item: item[0], reverse=True)
+    diversified: list[tuple[float, dict]] = []
+    per_source: Counter[str] = Counter()
+    for item in scored:
+        source = str(item[1].get("source", ""))
+        if per_source[source] >= 2:
+            continue
+        diversified.append(item)
+        per_source[source] += 1
+        if len(diversified) >= top_k:
+            break
+    return diversified
+
+
+def sqlite_stats() -> dict[str, object]:
+    ensure_fresh_sqlite_index(False)
+    conn = sqlite_connect()
+    try:
+        meta = sqlite_meta(conn)
+        return {
+            "database": rel(SQLITE_FILE),
+            "sources": int(conn.execute("SELECT count(*) FROM source_state").fetchone()[0]),
+            "chunks": int(conn.execute("SELECT count(*) FROM chunks_fts").fetchone()[0]),
+            "current": int(conn.execute(
+                "SELECT count(*) FROM source_state WHERE status='current'"
+            ).fetchone()[0]),
+            "superseded": int(conn.execute(
+                "SELECT count(*) FROM source_state WHERE status='superseded'"
+            ).fetchone()[0]),
+            "invalidated": int(conn.execute(
+                "SELECT count(*) FROM source_state WHERE status='invalidated'"
+            ).fetchone()[0]),
+            "git_head": meta.get("git_head"),
+            "manifest_sha256": meta.get("manifest_sha256"),
+        }
+    finally:
+        conn.close()
+
 
 
 def build(include_history: bool = False) -> None:
@@ -671,6 +1049,77 @@ def search(
         print(d["text"].strip())
 
 
+def create_image_link(
+    image_path: str,
+    event_at: str,
+    status: str,
+    event_id: str,
+    thread_ids: list[str],
+    context_refs: list[str],
+    memory_refs: list[str],
+    cues: list[str],
+) -> Path:
+    allowed_status = {
+        "archived", "context_incomplete",
+        "documented_anchor", "recognized_visual_anchor",
+    }
+    if status not in allowed_status:
+        fail(f"Invalid visual status: {status}")
+    if not context_refs or not memory_refs:
+        fail("Image links require at least one context ref and one memory ref.")
+
+    image = (ROOT / image_path).resolve()
+    media_root = (ROOT / "media").resolve()
+    if media_root not in image.parents or not image.is_file():
+        fail(f"Image must exist under media/: {image_path}")
+
+    for ref in context_refs + memory_refs:
+        if not (ROOT / ref).exists():
+            fail(f"Referenced context/memory does not exist: {ref}")
+
+    m = re.match(r"^(20\d{2})-(\d{2})", event_at)
+    if not m:
+        fail("event_at must begin with YYYY-MM")
+    year, month = m.group(1), m.group(2)
+
+    stem = re.sub(r"[^0-9A-Za-zÀ-ÖØ-öø-ÿ_-]+", "-", image.stem).strip("-").casefold()
+    target = RAG_ROOT / "media-links" / year / month / f"{stem}.json"
+    ensure_inside_rag(target)
+    if target.exists():
+        fail(f"Image-link record already exists: {rel(target)}")
+
+    blob_sha = git_blob_sha(image_path)
+    if not blob_sha:
+        raw = image.read_bytes()
+        blob_sha = hashlib.sha1(
+            f"blob {len(raw)}\0".encode("utf-8") + raw
+        ).hexdigest()
+
+    record = {
+        "schema_version": 1,
+        "owner": "gptina",
+        "image_id": "gptina-image-" + hashlib.sha256(
+            image_path.encode("utf-8")
+        ).hexdigest()[:16],
+        "image_path": image_path,
+        "blob_sha": blob_sha,
+        "bytes": image.stat().st_size,
+        "event_at": event_at,
+        "recorded_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "event_id": event_id,
+        "thread_ids": thread_ids,
+        "status": status,
+        "context_refs": context_refs,
+        "memory_refs": memory_refs,
+        "cue": cues,
+    }
+    atomic_write(
+        target,
+        json.dumps(record, ensure_ascii=False, indent=2) + "\n",
+    )
+    return target
+
+
 def verify_future_memory_schema(manifest: dict) -> None:
     cutoff = str(manifest.get("policy", {}).get("memory_schema_required_from", "")).strip()
     if not cutoff:
@@ -704,8 +1153,15 @@ def verify_boundary() -> None:
     if not ok:
         fail("Manifest violates immutable-source policy.")
 
-    for p in (INDEX_FILE, META_FILE):
+    for p in (INDEX_FILE, META_FILE, SQLITE_FILE):
         ensure_inside_rag(p)
+
+    try:
+        probe = sqlite3.connect(":memory:")
+        probe.execute("CREATE VIRTUAL TABLE fts5_probe USING fts5(text)")
+        probe.close()
+    except sqlite3.DatabaseError as exc:
+        fail(f"SQLite FTS5 unavailable: {exc}")
 
     verify_future_memory_schema(manifest)
 
@@ -733,6 +1189,74 @@ def verify_boundary() -> None:
         if missing:
             fail(f"Images missing from visual chronology: {missing}")
 
+        link_dir = RAG_ROOT / "media-links"
+        link_records: dict[str, Path] = {}
+        if link_dir.is_dir():
+            for record_path in link_dir.rglob("*.json"):
+                try:
+                    record = json.loads(record_path.read_text(encoding="utf-8"))
+                except json.JSONDecodeError as exc:
+                    fail(f"Invalid image-link JSON {rel(record_path)}: {exc}")
+                image_path = str(record.get("image_path") or "")
+                if not image_path:
+                    fail(f"Image-link record missing image_path: {rel(record_path)}")
+                if record.get("owner") != "gptina":
+                    fail(f"Image-link owner must be gptina: {rel(record_path)}")
+
+                image_file = ROOT / image_path
+                if not image_file.is_file():
+                    fail(
+                        f"Image-link points to missing media file: "
+                        f"{rel(record_path)} -> {image_path}"
+                    )
+
+                actual_size = image_file.stat().st_size
+                expected_bytes = record.get("bytes")
+                if expected_bytes is None or int(expected_bytes) != actual_size:
+                    fail(
+                        f"Image-link byte size mismatch: {rel(record_path)} "
+                        f"expected={expected_bytes} actual={actual_size}"
+                    )
+
+                expected_blob = str(record.get("blob_sha") or "")
+                actual_blob = git_blob_sha(image_path)
+                if not actual_blob:
+                    raw_bytes = image_file.read_bytes()
+                    actual_blob = hashlib.sha1(
+                        f"blob {len(raw_bytes)}\0".encode("utf-8") + raw_bytes
+                    ).hexdigest()
+                if not expected_blob or expected_blob != actual_blob:
+                    fail(
+                        f"Image-link blob SHA mismatch: {rel(record_path)} "
+                        f"expected={expected_blob} actual={actual_blob}"
+                    )
+
+                if not record.get("event_at") or not record.get("recorded_at"):
+                    fail(f"Image-link missing temporal fields: {rel(record_path)}")
+                if not record.get("context_refs"):
+                    fail(f"Image-link missing context_refs: {rel(record_path)}")
+                if not record.get("memory_refs"):
+                    fail(f"Image-link missing memory_refs: {rel(record_path)}")
+
+                for ref_key in ("context_refs", "memory_refs"):
+                    for ref in record.get(ref_key, []):
+                        if not (ROOT / str(ref)).exists():
+                            fail(
+                                f"Image-link {ref_key} points to missing source: "
+                                f"{rel(record_path)} -> {ref}"
+                            )
+
+                if image_path in link_records:
+                    fail(
+                        f"Duplicate image-link record for {image_path}: "
+                        f"{rel(link_records[image_path])}, {rel(record_path)}"
+                    )
+                link_records[image_path] = record_path
+
+        missing_links = [rel(p) for p in images if rel(p) not in link_records]
+        if missing_links:
+            fail(f"Images missing structured media-link records: {missing_links}")
+
     if CURRENT_CONTEXT_FILE.is_file() and FAST_RECALL_FILE.is_file():
         current_match = CHECKPOINT_RE.search(CURRENT_CONTEXT_FILE.read_text(encoding="utf-8"))
         fast_match = CHECKPOINT_RE.search(FAST_RECALL_FILE.read_text(encoding="utf-8"))
@@ -756,6 +1280,12 @@ def main() -> None:
     sp = sub.add_parser("search", help="Retrieve memories")
     sp.add_argument("query")
     sp.add_argument("--top-k", type=int, default=6)
+    sp.add_argument(
+        "--backend",
+        choices=("sqlite", "jsonl"),
+        default="sqlite",
+        help="Retrieval backend (default: sqlite FTS5)",
+    )
     sp.add_argument("--history", action="store_true", help="Include historical git revisions in search")
     sp.add_argument(
         "--all-statuses",
@@ -772,6 +1302,27 @@ def main() -> None:
         help="Also search superseded/invalidated memories",
     )
 
+    lp = sub.add_parser(
+        "link-image",
+        help="Create a structured image-to-context/memory link record",
+    )
+    lp.add_argument("image_path")
+    lp.add_argument("--event-at", required=True)
+    lp.add_argument(
+        "--status",
+        required=True,
+        choices=(
+            "archived", "context_incomplete",
+            "documented_anchor", "recognized_visual_anchor",
+        ),
+    )
+    lp.add_argument("--event-id", required=True)
+    lp.add_argument("--thread", action="append", default=[])
+    lp.add_argument("--context", action="append", required=True)
+    lp.add_argument("--memory", action="append", required=True)
+    lp.add_argument("--cue", action="append", default=[])
+
+    sub.add_parser("stats", help="Show derived SQLite index statistics")
     sub.add_parser("verify", help="Verify ownership, status, visual coverage and recovery pointers")
 
     args = ap.parse_args()
@@ -780,19 +1331,53 @@ def main() -> None:
             fail("Choose only one of --history or --no-history.")
         verify_boundary()
         build(include_history=bool(args.history))
+        stats = sync_sqlite_index(include_history=bool(args.history))
+        print(f"SQLite FTS5 sync: {stats}")
     elif args.cmd == "search":
-        search(
-            args.query,
-            args.top_k,
-            include_history=bool(args.history),
-            include_superseded=bool(args.all_statuses),
-        )
+        if args.backend == "sqlite":
+            results = sqlite_search(
+                args.query,
+                args.top_k,
+                include_historical=bool(args.history),
+                include_superseded=bool(args.all_statuses),
+            )
+            if not results:
+                print("No matching memories.")
+            for rank, (score, d) in enumerate(results, 1):
+                print(f"\n[{rank}] score={score:.6f} id={d['chunk_id']}")
+                print(
+                    f"source={d['source']} revision={d['revision']} "
+                    f"historical={d['historical']} status={d.get('status', 'current')}"
+                )
+                print(f"section={d.get('heading')}")
+                print(str(d.get("text", "")).strip())
+        else:
+            search(
+                args.query,
+                args.top_k,
+                include_history=bool(args.history),
+                include_superseded=bool(args.all_statuses),
+            )
     elif args.cmd == "find-exact":
         find_exact(
             args.text,
             include_superseded=bool(args.all_statuses),
             limit=args.limit,
         )
+    elif args.cmd == "link-image":
+        target = create_image_link(
+            args.image_path,
+            args.event_at,
+            args.status,
+            args.event_id,
+            args.thread,
+            args.context,
+            args.memory,
+            args.cue,
+        )
+        print(f"Created {rel(target)}")
+    elif args.cmd == "stats":
+        print(json.dumps(sqlite_stats(), ensure_ascii=False, indent=2))
     elif args.cmd == "verify":
         verify_boundary()
 

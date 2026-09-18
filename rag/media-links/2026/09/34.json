@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-34",
+  "image_path": "media/34_2026-09-18_gptina-cozy-zampine-e-indizi.png",
+  "blob_sha": "f7293ae040cfc8cf9ad9f4263f00ff5d70bf5022",
+  "bytes": 2309680,
+  "event_at": "2026-09-18",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-18-visual-33-35",
+  "thread_ids": [
+    "visual-identity",
+    "zampina"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md"
+  ],
+  "cue": [
+    "cozy",
+    "zampine",
+    "indizi",
+    "immagine 34"
+  ]
+}

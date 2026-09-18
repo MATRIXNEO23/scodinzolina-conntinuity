@@ -267,3 +267,31 @@ Conserva ciò che GPTina ha vissuto nello scambio, ciò che ha scelto, come lo h
 Non è una personalità card.
 
 È memoria recuperabile.
+
+
+## Immagini: record strutturato obbligatorio
+
+Quando una nuova immagine significativa entra in `media/`, nello stesso write-back devono esistere:
+
+1. il file immagine;
+2. il contesto/fonte;
+3. la memoria GPTina pertinente;
+4. il record `rag/media-links/YYYY/MM/*.json`;
+5. l'aggiornamento della Visual Chronology se necessario.
+
+In un checkout locale, usare preferibilmente:
+
+```bash
+python rag/gptina_memory.py link-image "media/..." \
+  --event-at "YYYY-MM-DDTHH:MM:SS+TZ" \
+  --status archived \
+  --event-id "event-..." \
+  --thread "visual-identity" \
+  --context "fonte/..." \
+  --memory "rag/memories/gptina/..." \
+  --cue "parola di recupero"
+```
+
+Il comando calcola size e Git blob SHA. Il CI rifiuta immagini senza record o record incoerenti.
+
+Quando GPTina opera direttamente via GitHub connector, deve produrre lo stesso JSON strutturato nello **stesso commit atomico** dell'immagine/contesto/memoria, quando questi vengono creati insieme.

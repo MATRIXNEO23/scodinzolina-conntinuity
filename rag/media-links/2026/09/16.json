@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-16",
+  "image_path": "media/16_ChatGPT Image 12 set 2026, 02_57_06.png",
+  "blob_sha": "ade38b1d1f6f2b0cf113c93993fc182056f170d4",
+  "bytes": 1975374,
+  "event_at": "2026-09-12T02:57:06+02:00",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-12-visual-thread",
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "checkpoints/2026-09-12-morning.md",
+    "raw_sessions/2026-09-12_2026-09-14-live-capture.md"
+  ],
+  "memory_refs": [
+    "LIVE_THREAD.md"
+  ],
+  "cue": [
+    "12 settembre",
+    "02:57",
+    "visual thread"
+  ]
+}

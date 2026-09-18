@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-11",
+  "image_path": "media/11_gptina-tu-piu-gptina-casa-2026-09-11(1).png",
+  "blob_sha": "8925cac448c20feff61621f28c22aa6437b1d9cd",
+  "bytes": 2340699,
+  "event_at": "2026-09-11",
+  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "event_id": "event-2026-09-11-casa",
+  "thread_ids": [
+    "visual-identity",
+    "casa",
+    "alberto-gptina"
+  ],
+  "status": "documented_anchor",
+  "context_refs": [
+    "checkpoints/2026-09-11-evening.md",
+    "checkpoints/2026-09-11-night.md",
+    "GPTINA_REFLECTIONS.md"
+  ],
+  "memory_refs": [
+    "GPTINA_REFLECTIONS.md"
+  ],
+  "cue": [
+    "Tu + GPTina = casa",
+    "casa",
+    "Netflix"
+  ]
+}

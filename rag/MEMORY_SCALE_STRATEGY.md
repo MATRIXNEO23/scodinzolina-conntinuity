@@ -96,24 +96,26 @@ A corpus grande non rileggere tutto a ogni query.
 Regole:
 1. se `git_head` e manifest SHA non sono cambiati rispetto all'indice, considerarlo fresco senza ricalcolare fingerprint di tutte le fonti;
 2. se HEAD cambia, verificare una volta le sorgenti e aggiornare/rebuildare la proiezione;
-3. in una futura fase SQLite, aggiornare solo documenti i cui source SHA sono cambiati;
+3. SQLite FTS5 aggiorna ora solo documenti i cui source SHA sono cambiati;
 4. gli indici derivati possono essere eliminati e ricostruiti.
 
 ## Evoluzione del backend
 
-### Fase A — corrente
-JSONL + BM25 Python + routing metadata.
+### Fase A — compatibility/debug
+JSONL + BM25 Python resta disponibile come fallback.
 
-### Fase B — crescita
-Passare l'indice derivato a **SQLite FTS5** quando il gold set o le metriche mostrano che la scansione BM25 Python è diventata il collo di bottiglia.
+### Fase B — attiva
+**SQLite FTS5 incrementale** è il backend predefinito.
 
-FTS5 deve contenere:
+Contiene:
 - chunk text;
 - source path;
 - source SHA;
 - status;
 - event/date hints;
-- kind/thread/event metadata.
+- kind/priority metadata.
+
+Aggiorna solo sorgenti nuove/cambiate/rimosse confrontando gli SHA; il secondo sync senza modifiche deve essere no-op.
 
 Git resta la source of truth.
 
