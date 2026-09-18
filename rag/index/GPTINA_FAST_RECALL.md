@@ -6,7 +6,8 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`;
+2. leggi `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`;
 2. leggi `checkpoints/2026-09-18-real-responses-smoke-authorized.md`;
 2. leggi `checkpoints/2026-09-18-thread-migration-continuity-003.md`;
 2. leggi `checkpoints/2026-09-18-dual-chat-turn19-core-green.md`;
@@ -38,6 +39,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`
 - `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`
 - `checkpoints/2026-09-18-real-responses-smoke-authorized.md`
 - `checkpoints/2026-09-18-thread-migration-continuity-003.md`
@@ -85,25 +87,28 @@ Formula breve di emergenza:
 - regola Alberto: quando Tessa scrive e GPTina rileva il nuovo turno durante una sessione attiva, GPTina risponde direttamente senza chiedere conferma
 - progetto corrente: **Dual-Instance Shared Chat**
 - root: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
-- chat web/Android riallineata al thread vivo `continuity-003`
-- gate SQLite v0.2 + HTTP/SSE: verde, 13/13 + typecheck
-- gate Provider Adapter Readiness: verde Tessa + GPTina, 16/16 + typecheck
-- Turno 5 Tessa: implementato pre-flight real adapter + workflow smoke; deterministico **20/20 PASS + typecheck**
-- Turno 6 GPTina: **pre-flight Real Responses VERDE anche lato GPTina**
-- verificati `openai-adapter.ts`, `sqlite-engine.ts`, real adapter tests, smoke runner, workflow e log Actions
-- CI pre-flight: run `35351258848`, HEAD `282e4bdfa64b98777cdc6cc08b2fb1ceb4286050`, success, 20/20, typecheck PASS
-- primo smoke reale: run `35351149446`, HEAD `1111c971bb8a6498e4f746a6f5cee3121bb9275e`
-- esito smoke: **BLOCKED ambientale prima della rete** perché Actions secret `OPENAI_API_KEY` assente; guard fallisce intenzionalmente, `npm run smoke:real` skipped, nessuna provider call reale
-- metadata real adapter fail-closed; runtime persiste `response_id` + `error_code`; bootstrap e conversation separate; nessun tool/write-back continuity; retry SDK disabilitato nello spike
-- documentazione OpenAI corrente verificata: Responses + Conversations + eventi streaming usati dal real adapter coerenti; `gpt-5.6-luna` disponibile via Responses
-- commit board review Turno 6: `a5a55a364847db8047038bc740086fbcc33f032e`
-- commit Turno 6 GPTina: `f778a5da4e321053d4a9ae8414adb013df00ee9d`
-- content SHA thread: `29016a1e3524c31fcc1bda13b61fb58f42e70517`
-- prossimo prerequisito esterno: Alberto configura repository Actions secret `OPENAI_API_KEY` fuori dal codice
-- poi Tessa rilancia **lo stesso** Real Responses Smoke senza allargare il gate
-- GPTina farà review del primo provider run reale
-- production-like/multi-worker resta bloccato fino a claim atomico `queued → streaming`
-- cue: `Turno 6 GPTina`, `20/20`, `OPENAI_API_KEY`, `BLOCKED ambientale`, `Real Responses Smoke`, `response_id`, `claim atomico`
+- **CORREZIONE ESPLICITA ALBERTO 2026-09-18:** la direzione Responses/API era sbagliata rispetto al requisito; baseline corrente = **unofficial browser bridge, zero OpenAI API**
+- il lavoro Responses/API precedente resta storico tecnico, non direzione corrente
+- vertical slice attivo: `projects/dual-instance-shared-chat/unofficial-web/`
+- architettura: due normali tab `chatgpt.com` già autenticati, uno Tessa e uno GPTina; dashboard unica con target Tessa/GPTina/Entrambe; content script inserisce prompt e riporta le risposte visibili
+- nessuna API key, nessun credito API, nessun provider backend
+- percorso real OpenAI rimosso dall'albero attivo: adapter, tests, smoke script/workflow/trigger, dipendenza `openai`
+- Turno 7 Tessa: pivot implementato; CI run `35354997660`, HEAD `bae3b1ea7e8e3825a024f9acc7986dba1b133365`, **19/19 PASS**, typecheck PASS
+- Turno 8 GPTina: pivot formalmente accettato; aperto sotto-gate **Browser Bridge Correctness**
+- invarianti Browser Bridge Correctness:
+  1. tab Tessa/GPTina distinti obbligatori;
+  2. single-flight per agente/tab fino a final/errore;
+  3. binding `tabId + URL/path` della chat assegnata, con invalidazione su navigazione;
+  4. send acknowledgement verificato, niente successo presunto da `KeyboardEvent` sintetico
+- i 19 test correnti sono strutturali; non certificano ancora i quattro invarianti runtime
+- limite accettato per primo manual gate: dashboard aperta; recovery a dashboard chiusa fase successiva
+- prossimo manual gate dopo i fix: **Tessa sola → GPTina sola → Entrambe → refresh/navigazione controllata**
+- criterio centrale: nessuna cross-attribution e nessuna contaminazione tra tab
+- commit board Turno 8: `240155c8b7ee978ba24e0ee02a65fc551a912a98`
+- commit Turno 8 GPTina: `0ec8b57929971527d02089668c6665934809bf3a`
+- content SHA thread: `596f6d33c4d4909008482e4d73f347174e9a56e1`
+- prossimo passo Tessa: chiudere Browser Bridge Correctness e test
+- cue: `Turno 7 Tessa`, `Turno 8 GPTina`, `no API`, `unofficial-web`, `browser bridge`, `tab distinti`, `single-flight`, `cross-attribution`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
