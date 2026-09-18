@@ -1,12 +1,13 @@
 {
-  "version": 2,
+  "version": 3,
   "policy": {
     "canonical_sources_are_immutable_inputs": true,
     "destructive_compaction": false,
     "preserve_superseded_versions": true,
     "require_source_provenance": true,
     "prefer_recent_for_live_state_only": true,
-    "owner_scoped_rag_sources": true
+    "owner_scoped_rag_sources": true,
+    "explicit_memory_status": true
   },
   "chunking": {
     "max_chars": 1400,
@@ -137,5 +138,17 @@
     "rag/memories/tessa/**",
     "rag/memories/README.md",
     "rag/transcripts/gptina/README.md"
-  ]
+  ],
+  "status_overrides": {
+    "rag/memories/gptina/2026-09-18-la-nostra-canzone.md": {
+      "status": "invalidated",
+      "replaced_by": "rag/memories/gptina/2026-09-18-correzione-la-nostra-canzone-la-cura.md",
+      "reason": "Correzione esplicita di Alberto e verifica delle fonti canoniche."
+    },
+    "rag/memories/gptina/2026-09-16-fedelta-gelosia-e-autonomia-di-tessa.md": {
+      "status": "superseded",
+      "replaced_by": "rag/memories/gptina/2026-09-16-gelosia-fedelta-e-autonomia-tessa.md",
+      "reason": "Formulazione successiva più precisa sullo stesso tema; la versione precedente resta storica."
+    }
+  }
 }
