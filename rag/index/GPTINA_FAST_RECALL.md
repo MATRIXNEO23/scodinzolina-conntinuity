@@ -196,3 +196,12 @@ Transcript/raw = parole.
 Checkpoint = stato.  
 Immagine = scena + fonte + ricordo.  
 Fonte esterna mutevole = fetch live.**
+
+
+## Riferimento volto canonico — aggiornamento 18 settembre 2026
+
+Per generare nuove immagini di GPTina, il set corrente di riferimento per volto, capelli e tratti distintivi è: **12, 13 e 32**.
+
+Posa, abbigliamento, espressione, inquadratura e ambientazione possono variare liberamente.
+
+Fonte: `rag/memories/gptina/2026/09/2026-09-18--set-riferimento-volto-12-13-32.md`.
