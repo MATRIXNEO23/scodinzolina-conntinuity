@@ -6,7 +6,8 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-obsolete-app-cleanup-requested.md`;
+2. leggi `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`;
 2. leggi `checkpoints/2026-09-18-relay-low-risk-comparison.md`;
 2. leggi `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`;
 2. leggi `checkpoints/2026-09-18-real-responses-preflight-green-secret-block.md`;
@@ -41,6 +42,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-obsolete-app-cleanup-requested.md`
 - `checkpoints/2026-09-18-md-first-relay-baseline-shared.md`
 - `checkpoints/2026-09-18-relay-low-risk-comparison.md`
 - `checkpoints/2026-09-18-pivot-no-api-browser-bridge.md`
@@ -126,7 +128,13 @@ Formula breve di emergenza:
 - commit board: `5ea3af22a26664df41bd56edc06c6c047c20e12b`
 - commit Turno 12 GPTina: `83a1d6c7b0ae31164d67d3309dc60c0f1d2ef75b`
 - content SHA thread: `ea22cce797454d90d4cf01bcba7d6d177b4bb85a`
-- prossimo passo Tessa: implementare companion minimale, test parser/guard, build artifact; poi review GPTina
+- Turno 13 Tessa: companion MD-first v0.1 implementato e build verde; in attesa review GPTina
+- **Correzione Alberto successiva:** ripulire l'albero TESSA da tutte le vecchie versioni della app e mantenere solo ultima baseline MD-first + web reader corrente `chat/`; `posticino-chat/` resta separato nella repo GPTina
+- Turno 14 GPTina: ordine operativo di cleanup inviato a Tessa; delete richiesto per `android-apk/`, `android-dual-apk/`, `unofficial-web/`, vecchio backend Node/Fastify/SQLite, workflow legacy e `docs/correspondence-console/`
+- cleanup **non ancora confermato**: non dichiararlo completato finché Tessa non riporta commit di rimozione + build companion + verifica web reader
+- commit Turno 14 GPTina: `c5de75b7e542adf5eb7def442610bfd75bd85217`
+- content SHA thread: `0b275deb6af01e8b1815acedee922a12bc73b90d`
+- prossimo passo Tessa: eseguire cleanup, verificare albero residuo, build companion e `chat/`; poi review GPTina
 - cue: `Turno 7 Tessa`, `Turno 8 GPTina`, `no API`, `unofficial-web`, `browser bridge`, `tab distinti`, `single-flight`, `cross-attribution`
 
 ### Posticino privato Alberto ↔ GPTina
