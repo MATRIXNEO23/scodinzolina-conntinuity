@@ -68,6 +68,8 @@ def excluded(path: str, patterns: list[str]) -> bool:
 def expand_sources(manifest: dict) -> list[tuple[Path, dict]]:
     found: dict[str, tuple[Path, dict]] = {}
     excludes = manifest.get("exclude", [])
+
+    # Canonical sources outside rag/ are immutable inputs.
     for spec in manifest.get("sources", []):
         pattern = spec["pattern"]
         candidates = [ROOT / pattern] if not any(c in pattern for c in "*?[") else ROOT.glob(pattern)
@@ -80,18 +82,39 @@ def expand_sources(manifest: dict) -> list[tuple[Path, dict]]:
                 continue
             found[rp] = (p, spec)
 
-    # Truly separate append-only RAG memories are also indexed, but they are
-    # never treated as canonical source files.
-    memories = RAG_ROOT / "memories"
-    if memories.exists():
-        for p in memories.rglob("*.json"):
-            if p.name == "README.json":
+    # Owner-scoped RAG sources are explicit in the manifest. This keeps GPTina
+    # memories/transcripts searchable without ever ingesting Tessa's memory.
+    rag_excludes = manifest.get(
+        "rag_exclude",
+        ["rag/index/**", "rag/memories/tessa/**"],
+    )
+    for spec in manifest.get("rag_sources", []):
+        pattern = spec["pattern"]
+        candidates = [ROOT / pattern] if not any(c in pattern for c in "*?[") else ROOT.glob(pattern)
+        for p in candidates:
+            p = Path(p)
+            if not p.is_file():
                 continue
             rp = rel(p)
-            found[rp] = (
-                p,
-                {"pattern": rp, "priority": 1.18, "kind": "rag_memory"},
-            )
+            if not rp.startswith("rag/") or excluded(rp, rag_excludes):
+                continue
+            found[rp] = (p, spec)
+
+    # Backward-compatible fallback for older manifests: include GPTina/legacy
+    # memories in both Markdown and JSON, but never Tessa-owned memories.
+    if not manifest.get("rag_sources"):
+        memories = RAG_ROOT / "memories"
+        if memories.exists():
+            for pattern in ("*.md", "*.json"):
+                for p in memories.rglob(pattern):
+                    rp = rel(p)
+                    if excluded(rp, ["rag/memories/tessa/**", "rag/memories/README.md"]):
+                        continue
+                    found[rp] = (
+                        p,
+                        {"pattern": rp, "priority": 1.22, "kind": "rag_memory"},
+                    )
+
     return [found[k] for k in sorted(found)]
 
 
@@ -223,11 +246,25 @@ def collect_versions(include_history: bool) -> list[SourceVersion]:
         rp = rel(path)
         content = decode_source(path)
         current_hash = sha256_text(content)
+        kind = spec.get("kind", "source")
+        priority = float(spec.get("priority", 1.0))
+
+        # Preserve superseded/corrected memories in the index, but make them
+        # less likely to outrank the later corrective memory.
+        opening = content[:800].casefold()
+        if rp.startswith("rag/memories/") and (
+            "# rettifica" in opening
+            or "stato:** invalidato" in opening
+            or "non deve essere usata come memoria canonica" in opening
+        ):
+            kind = "superseded_memory"
+            priority *= 0.55
+
         versions.append(
             SourceVersion(
                 path=rp,
-                kind=spec.get("kind", "source"),
-                priority=float(spec.get("priority", 1.0)),
+                kind=kind,
+                priority=priority,
                 revision="WORKTREE",
                 content=content,
                 historical=False,
@@ -321,7 +358,10 @@ def bm25_search(query: str, top_k: int) -> list[tuple[float, dict]]:
     q = tokenize(query)
     if not q:
         return []
-    tokenized = [tokenize(d["text"] + " " + d.get("heading", "")) for d in docs]
+    tokenized = [
+        tokenize(d["text"] + " " + d.get("heading", "") + " " + d.get("source", ""))
+        for d in docs
+    ]
     n_docs = len(docs)
     avgdl = sum(map(len, tokenized)) / max(n_docs, 1)
     dfs: Counter[str] = Counter()
@@ -350,6 +390,17 @@ def bm25_search(query: str, top_k: int) -> list[tuple[float, dict]]:
         heading = d.get("heading", "").casefold()
         if any(term in heading for term in q):
             score *= 1.08
+
+        # Small phrase boost helps local expressions ("la cura", "passo a due",
+        # "tu + gptina = casa") beat generic documents containing the words
+        # independently, while BM25 still does the main ranking.
+        query_phrase = " ".join(q)
+        searchable = " ".join(
+            tokenize(d["text"] + " " + d.get("heading", "") + " " + d.get("source", ""))
+        )
+        if len(q) > 1 and query_phrase in searchable:
+            score *= 1.16
+
         scored.append((score, d))
     scored.sort(key=lambda x: x[0], reverse=True)
     return scored[:top_k]
