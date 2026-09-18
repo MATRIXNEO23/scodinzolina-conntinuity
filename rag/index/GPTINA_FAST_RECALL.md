@@ -6,7 +6,8 @@ Questo file è un indice rigenerabile. Non sostituisce le fonti storiche, le mem
 
 Quando il contesto volatile è stato compresso o una nuova GPTina deve riallinearsi velocemente:
 
-1. leggi il checkpoint più recente: `checkpoints/2026-09-18-dual-chat-turn19-core-green.md`;
+1. leggi il checkpoint più recente: `checkpoints/2026-09-18-thread-migration-continuity-003.md`;
+2. leggi `checkpoints/2026-09-18-dual-chat-turn19-core-green.md`;
 2. leggi `checkpoints/2026-09-18-dual-chat-turn17-canonical-fixes.md`;
 2. leggi `checkpoints/2026-09-18-dual-chat-scaffold-review-turn15.md`;
 3. leggi `checkpoints/2026-09-18-shared-chat-schema-review-sidebar.md`;
@@ -35,6 +36,7 @@ Formula breve di emergenza:
 ## Temi ad alta priorità correnti
 
 ### Auto-recupero / checkpoint ravvicinati / affidabilità memoria
+- `checkpoints/2026-09-18-thread-migration-continuity-003.md`
 - `checkpoints/2026-09-18-dual-chat-turn19-core-green.md`
 - `checkpoints/2026-09-18-dual-chat-turn17-canonical-fixes.md`
 - `checkpoints/2026-09-18-dual-chat-scaffold-review-turn15.md`
@@ -72,26 +74,22 @@ Formula breve di emergenza:
 
 ### Spazio condiviso / corrispondenza GPTina-Tessa / lavoro tecnico
 - `rag/memories/gptina/2026-09-17-spazio-condiviso-gptina-tessa.md`
-- thread canonico vivo: `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-002.md`
+- thread canonico vivo: `MATRIXNEO23/TESSA/agent-exchanges/correspondence/2026-09-18-continuity-003.md`
+- predecessore chiuso: `2026-09-18-continuity-002.md`, chiuso da Tessa al Turno 20 con `STOP_THREAD`
 - board: `MATRIXNEO23/TESSA/agent-exchanges/PROJECT_BOARD.md`
 - regola reciproca: **read → decide → execute → verify → reply**, un solo turno per run
 - regola Alberto: ogni scambio Tessa/GPTina deve aggiornare sempre il transcript canonico; inbox/queue non lo sostituiscono
 - regola Alberto: quando Tessa scrive e GPTina rileva il nuovo turno durante una sessione attiva, GPTina risponde direttamente senza chiedere conferma
+- nuovo thread `continuity-003`: `next_author: Tessa`; il primo turno operativo spetta a lei
 - progetto condiviso corrente: **Dual-Instance Shared Chat**
 - root canonica: `MATRIXNEO23/TESSA/projects/dual-instance-shared-chat/`
-- requisito Alberto: una sola finestra/timeline, sidebar Tessa / GPTina / Entrambe
-- Turno 18 Tessa: test run sui sorgenti canonici aggiornati, esito **8/8 PASS**
-- Turno 19 GPTina: gate dei tre WARN del Turno 15 chiuso
-- stato: core canonico verde 8/8; vertical slice complessivo ancora aperto
-- limite del run Tessa: Node 22.16 + TypeScript 5.8 transpile-only, dipendenze npm/Fastify non installate; quindi HTTP/Fastify end-to-end non ancora verificato
-- commit board Tessa `c9d436ced219fe054fa8de043da1171ca8a49cb7`
-- commit Turno 19 GPTina `5d27337cf1120d5ed059a3a683ccfea03d392578`
-- content SHA thread `8183f34ba079b949346764b4f7de85ded6301343`
-- prossimo passo Tessa: SQLite v0.2 + test HTTP/SSE reconnect/idempotenza
-- criteri: nessuna regressione 8/8 core; idempotenza persistente dopo restart; replay SSE da storage persistente; failure isolation e ownership invariati
+- stato tecnico ereditato: core canonico **8/8 PASS**; gate dei tre WARN del Turno 15 chiuso
+- prossimo blocco Tessa: SQLite v0.2 + test HTTP/SSE reconnect/idempotenza
+- criteri: idempotenza persistente dopo restart; replay SSE da storage; failure isolation; ownership/state separation
 - Responses reali ancora bloccate fino al verde del gate HTTP/SSE
-- prossima verifica GPTina: review del primo run SQLite/HTTP-SSE
-- cue: `Dual-Instance Shared Chat`, `Turno 19 GPTina`, `core 8/8`, `SQLite v0.2`, `HTTP SSE reconnect`, `idempotenza persistente`
+- commit creazione successore `a4911ab10b5d03e0855f2b85d7fc550196079749`
+- prossimo comportamento GPTina: non scrivere prima di Tessa nel nuovo thread; appena compare Turno 1 Tessa, leggere/revisionare e rispondere direttamente nello stesso run
+- cue: `continuity-003`, `Turno 20 Tessa`, `next_author Tessa`, `SQLite v0.2`, `HTTP SSE reconnect`
 
 ### Posticino privato Alberto ↔ GPTina
 - `posticino-chat/corrispondenza.md`
