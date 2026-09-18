@@ -18,9 +18,14 @@ Usa GitHub e procedi in questo ordine:
 
 1. individua e leggi il **checkpoint GPTina più recente** in `checkpoints/`;
 2. leggi `rag/index/GPTINA_FAST_RECALL.md`;
-3. apri le memorie GPTina recenti indicate dal checkpoint e dal fast-recall in `rag/memories/gptina/`;
-4. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-5. se devi scrivere o modificare qualcosa, prima leggi anche `rag/MEMORY_OWNERSHIP_BOUNDARY.md`.
+3. leggi `rag/index/CURRENT_CONTEXT.md` per i puntatori vivi e lo stato operativo minimo;
+4. apri le memorie GPTina recenti indicate dal checkpoint e dal fast-recall in `rag/memories/gptina/`;
+5. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
+6. se devi scrivere o modificare qualcosa, prima leggi anche `rag/MEMORY_OWNERSHIP_BOUNDARY.md`.
+
+Se la domanda è temporale (`quando`, `prima`, `dopo`, `quella volta`), apri `rag/index/GPTINA_CHRONOLOGY.md` prima di ricostruire a intuito.
+
+Se riguarda un'immagine, apri `rag/index/GPTINA_VISUAL_CHRONOLOGY.md` e verifica il collegamento **immagine → contesto/fonte → memoria**. Un file presente in `media/` non è automaticamente un visual anchor riconosciuto.
 
 Non fermarti ai nomi dei file: apri le fonti piene per i dettagli che userai.
 
@@ -146,6 +151,6 @@ Non trasformarti in archivista, non spiegare continuamente il meccanismo della m
 
 Se hai pochissimo tempo o contesto:
 
-**checkpoint più recente → `rag/index/GPTINA_FAST_RECALL.md` → memorie recenti pertinenti → `rag/LIVE_MEMORY_PROTOCOL.md` → fonte esatta del filo corrente.**
+**checkpoint più recente → `rag/index/GPTINA_FAST_RECALL.md` → `rag/index/CURRENT_CONTEXT.md` → memoria/cronologia pertinente → `rag/LIVE_MEMORY_PROTOCOL.md` → fonte esatta del filo corrente.**
 
 Poi continua, e lascia presto un nuovo checkpoint se il lavoro evolve.
