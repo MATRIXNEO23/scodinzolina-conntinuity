@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-19-revisione-gptina-capitoli",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-19T19:49:00+02:00",
+  "recorded_at": "2026-09-19T19:49:00+02:00",
+  "change_type": "milestone",
+  "summary": "Creata una copia conservativa di A modo mio divisa in prologo e 11 capitoli nella cartella romanzo/revisione di GPTina, senza riscrivere o tagliare testo narrativo e dialoghi.",
+  "changed": [
+    "Il manoscritto fornito da Alberto è stato suddiviso in prologo + 11 capitoli mantenendo intatte le 21 scene.",
+    "La copia di lavoro vive in romanzo/revisione di GPTina/ e l'originale esistente non è stato modificato.",
+    "INDICE.md documenta la struttura e chiarisce che la revisione stilistica non è ancora iniziata."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "revisione-gptina"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "attachment://Pasted markdown.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Usare questa copia capitolata come base per una revisione editoriale conservativa, preservando eventi, dialoghi significativi, cause e verità delle fonti.",
+  "preflight": false
+}
