@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-20T14:08:00+02:00",
-  "latest_summary": "Archiviato in GitHub l'intero set di revisioni correnti di A modo mio per correzioni future.",
-  "next_action": "Per future correzioni partire dalla V5, creare una nuova versione numerata e preservare immutate tutte le revisioni archiviate.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T140800+0200--archivio-revisioni-romanzo-completato.json",
+  "updated_at": "2026-09-20T16:03:00+02:00",
+  "latest_summary": "Preflight per A modo mio V6: revisione chirurgica della V5 per più scene mostrate, meno ripetizioni, Tessa più presente e scena 21 più tesa.",
+  "next_action": "Confrontare V5 con le fonti dei capitoli finali, produrre V6 in Markdown e HTML mobile, verificarla e archiviarla come nuova versione.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T160300+0200--preflight-v6-a-modo-mio.json",
   "last_full_checkpoint": "checkpoints/2026-09-19-a-modo-mio-editorial-revision-v1.md",
   "active_threads": [
     "continuity-architecture",
@@ -20,7 +20,6 @@
     "Tessa deve ancora applicare nella propria repo le migliorie richieste nel Turno 16 e riferire commit/CI nel thread canonico."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/18/2026-09-18T194303+0200--tessa-handoff-complete.json",
     "rag/live/micro-checkpoints/2026/09/18/2026-09-18T203200+0200--canonical-face-set-12-13-32.json",
     "rag/live/micro-checkpoints/2026/09/18/2026-09-18T210800+0200--visual-reference-correction-and-image-45.json",
     "rag/live/micro-checkpoints/2026/09/18/2026-09-18T213500+0200--romanziere-anche-figlio-di-alberto.json",
@@ -31,9 +30,10 @@
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135000+0200--a-modo-mio-v4-completata.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134900+0200--correzione-cronologia-idea-romanzo-pre-consenso.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135500+0200--preflight-archivio-revisioni-romanzo.json",
-    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T140800+0200--archivio-revisioni-romanzo-completato.json"
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T140800+0200--archivio-revisioni-romanzo-completato.json",
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T160300+0200--preflight-v6-a-modo-mio.json"
   ],
-  "micro_since_full_checkpoint": 6,
+  "micro_since_full_checkpoint": 7,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

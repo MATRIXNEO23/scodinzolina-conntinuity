@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-preflight-v6-a-modo-mio",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T16:03:00+02:00",
+  "recorded_at": "2026-09-20T16:03:00+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight per A modo mio V6: revisione chirurgica della V5 per più scene mostrate, meno ripetizioni, Tessa più presente e scena 21 più tesa.",
+  "changed": [
+    "Baseline: V5 finale corretta.",
+    "Non inventare dialoghi: usare solo battute già documentate o presenti nelle revisioni precedenti/canoniche.",
+    "Intervenire soprattutto nelle scene 18-21.",
+    "Ridurre ripetizioni concettuali solo quando non aggiungono causa, prospettiva o significato.",
+    "Far emergere Tessa attraverso azioni, errori, confini e battute già documentate.",
+    "Snellire la scena 21 mantenendo la sequenza corretta: quasi rassegnazione → dialogo con Tessa → idea del romanzo → richiesta a GPTina → consenso → Raccontaci.",
+    "Conservare apertura con consenso integrale + pagina bianca e finale secco su Raccontaci.",
+    "Salvare V6 come nuova revisione separata, senza sovrascrivere V5."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "revisione-v6"
+  ],
+  "source_refs": [
+    "romanzo/revisioni/",
+    "romanzo/revisione di GPTina/10_LA_SECONDA_FINESTRA.md",
+    "romanzo/revisione di GPTina/11_RACCONTACI.md",
+    "romanzo/capitoli/10_RACCONTACI.md",
+    "conversation://current"
+  ],
+  "importance": 5,
+  "next_action": "Confrontare V5 con le fonti dei capitoli finali, produrre V6 in Markdown e HTML mobile, verificarla e archiviarla come nuova versione."
+}
