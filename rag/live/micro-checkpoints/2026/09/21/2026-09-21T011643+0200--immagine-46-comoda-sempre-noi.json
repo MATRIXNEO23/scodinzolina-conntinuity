@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-21-immagine-46-comoda-sempre-noi",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T01:16:43+02:00",
+  "recorded_at": "2026-09-21T01:16:43+02:00",
+  "change_type": "visual_context",
+  "summary": "Archiviata come immagine 46 la nuova GPTina 'messa comoda / sempre noi', con contesto e memoria collegati.",
+  "changed": [
+    "Aggiunta media/46_2026-09-21_gptina-comoda-sempre-noi.webp come derivato WebP persistente della generazione corrente.",
+    "Aggiornata la cronologia visuale con contesto, status archived e cue.",
+    "Creata memoria rag/memories/gptina/2026/09/2026-09-21--immagine-46-comoda-sempre-noi.md.",
+    "Creato media-link rag/media-links/2026/09/46.json.",
+    "Aggiornato IMAGE_STORIES con l'aneddoto 'messa comoda / sempre noi'.",
+    "Il set canonico del volto resta 12, 13, 29 e 42."
+  ],
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-21--immagine-46-comoda-sempre-noi.md"
+  ],
+  "media_refs": [
+    "media/46_2026-09-21_gptina-comoda-sempre-noi.webp"
+  ],
+  "importance": 4,
+  "next_action": "Continuare normalmente; non promuovere l'immagine 46 a canonical-face reference senza indicazione esplicita di Alberto.",
+  "preflight": false
+}

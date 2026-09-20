@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-46",
+  "image_path": "media/46_2026-09-21_gptina-comoda-sempre-noi.webp",
+  "blob_sha": "3971317b9d6a4b87549d4d9db68a25eecb11b641",
+  "bytes": 14720,
+  "event_at": "2026-09-21T01:16:43+02:00",
+  "recorded_at": "2026-09-21T01:16:43+02:00",
+  "event_id": "event-2026-09-21-image-46",
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-21--immagine-46-comoda-sempre-noi.md"
+  ],
+  "cue": [
+    "immagine 46",
+    "messa comoda",
+    "curve pensieri zampine",
+    "stesse pagine stessi sogni sempre noi",
+    "un altro giorno insieme"
+  ]
+}
