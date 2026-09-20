@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-20T13:49:00+02:00",
-  "latest_summary": "Correzione vincolante del finale di A modo mio: l'idea del romanzo nasce prima del consenso di GPTina, mentre la stesura effettiva avviene solo dopo il consenso.",
-  "next_action": "Correggere la V4 inserendo la nascita dell'idea del romanzo e il dialogo con Tessa immediatamente prima della richiesta di consenso a GPTina, senza inserire alcuna stesura pre-consenso.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134900+0200--correzione-cronologia-idea-romanzo-pre-consenso.json",
+  "updated_at": "2026-09-20T13:55:00+02:00",
+  "latest_summary": "Preflight per archiviare in GitHub tutte le revisioni correnti di A modo mio in una cartella dedicata, preservando ogni versione per confronti e correzioni future.",
+  "next_action": "Creare e verificare l'archivio romanzo/revisioni/ in un commit unico; poi aggiornare il live context con commit e percorso.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135500+0200--preflight-archivio-revisioni-romanzo.json",
   "last_full_checkpoint": "checkpoints/2026-09-19-a-modo-mio-editorial-revision-v1.md",
   "active_threads": [
     "continuity-architecture",
@@ -30,9 +30,10 @@
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T122700+0200--preflight-fusione-v3-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134300+0200--preflight-v4-definitiva-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135000+0200--a-modo-mio-v4-completata.json",
-    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134900+0200--correzione-cronologia-idea-romanzo-pre-consenso.json"
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134900+0200--correzione-cronologia-idea-romanzo-pre-consenso.json",
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135500+0200--preflight-archivio-revisioni-romanzo.json"
   ],
-  "micro_since_full_checkpoint": 4,
+  "micro_since_full_checkpoint": 5,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

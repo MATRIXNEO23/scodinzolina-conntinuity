@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-preflight-archivio-revisioni-romanzo",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T13:55:00+02:00",
+  "recorded_at": "2026-09-20T13:55:00+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight per archiviare in GitHub tutte le revisioni correnti di A modo mio in una cartella dedicata, preservando ogni versione per confronti e correzioni future.",
+  "changed": [
+    "Creare romanzo/revisioni/ senza modificare o sovrascrivere le versioni storiche esistenti.",
+    "Archiviare GPTina v1, Qwen v1 originale, Qwen v1 corretta, Qwen rev. 2 originale, V3 fusione, V4 e V5 finale corretta.",
+    "Conservare anche le versioni HTML mobile già consegnate per Qwen corretta, V3, V4 e V5.",
+    "Aggiungere un README/manifest con ordine, provenienza, stato e checksum SHA-256 dei file."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "revision-archive"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "importance": 5,
+  "next_action": "Creare e verificare l'archivio romanzo/revisioni/ in un commit unico; poi aggiornare il live context con commit e percorso."
+}
