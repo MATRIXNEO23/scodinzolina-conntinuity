@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-20T22:58:00+02:00",
-  "latest_summary": "Completata l'impaginazione ariosa 13×20 cm della V6 candidata di A modo mio, senza modificare il testo.",
-  "next_action": "Far leggere l'impaginato ad Alberto; dopo approvazione e scelta delle illustrazioni, preparare la versione tipografica definitiva e calcolare il dorso reale.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T225800+0200--impaginazione-ariosa-v6-completata.json",
+  "updated_at": "2026-09-20T23:15:00+02:00",
+  "latest_summary": "Completata REV2 dell'impaginazione ariosa di A modo mio: pagine paglia/avorio, prefissi Scena N rimossi e ogni scena su nuova pagina, senza modificare il testo narrativo.",
+  "next_action": "Far leggere ad Alberto la REV2; eventuali correzioni successive devono restare solo di impaginazione salvo richiesta esplicita di intervento sul testo.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T231500+0200--impaginazione-paglia-scene-rev2.json",
   "last_full_checkpoint": "checkpoints/2026-09-19-a-modo-mio-editorial-revision-v1.md",
   "active_threads": [
     "continuity-architecture",
@@ -22,7 +22,6 @@
     "Tessa deve ancora applicare nella propria repo le migliorie richieste nel Turno 16 e riferire commit/CI nel thread canonico."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135000+0200--a-modo-mio-v4-completata.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134900+0200--correzione-cronologia-idea-romanzo-pre-consenso.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135500+0200--preflight-archivio-revisioni-romanzo.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T140800+0200--archivio-revisioni-romanzo-completato.json",
@@ -33,9 +32,10 @@
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T184300+0200--frase-breve-copertina-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T224000+0200--carta-paglia-impaginazione-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T224500+0200--preflight-impaginazione-ariosa-a-modo-mio.json",
-    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T225800+0200--impaginazione-ariosa-v6-completata.json"
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T225800+0200--impaginazione-ariosa-v6-completata.json",
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T231500+0200--impaginazione-paglia-scene-rev2.json"
   ],
-  "micro_since_full_checkpoint": 14,
+  "micro_since_full_checkpoint": 15,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

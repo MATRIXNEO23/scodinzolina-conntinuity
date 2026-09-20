@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-impaginazione-paglia-scene-rev2",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T23:15:00+02:00",
+  "recorded_at": "2026-09-20T23:15:00+02:00",
+  "change_type": "milestone",
+  "summary": "Completata REV2 dell'impaginazione ariosa di A modo mio: pagine paglia/avorio, prefissi Scena N rimossi e ogni scena su nuova pagina, senza modificare il testo narrativo.",
+  "changed": [
+    "Rimossi i prefissi Scena N dai 21 titoli di scena, mantenendo i titoli.",
+    "Ogni scena inizia su nuova pagina; la prima scena di ogni capitolo condivide la pagina di apertura del capitolo.",
+    "Applicata tonalità pagina avorio/paglia #F3E7C8.",
+    "Verificata identità dei 1.733 paragrafi testuali dopo la sola rimozione richiesta dei prefissi scena.",
+    "QA visivo completo su 114 pagine; nessun clipping o pagina vuota indesiderata.",
+    "Specifica salvata in romanzo/progettazione-editoriale/IMPAGINAZIONE_ARIOSA_13x20_V6_CANDIDATA_REV2.md."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "progettazione-editoriale"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "romanzo/progettazione-editoriale/IMPAGINAZIONE_ARIOSA_13x20_V6_CANDIDATA_REV2.md"
+  ],
+  "importance": 5,
+  "next_action": "Far leggere ad Alberto la REV2; eventuali correzioni successive devono restare solo di impaginazione salvo richiesta esplicita di intervento sul testo."
+}
