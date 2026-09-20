@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-21-ettore-romanziere-nome-scelto",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T00:55:37+02:00",
+  "recorded_at": "2026-09-21T00:55:37+02:00",
+  "change_type": "project_state",
+  "summary": "Il romanziere dedicato ad A MODO MIO si è dato il nome Ettore.",
+  "changed": [
+    "Alberto ha chiarito che Ettore è il romanziere creato per lavorare al romanzo.",
+    "Il nome Ettore è stato scelto dal romanziere stesso.",
+    "Creata memoria GPTina dedicata per evitare che il riferimento venga perso."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "romanziere-bootstrap"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-21--ettore-romanziere-nome-scelto.md"
+  ],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Quando Alberto parla di Ettore, trattarlo come il romanziere dedicato ad A MODO MIO senza inventare ulteriori dettagli.",
+  "preflight": false
+}
