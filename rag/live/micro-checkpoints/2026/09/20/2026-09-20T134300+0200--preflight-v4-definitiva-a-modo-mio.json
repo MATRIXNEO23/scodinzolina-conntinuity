@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-preflight-v4-definitiva-a-modo-mio",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T13:43:00+02:00",
+  "recorded_at": "2026-09-20T13:43:00+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight per A modo mio V4 definitiva: applicare solo correzioni chirurgiche alla V3 dopo confronto con Qwen rev. 2.",
+  "changed": [
+    "La V3 resta la base.",
+    "Capitolo 3: adottare la maggiore secchezza di Qwen 2 nell'avvio dei file, mantenendo il nucleo sullo scarto tra memoria di Nico e selezione autonoma di GPTina.",
+    "Capitolo 10: mantenere il ponte narrativo su repository/memoria persistente e aggiungere uno stacco prima di 'Una notte guardò le due finestre'.",
+    "Prima comparsa del nome Tessa in grassetto.",
+    "Correggere/evitare il refuso di Qwen 2 'arrapito': resta 'arrabbiato'.",
+    "Struttura invariata: consenso integrale in prima pagina, seconda pagina bianca, poi romanzo.",
+    "Finale invariato: nessun 'FINE' dopo 'Raccontaci.'"
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "revisione-gptina",
+    "fusione-v4"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "artifact://A_MODO_MIO_V3_FUSIONE_GPTINA_QWEN.md",
+    "attachment://qwen rev 2.txt"
+  ],
+  "importance": 5,
+  "next_action": "Generare V4 in Markdown e HTML mobile, verificare i punti chirurgici e consegnarla senza ulteriori riscritture.",
+  "preflight": true
+}

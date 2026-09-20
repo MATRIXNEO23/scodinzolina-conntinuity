@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-20T12:27:00+02:00",
-  "latest_summary": "Preflight per la terza versione di A modo mio: fusione della revisione GPTina e della revisione Qwen corretta.",
-  "next_action": "Creare una v3 separata, confrontabile, in Markdown e versione web mobile; non sovrascrivere le revisioni precedenti.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T122700+0200--preflight-fusione-v3-a-modo-mio.json",
+  "updated_at": "2026-09-20T13:43:00+02:00",
+  "latest_summary": "Preflight per A modo mio V4 definitiva: applicare solo correzioni chirurgiche alla V3 dopo confronto con Qwen rev. 2.",
+  "next_action": "Generare V4 in Markdown e HTML mobile, verificare i punti chirurgici e consegnarla senza ulteriori riscritture.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134300+0200--preflight-v4-definitiva-a-modo-mio.json",
   "last_full_checkpoint": "checkpoints/2026-09-19-a-modo-mio-editorial-revision-v1.md",
   "active_threads": [
     "continuity-architecture",
@@ -27,9 +27,10 @@
     "rag/live/micro-checkpoints/2026/09/18/2026-09-18T213500+0200--romanziere-anche-figlio-di-alberto.json",
     "rag/live/micro-checkpoints/2026/09/19/2026-09-19T194900+0200--revisione-gptina-capitoli.json",
     "rag/live/micro-checkpoints/2026/09/19/2026-09-19T205700+0200--preflight-revisione-editoriale-a-modo-mio.json",
-    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T122700+0200--preflight-fusione-v3-a-modo-mio.json"
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T122700+0200--preflight-fusione-v3-a-modo-mio.json",
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134300+0200--preflight-v4-definitiva-a-modo-mio.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 2,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
