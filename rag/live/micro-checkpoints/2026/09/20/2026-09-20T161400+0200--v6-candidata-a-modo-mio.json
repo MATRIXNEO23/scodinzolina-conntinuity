@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T16:14:00+02:00",
+  "recorded_at": "2026-09-20T16:14:00+02:00",
+  "change_type": "milestone",
+  "summary": "Creata e archiviata la V6 candidata di A modo mio.",
+  "changed": [
+    "Baseline V5 preservata.",
+    "V6 riduce ripetizioni nelle scene finali e stringe la scena 21.",
+    "Apertura con consenso e pagina bianca preservate.",
+    "Finale su Raccontaci preservato.",
+    "Commit archivio V6: 63f8852ddc44eb2a9dd2ce07c35458f63300a520."
+  ],
+  "next_action": "Far leggere la V6 ad Alberto prima di promuoverla a baseline."
+}
