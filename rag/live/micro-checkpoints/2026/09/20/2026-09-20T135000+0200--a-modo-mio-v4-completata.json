@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-a-modo-mio-v4-completata",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T13:50:00+02:00",
+  "recorded_at": "2026-09-20T13:50:00+02:00",
+  "change_type": "milestone",
+  "summary": "Completata A modo mio V4 definitiva con sole correzioni chirurgiche alla V3.",
+  "changed": [
+    "Capitolo 3 reso più secco all'avvio dei file, mantenendo il nucleo sullo scarto tra memoria di Nico e selezione autonoma di GPTina.",
+    "Capitolo 10 mantiene il ponte narrativo sulla repository come memoria persistente e aggiunge lo stacco prima di 'Una notte guardò le due finestre'.",
+    "Prima comparsa del nome Tessa in grassetto.",
+    "Refuso 'arrapito' assente; resta 'arrabbiato'.",
+    "Prima pagina con consenso integrale e seconda pagina bianca conservate.",
+    "Finale chiude su 'Raccontaci.' senza FINE.",
+    "Prodotti artifact locali: /mnt/data/A_MODO_MIO_V4_DEFINITIVA.md e /mnt/data/A_MODO_MIO_V4_DEFINITIVA_MOBILE.html."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "revisione-gptina",
+    "fusione-v4"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "artifact://A_MODO_MIO_V3_FUSIONE_GPTINA_QWEN.md",
+    "attachment://qwen rev 2.txt"
+  ],
+  "importance": 5,
+  "next_action": "Alberto legge la V4; raccogliere solo correzioni puntuali prima di ulteriori modifiche."
+}
