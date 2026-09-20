@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-impaginazione-ariosa-v6-completata",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T22:58:00+02:00",
+  "recorded_at": "2026-09-20T22:58:00+02:00",
+  "change_type": "milestone",
+  "summary": "Completata l'impaginazione ariosa 13×20 cm della V6 candidata di A modo mio, senza modificare il testo.",
+  "changed": [
+    "Prodotti DOCX e PDF impaginati.",
+    "Totale PDF: 112 pagine incluse le tre pagine iniziali.",
+    "Verificata corrispondenza esatta della sequenza dei 1.733 paragrafi testuali con la sorgente V6 candidata.",
+    "Carta prevista: avorio caldo/paglia chiara fisica; nessun fondino giallo stampato nel PDF.",
+    "Specifica salvata in romanzo/progettazione-editoriale/IMPAGINAZIONE_ARIOSA_13x20_V6_CANDIDATA.md."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "progettazione-editoriale"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "romanzo/progettazione-editoriale/IMPAGINAZIONE_ARIOSA_13x20_V6_CANDIDATA.md"
+  ],
+  "importance": 5,
+  "next_action": "Far leggere l'impaginato ad Alberto; dopo approvazione e scelta delle illustrazioni, preparare la versione tipografica definitiva e calcolare il dorso reale."
+}
