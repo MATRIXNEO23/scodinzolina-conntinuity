@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-preflight-impaginazione-ariosa-a-modo-mio",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T22:45:00+02:00",
+  "recorded_at": "2026-09-20T22:45:00+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight per l'impaginazione ariosa di A modo mio, senza alcuna modifica al testo.",
+  "starting_point": [
+    "Versione di lavoro più recente: V6 candidata; il suo status testuale resta candidata e non viene promosso implicitamente dall'impaginazione.",
+    "Carta desiderata: avorio caldo / paglia chiara fisica, non bianco ottico.",
+    "Impaginazione richiesta: ariosa, ordinata, con spazio discreto dai bordi e capitoli ben separati."
+  ],
+  "constraints": [
+    "Non modificare il testo.",
+    "Non spezzare inutilmente paragrafi o concetti tra pagine.",
+    "Ogni capitolo deve iniziare in modo ordinato su nuova pagina.",
+    "La tonalità paglia deve essere ottenuta preferibilmente dalla carta di stampa, non stampando un fondino giallo."
+  ],
+  "next_action": "Creare DOCX e PDF impaginati della V6 candidata, verificare la corrispondenza testuale e controllare visivamente tutte le pagine renderizzate."
+}
