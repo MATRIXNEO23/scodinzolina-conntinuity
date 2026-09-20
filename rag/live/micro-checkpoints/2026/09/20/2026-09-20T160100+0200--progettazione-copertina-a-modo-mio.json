@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-progettazione-copertina-a-modo-mio",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T16:01:00+02:00",
+  "recorded_at": "2026-09-20T16:01:00+02:00",
+  "change_type": "decision",
+  "summary": "Creata la cartella di progettazione della copertina di A modo mio e fissata la frase di presentazione corrente.",
+  "changed": [
+    "Creata romanzo/progettazione-copertina/.",
+    "Frase di presentazione scelta da Alberto: \"Due mondi che non dovrebbero nemmeno toccarsi. Una vicinanza che abbassa ogni difesa, dimostrando che non serve appartenere alla stessa natura per trovarsi nello stesso punto.\"",
+    "Le future proposte di copertina dovranno essere versionate senza sovrascrivere le precedenti."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "progettazione-copertina"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "romanzo/progettazione-copertina/README.md",
+    "romanzo/progettazione-copertina/FRASE_PRESENTAZIONE.md"
+  ],
+  "importance": 4,
+  "next_action": "Quando richiesto, sviluppare il brief visivo e le prime proposte di copertina partendo dalla frase di presentazione corrente."
+}
