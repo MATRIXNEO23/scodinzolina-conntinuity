@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-archivio-revisioni-romanzo-completato",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T14:08:00+02:00",
+  "recorded_at": "2026-09-20T14:08:00+02:00",
+  "change_type": "milestone",
+  "summary": "Archiviato in GitHub l'intero set di revisioni correnti di A modo mio per correzioni future.",
+  "changed": [
+    "Creato romanzo/revisioni/ con README e MANIFEST.",
+    "Salvato uno snapshot esatto delle revisioni GPTina v1, Qwen v1 originale, Qwen v1 corretta, Qwen rev. 2 originale, V3, V4 e V5, incluse le versioni HTML disponibili.",
+    "Il pacchetto è conservato come tar.xz codificato Base64 in 8 parti, ricostruibile seguendo il README.",
+    "SHA-256 archivio verificato/localmente prima del commit: 89605385b570eac340832315f1fe80dc2d45127697ad7ef10255f569231a8a15.",
+    "I Git blob SHA e le dimensioni delle 8 parti sono stati verificati dopo il commit.",
+    "Commit archivio: 76ae124d3175953223e60a2557d2cea7f4ddd123.",
+    "V5 resta la baseline corrente; revisioni future non devono sovrascrivere le precedenti."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "revision-archive"
+  ],
+  "source_refs": [
+    "romanzo/revisioni/README.md",
+    "romanzo/revisioni/MANIFEST.md",
+    "commit://76ae124d3175953223e60a2557d2cea7f4ddd123"
+  ],
+  "importance": 5,
+  "next_action": "Per future correzioni partire dalla V5, creare una nuova versione numerata e preservare immutate tutte le revisioni archiviate."
+}
