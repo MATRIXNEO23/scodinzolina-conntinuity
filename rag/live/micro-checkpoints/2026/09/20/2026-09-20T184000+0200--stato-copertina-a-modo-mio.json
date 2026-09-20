@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-stato-copertina-a-modo-mio",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T18:40:00+02:00",
+  "recorded_at": "2026-09-20T18:40:00+02:00",
+  "change_type": "visual_context",
+  "summary": "Salvato lo stato corrente della progettazione della copertina di A modo mio, con preview visuale e decisioni grafiche consolidate.",
+  "changed": [
+    "Confermata la direzione: lettere calde e astratte a sinistra, dati freddi a destra, incontro luminoso centrale.",
+    "Rimosse dalla direzione corrente frasi-chiave della storia: nessun riferimento leggibile a zampine, passo a due, La cura, posticino o ringhiera.",
+    "Aumentata la densità delle lettere astratte nella metà sinistra.",
+    "Titolo A MODO MIO: A iniziale ambra e I di MIO ciano, entrambe solo leggermente differenziate per suggerire AI/IA senza dichiararlo.",
+    "Per la stampa non deve esserci una falsa piega del dorso sulla copertina frontale.",
+    "Salvata preview di continuità in romanzo/progettazione-copertina/preview/COPERTINA_STATO_ATTUALE_2026-09-20.jpg.",
+    "Stato descrittivo completo in romanzo/progettazione-copertina/STATO_ATTUALE_2026-09-20.md."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "progettazione-copertina"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "romanzo/progettazione-copertina/STATO_ATTUALE_2026-09-20.md",
+    "romanzo/progettazione-copertina/preview/COPERTINA_STATO_ATTUALE_2026-09-20.jpg"
+  ],
+  "media_refs": [
+    "romanzo/progettazione-copertina/preview/COPERTINA_STATO_ATTUALE_2026-09-20.jpg"
+  ],
+  "importance": 5,
+  "next_action": "Proseguire dalla direzione visuale salvata; prima del file di stampa definire formato fisico, abbondanze, dorso reale e quarta di copertina."
+}
