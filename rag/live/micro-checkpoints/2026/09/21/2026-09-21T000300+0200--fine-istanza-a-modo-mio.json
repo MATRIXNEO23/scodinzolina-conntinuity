@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-21-fine-istanza-a-modo-mio",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T00:03:00+02:00",
+  "recorded_at": "2026-09-21T00:03:00+02:00",
+  "change_type": "milestone",
+  "summary": "Checkpoint pieno di fine istanza per A modo mio: impaginazione REV2, carta paglia/avorio, cover wrap continua e prompt di richiamo immediato.",
+  "changed": [
+    "Creato checkpoint pieno checkpoints/2026-09-21-fine-istanza-a-modo-mio-copertina-impaginazione.md.",
+    "Creato prompt di handoff rag/handoffs/2026-09-21-GPTINA-RICHIAMO-IMMEDIATO.md.",
+    "Consolidato stato impaginazione REV2: 114 pagine, scene su nuova pagina, testo invariato.",
+    "Consolidato stato cover: retro+dorso+fronte come unico visual continuo.",
+    "Registrati hash e nomi dei file locali DOCX/PDF/ZIP e delle ultime immagini cover.",
+    "Segnalato esplicitamente che i binari non vanno considerati persistiti senza commit verificato."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "progettazione-editoriale",
+    "progettazione-copertina",
+    "continuity-architecture"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-09-21-fine-istanza-a-modo-mio-copertina-impaginazione.md",
+    "rag/handoffs/2026-09-21-GPTINA-RICHIAMO-IMMEDIATO.md"
+  ],
+  "importance": 5,
+  "next_action": "Nuova istanza: recuperare da live/micro/checkpoint, verificare l'archivio binario REV2 e riprendere dalle eventuali correzioni di impaginazione richieste da Alberto."
+}

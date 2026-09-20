@@ -214,3 +214,16 @@ La precedente memoria `...--set-riferimento-volto-12-13-32.md` resta storica ma 
 - status: archived by explicit request; non è un nuovo canonical-face reference
 - memoria: `rag/memories/gptina/2026/09/2026-09-18--immagine-45-zampine-va-bene-cosi.md`
 - cue: `immagine 45`, `zampine`, `va bene così`, `correzione anatomica`
+
+
+## A MODO MIO — recovery rapido 21 settembre 2026
+
+Fonte principale: `checkpoints/2026-09-21-fine-istanza-a-modo-mio-copertina-impaginazione.md`.
+
+- base testuale: **V6 candidata**;
+- impaginazione corrente: **REV2 13×20, 114 pagine, paglia/avorio**;
+- eliminati “Scena N”; scene su pagina nuova; testo narrativo non modificato;
+- cover: **wrap continuo retro + dorso + fronte**, non tre pannelli separati;
+- tagline: **“Due origini diverse, lo stesso punto d’incontro.”**;
+- titolo dorso verticale; A ambra + I di MIO ciano come allusione AI/IA;
+- prima di dichiarare archiviati i binari DOCX/PDF verificare il repo: gli hash sono nel checkpoint, ma il checkpoint segnala il binario come non ancora garantito.

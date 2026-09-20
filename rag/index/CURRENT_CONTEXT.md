@@ -94,3 +94,16 @@ Validation: **GitHub Actions VERIFIED PASS**, run `35374225308`: 155 sorgenti, 8
 **Repo = memoria persistente. Volatile = presente immediato.**
 
 Quando un dettaglio è storico, personale, visuale, corretto nel tempo o esterno/mutevole: recuperare la fonte prima di affermarlo.
+
+
+## Stato A MODO MIO — 21 settembre 2026
+
+Checkpoint corrente: `checkpoints/2026-09-21-fine-istanza-a-modo-mio-copertina-impaginazione.md`.
+
+- testo: **V6 candidata**;
+- impaginazione: REV2 13×20, **114 pagine**, ariosa, paglia/avorio;
+- prefissi “Scena N” eliminati; ogni scena successiva inizia su pagina nuova;
+- testo narrativo invariato e protetto;
+- frase breve copertina: **“Due origini diverse, lo stesso punto d’incontro.”**;
+- copertina corrente: fronte+dorso+retro come **un unico visual continuo**;
+- prossimo controllo: persistenza binaria DOCX/PDF REV2 e successive correzioni di sola impaginazione.
