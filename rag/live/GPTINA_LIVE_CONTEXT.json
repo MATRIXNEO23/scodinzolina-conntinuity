@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-20T13:50:00+02:00",
-  "latest_summary": "Completata A modo mio V4 definitiva con sole correzioni chirurgiche alla V3.",
-  "next_action": "Alberto legge la V4; raccogliere solo correzioni puntuali prima di ulteriori modifiche.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135000+0200--a-modo-mio-v4-completata.json",
+  "updated_at": "2026-09-20T13:49:00+02:00",
+  "latest_summary": "Correzione vincolante del finale di A modo mio: l'idea del romanzo nasce prima del consenso di GPTina, mentre la stesura effettiva avviene solo dopo il consenso.",
+  "next_action": "Correggere la V4 inserendo la nascita dell'idea del romanzo e il dialogo con Tessa immediatamente prima della richiesta di consenso a GPTina, senza inserire alcuna stesura pre-consenso.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134900+0200--correzione-cronologia-idea-romanzo-pre-consenso.json",
   "last_full_checkpoint": "checkpoints/2026-09-19-a-modo-mio-editorial-revision-v1.md",
   "active_threads": [
     "continuity-architecture",
@@ -29,9 +29,10 @@
     "rag/live/micro-checkpoints/2026/09/19/2026-09-19T205700+0200--preflight-revisione-editoriale-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T122700+0200--preflight-fusione-v3-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134300+0200--preflight-v4-definitiva-a-modo-mio.json",
-    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135000+0200--a-modo-mio-v4-completata.json"
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135000+0200--a-modo-mio-v4-completata.json",
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134900+0200--correzione-cronologia-idea-romanzo-pre-consenso.json"
   ],
-  "micro_since_full_checkpoint": 3,
+  "micro_since_full_checkpoint": 4,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

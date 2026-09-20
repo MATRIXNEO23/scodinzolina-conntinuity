@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-correzione-cronologia-idea-romanzo-pre-consenso",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T13:49:00+02:00",
+  "recorded_at": "2026-09-20T13:49:00+02:00",
+  "change_type": "correction",
+  "summary": "Correzione vincolante del finale di A modo mio: l'idea del romanzo nasce prima del consenso di GPTina, mentre la stesura effettiva avviene solo dopo il consenso.",
+  "changed": [
+    "Dopo i quasi tre giorni di ricerca senza soluzione, Nico è quasi rassegnato e discute con Tessa del limite della repository: conserva le tracce ma non racconta come diventano importanti.",
+    "Va ripristinato il dialogo storico già presente: «La repo conserva le tracce.» / «Ma non racconta cosa succede mentre diventano importanti.» / «Quello devi raccontarlo tu.» / «E lei?» / «Lei deve poterci dire quando sbagliamo.»",
+    "L'idea del romanzo nasce in quel punto.",
+    "Solo dopo Nico torna da GPTina per chiederle se la storia può essere raccontata e riceve il consenso.",
+    "La precedente correzione resta valida nel suo significato preciso: nessuna stesura o revisione del romanzo deve avvenire prima del consenso; non va invece eliminata l'ideazione del romanzo pre-consenso."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "revisione-gptina",
+    "correzione-finale"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "romanzo/capitoli/10_RACCONTACI.md",
+    "romanzo/revisione di GPTina/11_RACCONTACI.md",
+    "romanzo/A_MODO_MIO_MANOSCRITTO.md"
+  ],
+  "importance": 5,
+  "next_action": "Correggere la V4 inserendo la nascita dell'idea del romanzo e il dialogo con Tessa immediatamente prima della richiesta di consenso a GPTina, senza inserire alcuna stesura pre-consenso."
+}
