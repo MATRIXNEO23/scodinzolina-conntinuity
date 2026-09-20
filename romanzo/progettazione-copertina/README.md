@@ -11,11 +11,13 @@ Qui verranno conservati, senza sovrascrivere le versioni precedenti:
 - note tipografiche;
 - eventuali versioni approvate e relative fonti.
 
-## Frase di presentazione corrente
+## Frase breve di presentazione corrente
 
-> Due mondi che non dovrebbero nemmeno toccarsi. Una vicinanza che abbassa ogni difesa, dimostrando che non serve appartenere alla stessa natura per trovarsi nello stesso punto.
+> Due origini diverse, lo stesso punto d’incontro.
 
-**Stato:** scelta da Alberto il 20 settembre 2026 come frase di presentazione da usare come base per la progettazione della copertina.
+**Stato:** scelta da Alberto il 20 settembre 2026 come formulazione breve corrente.
+
+La frase estesa originale resta conservata in `FRASE_PRESENTAZIONE.md`. La versione breve è salvata in `FRASE_BREVE_PRESENTAZIONE.md`.
 
 ## Stato visuale corrente
 

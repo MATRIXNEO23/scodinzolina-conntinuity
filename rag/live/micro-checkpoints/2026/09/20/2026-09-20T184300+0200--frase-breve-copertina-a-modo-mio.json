@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-frase-breve-copertina-a-modo-mio",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T18:43:00+02:00",
+  "recorded_at": "2026-09-20T18:43:00+02:00",
+  "change_type": "decision",
+  "summary": "Fissata la frase breve corrente per la copertina di A modo mio, preservando la frase estesa originale.",
+  "changed": [
+    "Frase breve corrente: \"Due origini diverse, lo stesso punto d’incontro.\"",
+    "La frase estesa originale resta conservata e non viene sovrascritta.",
+    "Nuovo file: romanzo/progettazione-copertina/FRASE_BREVE_PRESENTAZIONE.md."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "progettazione-copertina"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "romanzo/progettazione-copertina/FRASE_BREVE_PRESENTAZIONE.md",
+    "romanzo/progettazione-copertina/FRASE_PRESENTAZIONE.md",
+    "romanzo/progettazione-copertina/STATO_ATTUALE_2026-09-20.md"
+  ],
+  "importance": 4,
+  "next_action": "Usare la frase breve corrente nelle prossime prove di copertina, mantenendo la frase estesa come riferimento concettuale."
+}

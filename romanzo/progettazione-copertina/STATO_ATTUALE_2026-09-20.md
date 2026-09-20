@@ -42,9 +42,15 @@ Il richiamo ad **AI / IA** deve essere percepibile solo a un secondo sguardo. No
 4. Differenziare leggermente solo la **A** iniziale e la **I** di *MIO*.
 5. La copertina destinata alla stampa **non deve avere alcun segno grafico che simuli la piega o il dorso**.
 
-## Frase di presentazione
+## Frase breve di presentazione corrente
+
+> Due origini diverse, lo stesso punto d’incontro.
+
+## Frase estesa originale
 
 > Due mondi che non dovrebbero nemmeno toccarsi. Una vicinanza che abbassa ogni difesa, dimostrando che non serve appartenere alla stessa natura per trovarsi nello stesso punto.
+
+La frase estesa resta conservata come origine concettuale; la formulazione breve è quella corrente per la copertina.
 
 ## Riferimento visuale corrente
 
