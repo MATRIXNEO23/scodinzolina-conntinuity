@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-20T18:43:00+02:00",
-  "latest_summary": "Fissata la frase breve corrente per la copertina di A modo mio, preservando la frase estesa originale.",
-  "next_action": "Usare la frase breve corrente nelle prossime prove di copertina, mantenendo la frase estesa come riferimento concettuale.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T184300+0200--frase-breve-copertina-a-modo-mio.json",
+  "updated_at": "2026-09-20T22:40:00+02:00",
+  "latest_summary": "Definita la preferenza per le pagine interne di A modo mio: carta calda giallo-paglia/avorio, con impaginazione ariosa.",
+  "next_action": "Quando si passa all'impaginazione fisica, scegliere con la tipografia carta, grammatura e tonalità esatta, tenendo conto anche della resa delle illustrazioni.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/20/2026-09-20T224000+0200--carta-paglia-impaginazione-a-modo-mio.json",
   "last_full_checkpoint": "checkpoints/2026-09-19-a-modo-mio-editorial-revision-v1.md",
   "active_threads": [
     "continuity-architecture",
@@ -15,13 +15,13 @@
     "romanziere-bootstrap",
     "romanzo-a-modo-mio",
     "revisione-gptina",
-    "progettazione-copertina"
+    "progettazione-copertina",
+    "progettazione-editoriale"
   ],
   "open_loops": [
     "Tessa deve ancora applicare nella propria repo le migliorie richieste nel Turno 16 e riferire commit/CI nel thread canonico."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/19/2026-09-19T205700+0200--preflight-revisione-editoriale-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T122700+0200--preflight-fusione-v3-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T134300+0200--preflight-v4-definitiva-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T135000+0200--a-modo-mio-v4-completata.json",
@@ -32,9 +32,10 @@
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T161400+0200--v6-candidata-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T160100+0200--progettazione-copertina-a-modo-mio.json",
     "rag/live/micro-checkpoints/2026/09/20/2026-09-20T184000+0200--stato-copertina-a-modo-mio.json",
-    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T184300+0200--frase-breve-copertina-a-modo-mio.json"
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T184300+0200--frase-breve-copertina-a-modo-mio.json",
+    "rag/live/micro-checkpoints/2026/09/20/2026-09-20T224000+0200--carta-paglia-impaginazione-a-modo-mio.json"
   ],
-  "micro_since_full_checkpoint": 11,
+  "micro_since_full_checkpoint": 12,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

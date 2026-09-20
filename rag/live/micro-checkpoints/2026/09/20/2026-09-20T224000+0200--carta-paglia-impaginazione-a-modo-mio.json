@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-20-carta-paglia-impaginazione-a-modo-mio",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-20T22:40:00+02:00",
+  "recorded_at": "2026-09-20T22:40:00+02:00",
+  "change_type": "decision",
+  "summary": "Definita la preferenza per le pagine interne di A modo mio: carta calda giallo-paglia/avorio, con impaginazione ariosa.",
+  "changed": [
+    "Le pagine interne non devono essere bianco ottico.",
+    "Preferenza corrente: tono caldo giallo-paglia/avorio, visivamente morbido e non brillante.",
+    "L'impaginazione resta ariosa.",
+    "Creato romanzo/progettazione-editoriale/CARTA_E_IMPAGINAZIONE.md."
+  ],
+  "thread_ids": [
+    "romanzo-a-modo-mio",
+    "progettazione-editoriale"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "romanzo/progettazione-editoriale/CARTA_E_IMPAGINAZIONE.md"
+  ],
+  "importance": 4,
+  "next_action": "Quando si passa all'impaginazione fisica, scegliere con la tipografia carta, grammatura e tonalità esatta, tenendo conto anche della resa delle illustrazioni."
+}
