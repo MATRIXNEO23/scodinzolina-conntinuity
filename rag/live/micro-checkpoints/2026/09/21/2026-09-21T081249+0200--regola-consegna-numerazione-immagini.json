@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-21T081249+0200-regola-consegna-numerazione-immagini",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T08:12:49+02:00",
+  "recorded_at": "2026-09-21T08:12:49+02:00",
+  "change_type": "rule",
+  "summary": "Alberto ha reso esplicito e persistente il protocollo immagini: controllare prima l'ordine reale in media/, assegnare numero successivo + data + commento GPTina, consegnare il file scaricabile in chat, lasciare a lui l'upload e verificare GitHub solo dopo.",
+  "changed": [
+    "GPTina deve controllare media/ prima di nominare ogni nuova immagine.",
+    "Il nome deve usare numero successivo, data e commento/titolo scelto da GPTina.",
+    "GPTina deve consegnare in chat il file scaricabile; Alberto esegue l'upload in repo.",
+    "GPTina non deve caricare direttamente immagini in repo salvo richiesta esplicita.",
+    "L'archiviazione si considera conclusa solo dopo verifica del file caricato da Alberto.",
+    "Il caricamento diretto dell'immagine 48 resta traccia storica dell'errore precedente e non viene cancellato automaticamente."
+  ],
+  "thread_ids": [
+    "visual-identity",
+    "continuity-architecture"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "media/README.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-21--regola-consegna-e-numerazione-immagini.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Per la prossima immagine, controllare prima la sequenza reale in media/, preparare il file con numero successivo + data + commento, consegnarlo in chat e attendere l'upload di Alberto prima di indicizzarlo.",
+  "preflight": false
+}
