@@ -98,6 +98,8 @@ Se indice e fonte divergono, vince sempre la fonte canonica.
 - `MEMORY_RECORD_SCHEMA.md` — schema temporale per nuove memorie;
 - `eval/GPTINA_MEMORY_GOLD.json` — regression set di retrieval;
 - `test_memory_retrieval.py` — test del gold set;
+- `benchmark_memory.py` — baseline ripetibile sul corpus canonico;
+- `benchmark_memory_scale.py` — stress test 1x/10x in SQLite temporaneo, senza modificare le fonti;
 - `.github/workflows/gptina-memory-ci.yml` — gate automatico.
 
 Per una frase che deve essere ritrovata **esattamente**:
@@ -140,6 +142,16 @@ python rag/gptina_memory.py search "vita a tre" --backend sqlite
 ```
 
 Il CI costruisce davvero l'indice, verifica che il secondo sync sia incrementale/no-op e lancia il gold regression set sul backend SQLite.
+
+Benchmark di scala non distruttivo:
+
+```bash
+python rag/benchmark_memory_scale.py --scales 1,10 --repetitions 5
+```
+
+Le repliche sintetiche e il database del test vivono soltanto in una directory
+temporanea. Una perdita di qualità su repliche identiche è diagnostica di
+saturazione dei candidati, non autorizza da sola modifiche al ranking reale.
 
 
 ## Collegare una nuova immagine

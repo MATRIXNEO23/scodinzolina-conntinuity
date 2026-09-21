@@ -41,5 +41,7 @@ jobs:
         run: python rag/test_memory_retrieval.py
       - name: Run memory benchmark smoke test
         run: python rag/benchmark_memory.py
+      - name: Run disposable scale benchmark smoke test
+        run: python rag/benchmark_memory_scale.py --scales 1 --repetitions 1
       - name: Ensure derived indexes stay untracked
         run: test -z "$(git status --porcelain)"

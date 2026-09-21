@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T182600+0200-preflight-benchmark-scala-memoria",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T18:26:00+02:00",
+  "recorded_at": "2026-09-21T18:26:00+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight per benchmark di scala non distruttivo della memoria GPTina.",
+  "changed": [
+    "Baseline canonica verificata su HEAD f8f717888eee2bc135a4b95581466c3eec0cd8f4.",
+    "Il benchmark di scala usera esclusivamente copie sintetiche in una directory temporanea.",
+    "Fonti canoniche, chunking, ranking, candidate limit e find-exact restano invariati.",
+    "Ogni eventuale ottimizzazione richiedera una misura ripetibile e test di non regressione."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "work-hardening-memory"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/MEMORY_SCALE_STRATEGY.md",
+    "rag/benchmark_memory.py"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Misurare baseline e scala 10x in un database temporaneo; cambiare retrieval soltanto se i risultati dimostrano un collo di bottiglia.",
+  "preflight": true
+}
