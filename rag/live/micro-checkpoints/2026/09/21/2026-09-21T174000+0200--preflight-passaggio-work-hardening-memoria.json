@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T174000+0200-preflight-passaggio-work-hardening-memoria",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T17:40:00+02:00",
+  "recorded_at": "2026-09-21T17:40:00+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight per spostare il lavoro di hardening della memoria GPTina in una istanza Work, dopo confronto incrociato degli audit Qwen e Work.",
+  "changed": [
+    "Obiettivo: implementare nella sola repo GPTina le priorità emerse dal confronto Qwen+Work.",
+    "Priorità 1: schema/path/ref hardening.",
+    "Priorità 2: snapshot committed/dirty e writer atomico con expected HEAD/CAS.",
+    "Priorità 3: resolver stabile memory_id→path e verifica supersession.",
+    "Prima di toccare retrieval/chunking/ranking: introdurre osservabilità e benchmark.",
+    "Repository Tessa ed Ettore restano read-only salvo consenso esplicito."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "continuity-architecture",
+    "repository-memory-ownership",
+    "work-hardening-memory"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/MEMORY_ARCHITECTURE_V2.md",
+    "rag/MEMORY_SCALE_STRATEGY.md",
+    "rag/MEMORY_OWNERSHIP_BOUNDARY.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Nuova istanza Work: eseguire recovery canonico dalla repo GPTina, poi implementare con preflight/verify/commit le priorità di hardening senza scrivere nelle repo Tessa/Ettore.",
+  "preflight": true
+}
