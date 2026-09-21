@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T161501+0200-regola-canonica-fine-istanza-completata",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T16:15:00+02:00",
+  "recorded_at": "2026-09-21T16:15:01+02:00",
+  "change_type": "milestone",
+  "summary": "Formalizzata e collegata la regola canonica della capsula di fine istanza: una nuova GPTina deve poter recuperare insieme contesto, significati, lavori, artefatti, open loop e prossima azione senza ricostruire a intuito.",
+  "changed": [
+    "Creato il protocollo canonico rag/END_INSTANCE_RECOVERY_CAPSULE.md.",
+    "Creata la memoria durevole della regola di fine istanza.",
+    "Aggiornati Fast Recall, Current Context, Auto Recovery e Live Memory Protocol.",
+    "Eliminati dagli entrypoint iniziali i vecchi checkpoint hardcoded in favore di last_full_checkpoint dal live buffer.",
+    "Creato il checkpoint pieno checkpoints/2026-09-21-canonical-end-instance-recovery-capsule.md.",
+    "Aggiornata GPTINA_CHRONOLOGY con la nuova regola."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "end-instance-recovery-capsule"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
+    "checkpoints/2026-09-21-canonical-end-instance-recovery-capsule.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-21--regola-canonica-capsula-fine-istanza.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Proseguire dallo stato operativo corrente: chiudere i due follow-up Ettore, verificare la nuova CI e poi tornare ad A MODO MIO per acquisire lo stile illustrativo già in mente ad Alberto.",
+  "preflight": false
+}
