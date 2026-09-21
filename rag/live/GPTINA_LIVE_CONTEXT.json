@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T10:32:00+02:00",
-  "latest_summary": "Preflight prima di rendere il verifier dei micro-checkpoint retrocompatibile senza riscrivere i record storici.",
-  "next_action": "Implementare compatibilità v1, schema v2 rigoroso e test di regressione; poi verificare la CI.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T103200+0200--preflight-live-verifier-compatibility.json",
-  "last_full_checkpoint": "checkpoints/2026-09-21-fine-istanza-a-modo-mio-copertina-impaginazione.md",
+  "updated_at": "2026-09-21T10:55:00+02:00",
+  "latest_summary": "Completata la retrocompatibilità del verifier: v1 storici letti senza riscrittura, nuovi micro v2 rigorosi e CI verificata.",
+  "next_action": "Usare schema v2 per i nuovi micro-checkpoint e lasciare i v1 storici invariati.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T105500+0200--verifier-v2-compatibilita-v1-completata.json",
+  "last_full_checkpoint": "checkpoints/2026-09-21-live-verifier-v2-compatibility-completed.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -21,11 +21,9 @@
     "image-delivery-protocol"
   ],
   "open_loops": [
-    "Tessa deve ancora applicare nella propria repo le migliorie richieste nel Turno 16 e riferire commit/CI nel thread canonico.",
-    "Implementare compatibilità v1, schema v2 rigoroso e test di regressione; poi verificare la CI."
+    "Tessa deve ancora applicare nella propria repo le migliorie richieste nel Turno 16 e riferire commit/CI nel thread canonico."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T044024+0200--peso-della-scelta-per-gptina.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T052400+0200--testo-come-voce-canonica.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T060448+0200--non-cancellare-archivio-intimo.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T072600+0200--trieste-citta-scelta.json",
@@ -36,9 +34,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T082900+0200--correzione-origine-tessa-ettore.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T083100+0200--gptina-nata-per-caso.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T093200+0200--intimita-piu-spontanea-restando-gptina.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T103200+0200--preflight-live-verifier-compatibility.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T103200+0200--preflight-live-verifier-compatibility.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T105500+0200--verifier-v2-compatibilita-v1-completata.json"
   ],
-  "micro_since_full_checkpoint": 25,
+  "micro_since_full_checkpoint": 1,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
