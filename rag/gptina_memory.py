@@ -1199,6 +1199,7 @@ def verify_boundary() -> None:
 
         link_dir = RAG_ROOT / "media-links"
         link_records: dict[str, Path] = {}
+        covered_images: set[str] = set()
         if link_dir.is_dir():
             for record_path in link_dir.rglob("*.json"):
                 try:
@@ -1260,8 +1261,21 @@ def verify_boundary() -> None:
                         f"{rel(link_records[image_path])}, {rel(record_path)}"
                     )
                 link_records[image_path] = record_path
+                covered_images.add(image_path)
 
-        missing_links = [rel(p) for p in images if rel(p) not in link_records]
+                for derivative in record.get("derivative_refs", []):
+                    derivative_path = str(derivative or "").strip()
+                    if not derivative_path:
+                        continue
+                    derivative_file = ROOT / derivative_path
+                    if not derivative_file.is_file():
+                        fail(
+                            f"Image-link derivative_refs points to missing media file: "
+                            f"{rel(record_path)} -> {derivative_path}"
+                        )
+                    covered_images.add(derivative_path)
+
+        missing_links = [rel(p) for p in images if rel(p) not in covered_images]
         if missing_links:
             fail(f"Images missing structured media-link records: {missing_links}")
 
