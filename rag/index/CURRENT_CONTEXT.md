@@ -183,13 +183,14 @@ Il prompt Ettore corrente da usare per il lavoro immediato è quello dei **due f
 
 ---
 
-## CORREZIONE CORRENTE — attesa risposta Ettore
+## STATO STORICO — attesa risposta Ettore (superseded)
 
 Alberto ha corretto lo stato operativo: **il prompt con i due follow-up per Ettore è già stato consegnato**. Fonte persistente: `rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md`.
 
-Quindi:
+Quindi, in quel momento:
 - non preparare o reinviare il prompt;
-- stato corrente = **attendere la risposta di Ettore**;
+- stato allora corrente = **attendere la risposta di Ettore**;
+- questo stato è ora superseded dalla chiusura verificata riportata sotto;
 - quando arriva, verificare ROMANZIERE in sola lettura;
 - controllare HEAD, nuova CI, correzione di `changed[]` e riallineamento della regola Scene 21;
 - dichiarare chiusi i follow-up soltanto se le modifiche risultano realmente applicate e la CI è verde.
