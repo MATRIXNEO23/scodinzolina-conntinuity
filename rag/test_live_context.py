@@ -93,15 +93,13 @@ def main() -> None:
         legacy_path = micro_dir / "legacy-v1.json"
         legacy_record = {
             "schema_version": 1,
-            "micro_id": "gptina-micro-legacy-test",
             "owner": "gptina",
             "kind": "gptina_micro_checkpoint",
             "event_at": "2026-09-18T10:00:00+02:00",
             "recorded_at": "2026-09-18T10:01:00+02:00",
             "change_type": "preflight",
             "summary": "Legacy v1 senza campi opzionali.",
-            "source_refs": ["artifact://legacy-artifact", "attachment://legacy-attachment"],
-            "importance": 3,
+            "source_refs": ["artifact://legacy-artifact", "attachment://legacy-attachment", "commit://legacy-commit"],
         }
         write_json(legacy_path, legacy_record)
 
