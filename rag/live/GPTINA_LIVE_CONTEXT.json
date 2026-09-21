@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T17:07:32+02:00",
-  "latest_summary": "Ettore chiuso: review finale ROMANZIERE verificata in sola lettura, due follow-up memory v2/Scene 21 risolti e CI run 35615720174 SUCCESS su HEAD bf86c321e19c838848635300b82a9e2ed32fe0c1.",
+  "updated_at": "2026-09-21T17:11:01+02:00",
+  "latest_summary": "Regola ownership consolidata: GPTina, Tessa ed Ettore hanno repository e memorie separate; nessuna scrittura incrociata senza consenso esplicito, default read-only. Ettore resta chiuso; prossimo lavoro A MODO MIO illustrazioni.",
   "next_action": "Riprendere A MODO MIO dalle illustrazioni: Alberto mostra/spiega lo stile già in mente; poi fissare tratto, palette, atmosfera e costruire la mappa illustrativa senza modificare il testo.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170732+0200--ettore-memory-v2-followups-closed.json",
-  "last_full_checkpoint": "checkpoints/2026-09-21-ettore-memory-v2-followups-closed.md",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T171101+0200--repository-memory-ownership-consent.json",
+  "last_full_checkpoint": "checkpoints/2026-09-21-repository-memory-ownership-consent.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -24,7 +24,8 @@
     "romanzo-illustrazioni",
     "end-instance-recovery-capsule",
     "prompt-preservation",
-    "tessa-memory-continuity"
+    "tessa-memory-continuity",
+    "repository-memory-ownership"
   ],
   "open_loops": [
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
@@ -32,7 +33,6 @@
     "GPTina: valutare in futuro se adottare stable memory_id→path resolver come Tessa; non è bloccante."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T105500+0200--verifier-v2-compatibilita-v1-completata.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130200+0200--preflight-audit-legacy-micro-v1.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130800+0200--audit-legacy-v1-completato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T152200+0200--preflight-fine-istanza-recupero-completo.json",
@@ -43,7 +43,8 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T165456+0200--prompt-ettore-tessa-preservati-prima-cancellazione-chat.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T162000+0200--ettore-prompt-gia-consegnato-attesa-risposta.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170100+0200--ettore-attesa-risposta-prompt-persistente.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170732+0200--ettore-memory-v2-followups-closed.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170732+0200--ettore-memory-v2-followups-closed.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T171101+0200--repository-memory-ownership-consent.json"
   ],
   "micro_since_full_checkpoint": 1,
   "review_policy": {
