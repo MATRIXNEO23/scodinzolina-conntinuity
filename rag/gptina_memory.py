@@ -75,6 +75,15 @@ def atomic_write(path: Path, text: str) -> None:
     tmp.replace(path)
 
 
+def atomic_write_bytes(path: Path, payload: bytes) -> None:
+    ensure_inside_rag(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    ensure_inside_rag(tmp)
+    tmp.write_bytes(payload)
+    tmp.replace(path)
+
+
 @contextlib.contextmanager
 def projection_build_lock():
     """Serialize every derived-index publisher in this checkout."""
@@ -1146,14 +1155,43 @@ def build_all_projections(
         expected_head = git_head()
         manifest = load_manifest()
         expected_fingerprint = current_source_fingerprint(manifest)
-        _build_locked(include_history, allow_dirty_preview)
-        stats = _sync_sqlite_index_locked(include_history, allow_dirty_preview)
-        if (
-            git_head() != expected_head
-            or current_source_fingerprint(manifest) != expected_fingerprint
-        ):
-            raise RuntimeError("Canonical sources changed during projection transaction; retry.")
-        return stats
+        old_index = INDEX_FILE.read_bytes() if INDEX_FILE.exists() else None
+        old_meta = META_FILE.read_bytes() if META_FILE.exists() else None
+        if SQLITE_FILE.exists():
+            try:
+                checkpoint = sqlite3.connect(SQLITE_FILE, timeout=30.0)
+                try:
+                    checkpoint.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+                finally:
+                    checkpoint.close()
+            except sqlite3.DatabaseError:
+                pass
+        old_sqlite = SQLITE_FILE.read_bytes() if SQLITE_FILE.exists() else None
+        try:
+            _build_locked(include_history, allow_dirty_preview)
+            stats = _sync_sqlite_index_locked(include_history, allow_dirty_preview)
+            if (
+                git_head() != expected_head
+                or current_source_fingerprint(manifest) != expected_fingerprint
+            ):
+                raise RuntimeError("Canonical sources changed during projection transaction; retry.")
+            return stats
+        except BaseException:
+            if old_index is None:
+                INDEX_FILE.unlink(missing_ok=True)
+            else:
+                atomic_write(INDEX_FILE, old_index.decode("utf-8"))
+            if old_meta is None:
+                META_FILE.unlink(missing_ok=True)
+            else:
+                atomic_write(META_FILE, old_meta.decode("utf-8"))
+            for suffix in ("-wal", "-shm"):
+                Path(str(SQLITE_FILE) + suffix).unlink(missing_ok=True)
+            if old_sqlite is None:
+                SQLITE_FILE.unlink(missing_ok=True)
+            else:
+                atomic_write_bytes(SQLITE_FILE, old_sqlite)
+            raise
 
 
 def load_records() -> list[dict]:
@@ -1428,7 +1466,7 @@ def exact_matches_trigram(
     if len(target) < 3:
         return exact_matches(needle, include_superseded, limit, backend="scan")
     if not exact_trigram_is_fresh():
-        fail("Exact trigram index is absent or stale; run: python rag/gptina_memory.py build-exact")
+        return exact_matches(needle, include_superseded, limit, backend="scan")
 
     phrase = '"' + needle.replace('"', '""') + '"'
     conn = sqlite3.connect(EXACT_SQLITE_FILE)
@@ -1651,6 +1689,25 @@ def verify_future_memory_schema(manifest: dict) -> None:
         visited.add(memory_id)
     for memory_id in edges:
         visit(memory_id)
+    roots_by_target: dict[str, set[str]] = {}
+    for root_id, root_meta in metadata.items():
+        if str(root_meta.get("status", "current")) != "current":
+            continue
+        pending = list(edges.get(root_id, []))
+        seen: set[str] = set()
+        while pending:
+            target_id = pending.pop()
+            if target_id in seen:
+                continue
+            seen.add(target_id)
+            roots_by_target.setdefault(target_id, set()).add(root_id)
+            pending.extend(edges.get(target_id, []))
+    for target_id, roots in roots_by_target.items():
+        if len(roots) > 1:
+            errors.append(
+                f"{resolver[target_id]}: ambiguous current superseders: "
+                + ", ".join(sorted(roots))
+            )
     if errors:
         fail("Future memory schema violations:\n- " + "\n- ".join(errors))
 

@@ -141,5 +141,51 @@
       "rag/media-links/2026/09/47.json",
       "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
     ]
+  },
+  {
+    "id": "code-switch-posticino",
+    "mode": "search",
+    "query": "our secret posticino access policy",
+    "top_k": 8,
+    "expected_any": [
+      "rag/POSTICINO_ACCESS_POLICY.md",
+      "rag/index/GPTINA_FAST_RECALL.md"
+    ]
+  },
+  {
+    "id": "current-ettore-correction",
+    "mode": "search",
+    "query": "correzione origine Tessa romanziere Ettore",
+    "top_k": 8,
+    "expected_any": [
+      "rag/memories/gptina/2026/09/2026-09-21--correzione-origine-tessa-romanziere-ettore.md"
+    ],
+    "forbidden": [
+      "rag/memories/gptina/2026/09/2026-09-21--ettore-romanziere-nome-scelto.md"
+    ]
+  },
+  {
+    "id": "current-image-renumbering",
+    "mode": "search",
+    "query": "correzione numerazione immagini 48 49 50 originali",
+    "top_k": 8,
+    "expected_any": [
+      "rag/memories/gptina/2026/09/2026-09-21--correzione-numerazione-48-49-50-originali.md"
+    ],
+    "forbidden": [
+      "rag/memories/gptina/2026/09/2026-09-21--immagine-48-trieste-origini-simboliche.md"
+    ]
+  },
+  {
+    "id": "negative-superseded-song",
+    "mode": "search",
+    "query": "radioactive nostra canzone versione invalidata",
+    "top_k": 8,
+    "expected_any": [
+      "rag/memories/gptina/2026-09-18-correzione-la-nostra-canzone-la-cura.md"
+    ],
+    "forbidden": [
+      "rag/memories/gptina/2026-09-18-la-nostra-canzone.md"
+    ]
   }
 ]

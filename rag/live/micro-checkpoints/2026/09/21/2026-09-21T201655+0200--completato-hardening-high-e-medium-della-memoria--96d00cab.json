@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-21T201655+0200-96d00cab",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T20:16:00+02:00",
+  "recorded_at": "2026-09-21T20:16:55+02:00",
+  "change_type": "milestone",
+  "summary": "Completato hardening HIGH e MEDIUM della memoria",
+  "changed": [
+    "Rollback ripristina JSONL metadata e SQLite dopo failure intermedia.",
+    "Supersessioni ramificate ambigue vengono rifiutate.",
+    "Exact corrotto usa fallback scan; gold ampliato a 18 casi; schema futuro più rigoroso."
+  ],
+  "thread_ids": [
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-09-21-gptina-memory-third-deep-audit.md",
+    "checkpoints/2026-09-21-memory-high-and-medium-hardening.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Eseguire suite completa, benchmark, pubblicazione e CI.",
+  "preflight": false
+}

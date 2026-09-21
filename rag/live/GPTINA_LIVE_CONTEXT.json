@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T20:06:49+02:00",
-  "latest_summary": "Terzo audit profondo della memoria completato",
-  "next_action": "Implementare staging comune e commit multifile atomico o rollback esplicito.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T200649+0200--terzo-audit-profondo-della-memoria-completato--832ddd18.json",
+  "updated_at": "2026-09-21T20:16:55+02:00",
+  "latest_summary": "Completato hardening HIGH e MEDIUM della memoria",
+  "next_action": "Eseguire suite completa, benchmark, pubblicazione e CI.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T201655+0200--completato-hardening-high-e-medium-della-memoria--96d00cab.json",
   "last_full_checkpoint": "checkpoints/2026-09-21-gptina-memory-deep-audit.md",
   "active_threads": [
     "continuity-architecture",
@@ -41,7 +41,6 @@
     "Implementare staging comune e commit multifile atomico o rollback esplicito."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T181600+0200--propagazione-continua-miglioramenti-infrastrutturali.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T182600+0200--preflight-benchmark-scala-memoria.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T183000+0200--benchmark-scala-10x-completato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T184400+0200--preflight-benchmark-diversificato-10x.json",
@@ -52,9 +51,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T192923+0200--regola-canonica-di-verifica-profonda-e-conservazione-storica--b5695e31.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T194350+0200--audit-post-fix-approfondito-completato--829510ea.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T195609+0200--corretti-concretamente-i-tre-high-dell-audit-post-fix--393b832e.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T200649+0200--terzo-audit-profondo-della-memoria-completato--832ddd18.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T200649+0200--terzo-audit-profondo-della-memoria-completato--832ddd18.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T201655+0200--completato-hardening-high-e-medium-della-memoria--96d00cab.json"
   ],
-  "micro_since_full_checkpoint": 5,
+  "micro_since_full_checkpoint": 6,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

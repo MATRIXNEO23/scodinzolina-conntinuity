@@ -12,6 +12,13 @@ import yaml
 EXTERNAL_REF_PREFIXES = ("conversation://", "github://", "external://")
 MEMORY_STATUSES = {"current", "superseded", "invalidated", "historical"}
 CONFIDENCE_VALUES = {"verified", "contextual", "inferred"}
+DURABLE_V2_REQUIRED = {
+    "schema_version", "memory_id", "owner", "kind", "event_at",
+    "recorded_at", "status", "supersedes", "thread_ids", "entity_refs",
+    "source_refs", "media_refs", "importance", "confidence", "tags",
+    "append_only",
+}
+DURABLE_V2_ALLOWED = DURABLE_V2_REQUIRED | {"event_id"}
 
 
 class UniqueKeyLoader(yaml.SafeLoader):
@@ -116,16 +123,13 @@ def validate_local_ref(root: Path, ref: object, field: str) -> list[str]:
 
 
 def validate_durable_v2(meta: dict, root: Path) -> list[str]:
-    required = {
-        "schema_version", "memory_id", "owner", "kind", "event_at",
-        "recorded_at", "status", "supersedes", "thread_ids", "entity_refs",
-        "source_refs", "media_refs", "importance", "confidence", "tags",
-        "append_only",
-    }
     errors: list[str] = []
-    missing = sorted(required - set(meta))
+    missing = sorted(DURABLE_V2_REQUIRED - set(meta))
     if missing:
         errors.append(f"missing keys: {missing}")
+    unknown = sorted(set(meta) - DURABLE_V2_ALLOWED)
+    if unknown:
+        errors.append(f"unknown keys: {unknown}")
     if meta.get("schema_version") != 2 or isinstance(meta.get("schema_version"), bool):
         errors.append("schema_version must be integer 2")
     if not is_nonempty_string(meta.get("memory_id")):
@@ -134,7 +138,11 @@ def validate_durable_v2(meta: dict, root: Path) -> list[str]:
         errors.append("owner must be gptina")
     if meta.get("kind") != "gptina_live_memory":
         errors.append("kind must be gptina_live_memory")
-    errors.extend(validate_temporal(meta.get("event_at"), "event_at", timezone_required=False))
+    event_at = meta.get("event_at")
+    event_requires_timezone = is_nonempty_string(event_at) and len(str(event_at).strip()) != 10
+    errors.extend(validate_temporal(
+        event_at, "event_at", timezone_required=bool(event_requires_timezone)
+    ))
     errors.extend(validate_temporal(meta.get("recorded_at"), "recorded_at", timezone_required=True))
     if meta.get("status") not in MEMORY_STATUSES:
         errors.append(f"invalid status={meta.get('status')}")

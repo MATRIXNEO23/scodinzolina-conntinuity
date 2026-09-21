@@ -65,6 +65,26 @@ append_only: true
         if statuses["rag/memories/gptina/a.md"][1] != "rag/memories/gptina/c.md":
             raise AssertionError(f"Oldest record did not resolve to current replacement: {statuses}")
 
+        (memories / "d.md").write_text(
+            template.format(
+                memory_id="gptina-d", status="current", supersedes="gptina-a"
+            ),
+            encoding="utf-8",
+        )
+        gm.ROOT, gm.RAG_ROOT = root, root / "rag"
+        try:
+            try:
+                gm.verify_future_memory_schema(
+                    {"policy": {"memory_schema_required_from": "2026-09-21"}}
+                )
+            except SystemExit as exc:
+                if "ambiguous current superseders" not in str(exc):
+                    raise
+            else:
+                raise AssertionError("Ambiguous current superseders were accepted")
+        finally:
+            gm.ROOT, gm.RAG_ROOT = old_root, old_rag
+
 
 def run_pair(*args: str) -> None:
     commands = [[sys.executable, "rag/gptina_memory.py", *args] for _ in range(2)]
@@ -140,6 +160,7 @@ def main() -> None:
     gm.build(False)
     before_index = gm.INDEX_FILE.read_bytes()
     before_meta = gm.META_FILE.read_bytes()
+    before_sqlite = gm.SQLITE_FILE.read_bytes()
     original_dirty = gm.git_worktree_dirty
     gm.git_worktree_dirty = lambda: True
     try:
@@ -155,6 +176,48 @@ def main() -> None:
             raise AssertionError("JSONL projection was considered fresh in a dirty checkout")
     finally:
         gm.git_worktree_dirty = original_dirty
+
+    # A second-stage failure must restore JSONL and metadata byte-for-byte.
+    original_build = gm._build_locked
+    original_sync = gm._sync_sqlite_index_locked
+    original_dirty = gm.git_worktree_dirty
+    before_index = gm.INDEX_FILE.read_bytes()
+    before_meta = gm.META_FILE.read_bytes()
+    gm.git_worktree_dirty = lambda: False
+    gm._build_locked = lambda *_args, **_kwargs: gm.atomic_write(
+        gm.META_FILE, '{"partial": true}\n'
+    )
+    def corrupt_then_fail(*_args, **_kwargs):
+        gm.SQLITE_FILE.write_bytes(b"partial sqlite publication")
+        raise RuntimeError("forced second-stage failure")
+
+    gm._sync_sqlite_index_locked = corrupt_then_fail
+    try:
+        try:
+            gm.build_all_projections(False, False)
+        except RuntimeError:
+            pass
+        else:
+            raise AssertionError("Forced second-stage failure unexpectedly succeeded")
+        if (
+            gm.INDEX_FILE.read_bytes() != before_index
+            or gm.META_FILE.read_bytes() != before_meta
+            or gm.SQLITE_FILE.read_bytes() != before_sqlite
+        ):
+            raise AssertionError("Projection rollback did not restore JSONL/meta/SQLite")
+    finally:
+        gm._build_locked = original_build
+        gm._sync_sqlite_index_locked = original_sync
+        gm.git_worktree_dirty = original_dirty
+
+    # Corrupt optional exact projection must fall back to the source scan.
+    gm.build_exact_trigram_index()
+    gm.EXACT_SQLITE_FILE.write_bytes(b"corrupt optional exact projection")
+    query = "Competenza tecnica non significa proprietà."
+    scan_sources = {hit["source"] for hit in gm.exact_matches(query, backend="scan")}
+    fallback_sources = {hit["source"] for hit in gm.exact_matches(query, backend="trigram")}
+    if fallback_sources != scan_sources:
+        raise AssertionError("Corrupt exact projection did not fall back to scan parity")
 
     run_pair("build")
     run_pair("build-exact")

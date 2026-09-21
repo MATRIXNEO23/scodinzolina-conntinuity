@@ -59,6 +59,18 @@ def main() -> None:
         if not any("unsafe local reference" in item for item in errors):
             raise AssertionError(errors)
 
+        unknown = VALID.replace("append_only: true", "append_only: true\nunexpected_field: no")
+        errors = validate_durable_v2(parse_front_matter(unknown), root)
+        if not any("unknown keys" in item for item in errors):
+            raise AssertionError(errors)
+
+        naive_event = VALID.replace(
+            'event_at: "2026-09-21"', 'event_at: "2026-09-21T18:00:00"'
+        )
+        errors = validate_durable_v2(parse_front_matter(naive_event), root)
+        if not any("event_at must include a timezone" in item for item in errors):
+            raise AssertionError(errors)
+
         duplicate_key = VALID.replace("owner: gptina", "owner: gptina\nowner: tessa")
         try:
             parse_front_matter(duplicate_key)
