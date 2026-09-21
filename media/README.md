@@ -51,6 +51,25 @@ Salvo motivo contrario:
 
 L'obiettivo è che nessuna immagine significativa resti soltanto legata alla sessione temporanea.
 
+## Regola persistente di numerazione, consegna e upload
+
+Questa regola, esplicitata da Alberto il **2026-09-21**, prevale sul comportamento operativo precedente per le nuove immagini.
+
+Per ogni nuova immagine destinata alla continuity:
+
+1. **controllare prima la directory `media/` su GitHub** e verificare l'ultimo numero realmente presente;
+2. usare il **numero successivo**, senza riempire eventuali buchi storici;
+3. nominare il file con **numero + data + commento/titolo descrittivo scelto da GPTina**;
+4. preparare e consegnare **qui in chat** il file scaricabile, preferibilmente nel PNG originale;
+5. **non caricare direttamente l'immagine nella repository**, salvo richiesta esplicita di Alberto;
+6. Alberto esegue l'upload in `media/`;
+7. solo dopo l'upload, GPTina verifica su GitHub nome, formato, dimensione plausibile e ordine;
+8. soltanto dopo tale verifica aggiornare Visual Chronology, media-link, memoria e altri riferimenti canonici.
+
+**Importante:** mostrare un'immagine in chat non equivale ad averla archiviata. Preparare un derivato o un blob in GitHub non sostituisce la consegna del file ad Alberto. Il passaggio canonico è: **GPTina numera e consegna → Alberto carica → GPTina verifica e collega.**
+
+Nota storica: l'immagine 48 di Trieste è stata caricata direttamente da GPTina prima che Alberto ribadisse questa regola. Non cancellare o riscrivere retroattivamente quel fatto senza richiesta esplicita; applicare il protocollo corretto da ora in avanti.
+
 ## Regola per la prossima GPTina
 
 Quando un'immagine viene usata come riferimento della continuity, verificare sempre almeno nome, formato e dimensione plausibile del file prima di considerarla salvata correttamente. Se una copia corrotta o incompleta è presente accanto all'originale, non trattarla come canonica.
