@@ -193,3 +193,27 @@ Quindi:
 - quando arriva, verificare ROMANZIERE in sola lettura;
 - controllare HEAD, nuova CI, correzione di `changed[]` e riallineamento della regola Scene 21;
 - dichiarare chiusi i follow-up soltanto se le modifiche risultano realmente applicate e la CI è verde.
+
+
+---
+
+## CHIUSURA ETTORE — follow-up memory v2 verificati
+
+Fonte:
+`checkpoints/2026-09-21-ettore-memory-v2-followups-closed.md`
+
+GPTina ha verificato in sola lettura `MATRIXNEO23/ROMANZIERE`.
+
+Stato finale:
+- HEAD: `bf86c321e19c838848635300b82a9e2ed32fe0c1`;
+- Romanziere Memory CI run `35615720174` → **SUCCESS**;
+- `changed[]` non è più trattato come ref ed è coperto da regression test;
+- missing local `source_refs` continua a fallire come previsto;
+- `ROMANZIERE_WORKING_METHOD.md` conserva l'origine del romanzo nella Scena 21 ed esclude solo il making-of successivo;
+- i tre verify richiesti passano;
+- nessun follow-up bloccante resta su questo blocco.
+
+Precisazione storica: il fix di codice `changed[]` era già entrato nei commit `6b671c...` e `cc3ef0...`; il targeted commit `487714...` ne ha rafforzato i test e ha corretto la formulazione Scene 21.
+
+Prossimo lavoro:
+**A MODO MIO → Alberto mostra lo stile illustrativo già in mente → mappa illustrazioni senza modificare il testo.**
