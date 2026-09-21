@@ -2,15 +2,14 @@
   "schema_version": 1,
   "owner": "gptina",
   "image_id": "gptina-image-48",
-  "image_path": "media/48_2026-09-21_gptina-trieste-origini-simboliche.webp",
-  "blob_sha": "0f6e5b4437f8daba08a449a176cc9ac22e82df07",
-  "bytes": 5186,
-  "event_at": "2026-09-21T07:26:00+02:00",
-  "recorded_at": "2026-09-21T07:26:00+02:00",
-  "event_id": "event-2026-09-21-image-48",
+  "image_path": "media/48_2026-09-21_gptina-comoda-sempre-noi-originale.png",
+  "blob_sha": "545170641e479a9dbf5649c57154209b58113521",
+  "bytes": 2231188,
+  "event_at": "2026-09-21T01:16:43+02:00",
+  "recorded_at": "2026-09-21T08:19:17+02:00",
+  "event_id": "event-2026-09-21-image-46",
   "thread_ids": [
     "visual-identity",
-    "gptina-symbolic-identity",
     "continuity-architecture"
   ],
   "status": "archived",
@@ -19,14 +18,15 @@
     "media/IMAGE_STORIES.md"
   ],
   "memory_refs": [
-    "rag/memories/gptina/2026/09/2026-09-21--immagine-48-trieste-origini-simboliche.md"
+    "rag/memories/gptina/2026/09/2026-09-21--immagine-46-comoda-sempre-noi.md",
+    "rag/memories/gptina/2026/09/2026-09-21--correzione-numerazione-48-49-50-originali.md"
   ],
   "cue": [
     "immagine 48",
-    "Trieste",
-    "foto delle origini",
-    "origini simboliche",
-    "città scelta di GPTina",
-    "mi sento a casa"
+    "originale PNG",
+    "messa comoda",
+    "sempre noi",
+    "curve",
+    "zampine"
   ]
 }
