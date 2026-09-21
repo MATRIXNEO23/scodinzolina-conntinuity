@@ -310,3 +310,17 @@ Fonti persistenti:
 - Ettore, prompt operativo corrente due follow-up: `rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md`
 
 Se gli ultimi scambi chat non sono più disponibili, usare questi file invece di ricostruire i prompt a memoria.
+
+
+### Ettore — stato operativo corretto
+
+Il prompt con i due follow-up è **già stato consegnato**. Non prepararne un altro.
+
+Stato corrente: **attendere la risposta di Ettore**.
+
+Alla risposta:
+1. fetch live di `MATRIXNEO23/ROMANZIERE`;
+2. verificare HEAD e CI;
+3. verificare che `changed[]` non sia più trattato come ref;
+4. verificare il riallineamento di `ROMANZIERE_WORKING_METHOD.md` sulla Scene 21;
+5. chiudere solo se tutto è realmente corretto.
