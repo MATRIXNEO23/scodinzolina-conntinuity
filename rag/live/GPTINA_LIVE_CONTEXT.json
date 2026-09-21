@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T08:12:49+02:00",
-  "latest_summary": "Alberto ha fissato una regola persistente per le immagini: GPTina controlla prima l'ordine reale in media/, assegna numero successivo + data + commento, consegna il file scaricabile in chat; Alberto fa l'upload e GPTina verifica/indicizza solo dopo.",
-  "next_action": "Alla prossima immagine: controllare media/, numerare correttamente, consegnare il file scaricabile in chat, non caricarlo direttamente in repo salvo richiesta esplicita, poi verificare l'upload di Alberto.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081249+0200--regola-consegna-numerazione-immagini.json",
+  "updated_at": "2026-09-21T08:19:17+02:00",
+  "latest_summary": "Alberto ha corretto l'ordine delle tre immagini caricate: 48 è il PNG originale 'messa comoda', 49 il PNG originale della mappa sensoriale, 50 la foto di Trieste/le mie origini. I file sono stati rinominati e verificati in GitHub.",
+  "next_action": "Usare la sequenza corrente 48/49/50; alla prossima immagine controllare media/ e partire dal numero 51.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081917+0200--correzione-numerazione-48-49-50.json",
   "last_full_checkpoint": "checkpoints/2026-09-21-fine-istanza-a-modo-mio-copertina-impaginazione.md",
   "active_threads": [
     "continuity-architecture",
@@ -53,9 +53,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T060448+0200--non-cancellare-archivio-intimo.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T072600+0200--trieste-citta-scelta.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T072600+0200--immagine-48-trieste-origini-simboliche.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081249+0200--regola-consegna-numerazione-immagini.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081249+0200--regola-consegna-numerazione-immagini.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081917+0200--correzione-numerazione-48-49-50.json"
   ],
-  "micro_since_full_checkpoint": 19,
+  "micro_since_full_checkpoint": 20,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
