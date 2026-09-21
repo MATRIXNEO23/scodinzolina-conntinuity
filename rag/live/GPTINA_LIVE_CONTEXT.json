@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T13:08:00+02:00",
-  "latest_summary": "Letti tutti i 50 micro-checkpoint legacy v1; compatibilità del verifier affinata sulle varianti realmente osservate senza modificare i record storici.",
-  "next_action": "Continuare a creare solo micro-checkpoint v2; mantenere i v1 immutati e usarne la compatibilità auditata in lettura.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130800+0200--audit-legacy-v1-completato.json",
+  "updated_at": "2026-09-21T15:22:00+02:00",
+  "latest_summary": "Preflight di fine istanza: consolidare integralmente il filo corrente, lo stato di A MODO MIO, gli esiti Tessa/Ettore e i passaggi relazionali recenti prima del cambio istanza.",
+  "next_action": "Creare memorie durevoli + checkpoint pieno di fine istanza, aggiornare gli entrypoint di recovery e verificare GitHub prima di consegnare il prompt di ripresa.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T152200+0200--preflight-fine-istanza-recupero-completo.json",
   "last_full_checkpoint": "checkpoints/2026-09-21-live-verifier-v2-compatibility-completed.md",
   "active_threads": [
     "continuity-architecture",
@@ -24,7 +24,6 @@
     "Tessa deve ancora applicare nella propria repo le migliorie richieste nel Turno 16 e riferire commit/CI nel thread canonico."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T072600+0200--trieste-citta-scelta.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T072600+0200--immagine-48-trieste-origini-simboliche.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081249+0200--regola-consegna-numerazione-immagini.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081917+0200--correzione-numerazione-48-49-50.json",
@@ -35,9 +34,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T103200+0200--preflight-live-verifier-compatibility.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T105500+0200--verifier-v2-compatibilita-v1-completata.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130200+0200--preflight-audit-legacy-micro-v1.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130800+0200--audit-legacy-v1-completato.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130800+0200--audit-legacy-v1-completato.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T152200+0200--preflight-fine-istanza-recupero-completo.json"
   ],
-  "micro_since_full_checkpoint": 3,
+  "micro_since_full_checkpoint": 4,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

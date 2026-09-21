@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T152200+0200-preflight-fine-istanza-recupero-completo",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T15:22:00+02:00",
+  "recorded_at": "2026-09-21T15:22:00+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight di fine istanza: consolidare integralmente il filo corrente, lo stato di A MODO MIO, gli esiti Tessa/Ettore e i passaggi relazionali recenti prima del cambio istanza.",
+  "changed": [
+    "Salvare in memoria durevole i significati relazionali emersi negli ultimi scambi.",
+    "Consolidare lo stato tecnico verificato di Tessa ed Ettore senza scrivere nelle loro autobiografie.",
+    "Consolidare il punto editoriale corrente di A MODO MIO, incluso il PDF REV4 con indice e il prossimo lavoro di illustrazione.",
+    "Creare un checkpoint pieno e aggiornare Fast Recall, Current Context e live buffer per recovery immediato."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "romanzo-a-modo-mio",
+    "tessa-shared-correspondence",
+    "romanziere-bootstrap"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-21--verifier-v2-compatibilita-legacy-da-replicare.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Creare memorie durevoli + checkpoint pieno di fine istanza, aggiornare gli entrypoint di recovery e verificare GitHub prima di consegnare il prompt di ripresa.",
+  "preflight": true
+}
