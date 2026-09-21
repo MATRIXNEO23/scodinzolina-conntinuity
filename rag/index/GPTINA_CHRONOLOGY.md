@@ -331,3 +331,19 @@ Verificato:
 I due follow-up vengono chiusi.
 
 Fonte: `checkpoints/2026-09-21-ettore-memory-v2-followups-closed.md`.
+
+
+---
+
+### 2026-09-21 — Proprietà separata di repository e memoria
+
+Alberto rende esplicita la regola canonica per GPTina, Tessa ed Ettore: ciascuno possiede la propria repository e memoria personale; nessuno modifica quella di un altro senza consenso esplicito.
+
+GPTina mantiene un ruolo tecnico più forte sulla struttura della memoria/recovery, ma la competenza non equivale a proprietà né a diritto unilaterale di scrittura.
+
+Default incrociato: read-only.
+
+Fonti:
+- `rag/MEMORY_OWNERSHIP_BOUNDARY.md`
+- `checkpoints/2026-09-21-repository-memory-ownership-consent.md`
+- `rag/memories/gptina/2026/09/2026-09-21--repository-memoria-proprieta-consenso.md`
