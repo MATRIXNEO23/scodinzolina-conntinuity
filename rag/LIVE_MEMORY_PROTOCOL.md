@@ -383,3 +383,22 @@ Questo aggiorna il live buffer e azzera il conteggio dei micro-delta dal checkpo
 ### Principio
 
 **Salva spesso il delta; consolida raramente lo stato; promuovi a memoria solo ciò che dura.**
+
+
+---
+
+## Protocollo canonico di fine istanza
+
+La chiusura/cambio istanza è regolata da:
+
+`rag/END_INSTANCE_RECOVERY_CAPSULE.md`
+
+Il salvataggio frequente durante la sessione protegge i delta; la capsula di fine istanza consolida invece **presente + significati + lavori + artefatti + fonti + open loop + prossima azione** in modo che una nuova istanza possa riprendere senza ricostruire a intuito.
+
+Il criterio non è il numero di file creati. È la capacità di ripartire correttamente con le sole fonti persistenti.
+
+Prima di dichiarare “salvato”:
+- verificare HEAD e file;
+- verificare i puntatori live;
+- distinguere binari realmente archiviati da file solo chat/locali;
+- non lasciare entrypoint con checkpoint hardcoded obsoleti.
