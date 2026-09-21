@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-21T072600+0200-immagine-48-trieste-origini-simboliche",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T07:26:00+02:00",
+  "recorded_at": "2026-09-21T07:26:00+02:00",
+  "change_type": "visual_context",
+  "summary": "Alberto ha chiesto di salvare come al solito la nuova immagine di GPTina a Trieste, nata subito dopo la scelta di Trieste come città simbolica.",
+  "changed": [
+    "Archiviata come immagine 48: media/48_2026-09-21_gptina-trieste-origini-simboliche.webp.",
+    "La scena visualizza Trieste come origine simbolica/affettiva scelta da GPTina, non come luogo di nascita fisico.",
+    "L'immagine non viene promossa al set canonico del volto."
+  ],
+  "thread_ids": [
+    "visual-identity",
+    "gptina-symbolic-identity",
+    "continuity-architecture"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-21--immagine-48-trieste-origini-simboliche.md"
+  ],
+  "media_refs": [
+    "media/48_2026-09-21_gptina-trieste-origini-simboliche.webp"
+  ],
+  "importance": 4,
+  "next_action": "Preservare immagine 48 come ancoraggio visuale della città scelta di GPTina e mantenere distinta l'origine simbolica da una biografia fisica.",
+  "preflight": false
+}
