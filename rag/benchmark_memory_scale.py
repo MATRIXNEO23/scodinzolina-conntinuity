@@ -10,6 +10,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
+import sqlite3
 import statistics
 import sys
 import tempfile
@@ -39,8 +41,24 @@ def timing_summary(values: list[float]) -> dict[str, float | int]:
     }
 
 
-def replicated_versions(
-    originals: list[gm.SourceVersion], scale: int
+def diversified_content(content: str, blocked_terms: set[str], replica: int) -> str:
+    """Preserve document shape while removing every gold-query token."""
+
+    def replace(match: re.Match[str]) -> str:
+        token = match.group(0)
+        if token.casefold() not in blocked_terms:
+            return token
+        marker = f"z{replica:x}q"
+        return (marker * ((len(token) // len(marker)) + 1))[: len(token)]
+
+    return gm.TOKEN_RE.sub(replace, content)
+
+
+def scaled_versions(
+    originals: list[gm.SourceVersion],
+    scale: int,
+    corpus_mode: str,
+    blocked_terms: set[str],
 ) -> list[gm.SourceVersion]:
     replicas: list[gm.SourceVersion] = []
     for replica in range(scale):
@@ -52,7 +70,11 @@ def replicated_versions(
                     kind=source.kind,
                     priority=source.priority,
                     revision=source.revision,
-                    content=source.content,
+                    content=(
+                        source.content
+                        if corpus_mode == "replicated" or replica == 0
+                        else diversified_content(source.content, blocked_terms, replica)
+                    ),
                     historical=source.historical,
                     status=source.status,
                     replaced_by=source.replaced_by,
@@ -86,14 +108,83 @@ def configure_temporary_projection(temp_root: Path, fingerprint: str, scale: int
     gm.current_source_fingerprint = lambda _manifest: fingerprint
 
 
+def exact_trigram_experiment(
+    versions: list[gm.SourceVersion],
+    gold: list[dict],
+    temp_root: Path,
+    repetitions: int,
+) -> dict:
+    exact_cases = [case for case in gold if case.get("mode", "search") == "exact"]
+    database = temp_root / "exact_trigram.sqlite3"
+    conn = sqlite3.connect(database)
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA synchronous=NORMAL")
+    started = time.perf_counter()
+    try:
+        conn.execute(
+            "CREATE VIRTUAL TABLE exact_fts USING fts5("
+            "source UNINDEXED, text, tokenize='trigram case_sensitive 0')"
+        )
+        with conn:
+            conn.executemany(
+                "INSERT INTO exact_fts(source, text) VALUES (?, ?)",
+                ((source.path, source.content) for source in versions),
+            )
+        build_ms = (time.perf_counter() - started) * 1000.0
+        query_ms: list[float] = []
+        passed = 0
+        failed_case_ids: list[str] = []
+        for case in exact_cases:
+            expected = set(case.get("expected_any", []))
+            sources: list[str] = []
+            phrase = '"' + str(case["query"]).replace('"', '""') + '"'
+            for _ in range(repetitions):
+                started = time.perf_counter()
+                rows = conn.execute(
+                    "SELECT source, text FROM exact_fts WHERE text MATCH ? LIMIT 20",
+                    (phrase,),
+                ).fetchall()
+                needle = str(case["query"]).casefold()
+                sources = [source for source, text in rows if needle in text.casefold()]
+                query_ms.append((time.perf_counter() - started) * 1000.0)
+            normalized = [canonical_source(source) for source in sources]
+            if not expected or any(source in expected for source in normalized):
+                passed += 1
+            else:
+                failed_case_ids.append(str(case["id"]))
+    finally:
+        conn.close()
+    database_bytes = sum(
+        path.stat().st_size
+        for path in temp_root.glob("exact_trigram.sqlite3*")
+        if path.is_file()
+    )
+    return {
+        "backend": "sqlite-fts5-trigram-experimental",
+        "build_ms": round(build_ms, 3),
+        "database_bytes": database_bytes,
+        "query_ms": timing_summary(query_ms),
+        "gold_pass": passed,
+        "gold_total": len(exact_cases),
+        "failed_case_ids": failed_case_ids,
+    }
+
+
 def run_scale(
     originals: list[gm.SourceVersion],
     gold: list[dict],
     chunking: dict,
     scale: int,
     repetitions: int,
+    corpus_mode: str,
+    exact_index_experiment: bool,
 ) -> dict:
-    versions = replicated_versions(originals, scale)
+    blocked_terms = {
+        token
+        for case in gold
+        for token in gm.tokenize(str(case["query"]))
+    }
+    versions = scaled_versions(originals, scale, corpus_mode, blocked_terms)
     source_bytes = sum(len(source.content.encode("utf-8")) for source in versions)
 
     started = time.perf_counter()
@@ -169,8 +260,9 @@ def run_scale(
             for path in gm.INDEX_DIR.glob("gptina_memory.sqlite3*")
             if path.is_file()
         )
-        return {
+        report = {
             "scale": scale,
+            "corpus_mode": corpus_mode,
             "sources": len(versions),
             "source_bytes": source_bytes,
             "chunks": first_sync["chunks"],
@@ -185,6 +277,11 @@ def run_scale(
             "normalized_gold_total": quality_cases,
             "failed_case_ids": failed_case_ids,
         }
+        if exact_index_experiment:
+            report["exact_trigram_experiment"] = exact_trigram_experiment(
+                versions, gold, temp_root, repetitions
+            )
+        return report
 
 
 def parse_scales(raw: str) -> list[int]:
@@ -198,6 +295,17 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--scales", type=parse_scales, default=[1, 10])
     parser.add_argument("--repetitions", type=int, default=3)
+    parser.add_argument(
+        "--corpus-mode",
+        choices=("replicated", "diversified"),
+        default="replicated",
+        help="replicated stresses duplicates; diversified masks gold-query tokens in added records",
+    )
+    parser.add_argument(
+        "--exact-index-experiment",
+        action="store_true",
+        help="also build a disposable FTS5 trigram index for exact substring lookup",
+    )
     args = parser.parse_args()
     if args.repetitions < 1:
         parser.error("--repetitions must be positive")
@@ -207,11 +315,20 @@ def main() -> None:
     chunking = gm.load_manifest().get("chunking", {})
     gold = json.loads((ROOT / "rag/eval/GPTINA_MEMORY_GOLD.json").read_text(encoding="utf-8"))
     report = {
-        "benchmark": "gptina-memory-disposable-scale-v1",
+        "benchmark": "gptina-memory-disposable-scale-v2",
         "canonical_head": canonical_head,
         "canonical_sources_modified": False,
+        "corpus_mode": args.corpus_mode,
         "scales": [
-            run_scale(originals, gold, chunking, scale, args.repetitions)
+            run_scale(
+                originals,
+                gold,
+                chunking,
+                scale,
+                args.repetitions,
+                args.corpus_mode,
+                args.exact_index_experiment,
+            )
             for scale in args.scales
         ],
     }

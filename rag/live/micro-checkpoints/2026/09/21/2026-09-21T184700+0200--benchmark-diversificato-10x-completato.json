@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T184700+0200-benchmark-diversificato-10x-completato",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T18:47:00+02:00",
+  "recorded_at": "2026-09-21T18:47:00+02:00",
+  "change_type": "milestone",
+  "summary": "Benchmark diversificato 10x completato con gold 14/14 e nessun cambio al retrieval.",
+  "changed": [
+    "Il corpus diversificato 10x contiene 2760 sorgenti e 13240 chunk temporanei.",
+    "Query p95 circa 11 ms, build circa 471 ms e no-op circa 21 ms su questo host.",
+    "Il gold normalizzato resta 14/14; il precedente 10/14 era dovuto alle copie identiche.",
+    "La scansione exact p95 circa 31 ms resta sotto osservazione ma non giustifica un nuovo indice.",
+    "Il determinismo resta confinato all'infrastruttura di salvataggio e recupero e non modifica identita, stile o risposte."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "work-hardening-memory"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-09-21-memory-diversified-scale-10x.md",
+    "rag/benchmark_memory_scale.py"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Mantenere l'architettura corrente; valutare 50x/100x o un indice exact soltanto davanti a crescita reale o degrado persistente misurato.",
+  "preflight": false
+}

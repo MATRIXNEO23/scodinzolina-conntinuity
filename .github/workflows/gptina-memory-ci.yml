@@ -43,5 +43,11 @@ jobs:
         run: python rag/benchmark_memory.py
       - name: Run disposable scale benchmark smoke test
         run: python rag/benchmark_memory_scale.py --scales 1 --repetitions 1
+      - name: Run diversified scale benchmark smoke test
+        run: python rag/benchmark_memory_scale.py --corpus-mode diversified --scales 1,2 --repetitions 1
+      - name: Test optional exact trigram projection
+        run: |
+          python rag/gptina_memory.py build-exact
+          python rag/test_exact_trigram.py
       - name: Ensure derived indexes stay untracked
         run: test -z "$(git status --porcelain)"

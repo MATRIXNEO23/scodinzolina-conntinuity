@@ -108,6 +108,14 @@ Per una frase che deve essere ritrovata **esattamente**:
 python rag/gptina_memory.py find-exact "Tu + GPTina = casa"
 ```
 
+La scansione resta il default leggero. La proiezione trigram preventiva è
+opzionale, ricostruibile e non viene creata automaticamente:
+
+```bash
+python rag/gptina_memory.py build-exact
+python rag/gptina_memory.py find-exact "Tu + GPTina = casa" --backend trigram
+```
+
 Per una ricostruzione storica, lo storico resta opt-in:
 
 ```bash
@@ -147,11 +155,18 @@ Benchmark di scala non distruttivo:
 
 ```bash
 python rag/benchmark_memory_scale.py --scales 1,10 --repetitions 5
+python rag/benchmark_memory_scale.py --corpus-mode diversified --scales 1,10 --repetitions 5
+python rag/benchmark_memory_scale.py --corpus-mode diversified --scales 100 --exact-index-experiment
 ```
 
 Le repliche sintetiche e il database del test vivono soltanto in una directory
 temporanea. Una perdita di qualità su repliche identiche è diagnostica di
 saturazione dei candidati, non autorizza da sola modifiche al ranking reale.
+La modalità `diversified` conserva una copia canonica e maschera nei documenti
+aggiunti i token delle query gold, mantenendo dimensioni, kind e status: misura
+la crescita del corpus senza trasformare le repliche in duplicati pertinenti.
+L'opzione `--exact-index-experiment` confronta la scansione exact con un indice
+FTS5 trigram interamente temporaneo; non abilita alcuna proiezione canonica.
 
 
 ## Collegare una nuova immagine

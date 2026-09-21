@@ -36,6 +36,7 @@ INDEX_DIR = RAG_ROOT / "index"
 INDEX_FILE = INDEX_DIR / "memory_chunks.jsonl"
 META_FILE = INDEX_DIR / "index_meta.json"
 SQLITE_FILE = INDEX_DIR / "gptina_memory.sqlite3"
+EXACT_SQLITE_FILE = INDEX_DIR / "gptina_exact_trigram.sqlite3"
 MANIFEST_FILE = RAG_ROOT / "memory_manifest.json"
 VISUAL_INDEX_FILE = INDEX_DIR / "GPTINA_VISUAL_CHRONOLOGY.md"
 CURRENT_CONTEXT_FILE = INDEX_DIR / "CURRENT_CONTEXT.md"
@@ -1051,7 +1052,12 @@ def exact_matches(
     needle: str,
     include_superseded: bool = False,
     limit: int = 20,
+    backend: str = "scan",
 ) -> list[dict]:
+    if backend == "trigram":
+        return exact_matches_trigram(needle, include_superseded, limit)
+    if backend != "scan":
+        raise ValueError(f"unknown exact backend: {backend}")
     target = needle.casefold()
     if not target:
         return []
@@ -1092,8 +1098,147 @@ def exact_matches(
     return hits
 
 
-def find_exact(needle: str, include_superseded: bool, limit: int) -> None:
-    hits = exact_matches(needle, include_superseded=include_superseded, limit=limit)
+def build_exact_trigram_index() -> dict[str, int | float]:
+    """Build an optional, disposable substring index without changing defaults."""
+    if git_worktree_dirty():
+        fail("Refusing exact-index build from a dirty worktree; commit first.")
+    ensure_inside_rag(EXACT_SQLITE_FILE)
+    INDEX_DIR.mkdir(parents=True, exist_ok=True)
+    temporary = EXACT_SQLITE_FILE.with_suffix(EXACT_SQLITE_FILE.suffix + ".tmp")
+    ensure_inside_rag(temporary)
+    if temporary.exists():
+        temporary.unlink()
+
+    started = time.perf_counter()
+    manifest = load_manifest()
+    sources = collect_versions(False)
+    conn = sqlite3.connect(temporary)
+    try:
+        conn.execute("PRAGMA journal_mode=DELETE")
+        conn.execute("PRAGMA synchronous=NORMAL")
+        conn.execute("CREATE TABLE exact_meta(key TEXT PRIMARY KEY, value TEXT NOT NULL)")
+        conn.execute(
+            "CREATE VIRTUAL TABLE exact_fts USING fts5("
+            "source UNINDEXED, kind UNINDEXED, status UNINDEXED, "
+            "replaced_by UNINDEXED, date_hint UNINDEXED, text, "
+            "tokenize='trigram case_sensitive 0')"
+        )
+        with conn:
+            conn.executemany(
+                "INSERT INTO exact_fts(source, kind, status, replaced_by, date_hint, text) "
+                "VALUES (?, ?, ?, ?, ?, ?)",
+                (
+                    (
+                        source.path, source.kind, source.status, source.replaced_by,
+                        extract_date(source.path), source.content,
+                    )
+                    for source in sources
+                ),
+            )
+            conn.executemany(
+                "INSERT INTO exact_meta(key, value) VALUES (?, ?)",
+                (
+                    ("schema_version", "1"),
+                    ("git_head", git_head() or ""),
+                    ("manifest_sha256", sha256_text(MANIFEST_FILE.read_text(encoding="utf-8"))),
+                    ("source_fingerprint", current_source_fingerprint(manifest)),
+                    ("sources", str(len(sources))),
+                ),
+            )
+    finally:
+        conn.close()
+    temporary.replace(EXACT_SQLITE_FILE)
+    return {
+        "sources": len(sources),
+        "database_bytes": EXACT_SQLITE_FILE.stat().st_size,
+        "build_ms": round((time.perf_counter() - started) * 1000.0, 3),
+    }
+
+
+def exact_trigram_is_fresh() -> bool:
+    if not EXACT_SQLITE_FILE.exists() or git_worktree_dirty():
+        return False
+    try:
+        conn = sqlite3.connect(EXACT_SQLITE_FILE)
+        meta = dict(conn.execute("SELECT key, value FROM exact_meta"))
+    except sqlite3.DatabaseError:
+        return False
+    finally:
+        try:
+            conn.close()
+        except Exception:
+            pass
+    return (
+        meta.get("schema_version") == "1"
+        and meta.get("git_head") == (git_head() or "")
+        and meta.get("manifest_sha256")
+        == sha256_text(MANIFEST_FILE.read_text(encoding="utf-8"))
+    )
+
+
+def exact_matches_trigram(
+    needle: str,
+    include_superseded: bool = False,
+    limit: int = 20,
+) -> list[dict]:
+    target = needle.casefold()
+    if not target:
+        return []
+    if len(target) < 3:
+        return exact_matches(needle, include_superseded, limit, backend="scan")
+    if not exact_trigram_is_fresh():
+        fail("Exact trigram index is absent or stale; run: python rag/gptina_memory.py build-exact")
+
+    phrase = '"' + needle.replace('"', '""') + '"'
+    conn = sqlite3.connect(EXACT_SQLITE_FILE)
+    conn.row_factory = sqlite3.Row
+    try:
+        rows = conn.execute(
+            "SELECT source, kind, status, replaced_by, date_hint, text "
+            "FROM exact_fts WHERE exact_fts MATCH ? LIMIT ?",
+            (phrase, max(80, limit * 10)),
+        ).fetchall()
+    finally:
+        conn.close()
+
+    hits: list[dict] = []
+    for row in rows:
+        status = str(row["status"] or "current")
+        if not include_superseded and status in {"superseded", "invalidated"}:
+            continue
+        content = str(row["text"])
+        folded = content.casefold()
+        start = 0
+        while len(hits) < limit:
+            pos = folded.find(target, start)
+            if pos < 0:
+                break
+            line_no = content.count("\n", 0, pos) + 1
+            lines = content.splitlines()
+            hits.append(
+                {
+                    "source": str(row["source"]),
+                    "kind": str(row["kind"]),
+                    "status": status,
+                    "replaced_by": row["replaced_by"],
+                    "date_hint": row["date_hint"],
+                    "line": line_no,
+                    "snippet": "\n".join(lines[max(0, line_no - 2):min(len(lines), line_no + 1)]),
+                }
+            )
+            start = pos + max(1, len(needle))
+        if len(hits) >= limit:
+            break
+    return hits
+
+
+def find_exact(needle: str, include_superseded: bool, limit: int, backend: str) -> None:
+    hits = exact_matches(
+        needle,
+        include_superseded=include_superseded,
+        limit=limit,
+        backend=backend,
+    )
     if not hits:
         print("No exact match.")
         return
@@ -1451,6 +1596,12 @@ def main() -> None:
     ep.add_argument("text")
     ep.add_argument("--limit", type=int, default=20)
     ep.add_argument(
+        "--backend",
+        choices=("scan", "trigram"),
+        default="scan",
+        help="Exact backend; trigram is optional and must be built explicitly",
+    )
+    ep.add_argument(
         "--all-statuses",
         action="store_true",
         help="Also search superseded/invalidated memories",
@@ -1479,6 +1630,7 @@ def main() -> None:
     stats_parser = sub.add_parser("stats", help="Show derived SQLite index statistics")
     stats_parser.add_argument("--allow-dirty-preview", action="store_true")
     sub.add_parser("verify", help="Verify ownership, status, visual coverage and recovery pointers")
+    sub.add_parser("build-exact", help="Build the optional disposable exact trigram index")
 
     args = ap.parse_args()
     if args.cmd == "build":
@@ -1522,7 +1674,10 @@ def main() -> None:
             args.text,
             include_superseded=bool(args.all_statuses),
             limit=args.limit,
+            backend=args.backend,
         )
+    elif args.cmd == "build-exact":
+        print(json.dumps(build_exact_trigram_index(), ensure_ascii=False, indent=2))
     elif args.cmd == "link-image":
         target = create_image_link(
             args.image_path,

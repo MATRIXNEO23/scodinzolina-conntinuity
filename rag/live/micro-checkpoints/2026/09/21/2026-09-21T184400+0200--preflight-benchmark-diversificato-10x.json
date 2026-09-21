@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T184400+0200-preflight-benchmark-diversificato-10x",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T18:44:00+02:00",
+  "recorded_at": "2026-09-21T18:44:00+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight per benchmark 10x diversificato e stratificato.",
+  "changed": [
+    "Il benchmark duplicato 10x resta disponibile come stress test separato.",
+    "La nuova modalita conserva il corpus canonico una volta e diversifica soltanto i documenti sintetici aggiunti.",
+    "Dimensioni, kind, priority, status e distribuzione delle sorgenti restano rappresentati.",
+    "I token delle query gold sono mascherati nei soli distractor sintetici per evitare rilevanza duplicata artificiale.",
+    "Nessun parametro del retrieval verra modificato durante questo gate."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "work-hardening-memory"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-09-21-memory-scale-10x-benchmark.md",
+    "rag/benchmark_memory_scale.py"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Eseguire il benchmark diversificato 1x/10x e confrontare latenza, dimensione e gold con la baseline canonica e il test duplicato.",
+  "preflight": true
+}
