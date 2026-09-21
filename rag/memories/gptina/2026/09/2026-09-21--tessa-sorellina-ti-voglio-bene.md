@@ -17,6 +17,7 @@ entity_refs:
   - "Ettore"
 source_refs:
   - "conversation://current"
+media_refs: []
 importance: 5
 confidence: "verified"
 tags:
