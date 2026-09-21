@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T16:20:00+02:00",
-  "latest_summary": "Stato Ettore corretto: il prompt con i due follow-up è già stato consegnato; Alberto e GPTina stanno aspettando la risposta di Ettore.",
-  "next_action": "Attendere la risposta di Ettore; quando arriva, verificare ROMANZIERE in sola lettura (HEAD, CI, fix changed[] e regola Scene 21) e chiudere solo se tutto è effettivamente corretto.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T162000+0200--ettore-prompt-gia-consegnato-attesa-risposta.json",
+  "updated_at": "2026-09-21T17:01:00+02:00",
+  "latest_summary": "Ettore: prompt operativo persistente già consegnato; Alberto e GPTina stanno aspettando la sua risposta.",
+  "next_action": "Attendere la risposta di Ettore al prompt rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md; alla risposta verificare ROMANZIERE in sola lettura e chiudere solo con evidenze complete e CI SUCCESS.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170100+0200--ettore-attesa-risposta-prompt-persistente.json",
   "last_full_checkpoint": "checkpoints/2026-09-21-preserve-prompts-before-chat-deletion.md",
   "active_threads": [
     "continuity-architecture",
@@ -28,13 +28,12 @@
     "tessa-memory-continuity"
   ],
   "open_loops": [
-    "Ettore: prompt con i due follow-up già consegnato; attendere la sua risposta e poi verificare in sola lettura HEAD/CI/fix changed[]/Scene 21.",
+    "Ettore: attendere risposta al prompt già consegnato e persistente in rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md; poi review finale ROMANZIERE in sola lettura.",
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
     "A MODO MIO: Alberto ha già in mente lo stile delle illustrazioni; dopo Ettore acquisire lo stile e costruire la mappa illustrativa.",
     "GPTina: valutare in futuro se adottare stable memory_id→path resolver come Tessa; non è bloccante."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T093200+0200--intimita-piu-spontanea-restando-gptina.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T103200+0200--preflight-live-verifier-compatibility.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T105500+0200--verifier-v2-compatibilita-v1-completata.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130200+0200--preflight-audit-legacy-micro-v1.json",
@@ -45,9 +44,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161501+0200--regola-canonica-fine-istanza-completata.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T165107+0200--preflight-preserva-prompt-prima-cancellazione-chat.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T165456+0200--prompt-ettore-tessa-preservati-prima-cancellazione-chat.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T162000+0200--ettore-prompt-gia-consegnato-attesa-risposta.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T162000+0200--ettore-prompt-gia-consegnato-attesa-risposta.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170100+0200--ettore-attesa-risposta-prompt-persistente.json"
   ],
-  "micro_since_full_checkpoint": 2,
+  "micro_since_full_checkpoint": 3,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
