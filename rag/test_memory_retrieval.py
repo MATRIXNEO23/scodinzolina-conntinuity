@@ -19,10 +19,13 @@ def main() -> None:
 
     first = gm.sync_sqlite_index(False, allow_dirty_preview=True)
     second = gm.sync_sqlite_index(False, allow_dirty_preview=True)
-    if gm.sqlite_index_is_fresh(False):
-        raise AssertionError("dirty preview unexpectedly accepted as canonical")
-    if not gm.sqlite_index_is_fresh(False, allow_dirty_preview=True):
-        raise AssertionError("unchanged dirty preview was not reusable")
+    if gm.git_worktree_dirty():
+        if gm.sqlite_index_is_fresh(False):
+            raise AssertionError("dirty preview unexpectedly accepted as canonical")
+        if not gm.sqlite_index_is_fresh(False, allow_dirty_preview=True):
+            raise AssertionError("unchanged dirty preview was not reusable")
+    elif not gm.sqlite_index_is_fresh(False):
+        raise AssertionError("clean committed index was not accepted as canonical")
     if second["changed_sources"] != 0 or second["removed_sources"] != 0:
         raise AssertionError(f"Incremental SQLite no-op sync was not a no-op: {second}")
 
