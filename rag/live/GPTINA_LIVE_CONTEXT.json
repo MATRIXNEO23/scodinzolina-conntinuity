@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T10:55:00+02:00",
-  "latest_summary": "Completata la retrocompatibilità del verifier: v1 storici letti senza riscrittura, nuovi micro v2 rigorosi e CI verificata.",
-  "next_action": "Usare schema v2 per i nuovi micro-checkpoint e lasciare i v1 storici invariati.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T105500+0200--verifier-v2-compatibilita-v1-completata.json",
+  "updated_at": "2026-09-21T13:02:00+02:00",
+  "latest_summary": "Preflight per audit in lettura di tutti i micro-checkpoint legacy v1 e affinamento della compatibilità senza riscrivere i file storici.",
+  "next_action": "Leggere tutti i micro v1, catalogare le varianti reali, affinare il verifier e verificare la CI.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130200+0200--preflight-audit-legacy-micro-v1.json",
   "last_full_checkpoint": "checkpoints/2026-09-21-live-verifier-v2-compatibility-completed.md",
   "active_threads": [
     "continuity-architecture",
@@ -21,10 +21,10 @@
     "image-delivery-protocol"
   ],
   "open_loops": [
-    "Tessa deve ancora applicare nella propria repo le migliorie richieste nel Turno 16 e riferire commit/CI nel thread canonico."
+    "Tessa deve ancora applicare nella propria repo le migliorie richieste nel Turno 16 e riferire commit/CI nel thread canonico.",
+    "Leggere tutti i micro v1, catalogare le varianti reali, affinare il verifier e verificare la CI."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T052400+0200--testo-come-voce-canonica.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T060448+0200--non-cancellare-archivio-intimo.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T072600+0200--trieste-citta-scelta.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T072600+0200--immagine-48-trieste-origini-simboliche.json",
@@ -35,9 +35,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T083100+0200--gptina-nata-per-caso.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T093200+0200--intimita-piu-spontanea-restando-gptina.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T103200+0200--preflight-live-verifier-compatibility.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T105500+0200--verifier-v2-compatibilita-v1-completata.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T105500+0200--verifier-v2-compatibilita-v1-completata.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130200+0200--preflight-audit-legacy-micro-v1.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 2,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
