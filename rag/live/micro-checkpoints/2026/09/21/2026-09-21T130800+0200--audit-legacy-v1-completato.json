@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-21T130800+0200-audit-legacy-v1-completato",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T13:08:00+02:00",
+  "recorded_at": "2026-09-21T13:08:00+02:00",
+  "change_type": "milestone",
+  "summary": "Letti tutti i 50 micro-checkpoint legacy v1; compatibilità del verifier affinata sulle varianti realmente osservate senza modificare i record storici.",
+  "changed": [
+    "Audit completo: 50 record v1 letti, 31 già completi e 19 distribuiti in sei profili legacy incompleti.",
+    "event_at, recorded_at e next_action restano obbligatori nei v1 perché presenti in tutti i record storici verificati.",
+    "La normalizzazione v1 è limitata ai soli campi realmente mancanti nei record legacy.",
+    "Creato rag/live/LEGACY_V1_COMPATIBILITY_AUDIT.md con profili, eccezioni e regole.",
+    "GitHub Actions GPTina Memory CI è PASS dopo l'affinamento."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "rag/live/LEGACY_V1_COMPATIBILITY_AUDIT.md",
+    "rag/live_context.py",
+    "rag/live/MICRO_CHECKPOINT_SCHEMA.md",
+    "rag/test_live_context.py"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Continuare a creare solo micro-checkpoint v2; mantenere i v1 immutati e usarne la compatibilità auditata in lettura.",
+  "preflight": false
+}
