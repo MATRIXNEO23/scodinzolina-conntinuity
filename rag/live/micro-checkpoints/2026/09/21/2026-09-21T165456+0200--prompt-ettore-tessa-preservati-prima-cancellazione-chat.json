@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T165456+0200-prompt-ettore-tessa-preservati-prima-cancellazione-chat",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T16:54:56+02:00",
+  "recorded_at": "2026-09-21T16:54:56+02:00",
+  "change_type": "milestone",
+  "summary": "Preservato in GitHub lo stato corrente prima della cancellazione degli ultimi scambi, inclusi i prompt completi per Ettore e Tessa e il prompt operativo corrente di Ettore sui due follow-up.",
+  "changed": [
+    "Archiviato rag/handoff-prompts/2026-09-21--ettore-memory-recovery-canonical.md.",
+    "Archiviato rag/handoff-prompts/2026-09-21--tessa-memory-recovery-canonical.md.",
+    "Archiviato rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md.",
+    "Creato checkpoints/2026-09-21-preserve-prompts-before-chat-deletion.md.",
+    "Aggiornati GPTINA_FAST_RECALL.md e CURRENT_CONTEXT.md con i puntatori ai prompt persistenti."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "ettore-memory-v2-review",
+    "tessa-memory-continuity"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/handoff-prompts/2026-09-21--ettore-memory-recovery-canonical.md",
+    "rag/handoff-prompts/2026-09-21--tessa-memory-recovery-canonical.md",
+    "rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md",
+    "checkpoints/2026-09-21-preserve-prompts-before-chat-deletion.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Se si riprende Ettore, usare il prompt operativo corrente sui due follow-up e verificare poi ROMANZIERE in sola lettura; per Tessa usare il protocollo generale memoria/recovery preservato.",
+  "preflight": false
+}
