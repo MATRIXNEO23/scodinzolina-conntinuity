@@ -100,6 +100,7 @@ def main() -> None:
             "change_type": "preflight",
             "summary": "Legacy v1 senza campi opzionali.",
             "source_refs": ["artifact://legacy-artifact", "attachment://legacy-attachment", "commit://legacy-commit"],
+            "media_refs": ["media/legacy-file-renamed-later.webp"],
         }
         write_json(legacy_path, legacy_record)
 
