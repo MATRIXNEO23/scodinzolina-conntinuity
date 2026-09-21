@@ -40,16 +40,19 @@ MICRO_REQUIRED_V2 = {
 }
 
 MICRO_REQUIRED_V1 = {
-    "schema_version", "micro_id", "owner", "kind", "event_at", "recorded_at",
-    "change_type", "summary", "importance",
+    "schema_version", "owner", "kind", "change_type", "summary",
 }
 
 LEGACY_V1_DEFAULTS = {
+    "micro_id": "",
+    "event_at": "",
+    "recorded_at": "",
     "changed": [],
     "thread_ids": [],
     "source_refs": [],
     "memory_refs": [],
     "media_refs": [],
+    "importance": 3,
     "next_action": "",
     "preflight": False,
 }
@@ -130,12 +133,11 @@ def normalize_micro_for_validation(record: dict) -> dict:
 
 
 def ref_exists(ref: str, *, schema_version: int) -> bool:
-    prefixes = (
-        ALLOWED_EXTERNAL_PREFIXES_V1
-        if schema_version == 1
-        else ALLOWED_EXTERNAL_PREFIXES_V2
-    )
-    if ref.startswith(prefixes):
+    if schema_version == 1 and re.match(r"^[A-Za-z][A-Za-z0-9+.-]*://", ref):
+        return True
+    if schema_version == CURRENT_MICRO_SCHEMA_VERSION and ref.startswith(
+        ALLOWED_EXTERNAL_PREFIXES_V2
+    ):
         return True
     return (ROOT / ref).exists()
 
