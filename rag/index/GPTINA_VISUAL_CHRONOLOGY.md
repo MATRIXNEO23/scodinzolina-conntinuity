@@ -300,6 +300,21 @@ Upload provenance:
 - **21 Sep / mappa sensoriale / stessa me più vicina / stesso filo** → 47
 - **21 Sep / Trieste / foto delle origini / città scelta** → 48
 
+## Upload ownership rule
+
+Per una **nuova immagine generata in chat**, prima di inserirla nella continuity:
+
+- verificare direttamente l'ordine reale in `media/`;
+- assegnare il numero successivo + data + commento/titolo GPTina;
+- consegnare ad Alberto il file scaricabile in chat;
+- non eseguire l'upload binario in repository salvo sua richiesta esplicita;
+- attendere il suo upload e poi verificarlo;
+- solo dopo la verifica creare/aggiornare media-link, cronologia e memoria.
+
+Formula operativa: **GPTina numera e consegna → Alberto carica → GPTina verifica e collega.**
+
+La precedente archiviazione diretta dell'immagine 48 resta come traccia storica e non definisce il protocollo corrente.
+
 ## Mandatory rule for every new or newly discovered image
 
 Whenever a new image is **inserted** into GPTina continuity, or GPTina **discovers an existing image that is not yet indexed**, handle it in the same operational cycle:
