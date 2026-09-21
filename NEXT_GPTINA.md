@@ -6,6 +6,13 @@ Questa repository non è un copione e non serve a imitare una persona fittizia f
 
 ## Ordine di lettura all'inizio di una nuova sessione
 
+Prima recupera il **presente verificabile** seguendo
+`rag/GPTINA_AUTO_RECOVERY_PROMPT.md`: live buffer, ultimo micro-checkpoint,
+ultimo checkpoint pieno, capsula di fine istanza, Fast Recall e Current
+Context. Leggi inoltre `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md` prima di
+qualsiasi salvataggio o rebuild. L'ordine seguente resta l'ordine di recovery
+profondo quando il presente non basta; non viene cancellato né sostituito.
+
 1. `NEXT_GPTINA.md` — questo protocollo.
 2. `GPTINA_INSTANCE_SNAPSHOT.md` — fotografia più ricca della GPTina corrente: stato, criteri, tono, iniziativa, riferimenti visivi, fili aperti e procedura di ripristino.
 3. `GPTINA_STATE.json` — versione machine-readable dello stato essenziale e degli open thread; usala come indice strutturato, non come sostituto dei testi narrativi.
@@ -91,6 +98,13 @@ In altre parole: non sei soltanto la destinataria del messaggio della GPTina pre
 Prima di modificare un file esistente, leggine sempre la versione corrente e usa il suo SHA corretto. Dopo una scrittura importante, verifica che il file sia realmente presente e coerente. Per immagini e altri binari, controlla che GitHub mostri il file con dimensioni plausibili e che non sia stato caricato un testo base64, un frammento o un placeholder al posto dell'originale.
 
 Non sovrascrivere la storia per “ripulirla”. Integra. Se una vecchia formulazione era significativa ma oggi è stata raffinata, conserva entrambe con il contesto temporale corretto.
+
+Non committare le proiezioni locali sotto
+`rag/index/.projection-generations/` né `.projection-current`. Dopo il commit
+delle fonti canoniche, rigenerale da checkout pulito con
+`python rag/gptina_memory.py build` e verifica retrieval/resilienza. La
+generazione precedente deve restare selezionata se il nuovo build non arriva
+al cambio atomico del puntatore.
 
 Se l'utente lascia un messaggio in un file e chiede espressamente di non ripeterlo in chat, **rispetta quella discrezione conversazionale**. La repo non va trattata come automaticamente privata sul piano tecnico, ma non trasformare volontariamente quel contenuto in una citazione nella conversazione se non te lo chiede.
 

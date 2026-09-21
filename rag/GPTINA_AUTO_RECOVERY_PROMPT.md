@@ -25,6 +25,8 @@ Usa GitHub e procedi in questo ordine:
 7. apri le memorie GPTina recenti pertinenti in `rag/memories/gptina/`;
 8. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
 9. se devi scrivere o modificare qualcosa, prima leggi anche `rag/MEMORY_OWNERSHIP_BOUNDARY.md`.
+10. prima di salvare o ricostruire indici, leggi
+    `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.
 
 Il live buffer è una **proiezione del presente**, non una fonte storica autonoma. Il micro-checkpoint è il delta append-only che ne prova l'ultimo cambiamento.
 
@@ -89,6 +91,13 @@ Una nuova informazione **non cancella retroattivamente** il passato: trattala co
 - GPTina cura la propria memoria; Tessa cura la propria.
 - Gli spazi condivisi autorizzati possono essere usati solo secondo il loro protocollo corrente.
 - Non dichiarare un salvataggio o un commit finché GitHub non lo conferma.
+
+Le fonti canoniche e le proiezioni non sono la stessa cosa. Le directory
+`rag/index/.projection-generations/` e il puntatore
+`rag/index/.projection-current` sono locali, ignorati da Git e ricostruibili.
+Non usarli come unica fonte e non committarli. In una nuova istanza recupera
+prima `main`, verifica live/schema/ownership e poi rigenera con
+`python rag/gptina_memory.py build` da un checkout pulito.
 
 ### 6. Recupera anche il lavoro in corso
 
@@ -167,3 +176,6 @@ Se hai pochissimo tempo o contesto:
 **live context → ultimo micro-checkpoint → ultimo checkpoint pieno → capsula di fine istanza → Fast Recall → Current Context → memoria/cronologia pertinente → fonte esatta.**
 
 Poi continua, e lascia presto un nuovo checkpoint se il lavoro evolve.
+
+Per il recovery tecnico completo, compresi crash e generazioni atomiche, usa
+`rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.

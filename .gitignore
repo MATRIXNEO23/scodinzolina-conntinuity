@@ -7,6 +7,8 @@ rag/index/gptina_memory.sqlite3-shm
 rag/index/gptina_exact_trigram.sqlite3
 rag/index/gptina_exact_trigram.sqlite3.tmp
 rag/index/gptina_exact_trigram.sqlite3.tmp-journal
+rag/index/gptina_exact_trigram.sqlite3.tmp-*
+rag/index/gptina_exact_trigram.sqlite3.tmp-*-journal
 rag/index/.projection-build.lock
 rag/index/.projection-current
 rag/index/.projection-generations/

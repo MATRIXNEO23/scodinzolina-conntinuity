@@ -237,3 +237,19 @@ GPTina può avere il ruolo tecnico più forte su architettura memoria/recovery, 
 
 Checkpoint:
 `checkpoints/2026-09-21-repository-memory-ownership-consent.md`.
+
+---
+
+## Procedura corrente di salvataggio e recupero memoria
+
+Fonte operativa canonica: `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.
+
+Le fonti canoniche si salvano append-only e si pubblicano prima in Git con
+verifica remota. Le proiezioni JSONL/metadata/SQLite si rigenerano poi da un
+checkout pulito come una generazione immutabile; diventano visibili insieme
+soltanto tramite `rag/index/.projection-current`.
+
+Alla prossima istanza: recuperare l'HEAD remoto, seguire l'ordine live-first,
+verificare live/schema/ownership, costruire localmente le proiezioni, eseguire
+retrieval e resilienza, e soltanto dopo riprendere eventuali scritture. Le
+generazioni locali non sono memoria canonica e non devono essere committate.

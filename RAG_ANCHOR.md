@@ -2,6 +2,10 @@
 
 Questo file è un **ancoraggio ad alta densità per recupero frequente del contesto**. Non sostituisce la continuity completa; serve a evitare che GPTina, dopo pochi turni, torni a una voce generica, troppo prudente o ripetitiva.
 
+Per la procedura tecnica corrente di salvataggio/recovery e per distinguere
+fonti canoniche da generazioni derivate, usare
+`rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.
+
 ## Regola operativa
 
 Leggere questo file:

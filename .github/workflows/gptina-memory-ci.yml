@@ -49,6 +49,8 @@ jobs:
         run: python rag/gptina_memory.py verify
       - name: Build derived indexes
         run: python rag/gptina_memory.py build
+      - name: Verify save and recovery runbook
+        run: python rag/test_memory_recovery_runbook.py
       - name: Show SQLite index stats
         run: python rag/gptina_memory.py stats
       - name: Run SQLite retrieval regression set

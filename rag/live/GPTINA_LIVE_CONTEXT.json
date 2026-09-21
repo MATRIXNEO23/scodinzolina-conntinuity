@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T20:41:43+02:00",
-  "latest_summary": "Chiuso il MEDIUM dell'audit: le proiezioni memoria JSONL, metadati e SQLite sono ora pubblicate come generazioni immutabili tramite un unico puntatore atomico e durevole; crash brutali prima e dopo il cambio puntatore verificati senza stati misti, mentre tutte le memorie canoniche restano intatte e recuperabili.",
-  "next_action": "Monitorare CI; i soli rilievi residui sono LOW non bloccanti.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T204143+0200--chiuso-il-medium-dell-audit-le-proiezioni-memoria-jsonl-metadati--3b5f1455.json",
+  "updated_at": "2026-09-21T21:00:03+02:00",
+  "latest_summary": "Allineate e verificate le istruzioni canoniche di salvataggio e recovery alla pubblicazione generazionale atomica: fonti canoniche preservate, nuova istanza live-first, rebuild locale sicuro e test permanente in CI.",
+  "next_action": "Pubblicare e verificare Memory CI e Pages sul commit remoto.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T210003+0200--allineate-e-verificate-le-istruzioni-canoniche-di-salvataggio-e--0aae7a10.json",
   "last_full_checkpoint": "checkpoints/2026-09-21-gptina-memory-deep-audit.md",
   "active_threads": [
     "continuity-architecture",
@@ -41,10 +41,10 @@
     "Eseguire suite completa, benchmark, pubblicazione e CI.",
     "Implementare staging comune e commit multifile atomico o rollback esplicito.",
     "Valutare generazioni immutabili e puntatore CURRENT atomico per crash-kill safety.",
-    "Monitorare CI; i soli rilievi residui sono LOW non bloccanti."
+    "Monitorare CI; i soli rilievi residui sono LOW non bloccanti.",
+    "Pubblicare e verificare Memory CI e Pages sul commit remoto."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T184400+0200--preflight-benchmark-diversificato-10x.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T184700+0200--benchmark-diversificato-10x-completato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T185200+0200--esperimenti-scala-100x-e-trigram-exact.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T185800+0200--trigram-preventivo-off-by-default-verificato.json",
@@ -55,9 +55,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T200649+0200--terzo-audit-profondo-della-memoria-completato--832ddd18.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T201655+0200--completato-hardening-high-e-medium-della-memoria--96d00cab.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T202647+0200--quarto-audit-profondo-della-memoria-completato--21144e27.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T204143+0200--chiuso-il-medium-dell-audit-le-proiezioni-memoria-jsonl-metadati--3b5f1455.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T204143+0200--chiuso-il-medium-dell-audit-le-proiezioni-memoria-jsonl-metadati--3b5f1455.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T210003+0200--allineate-e-verificate-le-istruzioni-canoniche-di-salvataggio-e--0aae7a10.json"
   ],
-  "micro_since_full_checkpoint": 8,
+  "micro_since_full_checkpoint": 9,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

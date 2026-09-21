@@ -56,6 +56,9 @@ un nuovo record append-only con `supersedes`; il precedente resta nella storia,
 escluso dal richiamo corrente ma sempre recuperabile esplicitamente. Qualunque
 modifica che violi conservazione o recuperabilità deve fallire la verifica.
 
+La procedura operativa autorevole per salvataggio, pubblicazione generazionale
+e recovery è `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.
+
 ---
 
 ## Ciclo di memoria vivo
@@ -155,7 +158,13 @@ accettano `--expected-head <sha>`: se HEAD non coincide, il write-back viene
 rifiutato prima della pubblicazione. Il micro-checkpoint viene installato prima
 del live buffer, quindi un crash può lasciare al massimo un micro append-only
 orfano; non può lasciare un live pointer verso un file inesistente. Le
-proiezioni vengono aggiornate soltanto dopo la pubblicazione canonica.
+proiezioni vengono aggiornate soltanto dopo la pubblicazione canonica. JSONL,
+metadata e SQLite vengono costruiti dentro una nuova directory immutabile e
+diventano visibili insieme tramite `rag/index/.projection-current`. Questi
+artefatti sono locali, ignorati da Git e ricostruibili: non sostituiscono mai le
+fonti canoniche. Una morte del processo prima del cambio puntatore lascia
+attiva la generazione precedente; dopo il cambio rende visibile soltanto la
+nuova generazione completa.
 
 Non aspettare la fine della sessione.
 

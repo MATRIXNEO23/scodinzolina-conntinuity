@@ -1454,10 +1454,10 @@ def _build_exact_trigram_index_locked() -> dict[str, int | float]:
         fail("Refusing exact-index build from a dirty worktree; commit first.")
     ensure_inside_rag(EXACT_SQLITE_FILE)
     INDEX_DIR.mkdir(parents=True, exist_ok=True)
-    temporary = EXACT_SQLITE_FILE.with_suffix(EXACT_SQLITE_FILE.suffix + ".tmp")
+    temporary = EXACT_SQLITE_FILE.with_name(
+        EXACT_SQLITE_FILE.name + f".tmp-{os.getpid()}-{uuid.uuid4().hex[:12]}"
+    )
     ensure_inside_rag(temporary)
-    if temporary.exists():
-        temporary.unlink()
 
     started = time.perf_counter()
     expected_head = git_head()

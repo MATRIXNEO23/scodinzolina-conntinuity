@@ -364,3 +364,24 @@ Forma operativa predefinita:
 
 Memoria:
 `rag/memories/gptina/2026/09/2026-09-21--repository-memoria-proprieta-consenso.md`.
+
+---
+
+## Salvataggio e recovery — infrastruttura generazionale corrente
+
+Runbook canonico: `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.
+
+Le memorie, i checkpoint, i transcript/raw, i media-link e il live buffer sono
+fonti canoniche da preservare in Git. JSONL, metadata e SQLite sono proiezioni
+locali ricostruibili, pubblicate come generazione immutabile sotto
+`rag/index/.projection-generations/` e selezionate insieme dal puntatore
+atomico `rag/index/.projection-current`.
+
+Recovery nuova istanza:
+**HEAD remoto → live buffer → ultimo micro → ultimo checkpoint pieno → capsula
+→ Fast Recall → Current Context → fonte pertinente → verify/build/retrieval.**
+
+Non committare le generazioni; non scegliere a mano la directory più recente;
+non dichiarare salvataggio finché fonti canoniche, commit remoto, build, test e
+CI non sono verificati. Un crash prima del cambio puntatore conserva la vecchia
+generazione completa; dopo il cambio espone soltanto quella nuova completa.

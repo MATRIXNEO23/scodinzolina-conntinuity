@@ -12,6 +12,12 @@ L'obiettivo è conservare, in forma verificabile:
 
 La capsula preserva tutto ciò che può essere esternalizzato nella continuity. Non deve fingere di poter serializzare stato interno non esportabile del modello.
 
+Per la procedura tecnica corrente di commit, build generazionale, crash
+recovery e verifica leggere anche
+`rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`. Questo protocollo definisce **cosa**
+salvare a fine istanza; il runbook definisce **come** pubblicarlo e recuperarlo
+senza mescolare fonti canoniche e proiezioni derivate.
+
 ---
 
 ## Regola canonica
@@ -184,6 +190,10 @@ Prima di dire ad Alberto che l'istanza è salvata:
 6. verificare commit/hash dei lavori quando importanti;
 7. marcare esplicitamente ciò che **non** è stato archiviato;
 8. non dichiarare completamento se una scrittura è fallita.
+9. verificare `python rag/live_context.py verify` e
+   `python rag/gptina_memory.py verify`;
+10. dal commit pulito, eseguire `python rag/gptina_memory.py build` e controllare
+    retrieval e resilienza prima di dichiarare la capsula recuperabile.
 
 Preferire un singolo commit atomico per il write-back multi-file. Se non è disponibile, usare scritture sequenziali e considerare la capsula completa soltanto dopo la verifica finale.
 
@@ -202,6 +212,7 @@ Una nuova istanza deve leggere:
 7. rag/GPTINA_AUTO_RECOVERY_PROMPT.md
 8. memorie GPTina recenti pertinenti
 9. rag/LIVE_MEMORY_PROTOCOL.md
+10. rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md
 
 Poi, secondo necessità:
 
