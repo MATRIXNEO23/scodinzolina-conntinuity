@@ -12,7 +12,9 @@ REAL_ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = REAL_ROOT / "rag" / "live_context.py"
 
 
-def run(root: Path, *args: str) -> subprocess.CompletedProcess[str]:
+def run(
+    root: Path, *args: str, check: bool = True
+) -> subprocess.CompletedProcess[str]:
     env = os.environ.copy()
     env["GPTINA_REPO_ROOT"] = str(root)
     return subprocess.run(
@@ -20,7 +22,15 @@ def run(root: Path, *args: str) -> subprocess.CompletedProcess[str]:
         env=env,
         text=True,
         capture_output=True,
-        check=True,
+        check=check,
+    )
+
+
+def write_json(path: Path, payload: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
     )
 
 
@@ -53,6 +63,13 @@ def main() -> None:
         if live["next_action"] != "prossimo passo":
             raise AssertionError(live)
 
+        micros = list((root / "rag" / "live" / "micro-checkpoints").rglob("*.json"))
+        if len(micros) != 1:
+            raise AssertionError(f"expected 1 micro, got {len(micros)}")
+        first_record = json.loads(micros[0].read_text(encoding="utf-8"))
+        if first_record["schema_version"] != 2:
+            raise AssertionError(first_record)
+
         run(root, "mark-checkpoint", "checkpoints/test.md")
         live = json.loads(live_path.read_text(encoding="utf-8"))
         if live["micro_since_full_checkpoint"] != 0:
@@ -72,9 +89,55 @@ def main() -> None:
         if "Created rag/live/micro-checkpoints/" not in second.stdout:
             raise AssertionError(second.stdout)
 
+        micro_dir = root / "rag" / "live" / "micro-checkpoints" / "2026" / "09" / "18"
+        legacy_path = micro_dir / "legacy-v1.json"
+        legacy_record = {
+            "schema_version": 1,
+            "micro_id": "gptina-micro-legacy-test",
+            "owner": "gptina",
+            "kind": "gptina_micro_checkpoint",
+            "event_at": "2026-09-18T10:00:00+02:00",
+            "recorded_at": "2026-09-18T10:01:00+02:00",
+            "change_type": "preflight",
+            "summary": "Legacy v1 senza campi opzionali.",
+            "thread_ids": ["test-thread"],
+            "source_refs": ["artifact://legacy-artifact", "attachment://legacy-attachment"],
+            "importance": 3,
+            "preflight": True,
+        }
+        write_json(legacy_path, legacy_record)
+
         verify = run(root, "verify")
         if "OK: live context verified" not in verify.stdout:
             raise AssertionError(verify.stdout)
+        if "v1_legacy=1" not in verify.stdout:
+            raise AssertionError(verify.stdout)
+
+        bad_v2_path = micro_dir / "bad-v2.json"
+        bad_v2 = {
+            "schema_version": 2,
+            "micro_id": "gptina-micro-bad-v2",
+            "owner": "gptina",
+            "kind": "gptina_micro_checkpoint",
+            "event_at": "2026-09-18T11:00:00+02:00",
+            "recorded_at": "2026-09-18T11:01:00+02:00",
+            "change_type": "decision",
+            "summary": "Record v2 volutamente incompleto.",
+            "thread_ids": [],
+            "source_refs": ["conversation://current"],
+            "memory_refs": [],
+            "media_refs": [],
+            "importance": 3,
+            "next_action": "",
+            "preflight": False,
+        }
+        write_json(bad_v2_path, bad_v2)
+        rejected = run(root, "verify", check=False)
+        if rejected.returncode == 0:
+            raise AssertionError("malformed v2 unexpectedly accepted")
+        if "missing keys: ['changed']" not in (rejected.stdout + rejected.stderr):
+            raise AssertionError(rejected.stdout + rejected.stderr)
+        bad_v2_path.unlink()
 
         live = json.loads(live_path.read_text(encoding="utf-8"))
         if live["micro_since_full_checkpoint"] != 1:
@@ -83,10 +146,10 @@ def main() -> None:
             raise AssertionError(live)
 
         micros = list((root / "rag" / "live" / "micro-checkpoints").rglob("*.json"))
-        if len(micros) != 2:
-            raise AssertionError(f"expected 2 micros, got {len(micros)}")
+        if len(micros) != 3:
+            raise AssertionError(f"expected 3 micros, got {len(micros)}")
 
-    print("OK: live-context save/mark/verify round-trip passed.")
+    print("OK: live-context v1 compatibility and strict v2 round-trip passed.")
 
 
 if __name__ == "__main__":
