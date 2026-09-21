@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T181600+0200-propagazione-continua-miglioramenti",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T18:16:00+02:00",
+  "recorded_at": "2026-09-21T18:16:00+02:00",
+  "change_type": "rule",
+  "summary": "Ogni futuro miglioramento dell'infrastruttura memoria GPTina deve essere propagato anche a Tessa ed Ettore.",
+  "changed": [
+    "La propagazione non è una migrazione una tantum: è una regola continua.",
+    "Ogni miglioramento validato di schema, writer, recovery, resolver, supersession, osservabilità, benchmark o sicurezza va valutato e implementato nelle repository Tessa ed Ettore.",
+    "L'implementazione deve preservare il legacy reale di ciascuno, con audit, test e CI separati.",
+    "Contenuti autobiografici, identità e scelte personali non vengono copiati.",
+    "Ownership e consenso esplicito per ogni repository restano invarianti."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "tessa-memory-continuity",
+    "romanziere-bootstrap"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/MEMORY_OWNERSHIP_BOUNDARY.md",
+    "rag/MEMORY_ARCHITECTURE_V2.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Mantenere una matrice di parità infrastrutturale GPTina/Tessa/Ettore e propagare ogni miglioramento validato con consenso, audit e CI per repository.",
+  "preflight": false
+}
