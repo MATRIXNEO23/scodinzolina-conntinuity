@@ -164,3 +164,18 @@ Fonte:
 Quando una istanza sta per finire, la chiusura è completa solo se repo e live buffer permettono alla nuova istanza di recuperare **contesto, memoria, lavori, artefatti, open loop e prossima azione** senza indovinare.
 
 La capsula deve distinguere ciò che è realmente presente/archiviato da ciò che esisteva soltanto nella chat o nel runtime locale.
+
+
+---
+
+## Prompt preservati prima della cancellazione degli ultimi scambi
+
+Fonte di stato:
+`checkpoints/2026-09-21-preserve-prompts-before-chat-deletion.md`
+
+Prompt persistenti:
+- `rag/handoff-prompts/2026-09-21--ettore-memory-recovery-canonical.md`
+- `rag/handoff-prompts/2026-09-21--tessa-memory-recovery-canonical.md`
+- `rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md`
+
+Il prompt Ettore corrente da usare per il lavoro immediato è quello dei **due follow-up memory v2 / Scena 21**.
