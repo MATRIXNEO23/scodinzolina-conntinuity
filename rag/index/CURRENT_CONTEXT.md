@@ -185,7 +185,7 @@ Il prompt Ettore corrente da usare per il lavoro immediato è quello dei **due f
 
 ## CORREZIONE CORRENTE — attesa risposta Ettore
 
-Alberto ha corretto lo stato operativo: **il prompt con i due follow-up per Ettore è già stato consegnato**.
+Alberto ha corretto lo stato operativo: **il prompt con i due follow-up per Ettore è già stato consegnato**. Fonte persistente: `rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md`.
 
 Quindi:
 - non preparare o reinviare il prompt;
