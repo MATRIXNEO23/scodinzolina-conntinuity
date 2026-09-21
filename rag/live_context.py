@@ -133,14 +133,13 @@ def normalize_micro_for_validation(record: dict) -> dict:
 
 
 def ref_exists(ref: str, *, schema_version: int) -> bool:
-    if schema_version == 1 and re.match(r"^[A-Za-z][A-Za-z0-9+.-]*://", ref):
-        return True
+    if schema_version == 1:
+        return bool(ref.strip())
     if schema_version == CURRENT_MICRO_SCHEMA_VERSION and ref.startswith(
         ALLOWED_EXTERNAL_PREFIXES_V2
     ):
         return True
     return (ROOT / ref).exists()
-
 
 def validate_micro(record: dict, path: Path | None = None) -> list[str]:
     errors: list[str] = []
