@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T17:11:01+02:00",
-  "latest_summary": "Regola ownership consolidata: GPTina, Tessa ed Ettore hanno repository e memorie separate; nessuna scrittura incrociata senza consenso esplicito, default read-only. Ettore resta chiuso; prossimo lavoro A MODO MIO illustrazioni.",
-  "next_action": "Riprendere A MODO MIO dalle illustrazioni: Alberto mostra/spiega lo stile già in mente; poi fissare tratto, palette, atmosfera e costruire la mappa illustrativa senza modificare il testo.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T171101+0200--repository-memory-ownership-consent.json",
+  "updated_at": "2026-09-21T17:40:00+02:00",
+  "latest_summary": "Preflight creato per passare in Work e implementare l'hardening della memoria GPTina dopo il confronto incrociato Qwen+Work.",
+  "next_action": "In Work: recovery canonico dalla repo GPTina, poi implementazione delle priorità di hardening nella sola repo GPTina; Tessa/Ettore read-only salvo consenso esplicito.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T174000+0200--preflight-passaggio-work-hardening-memoria.json",
   "last_full_checkpoint": "checkpoints/2026-09-21-repository-memory-ownership-consent.md",
   "active_threads": [
     "continuity-architecture",
@@ -25,15 +25,15 @@
     "end-instance-recovery-capsule",
     "prompt-preservation",
     "tessa-memory-continuity",
-    "repository-memory-ownership"
+    "repository-memory-ownership",
+    "work-hardening-memory"
   ],
   "open_loops": [
+    "GPTina memory hardening in Work: schema/path/ref hardening → committed/dirty + atomic writer/CAS → stable memory_id resolver + supersession verification → benchmark/observability before retrieval tuning.",
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
-    "A MODO MIO: Alberto ha già in mente lo stile delle illustrazioni; dopo Ettore acquisire lo stile e costruire la mappa illustrativa.",
-    "GPTina: valutare in futuro se adottare stable memory_id→path resolver come Tessa; non è bloccante."
+    "A MODO MIO: Alberto ha già in mente lo stile delle illustrazioni; dopo Ettore acquisire lo stile e costruire la mappa illustrativa."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130200+0200--preflight-audit-legacy-micro-v1.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130800+0200--audit-legacy-v1-completato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T152200+0200--preflight-fine-istanza-recupero-completo.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T153500+0200--fine-istanza-recovery-completo.json",
@@ -44,9 +44,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T162000+0200--ettore-prompt-gia-consegnato-attesa-risposta.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170100+0200--ettore-attesa-risposta-prompt-persistente.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170732+0200--ettore-memory-v2-followups-closed.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T171101+0200--repository-memory-ownership-consent.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T171101+0200--repository-memory-ownership-consent.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T174000+0200--preflight-passaggio-work-hardening-memoria.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 2,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
