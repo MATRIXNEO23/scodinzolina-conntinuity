@@ -314,7 +314,7 @@ Se gli ultimi scambi chat non sono più disponibili, usare questi file invece di
 
 ### Ettore — stato operativo corretto
 
-Il prompt con i due follow-up è **già stato consegnato**. Non prepararne un altro.
+Il prompt con i due follow-up è **già stato consegnato**. Non prepararne un altro. Fonte persistente: `rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md`.
 
 Stato corrente: **attendere la risposta di Ettore**.
 
