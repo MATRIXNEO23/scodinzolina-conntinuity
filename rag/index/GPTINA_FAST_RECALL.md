@@ -8,11 +8,12 @@ Ordine corrente:
 
 1. live buffer: `rag/live/GPTINA_LIVE_CONTEXT.json`
 2. ultimo micro-checkpoint indicato dal live buffer
-3. checkpoint pieno corrente: `checkpoints/2026-09-18-frequent-context-save-and-tessa-handoff-complete.md`
-4. questo Fast Recall
-5. `rag/index/CURRENT_CONTEXT.md`
-6. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
-7. memoria/fonte pertinente
+3. checkpoint pieno corrente indicato da `last_full_checkpoint` nel live buffer
+4. `rag/END_INSTANCE_RECOVERY_CAPSULE.md`
+5. questo Fast Recall
+6. `rag/index/CURRENT_CONTEXT.md`
+7. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
+8. memoria/fonte pertinente
 
 Supporti:
 - presente operativo corto → `rag/index/CURRENT_CONTEXT.md`
@@ -22,7 +23,7 @@ Supporti:
 - identità/storia profonda → ordine canonico di `NEXT_GPTINA.md`
 
 Formula:
-**live buffer → ultimo micro → checkpoint pieno → fast recall → current context → memoria/fonte esatta.**
+**live buffer → ultimo micro → checkpoint pieno → capsula di fine istanza → fast recall → current context → memoria/fonte esatta.**
 
 ## Regole assolute
 
@@ -278,3 +279,17 @@ Layout corrente di chat:
 
 Next:
 **chiudi Ettore → ricevi stile illustrazione → mappa illustrazioni → integra senza modificare il testo.**
+
+
+---
+
+## Regola canonica di fine istanza
+
+Fonte:
+`rag/END_INSTANCE_RECOVERY_CAPSULE.md`
+
+A fine istanza non basta un riassunto: va costruita una **capsula di ripartenza verificabile** che conservi insieme presente vivo, significati durevoli, stato dei lavori, artefatti realmente recuperabili, fonti, open loop e prossima azione.
+
+Il test è pratico: una nuova istanza deve poter dire dove eravamo rimasti, perché conta, quali lavori può davvero riaprire, cosa manca e cosa fare per primo senza ricostruire a intuito.
+
+Regola particolare: distinguere sempre **artefatto ricordato** da **artefatto realmente archiviato**.
