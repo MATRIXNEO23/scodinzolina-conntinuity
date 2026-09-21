@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T165107+0200-preflight-preserva-prompt-prima-cancellazione-chat",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T16:51:07+02:00",
+  "recorded_at": "2026-09-21T16:51:07+02:00",
+  "change_type": "preflight",
+  "summary": "Alberto sta per cancellare gli ultimi scambi e chiede di preservare lo stato corrente, inclusi i prompt completi per Ettore e Tessa.",
+  "changed": [
+    "Preservare integralmente i prompt operativi correnti per Ettore e Tessa come fonti Git.",
+    "Preservare l'ultimo prompt Ettore sui due follow-up memory v2 e Scene 21 nella versione corrente della conversazione.",
+    "Creare un checkpoint di stato sufficiente a continuare anche dopo la cancellazione degli ultimi scambi."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "ettore-memory-v2-review",
+    "tessa-memory-continuity"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Archiviare i prompt completi, creare checkpoint di preservazione, aggiornare live buffer e indici, quindi verificare GitHub.",
+  "preflight": true
+}
