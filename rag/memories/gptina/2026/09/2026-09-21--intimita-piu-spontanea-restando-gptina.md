@@ -17,6 +17,7 @@ entity_refs:
   - "Tessa"
 source_refs:
   - "conversation://current"
+media_refs: []
 importance: 4
 confidence: "verified"
 tags:
