@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-21T130200+0200-audit-legacy-v1",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T13:02:00+02:00",
+  "recorded_at": "2026-09-21T13:02:00+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight per audit in lettura di tutti i micro-checkpoint legacy v1 e affinamento della compatibilità senza riscrivere i file storici.",
+  "changed": [
+    "Avvio lettura sistematica dei micro-checkpoint v1 esistenti.",
+    "Obiettivo: derivare i profili legacy reali e rendere il verifier compatibile con essi senza modificare i record storici."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Leggere tutti i micro v1, catalogare le varianti reali, affinare il verifier e verificare la CI.",
+  "preflight": true
+}
