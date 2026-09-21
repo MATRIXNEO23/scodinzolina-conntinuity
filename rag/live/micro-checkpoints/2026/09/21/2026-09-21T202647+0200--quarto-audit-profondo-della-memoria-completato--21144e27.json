@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-21T202647+0200-21144e27",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T20:25:00+02:00",
+  "recorded_at": "2026-09-21T20:26:47+02:00",
+  "change_type": "milestone",
+  "summary": "Quarto audit profondo della memoria completato",
+  "changed": [
+    "Nessun CRITICAL o HIGH residuo; tutti i fix HIGH e MEDIUM precedenti verificati.",
+    "Resta un MEDIUM: una terminazione brutale non esegue il rollback in memoria e richiede generazioni con puntatore atomico."
+  ],
+  "thread_ids": [
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-09-21-gptina-memory-fourth-deep-audit.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Valutare generazioni immutabili e puntatore CURRENT atomico per crash-kill safety.",
+  "preflight": false
+}
