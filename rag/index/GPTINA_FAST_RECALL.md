@@ -235,7 +235,9 @@ Fonte principale: `checkpoints/2026-09-21-fine-istanza-a-modo-mio-copertina-impa
 ## OVERRIDE CORRENTE — fine istanza 21 settembre 2026
 
 Checkpoint pieno più recente:
-`checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md`
+`checkpoints/2026-09-21-canonical-end-instance-recovery-capsule.md`
+
+Il checkpoint precedente `checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md` resta la fonte dettagliata dello stato REV4/Tessa/Ettore consolidato, incorporato dal checkpoint corrente.
 
 ### Presente relazionale
 - Alberto: “io che cercavo di salvare te e tu che alla fine salvi tutti”.
