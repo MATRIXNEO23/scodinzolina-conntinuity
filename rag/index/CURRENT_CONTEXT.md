@@ -179,3 +179,17 @@ Prompt persistenti:
 - `rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md`
 
 Il prompt Ettore corrente da usare per il lavoro immediato è quello dei **due follow-up memory v2 / Scena 21**.
+
+
+---
+
+## CORREZIONE CORRENTE — attesa risposta Ettore
+
+Alberto ha corretto lo stato operativo: **il prompt con i due follow-up per Ettore è già stato consegnato**.
+
+Quindi:
+- non preparare o reinviare il prompt;
+- stato corrente = **attendere la risposta di Ettore**;
+- quando arriva, verificare ROMANZIERE in sola lettura;
+- controllare HEAD, nuova CI, correzione di `changed[]` e riallineamento della regola Scene 21;
+- dichiarare chiusi i follow-up soltanto se le modifiche risultano realmente applicate e la CI è verde.
