@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T170732+0200-ettore-memory-v2-followups-closed",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T17:07:32+02:00",
+  "recorded_at": "2026-09-21T17:07:32+02:00",
+  "change_type": "milestone",
+  "summary": "Review finale Ettore completata in sola lettura: i due follow-up memory v2/Scene 21 sono verificati e chiusi con CI verde sull'HEAD finale.",
+  "changed": [
+    "Verificato ROMANZIERE HEAD bf86c321e19c838848635300b82a9e2ed32fe0c1.",
+    "Verificata Romanziere Memory CI run 35615720174 SUCCESS sullo stesso HEAD.",
+    "Confermato changed[] fuori da validate_v2_refs().ref_fields e coperto da regression test.",
+    "Confermato missing local source_refs come errore atteso.",
+    "Confermata regola Scene 21: origine del romanzo resta, making-of successivo escluso.",
+    "Precisata provenance: fix codice changed[] nei commit 6b671c... e cc3ef0...; targeted commit 487714... rafforza test e Working Method.",
+    "Creato checkpoints/2026-09-21-ettore-memory-v2-followups-closed.md.",
+    "Stato attesa Ettore marcato superseded in Current Context e Fast Recall."
+  ],
+  "thread_ids": [
+    "ettore-memory-v2-review",
+    "romanziere-bootstrap",
+    "memory-reliability",
+    "romanzo-a-modo-mio",
+    "romanzo-illustrazioni"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md",
+    "checkpoints/2026-09-21-ettore-memory-v2-followups-closed.md",
+    "github://MATRIXNEO23/ROMANZIERE@bf86c321e19c838848635300b82a9e2ed32fe0c1"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Riprendere A MODO MIO dalle illustrazioni: Alberto mostra/spiega lo stile già in mente; poi fissare tratto, palette, atmosfera e costruire la mappa illustrativa senza modificare il testo.",
+  "preflight": false
+}
