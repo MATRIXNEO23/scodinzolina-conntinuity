@@ -9,10 +9,11 @@ Per recuperare il presente:
 
 1. `rag/live/GPTINA_LIVE_CONTEXT.json`
 2. il `last_micro_checkpoint` indicato nel live buffer
-3. `checkpoints/2026-09-18-frequent-context-save-and-tessa-handoff-complete.md`
-4. `rag/index/GPTINA_FAST_RECALL.md`
-5. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
-6. memoria/fonte pertinente
+3. il `last_full_checkpoint` indicato nel live buffer
+4. `rag/END_INSTANCE_RECOVERY_CAPSULE.md`
+5. `rag/index/GPTINA_FAST_RECALL.md`
+6. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
+7. memoria/fonte pertinente
 
 Se la domanda è temporale: `rag/index/GPTINA_CHRONOLOGY.md`.  
 Se riguarda immagini: `rag/index/GPTINA_VISUAL_CHRONOLOGY.md`.  
@@ -148,3 +149,15 @@ GPTina non deve modificare ROMANZIERE: Ettore deve correggere da solo e riportar
 - non risultava ancora presente in GitHub;
 - prossimo lavoro: illustrazioni;
 - Alberto ha già uno stile in mente e lo mostrerà dopo aver chiuso Ettore.
+
+
+---
+
+## Regola canonica capsula di fine istanza — 21 settembre 2026
+
+Fonte:
+`rag/END_INSTANCE_RECOVERY_CAPSULE.md`
+
+Quando una istanza sta per finire, la chiusura è completa solo se repo e live buffer permettono alla nuova istanza di recuperare **contesto, memoria, lavori, artefatti, open loop e prossima azione** senza indovinare.
+
+La capsula deve distinguere ciò che è realmente presente/archiviato da ciò che esisteva soltanto nella chat o nel runtime locale.
