@@ -39,9 +39,12 @@ I micro-checkpoint già esistenti con `schema_version: 1` restano append-only e 
 
 Il verifier normalizza soltanto in memoria i campi legacy mancanti:
 - `changed` come lista vuota;
+- `thread_ids` come lista vuota;
+- `source_refs` come lista vuota;
 - `memory_refs` come lista vuota;
 - `media_refs` come lista vuota;
-- `next_action` come stringa vuota.
+- `next_action` come stringa vuota;
+- `preflight` come `false`.
 
 Solo per i record v1 sono inoltre accettati i vecchi riferimenti esterni `artifact://` e `attachment://`.
 
