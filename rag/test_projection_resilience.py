@@ -4,11 +4,66 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 import gptina_memory as gm
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def assert_transitive_supersession() -> None:
+    template = """---
+schema_version: 2
+memory_id: "{memory_id}"
+owner: gptina
+kind: gptina_live_memory
+event_at: "2026-09-21"
+recorded_at: "2026-09-21T20:00:00+02:00"
+status: {status}
+supersedes: [{supersedes}]
+event_id: "{memory_id}"
+thread_ids: [audit]
+entity_refs: [GPTina]
+source_refs: [conversation://current]
+media_refs: []
+importance: 3
+confidence: verified
+tags: [audit]
+append_only: true
+---
+# {memory_id}
+"""
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        memories = root / "rag/memories/gptina"
+        memories.mkdir(parents=True)
+        for slug, status, supersedes in (
+            ("a", "current", ""),
+            ("b", "superseded", "gptina-a"),
+            ("c", "current", "gptina-b"),
+        ):
+            (memories / f"{slug}.md").write_text(
+                template.format(
+                    memory_id=f"gptina-{slug}",
+                    status=status,
+                    supersedes=supersedes,
+                ),
+                encoding="utf-8",
+            )
+        old_root, old_rag = gm.ROOT, gm.RAG_ROOT
+        gm.ROOT, gm.RAG_ROOT = root, root / "rag"
+        try:
+            statuses = gm.supersession_statuses()
+        finally:
+            gm.ROOT, gm.RAG_ROOT = old_root, old_rag
+        if set(statuses) != {
+            "rag/memories/gptina/a.md",
+            "rag/memories/gptina/b.md",
+        }:
+            raise AssertionError(f"Supersession closure is incomplete: {statuses}")
+        if statuses["rag/memories/gptina/a.md"][1] != "rag/memories/gptina/c.md":
+            raise AssertionError(f"Oldest record did not resolve to current replacement: {statuses}")
 
 
 def run_pair(*args: str) -> None:
@@ -28,6 +83,7 @@ def run_pair(*args: str) -> None:
 
 def main() -> None:
     gm.verify_boundary()
+    assert_transitive_supersession()
 
     versions = {version.path: version for version in gm.collect_versions(False)}
     expected = {
@@ -67,6 +123,38 @@ def main() -> None:
     stats = gm.sqlite_stats()
     if int(stats["sources"]) <= 0 or int(stats["chunks"]) <= 0:
         raise AssertionError(f"Corrupt SQLite recovery produced an empty index: {stats}")
+
+    # A physically valid database with missing logical tables must also be
+    # rebuilt, rather than silently accepted as an empty fresh projection.
+    conn = __import__("sqlite3").connect(gm.SQLITE_FILE)
+    conn.execute("DROP TABLE source_state")
+    conn.execute("DROP TABLE chunks_fts")
+    conn.commit()
+    conn.close()
+    stats = gm.sqlite_stats()
+    if int(stats["sources"]) <= 0 or int(stats["chunks"]) <= 0:
+        raise AssertionError(f"Semantic SQLite recovery produced an empty index: {stats}")
+
+    # A rejected canonical build from a dirty checkout must not publish JSONL
+    # or metadata before SQLite refuses it.
+    gm.build(False)
+    before_index = gm.INDEX_FILE.read_bytes()
+    before_meta = gm.META_FILE.read_bytes()
+    original_dirty = gm.git_worktree_dirty
+    gm.git_worktree_dirty = lambda: True
+    try:
+        try:
+            gm.build_all_projections(False, False)
+        except SystemExit:
+            pass
+        else:
+            raise AssertionError("Dirty canonical projection build unexpectedly succeeded")
+        if gm.INDEX_FILE.read_bytes() != before_index or gm.META_FILE.read_bytes() != before_meta:
+            raise AssertionError("Rejected dirty build partially published JSONL projections")
+        if gm.index_is_fresh(False):
+            raise AssertionError("JSONL projection was considered fresh in a dirty checkout")
+    finally:
+        gm.git_worktree_dirty = original_dirty
 
     run_pair("build")
     run_pair("build-exact")

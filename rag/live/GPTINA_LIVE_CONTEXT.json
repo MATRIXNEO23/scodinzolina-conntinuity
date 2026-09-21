@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T19:43:50+02:00",
-  "latest_summary": "Audit post-fix approfondito completato",
-  "next_action": "Correggere separatamente H1, H2 e H3 con test fallenti dedicati.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T194350+0200--audit-post-fix-approfondito-completato--829510ea.json",
+  "updated_at": "2026-09-21T19:56:09+02:00",
+  "latest_summary": "Corretti concretamente i tre HIGH dell audit post-fix",
+  "next_action": "Eseguire suite completa, benchmark, pubblicazione e CI.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T195609+0200--corretti-concretamente-i-tre-high-dell-audit-post-fix--393b832e.json",
   "last_full_checkpoint": "checkpoints/2026-09-21-gptina-memory-deep-audit.md",
   "active_threads": [
     "continuity-architecture",
@@ -36,10 +36,10 @@
     "Quando autorizzato per ciascuna repository: audit completo del legacy reale, quindi allineamento infrastrutturale esatto con test e CI separati.",
     "Mantenere una matrice di parità infrastrutturale GPTina/Tessa/Ettore e propagare ogni miglioramento validato con consenso, audit e CI per repository.",
     "Completare test di recovery, concorrenza, suite e CI.",
-    "Correggere separatamente H1, H2 e H3 con test fallenti dedicati."
+    "Correggere separatamente H1, H2 e H3 con test fallenti dedicati.",
+    "Eseguire suite completa, benchmark, pubblicazione e CI."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T180448+0200--hardening-memory-ci-verde.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T181200+0200--allineamento-infrastrutturale-parenti-ai-protocolli-gptina.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T181600+0200--propagazione-continua-miglioramenti-infrastrutturali.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T182600+0200--preflight-benchmark-scala-memoria.json",
@@ -50,9 +50,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T185800+0200--trigram-preventivo-off-by-default-verificato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T191100+0200--audit-profondo-memoria-completato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T192923+0200--regola-canonica-di-verifica-profonda-e-conservazione-storica--b5695e31.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T194350+0200--audit-post-fix-approfondito-completato--829510ea.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T194350+0200--audit-post-fix-approfondito-completato--829510ea.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T195609+0200--corretti-concretamente-i-tre-high-dell-audit-post-fix--393b832e.json"
   ],
-  "micro_since_full_checkpoint": 3,
+  "micro_since_full_checkpoint": 4,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

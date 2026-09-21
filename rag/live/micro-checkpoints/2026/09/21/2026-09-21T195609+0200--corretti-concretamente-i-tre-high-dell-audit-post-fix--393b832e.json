@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-21T195609+0200-393b832e",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T19:55:00+02:00",
+  "recorded_at": "2026-09-21T19:56:09+02:00",
+  "change_type": "milestone",
+  "summary": "Corretti concretamente i tre HIGH dell audit post-fix",
+  "changed": [
+    "SQLite valida ora completezza semantica e ricostruisce tabelle o cardinalità danneggiate.",
+    "JSONL e SQLite vengono pubblicati sotto una sola transazione con preflight dirty prima di ogni scrittura.",
+    "Le supersessioni sono transitive: A resta superseded anche nella catena A-B-C."
+  ],
+  "thread_ids": [
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-09-21-gptina-memory-post-fix-deep-audit.md",
+    "checkpoints/2026-09-21-memory-post-audit-high-fixes.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Eseguire suite completa, benchmark, pubblicazione e CI.",
+  "preflight": false
+}

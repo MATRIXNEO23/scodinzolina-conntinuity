@@ -305,15 +305,32 @@ def supersession_statuses() -> dict[str, tuple[str, str]]:
         return {}
     resolver, metadata, _errors = build_memory_resolver(ROOT, memories)
     path_to_id = {path: memory_id for memory_id, path in resolver.items()}
-    result: dict[str, tuple[str, str]] = {}
-    for replacing_id, meta in metadata.items():
-        replacing_path = resolver[replacing_id]
-        if str(meta.get("status", "current")) != "current":
-            continue
+    edges: dict[str, list[str]] = {}
+    for memory_id, meta in metadata.items():
+        targets: list[str] = []
         for target in meta.get("supersedes") or []:
             target_id = target if target in resolver else path_to_id.get(str(target))
             if target_id and target_id in resolver:
-                result[resolver[target_id]] = ("superseded", replacing_path)
+                targets.append(target_id)
+        edges[memory_id] = targets
+
+    # A current record supersedes its whole ancestry, not only its immediate
+    # target. This prevents A from becoming current again in A <- B <- C when
+    # B is already marked superseded and C is the current correction.
+    result: dict[str, tuple[str, str]] = {}
+    for replacing_id in sorted(metadata):
+        if str(metadata[replacing_id].get("status", "current")) != "current":
+            continue
+        replacing_path = resolver[replacing_id]
+        pending = list(edges.get(replacing_id, []))
+        seen: set[str] = set()
+        while pending:
+            target_id = pending.pop()
+            if target_id in seen:
+                continue
+            seen.add(target_id)
+            result[resolver[target_id]] = ("superseded", replacing_path)
+            pending.extend(edges.get(target_id, []))
     return result
 
 
@@ -555,6 +572,34 @@ def sqlite_meta(conn: sqlite3.Connection) -> dict[str, str]:
     }
 
 
+def sqlite_semantically_valid(conn: sqlite3.Connection) -> bool:
+    """Validate logical completeness beyond SQLite's physical quick_check."""
+    try:
+        meta = sqlite_meta(conn)
+        if meta.get("build_complete") != "1":
+            return False
+        expected_sources = int(meta["source_versions"])
+        expected_chunks = int(meta["chunks"])
+        actual_sources = int(conn.execute("SELECT count(*) FROM source_state").fetchone()[0])
+        actual_chunks = int(conn.execute("SELECT count(*) FROM chunks_fts").fetchone()[0])
+        orphan_chunks = int(conn.execute(
+            """
+            SELECT count(*) FROM chunks_fts AS c
+            LEFT JOIN source_state AS s
+              ON s.source=c.source AND s.revision=c.revision
+            WHERE s.source IS NULL
+            """
+        ).fetchone()[0])
+    except (KeyError, ValueError, TypeError, sqlite3.DatabaseError):
+        return False
+    return (
+        expected_sources == actual_sources
+        and expected_chunks == actual_chunks
+        and orphan_chunks == 0
+        and (actual_sources == 0) == (actual_chunks == 0)
+    )
+
+
 def set_sqlite_meta(conn: sqlite3.Connection, values: dict[str, str]) -> None:
     conn.executemany(
         """
@@ -571,6 +616,8 @@ def sqlite_index_is_fresh(include_history: bool, allow_dirty_preview: bool = Fal
     try:
         conn = sqlite_connect()
         meta = sqlite_meta(conn)
+        if not sqlite_semantically_valid(conn):
+            return False
     except sqlite3.DatabaseError:
         return False
     finally:
@@ -635,6 +682,8 @@ def _sync_sqlite_index_locked(
     try:
         conn = sqlite_connect()
         conn.execute("PRAGMA quick_check").fetchone()
+        if not sqlite_semantically_valid(conn):
+            raise sqlite3.DatabaseError("SQLite semantic integrity check failed")
     except sqlite3.DatabaseError:
         try:
             conn.close()
@@ -734,6 +783,11 @@ def _sync_sqlite_index_locked(
                         if dirty else current_source_fingerprint(manifest)
                     ),
                     "source_versions": str(len(source_versions)),
+                    "chunks": str(sum(
+                        1
+                        for sv in source_versions
+                        for _chunk in chunk_text(sv.content, max_chars, overlap, min_chars)
+                    )),
                     "updated_at_epoch": str(int(time.time())),
                 },
             )
@@ -746,6 +800,8 @@ def _sync_sqlite_index_locked(
         integrity = str(conn.execute("PRAGMA quick_check").fetchone()[0])
         if integrity != "ok":
             raise sqlite3.DatabaseError(f"SQLite quick_check failed: {integrity}")
+        if not sqlite_semantically_valid(conn):
+            raise sqlite3.DatabaseError("SQLite semantic integrity check failed after build")
 
         chunks = int(
             conn.execute("SELECT count(*) FROM chunks_fts").fetchone()[0]
@@ -942,14 +998,26 @@ def sqlite_stats(allow_dirty_preview: bool = False) -> dict[str, object]:
 
 
 
-def build(include_history: bool = False) -> None:
+def build(
+    include_history: bool = False,
+    allow_dirty_preview: bool = False,
+) -> None:
     with projection_build_lock():
-        _build_locked(include_history)
+        _build_locked(include_history, allow_dirty_preview)
 
 
-def _build_locked(include_history: bool = False) -> None:
+def _build_locked(
+    include_history: bool = False,
+    allow_dirty_preview: bool = False,
+) -> None:
     expected_head = git_head()
     manifest = load_manifest()
+    dirty = git_worktree_dirty()
+    if dirty and not allow_dirty_preview:
+        fail(
+            "Refusing canonical JSONL build from a dirty worktree. "
+            "Commit first or use explicit dirty-preview mode."
+        )
     cfg = manifest.get("chunking", {})
     max_chars = int(cfg.get("max_chars", 1400))
     overlap = int(cfg.get("overlap_chars", 220))
@@ -1004,6 +1072,7 @@ def _build_locked(include_history: bool = False) -> None:
                 "manifest_sha256": sha256_text(MANIFEST_FILE.read_text(encoding="utf-8")),
                 "source_fingerprint": current_source_fingerprint(manifest),
                 "git_head": git_head(),
+                "snapshot_mode": "dirty-preview" if dirty else "committed",
                 "canonical_sources_modified": False,
                 "write_boundary": "rag/ only",
             },
@@ -1030,6 +1099,15 @@ def index_is_fresh(include_history: bool) -> bool:
     if meta.get("manifest_sha256") != manifest_hash:
         return False
 
+    dirty = git_worktree_dirty()
+    if dirty:
+        return (
+            meta.get("snapshot_mode") == "dirty-preview"
+            and meta.get("source_fingerprint") == current_source_fingerprint(manifest)
+        )
+    if meta.get("snapshot_mode") not in {None, "committed"}:
+        return False
+
     # Fast path for long-lived repositories: if the checkout HEAD did not
     # change, do not hash/read the whole memory corpus just to answer a query.
     head = git_head()
@@ -1051,6 +1129,31 @@ def index_is_fresh(include_history: bool) -> bool:
 def ensure_fresh_index(include_history: bool) -> None:
     if not index_is_fresh(include_history):
         build(include_history=include_history)
+
+
+def build_all_projections(
+    include_history: bool = False,
+    allow_dirty_preview: bool = False,
+) -> dict[str, int]:
+    """Publish JSONL and SQLite as one serialized, preflighted operation."""
+    with projection_build_lock():
+        dirty = git_worktree_dirty()
+        if dirty and not allow_dirty_preview:
+            fail(
+                "Refusing projection build from a dirty worktree. "
+                "Commit first or use explicit dirty-preview mode."
+            )
+        expected_head = git_head()
+        manifest = load_manifest()
+        expected_fingerprint = current_source_fingerprint(manifest)
+        _build_locked(include_history, allow_dirty_preview)
+        stats = _sync_sqlite_index_locked(include_history, allow_dirty_preview)
+        if (
+            git_head() != expected_head
+            or current_source_fingerprint(manifest) != expected_fingerprint
+        ):
+            raise RuntimeError("Canonical sources changed during projection transaction; retry.")
+        return stats
 
 
 def load_records() -> list[dict]:
@@ -1782,8 +1885,7 @@ def main() -> None:
         if args.history and args.no_history:
             fail("Choose only one of --history or --no-history.")
         verify_boundary()
-        build(include_history=bool(args.history))
-        stats = sync_sqlite_index(
+        stats = build_all_projections(
             include_history=bool(args.history),
             allow_dirty_preview=bool(args.allow_dirty_preview),
         )
