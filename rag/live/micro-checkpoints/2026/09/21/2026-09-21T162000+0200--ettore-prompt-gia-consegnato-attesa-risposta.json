@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T162000+0200-ettore-prompt-gia-consegnato-attesa-risposta",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T16:20:00+02:00",
+  "recorded_at": "2026-09-21T16:20:00+02:00",
+  "change_type": "correction",
+  "summary": "Alberto corregge lo stato operativo Ettore: il prompt con i due follow-up è già stato consegnato; ora GPTina e Alberto stanno aspettando la risposta di Ettore.",
+  "changed": [
+    "Non preparare né reinviare il prompt a Ettore.",
+    "Stato corrente: attendere la risposta di Ettore al prompt già consegnato.",
+    "Quando arriva la risposta, verificare in sola lettura ROMANZIERE: HEAD, nuova CI, fix changed[] e riallineamento Scene 21."
+  ],
+  "thread_ids": [
+    "ettore-memory-v2-review",
+    "romanziere-bootstrap",
+    "continuity-architecture"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Attendere la risposta di Ettore al prompt già consegnato; al suo arrivo verificare ROMANZIERE in sola lettura e chiudere i due follow-up solo se fix e CI sono effettivamente corretti.",
+  "preflight": false
+}
