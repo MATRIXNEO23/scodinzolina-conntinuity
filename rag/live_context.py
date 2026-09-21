@@ -22,11 +22,33 @@ ALLOWED_CHANGE_TYPES = {
     "correction", "decision", "rule", "project_state", "relational_shift",
     "open_loop", "preflight", "milestone", "visual_context",
 }
-ALLOWED_EXTERNAL_PREFIXES = ("conversation://", "github://", "external://")
-MICRO_REQUIRED = {
+CURRENT_MICRO_SCHEMA_VERSION = 2
+LEGACY_MICRO_SCHEMA_VERSIONS = {1}
+
+ALLOWED_EXTERNAL_PREFIXES_V2 = ("conversation://", "github://", "external://")
+ALLOWED_EXTERNAL_PREFIXES_V1 = (
+    *ALLOWED_EXTERNAL_PREFIXES_V2,
+    "artifact://",
+    "attachment://",
+)
+
+MICRO_REQUIRED_V2 = {
     "schema_version", "micro_id", "owner", "kind", "event_at", "recorded_at",
     "change_type", "summary", "changed", "thread_ids", "source_refs",
     "memory_refs", "media_refs", "importance", "next_action", "preflight",
+}
+
+MICRO_REQUIRED_V1 = {
+    "schema_version", "micro_id", "owner", "kind", "event_at", "recorded_at",
+    "change_type", "summary", "thread_ids", "source_refs", "importance",
+    "preflight",
+}
+
+LEGACY_V1_DEFAULTS = {
+    "changed": [],
+    "memory_refs": [],
+    "media_refs": [],
+    "next_action": "",
 }
 
 
@@ -87,41 +109,82 @@ def load_live() -> dict:
         fail(f"Invalid live context JSON: {exc}")
 
 
-def ref_exists(ref: str) -> bool:
-    if ref.startswith(ALLOWED_EXTERNAL_PREFIXES):
+def micro_schema_version(record: dict) -> int | None:
+    version = record.get("schema_version")
+    if isinstance(version, bool) or not isinstance(version, int):
+        return None
+    return version
+
+
+def normalize_micro_for_validation(record: dict) -> dict:
+    """Return a validation-only copy; never rewrite historical records."""
+    normalized = dict(record)
+    if micro_schema_version(normalized) == 1:
+        for key, default in LEGACY_V1_DEFAULTS.items():
+            if key not in normalized:
+                normalized[key] = list(default) if isinstance(default, list) else default
+    return normalized
+
+
+def ref_exists(ref: str, *, schema_version: int) -> bool:
+    prefixes = (
+        ALLOWED_EXTERNAL_PREFIXES_V1
+        if schema_version == 1
+        else ALLOWED_EXTERNAL_PREFIXES_V2
+    )
+    if ref.startswith(prefixes):
         return True
     return (ROOT / ref).exists()
 
 
 def validate_micro(record: dict, path: Path | None = None) -> list[str]:
     errors: list[str] = []
-    missing = sorted(MICRO_REQUIRED - set(record))
+
+    version = micro_schema_version(record)
+    if version is None:
+        return ["schema_version must be an integer"]
+    if version not in LEGACY_MICRO_SCHEMA_VERSIONS | {CURRENT_MICRO_SCHEMA_VERSION}:
+        return [f"unsupported schema_version={version}"]
+
+    required = MICRO_REQUIRED_V1 if version == 1 else MICRO_REQUIRED_V2
+    missing = sorted(required - set(record))
     if missing:
         errors.append(f"missing keys: {missing}")
-    if record.get("owner") != "gptina":
+
+    normalized = normalize_micro_for_validation(record)
+
+    if normalized.get("owner") != "gptina":
         errors.append("owner must be gptina")
-    if record.get("kind") != "gptina_micro_checkpoint":
+    if normalized.get("kind") != "gptina_micro_checkpoint":
         errors.append("kind must be gptina_micro_checkpoint")
-    if record.get("change_type") not in ALLOWED_CHANGE_TYPES:
-        errors.append(f"invalid change_type={record.get('change_type')}")
-    importance = record.get("importance")
-    if not isinstance(importance, int) or not 1 <= importance <= 5:
+    if normalized.get("change_type") not in ALLOWED_CHANGE_TYPES:
+        errors.append(f"invalid change_type={normalized.get('change_type')}")
+    importance = normalized.get("importance")
+    if (
+        not isinstance(importance, int)
+        or isinstance(importance, bool)
+        or not 1 <= importance <= 5
+    ):
         errors.append("importance must be integer 1..5")
-    if not str(record.get("summary") or "").strip():
+    if not str(normalized.get("summary") or "").strip():
         errors.append("summary is empty")
-    if not isinstance(record.get("changed"), list):
+    if not isinstance(normalized.get("changed"), list):
         errors.append("changed must be a list")
+    if not isinstance(normalized.get("next_action"), str):
+        errors.append("next_action must be a string")
     for key in ("thread_ids", "source_refs", "memory_refs", "media_refs"):
-        if not isinstance(record.get(key), list):
+        if not isinstance(normalized.get(key), list):
             errors.append(f"{key} must be a list")
     for key in ("source_refs", "memory_refs", "media_refs"):
-        for ref in record.get(key, []):
-            if not ref_exists(str(ref)):
+        refs = normalized.get(key)
+        if not isinstance(refs, list):
+            continue
+        for ref in refs:
+            if not ref_exists(str(ref), schema_version=version):
                 errors.append(f"{key} missing ref: {ref}")
     if path and not path.as_posix().endswith(".json"):
         errors.append("micro-checkpoint path must end in .json")
     return errors
-
 
 def save_delta(args: argparse.Namespace) -> Path:
     if args.change_type not in ALLOWED_CHANGE_TYPES:
@@ -140,7 +203,7 @@ def save_delta(args: argparse.Namespace) -> Path:
 
     sources = args.source or ["conversation://current"]
     record = {
-        "schema_version": 1,
+        "schema_version": CURRENT_MICRO_SCHEMA_VERSION,
         "micro_id": f"gptina-micro-{stamp}-{token}",
         "owner": "gptina",
         "kind": "gptina_micro_checkpoint",
@@ -263,6 +326,8 @@ def verify_live_context() -> None:
         fail(f"last_full_checkpoint missing: {last_full}")
 
     count = 0
+    v1_count = 0
+    v2_count = 0
     for path in sorted(MICRO.rglob("*.json")) if MICRO.is_dir() else []:
         try:
             record = json.loads(path.read_text(encoding="utf-8"))
@@ -271,6 +336,11 @@ def verify_live_context() -> None:
         errors = validate_micro(record, path)
         if errors:
             fail(f"Invalid {rel(path)}:\n- " + "\n- ".join(errors))
+        version = micro_schema_version(record)
+        if version == 1:
+            v1_count += 1
+        elif version == 2:
+            v2_count += 1
         count += 1
 
     for path_text in recent:
@@ -284,8 +354,8 @@ def verify_live_context() -> None:
 
     print(
         "OK: live context verified "
-        f"(micro-checkpoints={count}, recent={len(recent)}, "
-        f"since_full={live.get('micro_since_full_checkpoint')})."
+        f"(micro-checkpoints={count}, v1_legacy={v1_count}, v2_current={v2_count}, "
+        f"recent={len(recent)}, since_full={live.get('micro_since_full_checkpoint')})."
     )
 
 
