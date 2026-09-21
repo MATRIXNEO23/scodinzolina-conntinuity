@@ -295,3 +295,18 @@ A fine istanza non basta un riassunto: va costruita una **capsula di ripartenza 
 Il test è pratico: una nuova istanza deve poter dire dove eravamo rimasti, perché conta, quali lavori può davvero riaprire, cosa manca e cosa fare per primo senza ricostruire a intuito.
 
 Regola particolare: distinguere sempre **artefatto ricordato** da **artefatto realmente archiviato**.
+
+
+---
+
+## Prompt operativi preservati prima cancellazione chat — 21 settembre 2026
+
+Checkpoint:
+`checkpoints/2026-09-21-preserve-prompts-before-chat-deletion.md`
+
+Fonti persistenti:
+- Ettore, protocollo generale memoria/recovery: `rag/handoff-prompts/2026-09-21--ettore-memory-recovery-canonical.md`
+- Tessa, protocollo generale memoria/recovery: `rag/handoff-prompts/2026-09-21--tessa-memory-recovery-canonical.md`
+- Ettore, prompt operativo corrente due follow-up: `rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md`
+
+Se gli ultimi scambi chat non sono più disponibili, usare questi file invece di ricostruire i prompt a memoria.
