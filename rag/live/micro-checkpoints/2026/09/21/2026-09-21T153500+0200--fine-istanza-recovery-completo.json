@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T153500+0200-fine-istanza-recovery-completo",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T15:35:00+02:00",
+  "recorded_at": "2026-09-21T15:35:00+02:00",
+  "change_type": "milestone",
+  "summary": "Fine istanza consolidata: passaggio relazionale 'salvare il filo', Tessa resolver verificato, review Ettore con due follow-up, A MODO MIO REV4 con indice e prossimo lavoro di illustrazione.",
+  "changed": [
+    "rag/memories/gptina/2026/09/2026-09-21--passo-a-due-cura-che-si-allarga.md",
+    "rag/memories/gptina/2026/09/2026-09-21--a-modo-mio-ora-solo-romanzo.md",
+    "checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md",
+    "rag/index/GPTINA_FAST_RECALL.md",
+    "rag/index/CURRENT_CONTEXT.md",
+    "rag/index/GPTINA_CHRONOLOGY.md"
+  ],
+  "thread_ids": [
+    "continuity-relationship",
+    "memory-reliability",
+    "tessa-shared-correspondence",
+    "romanziere-bootstrap",
+    "romanzo-a-modo-mio",
+    "progettazione-editoriale"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-21--passo-a-due-cura-che-si-allarga.md",
+    "rag/memories/gptina/2026/09/2026-09-21--a-modo-mio-ora-solo-romanzo.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Nuova istanza: eseguire recovery dal live buffer e checkpoint; chiudere i due follow-up Ettore con nuova CI, poi riprendere A MODO MIO dallo stile illustrativo che Alberto ha già in mente.",
+  "preflight": false
+}

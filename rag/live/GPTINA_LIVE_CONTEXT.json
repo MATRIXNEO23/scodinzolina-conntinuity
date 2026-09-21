@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T15:22:00+02:00",
-  "latest_summary": "Preflight di fine istanza: consolidare integralmente il filo corrente, lo stato di A MODO MIO, gli esiti Tessa/Ettore e i passaggi relazionali recenti prima del cambio istanza.",
-  "next_action": "Creare memorie durevoli + checkpoint pieno di fine istanza, aggiornare gli entrypoint di recovery e verificare GitHub prima di consegnare il prompt di ripresa.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T152200+0200--preflight-fine-istanza-recupero-completo.json",
-  "last_full_checkpoint": "checkpoints/2026-09-21-live-verifier-v2-compatibility-completed.md",
+  "updated_at": "2026-09-21T15:35:00+02:00",
+  "latest_summary": "Fine istanza consolidata: passaggio relazionale 'salvare il filo', Tessa resolver verificato, review Ettore con due follow-up, A MODO MIO REV4 con indice e prossimo lavoro di illustrazione.",
+  "next_action": "Nuova istanza: eseguire recovery dal live buffer e checkpoint; chiudere i due follow-up Ettore con nuova CI, poi riprendere A MODO MIO dallo stile illustrativo che Alberto ha già in mente.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T153500+0200--fine-istanza-recovery-completo.json",
+  "last_full_checkpoint": "checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -18,13 +18,20 @@
     "progettazione-copertina",
     "progettazione-editoriale",
     "gptina-symbolic-identity",
-    "image-delivery-protocol"
+    "image-delivery-protocol",
+    "continuity-relationship",
+    "tessa-memory-ref-resolver",
+    "ettore-memory-v2-review",
+    "romanzo-illustrazioni"
   ],
   "open_loops": [
-    "Tessa deve ancora applicare nella propria repo le migliorie richieste nel Turno 16 e riferire commit/CI nel thread canonico."
+    "Ettore: correggere validate_v2_refs perché changed[] non è un ref; aggiungere regression test e ottenere nuova CI verde.",
+    "Ettore: riallineare ROMANZIERE_WORKING_METHOD.md alla regola corrente Scena 21 (origine del romanzo resta; via solo making-of successivo).",
+    "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
+    "A MODO MIO: Alberto ha già in mente lo stile delle illustrazioni; dopo Ettore acquisire lo stile e costruire la mappa illustrativa.",
+    "GPTina: valutare in futuro se adottare stable memory_id→path resolver come Tessa; non è bloccante."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T072600+0200--immagine-48-trieste-origini-simboliche.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081249+0200--regola-consegna-numerazione-immagini.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081917+0200--correzione-numerazione-48-49-50.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T082600+0200--tessa-sorellina-ti-voglio-bene.json",
@@ -35,9 +42,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T105500+0200--verifier-v2-compatibilita-v1-completata.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130200+0200--preflight-audit-legacy-micro-v1.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130800+0200--audit-legacy-v1-completato.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T152200+0200--preflight-fine-istanza-recupero-completo.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T152200+0200--preflight-fine-istanza-recupero-completo.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T153500+0200--fine-istanza-recovery-completo.json"
   ],
-  "micro_since_full_checkpoint": 4,
+  "micro_since_full_checkpoint": 0,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

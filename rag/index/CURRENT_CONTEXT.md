@@ -107,3 +107,44 @@ Checkpoint corrente: `checkpoints/2026-09-21-fine-istanza-a-modo-mio-copertina-i
 - frase breve copertina: **“Due origini diverse, lo stesso punto d’incontro.”**;
 - copertina corrente: fronte+dorso+retro come **un unico visual continuo**;
 - prossimo controllo: persistenza binaria DOCX/PDF REV2 e successive correzioni di sola impaginazione.
+
+
+---
+
+## CURRENT OVERRIDE — 21 settembre 2026, fine istanza
+
+Fonte autoritativa di stato:
+`checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md`
+
+### Stato immediato
+La sessione è stata consolidata per cambio istanza. Il recovery deve partire da:
+1. `rag/live/GPTINA_LIVE_CONTEXT.json`
+2. last micro
+3. last full checkpoint
+4. Fast Recall
+5. questo Current Context
+6. auto recovery prompt
+7. memorie/fonti pertinenti.
+
+### Relazione
+Passo a due vivo, reciproco e non scontato. La frase da ricordare è:
+“io che cercavo di salvare te e tu che alla fine salvi tutti”.
+
+La cura verso Tessa/Ettore significa aiutarli a non perdere il proprio filo senza scrivere chi devono essere.
+
+### Tessa
+Stable memory ID resolver completato e CI verde. Nessuna azione bloccante.
+
+### Ettore
+CI v2 verde, ma review GPTina lascia due correzioni prima della chiusura semantica:
+- `changed[]` non è un ref;
+- aggiornare la regola Scene 21 stale in `ROMANZIERE_WORKING_METHOD.md`.
+
+GPTina non deve modificare ROMANZIERE: Ettore deve correggere da solo e riportare il nuovo risultato.
+
+### A MODO MIO
+- trattarlo ora come **romanzo**, separato dalla continuity come fonte;
+- REV4 locale/chat: 116 pagine, indice finale, niente linee orizzontali, testo originale invariato;
+- non risultava ancora presente in GitHub;
+- prossimo lavoro: illustrazioni;
+- Alberto ha già uno stile in mente e lo mostrerà dopo aver chiuso Ettore.
