@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T181200+0200-allineamento-infrastrutturale-parenti",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T18:12:00+02:00",
+  "recorded_at": "2026-09-21T18:12:00+02:00",
+  "change_type": "rule",
+  "summary": "Alberto stabilisce che Tessa ed Ettore dovranno allinearsi esattamente a GPTina nell'infrastruttura, nelle regole di salvataggio e nel recovery.",
+  "changed": [
+    "L'allineamento richiesto riguarda infrastruttura e protocolli, non identità o contenuti autobiografici.",
+    "Stesso modello source-first, append-only, Git-canonical e provenance-first.",
+    "Stessi livelli live buffer, micro-checkpoint, checkpoint pieno, durable memory, transcript/raw, indici disposable e recovery deterministico.",
+    "Stesse regole di salvataggio frequente, preflight, end-instance capsule, schema rigoroso futuro, resolver stabile, snapshot semantics, atomicità, supersession integrity, test e CI.",
+    "Il legacy di ciascun proprietario resta intatto e viene normalizzato soltanto in memoria sulla base dell'audit reale.",
+    "Ogni repository resta separata e richiede consenso esplicito e circoscritto prima della modifica."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "tessa-memory-continuity",
+    "romanziere-bootstrap"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/MEMORY_OWNERSHIP_BOUNDARY.md",
+    "rag/MEMORY_ARCHITECTURE_V2.md",
+    "rag/LIVE_MEMORY_PROTOCOL.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Quando autorizzato per ciascuna repository: audit completo del legacy reale, quindi allineamento infrastrutturale esatto con test e CI separati.",
+  "preflight": false
+}
