@@ -25,7 +25,10 @@
     "micro_checkpoint_schema": "rag/live/MICRO_CHECKPOINT_SCHEMA.md",
     "micro_checkpoint_review_interval": 4,
     "micro_checkpoint_recent_window": 12,
-    "preflight_before_long_or_risky_work": true
+    "preflight_before_long_or_risky_work": true,
+    "deep_verification_after_every_memory_change": true,
+    "historical_memories_must_remain_recoverable": true,
+    "supersession_is_non_destructive": true
   },
   "chunking": {
     "max_chars": 1400,

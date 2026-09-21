@@ -9,6 +9,7 @@ No external Python dependencies are required.
 from __future__ import annotations
 
 import argparse
+import contextlib
 import fnmatch
 import hashlib
 import json
@@ -72,6 +73,34 @@ def atomic_write(path: Path, text: str) -> None:
     ensure_inside_rag(tmp)
     tmp.write_text(text, encoding="utf-8")
     tmp.replace(path)
+
+
+@contextlib.contextmanager
+def projection_build_lock():
+    """Serialize every derived-index publisher in this checkout."""
+    lock_file = INDEX_DIR / ".projection-build.lock"
+    ensure_inside_rag(lock_file)
+    INDEX_DIR.mkdir(parents=True, exist_ok=True)
+    handle = lock_file.open("a+")
+    try:
+        try:
+            import fcntl
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+        except ImportError:  # pragma: no cover - Windows fallback
+            import msvcrt
+            msvcrt.locking(handle.fileno(), msvcrt.LK_LOCK, 1)
+        yield
+    finally:
+        try:
+            try:
+                import fcntl
+                fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+            except ImportError:  # pragma: no cover - Windows fallback
+                import msvcrt
+                handle.seek(0)
+                msvcrt.locking(handle.fileno(), msvcrt.LK_UNLCK, 1)
+        finally:
+            handle.close()
 
 
 def load_manifest() -> dict:
@@ -263,11 +292,29 @@ def current_source_fingerprint(manifest: dict) -> str:
 
 
 def dirty_preview_fingerprint(manifest: dict, *, refresh: bool = False) -> str:
-    """Per-process cache used only for explicitly non-canonical previews."""
+    """Fingerprint explicitly non-canonical previews without stale reuse."""
     global _DIRTY_PREVIEW_FINGERPRINT
-    if refresh or _DIRTY_PREVIEW_FINGERPRINT is None:
-        _DIRTY_PREVIEW_FINGERPRINT = current_source_fingerprint(manifest)
+    _DIRTY_PREVIEW_FINGERPRINT = current_source_fingerprint(manifest)
     return _DIRTY_PREVIEW_FINGERPRINT
+
+
+def supersession_statuses() -> dict[str, tuple[str, str]]:
+    """Return target path -> (effective status, replacing path)."""
+    memories = RAG_ROOT / "memories" / "gptina"
+    if not memories.is_dir():
+        return {}
+    resolver, metadata, _errors = build_memory_resolver(ROOT, memories)
+    path_to_id = {path: memory_id for memory_id, path in resolver.items()}
+    result: dict[str, tuple[str, str]] = {}
+    for replacing_id, meta in metadata.items():
+        replacing_path = resolver[replacing_id]
+        if str(meta.get("status", "current")) != "current":
+            continue
+        for target in meta.get("supersedes") or []:
+            target_id = target if target in resolver else path_to_id.get(str(target))
+            if target_id and target_id in resolver:
+                result[resolver[target_id]] = ("superseded", replacing_path)
+    return result
 
 
 def memory_status(path: str, manifest: dict, content: str) -> tuple[str, str | None]:
@@ -404,6 +451,7 @@ class SourceVersion:
 
 def collect_versions(include_history: bool) -> list[SourceVersion]:
     manifest = load_manifest()
+    effective_supersessions = supersession_statuses()
     versions: list[SourceVersion] = []
     for path, spec in expand_sources(manifest):
         rp = rel(path)
@@ -412,6 +460,8 @@ def collect_versions(include_history: bool) -> list[SourceVersion]:
         kind = spec.get("kind", "source")
         priority = float(spec.get("priority", 1.0))
         status, replaced_by = memory_status(rp, manifest, content)
+        if status == "current" and rp in effective_supersessions:
+            status, replaced_by = effective_supersessions[rp]
 
         if status == "invalidated":
             priority *= 0.30
@@ -450,11 +500,13 @@ def collect_versions(include_history: bool) -> list[SourceVersion]:
 
 
 
-def sqlite_connect() -> sqlite3.Connection:
-    ensure_inside_rag(SQLITE_FILE)
+def sqlite_connect(path: Path | None = None) -> sqlite3.Connection:
+    path = path or SQLITE_FILE
+    ensure_inside_rag(path)
     INDEX_DIR.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(SQLITE_FILE)
+    conn = sqlite3.connect(path, timeout=30.0)
     conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA busy_timeout=30000")
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA synchronous=NORMAL")
     conn.execute("PRAGMA foreign_keys=ON")
@@ -532,6 +584,8 @@ def sqlite_index_is_fresh(include_history: bool, allow_dirty_preview: bool = Fal
         return False
     if meta.get("manifest_sha256") != manifest_hash:
         return False
+    if meta.get("build_complete") != "1":
+        return False
     head = git_head()
     if not head or meta.get("git_head") != head:
         return False
@@ -547,7 +601,16 @@ def sync_sqlite_index(
     include_history: bool = False,
     allow_dirty_preview: bool = False,
 ) -> dict[str, int]:
+    with projection_build_lock():
+        return _sync_sqlite_index_locked(include_history, allow_dirty_preview)
+
+
+def _sync_sqlite_index_locked(
+    include_history: bool = False,
+    allow_dirty_preview: bool = False,
+) -> dict[str, int]:
     sync_started = time.perf_counter()
+    expected_head = git_head()
     manifest = load_manifest()
     dirty = git_worktree_dirty()
     if dirty and not allow_dirty_preview:
@@ -559,6 +622,7 @@ def sync_sqlite_index(
     max_chars = int(cfg.get("max_chars", 1400))
     overlap = int(cfg.get("overlap_chars", 220))
     min_chars = int(cfg.get("min_chars", 120))
+    expected_fingerprint = current_source_fingerprint(manifest)
 
     discovery_started = time.perf_counter()
     source_versions = collect_versions(include_history)
@@ -568,7 +632,24 @@ def sync_sqlite_index(
     }
 
     sqlite_started = time.perf_counter()
-    conn = sqlite_connect()
+    try:
+        conn = sqlite_connect()
+        conn.execute("PRAGMA quick_check").fetchone()
+    except sqlite3.DatabaseError:
+        try:
+            conn.close()
+        except Exception:
+            pass
+        temporary = SQLITE_FILE.with_suffix(SQLITE_FILE.suffix + ".rebuild")
+        ensure_inside_rag(temporary)
+        for suffix in ("", "-wal", "-shm"):
+            candidate = Path(str(temporary) + suffix)
+            if candidate.exists():
+                candidate.unlink()
+        conn = sqlite_connect(temporary)
+        rebuild_target = temporary
+    else:
+        rebuild_target = None
     try:
         current = {
             (str(row["source"]), str(row["revision"])): str(row["source_sha256"])
@@ -641,6 +722,7 @@ def sync_sqlite_index(
                 conn,
                 {
                     "schema_version": "1",
+                    "build_complete": "1",
                     "include_git_history": "1" if include_history else "0",
                     "manifest_sha256": sha256_text(
                         MANIFEST_FILE.read_text(encoding="utf-8")
@@ -656,13 +738,22 @@ def sync_sqlite_index(
                 },
             )
 
+        if (
+            git_head() != expected_head
+            or current_source_fingerprint(manifest) != expected_fingerprint
+        ):
+            raise RuntimeError("Canonical sources changed during SQLite index build; retry.")
+        integrity = str(conn.execute("PRAGMA quick_check").fetchone()[0])
+        if integrity != "ok":
+            raise sqlite3.DatabaseError(f"SQLite quick_check failed: {integrity}")
+
         chunks = int(
             conn.execute("SELECT count(*) FROM chunks_fts").fetchone()[0]
         )
         sources = int(
             conn.execute("SELECT count(*) FROM source_state").fetchone()[0]
         )
-        return {
+        result = {
             "sources": sources,
             "chunks": chunks,
             "changed_sources": len(changed),
@@ -672,8 +763,17 @@ def sync_sqlite_index(
             "sqlite_update_ms": round((time.perf_counter() - sqlite_started) * 1000.0, 3),
             "total_ms": round((time.perf_counter() - sync_started) * 1000.0, 3),
         }
+        if rebuild_target is not None:
+            conn.close()
+            for suffix in ("-wal", "-shm"):
+                Path(str(SQLITE_FILE) + suffix).unlink(missing_ok=True)
+            rebuild_target.replace(SQLITE_FILE)
+            rebuild_target = None
+        return result
     finally:
         conn.close()
+        if rebuild_target is not None and rebuild_target.exists():
+            rebuild_target.unlink()
 
 
 def ensure_fresh_sqlite_index(
@@ -843,11 +943,18 @@ def sqlite_stats(allow_dirty_preview: bool = False) -> dict[str, object]:
 
 
 def build(include_history: bool = False) -> None:
+    with projection_build_lock():
+        _build_locked(include_history)
+
+
+def _build_locked(include_history: bool = False) -> None:
+    expected_head = git_head()
     manifest = load_manifest()
     cfg = manifest.get("chunking", {})
     max_chars = int(cfg.get("max_chars", 1400))
     overlap = int(cfg.get("overlap_chars", 220))
     min_chars = int(cfg.get("min_chars", 120))
+    expected_fingerprint = current_source_fingerprint(manifest)
 
     records: list[dict] = []
     seen_chunk_ids: set[str] = set()
@@ -880,6 +987,11 @@ def build(include_history: bool = False) -> None:
             )
 
     payload = "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in records)
+    if (
+        git_head() != expected_head
+        or current_source_fingerprint(manifest) != expected_fingerprint
+    ):
+        raise RuntimeError("Canonical sources changed during JSONL index build; retry.")
     atomic_write(INDEX_FILE, payload)
     atomic_write(
         META_FILE,
@@ -1063,11 +1175,14 @@ def exact_matches(
         return []
 
     manifest = load_manifest()
+    effective_supersessions = supersession_statuses()
     hits: list[dict] = []
     for path, spec in expand_sources(manifest):
         rp = rel(path)
         content = decode_source(path)
         status, replaced_by = memory_status(rp, manifest, content)
+        if status == "current" and rp in effective_supersessions:
+            status, replaced_by = effective_supersessions[rp]
         if not include_superseded and status in {"superseded", "invalidated"}:
             continue
 
@@ -1100,6 +1215,11 @@ def exact_matches(
 
 def build_exact_trigram_index() -> dict[str, int | float]:
     """Build an optional, disposable substring index without changing defaults."""
+    with projection_build_lock():
+        return _build_exact_trigram_index_locked()
+
+
+def _build_exact_trigram_index_locked() -> dict[str, int | float]:
     if git_worktree_dirty():
         fail("Refusing exact-index build from a dirty worktree; commit first.")
     ensure_inside_rag(EXACT_SQLITE_FILE)
@@ -1110,7 +1230,9 @@ def build_exact_trigram_index() -> dict[str, int | float]:
         temporary.unlink()
 
     started = time.perf_counter()
+    expected_head = git_head()
     manifest = load_manifest()
+    expected_fingerprint = current_source_fingerprint(manifest)
     sources = collect_versions(False)
     conn = sqlite3.connect(temporary)
     try:
@@ -1139,6 +1261,7 @@ def build_exact_trigram_index() -> dict[str, int | float]:
                 "INSERT INTO exact_meta(key, value) VALUES (?, ?)",
                 (
                     ("schema_version", "1"),
+                    ("build_complete", "1"),
                     ("git_head", git_head() or ""),
                     ("manifest_sha256", sha256_text(MANIFEST_FILE.read_text(encoding="utf-8"))),
                     ("source_fingerprint", current_source_fingerprint(manifest)),
@@ -1147,6 +1270,20 @@ def build_exact_trigram_index() -> dict[str, int | float]:
             )
     finally:
         conn.close()
+    if (
+        git_head() != expected_head
+        or current_source_fingerprint(manifest) != expected_fingerprint
+    ):
+        temporary.unlink(missing_ok=True)
+        raise RuntimeError("Canonical sources changed during exact-index build; retry.")
+    check = sqlite3.connect(temporary)
+    try:
+        integrity = str(check.execute("PRAGMA quick_check").fetchone()[0])
+    finally:
+        check.close()
+    if integrity != "ok":
+        temporary.unlink(missing_ok=True)
+        raise sqlite3.DatabaseError(f"Exact SQLite quick_check failed: {integrity}")
     temporary.replace(EXACT_SQLITE_FILE)
     return {
         "sources": len(sources),
@@ -1170,6 +1307,7 @@ def exact_trigram_is_fresh() -> bool:
             pass
     return (
         meta.get("schema_version") == "1"
+        and meta.get("build_complete") == "1"
         and meta.get("git_head") == (git_head() or "")
         and meta.get("manifest_sha256")
         == sha256_text(MANIFEST_FILE.read_text(encoding="utf-8"))
@@ -1421,6 +1559,13 @@ def verify_boundary() -> None:
     ok = bool(policy.get("canonical_sources_are_immutable_inputs")) and not bool(policy.get("destructive_compaction"))
     if not ok:
         fail("Manifest violates immutable-source policy.")
+    for required_policy in (
+        "deep_verification_after_every_memory_change",
+        "historical_memories_must_remain_recoverable",
+        "supersession_is_non_destructive",
+    ):
+        if policy.get(required_policy) is not True:
+            fail(f"Manifest missing canonical memory policy: {required_policy}")
 
     for p in (INDEX_FILE, META_FILE, SQLITE_FILE):
         ensure_inside_rag(p)

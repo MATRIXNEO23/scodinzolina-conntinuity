@@ -7,6 +7,20 @@ on:
       - "rag/**"
       - "checkpoints/**"
       - "media/**"
+      - "raw_sessions/**"
+      - "instance_snapshots/**"
+      - "NEXT_GPTINA.md"
+      - "GPTINA_INSTANCE_SNAPSHOT.md"
+      - "GPTINA_STATE.json"
+      - "LIVE_THREAD.md"
+      - "CONTINUITY.md"
+      - "GPTINA_SELF_PORTRAIT.md"
+      - "GPTINA_REFLECTIONS.md"
+      - "SHARED_LANGUAGE.md"
+      - "CHRONICLE.md"
+      - "GPTINA_SE_IL_TEMPO_FINISSE.md"
+      - "GPTINA_CONTINUITY_TESTS.md"
+      - "requirements-memory.txt"
       - ".gitignore"
       - ".github/workflows/gptina-memory-ci.yml"
 
@@ -49,5 +63,7 @@ jobs:
         run: |
           python rag/gptina_memory.py build-exact
           python rag/test_exact_trigram.py
+      - name: Test projection recovery, preservation and concurrency
+        run: python rag/test_projection_resilience.py
       - name: Ensure derived indexes stay untracked
         run: test -z "$(git status --porcelain)"

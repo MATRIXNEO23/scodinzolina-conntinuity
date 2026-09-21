@@ -86,7 +86,17 @@ def git_head() -> str | None:
 @contextlib.contextmanager
 def writer_lock():
     """Cooperative single-writer lock; readers remain lock-free."""
-    lock_dir = ROOT / ".git" if (ROOT / ".git").is_dir() else LIVE
+    try:
+        common = subprocess.run(
+            ["git", "-C", str(ROOT), "rev-parse", "--git-common-dir"],
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout.strip()
+        common_path = Path(common)
+        lock_dir = common_path if common_path.is_absolute() else (ROOT / common_path).resolve()
+    except (OSError, subprocess.CalledProcessError):
+        lock_dir = LIVE
     lock_dir.mkdir(parents=True, exist_ok=True)
     lock_path = lock_dir / "gptina-memory-writer.lock"
     handle = lock_path.open("a+", encoding="utf-8")
@@ -410,9 +420,26 @@ def verify_live_context() -> None:
     if len(recent) != len(set(recent)):
         fail("Live context recent_micro_checkpoints contains duplicates")
 
+    recent_records: list[tuple[str, datetime]] = []
+    for path_text in recent:
+        path = ROOT / path_text
+        if not path.is_file():
+            fail(f"Recent micro-checkpoint missing: {path_text}")
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+            recorded_at = datetime.fromisoformat(str(record["recorded_at"]))
+        except (json.JSONDecodeError, KeyError, ValueError) as exc:
+            fail(f"Cannot order recent micro-checkpoint {path_text}: {exc}")
+        recent_records.append((path_text, recorded_at))
+    if any(
+        recent_records[index][1] > recent_records[index + 1][1]
+        for index in range(len(recent_records) - 1)
+    ):
+        fail("recent_micro_checkpoints must be ordered by recorded_at")
+
     last_micro = live.get("last_micro_checkpoint")
     if last_micro:
-        if not recent or recent[-1] != last_micro:
+        if not recent_records or recent_records[-1][0] != last_micro:
             fail("last_micro_checkpoint must be the newest recent_micro_checkpoints item")
         if not (ROOT / last_micro).is_file():
             fail(f"last_micro_checkpoint missing: {last_micro}")
@@ -424,6 +451,7 @@ def verify_live_context() -> None:
     count = 0
     v1_count = 0
     v2_count = 0
+    micro_ids: dict[str, str] = {}
     for path in sorted(MICRO.rglob("*.json")) if MICRO.is_dir() else []:
         try:
             record = json.loads(path.read_text(encoding="utf-8"))
@@ -437,11 +465,12 @@ def verify_live_context() -> None:
             v1_count += 1
         elif version == 2:
             v2_count += 1
+            micro_id = str(record["micro_id"])
+            previous = micro_ids.get(micro_id)
+            if previous:
+                fail(f"Duplicate micro_id {micro_id}: {previous}, {rel(path)}")
+            micro_ids[micro_id] = rel(path)
         count += 1
-
-    for path_text in recent:
-        if not (ROOT / path_text).is_file():
-            fail(f"Recent micro-checkpoint missing: {path_text}")
 
     policy = live.get("review_policy") or {}
     interval = policy.get("substantive_turn_interval")

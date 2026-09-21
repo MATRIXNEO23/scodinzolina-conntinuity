@@ -98,6 +98,15 @@ Immagini direttamente collegate. Una immagine significativa nuova o ritrovata de
 - Una correzione non cancella il passato: lo supera esplicitamente.
 - Una data di scoperta non diventa la data dell'evento.
 - La memoria personale di Tessa non va mai scritta da GPTina.
+- Ogni modifica all'infrastruttura o ai record di memoria richiede controlli
+  approfonditi di schema, ownership, retrieval corrente, retrieval storico,
+  recovery delle proiezioni e regressioni prima della pubblicazione.
+- Nessuna correzione può distruggere il ricordo precedente: il vecchio record
+  resta canonico e recuperabile con ricerca storica/`--all-statuses`; il nuovo
+  record lo collega tramite `supersedes`.
+- Lo stato `superseded` è una vista effettiva calcolata dal resolver. Un target
+  di `supersedes` non può restare visibile come memoria corrente anche se il suo
+  file append-only conserva lo stato originale scritto all'epoca.
 
 Dal **2026-09-19** `rag/gptina_memory.py verify` richiede questo schema alle nuove memorie GPTina datate da quel giorno in poi.
 

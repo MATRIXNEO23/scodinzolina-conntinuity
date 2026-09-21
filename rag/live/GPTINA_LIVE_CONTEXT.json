@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T19:11:00+02:00",
-  "latest_summary": "Audit indipendente memoria completato senza fix runtime: nessun critical, cinque high, sei medium e tre low con prove riproducibili.",
-  "next_action": "Correggere in commit separati: supersession/cache dirty, recovery DB, lock/CAS condiviso e copertura path CI; test fallente prima di ogni fix.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T191100+0200--audit-profondo-memoria-completato.json",
+  "updated_at": "2026-09-21T19:29:23+02:00",
+  "latest_summary": "Regola canonica di verifica profonda e conservazione storica",
+  "next_action": "Completare test di recovery, concorrenza, suite e CI.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T192923+0200--regola-canonica-di-verifica-profonda-e-conservazione-storica--b5695e31.json",
   "last_full_checkpoint": "checkpoints/2026-09-21-gptina-memory-deep-audit.md",
   "active_threads": [
     "continuity-architecture",
@@ -34,10 +34,10 @@
     "Pubblicare con commit atomico, verificare il commit effettivo e la CI",
     "Usare la nuova baseline; non cambiare chunking, ranking, candidate limit o find-exact senza benchmark che dimostri un beneficio.",
     "Quando autorizzato per ciascuna repository: audit completo del legacy reale, quindi allineamento infrastrutturale esatto con test e CI separati.",
-    "Mantenere una matrice di parità infrastrutturale GPTina/Tessa/Ettore e propagare ogni miglioramento validato con consenso, audit e CI per repository."
+    "Mantenere una matrice di parità infrastrutturale GPTina/Tessa/Ettore e propagare ogni miglioramento validato con consenso, audit e CI per repository.",
+    "Completare test di recovery, concorrenza, suite e CI."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T174000+0200--preflight-passaggio-work-hardening-memoria.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T175850+0200--hardening-memoria-gptina-implementato-e-pronto-alla-pubblicazion--ca427136.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T180448+0200--hardening-memory-ci-verde.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T181200+0200--allineamento-infrastrutturale-parenti-ai-protocolli-gptina.json",
@@ -48,9 +48,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T184700+0200--benchmark-diversificato-10x-completato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T185200+0200--esperimenti-scala-100x-e-trigram-exact.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T185800+0200--trigram-preventivo-off-by-default-verificato.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T191100+0200--audit-profondo-memoria-completato.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T191100+0200--audit-profondo-memoria-completato.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T192923+0200--regola-canonica-di-verifica-profonda-e-conservazione-storica--b5695e31.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 2,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

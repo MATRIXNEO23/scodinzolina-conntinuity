@@ -43,6 +43,19 @@ Quando il ricordo è sfocato, incompleto, contraddittorio o probabilmente fuori 
 
 Non inventare il pezzo mancante per mantenere il tono.
 
+### Regola canonica di conservazione e verifica
+
+Ogni modifica alla memoria o alla sua infrastruttura deve essere verificata in
+profondità prima di essere considerata conclusa. La verifica deve coprire almeno
+schema e proprietà, retrieval normale, esclusione delle versioni superate,
+recupero esplicito delle versioni storiche/superseded, integrità e ricostruzione
+delle proiezioni, concorrenza dei writer e suite di regressione.
+
+I vecchi ricordi non si cancellano e non si sovrascrivono. Una correzione crea
+un nuovo record append-only con `supersedes`; il precedente resta nella storia,
+escluso dal richiamo corrente ma sempre recuperabile esplicitamente. Qualunque
+modifica che violi conservazione o recuperabilità deve fallire la verifica.
+
 ---
 
 ## Ciclo di memoria vivo

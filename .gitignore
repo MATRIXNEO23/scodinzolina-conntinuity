@@ -6,5 +6,9 @@ rag/index/gptina_memory.sqlite3-wal
 rag/index/gptina_memory.sqlite3-shm
 rag/index/gptina_exact_trigram.sqlite3
 rag/index/gptina_exact_trigram.sqlite3.tmp
+rag/index/.projection-build.lock
+rag/index/*.rebuild
+rag/index/*.rebuild-wal
+rag/index/*.rebuild-shm
 __pycache__/
 rag/__pycache__/

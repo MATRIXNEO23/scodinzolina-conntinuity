@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-21T192923+0200-b5695e31",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21",
+  "recorded_at": "2026-09-21T19:29:23+02:00",
+  "change_type": "rule",
+  "summary": "Regola canonica di verifica profonda e conservazione storica",
+  "changed": [
+    "Ogni modifica alla memoria richiede controlli approfonditi prima della pubblicazione.",
+    "I ricordi precedenti restano append-only, esclusi dal corrente quando superseded ma sempre recuperabili esplicitamente."
+  ],
+  "thread_ids": [
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/LIVE_MEMORY_PROTOCOL.md",
+    "rag/MEMORY_RECORD_SCHEMA.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Completare test di recovery, concorrenza, suite e CI.",
+  "preflight": false
+}

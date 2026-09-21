@@ -6,6 +6,7 @@ import os
 import subprocess
 import sys
 import tempfile
+from datetime import datetime, timedelta
 from pathlib import Path
 
 REAL_ROOT = Path(__file__).resolve().parents[1]
@@ -89,6 +90,13 @@ def main() -> None:
         if "Created rag/live/micro-checkpoints/" not in second.stdout:
             raise AssertionError(second.stdout)
 
+        # The two subprocesses can record within the same second. Give the
+        # first record an unambiguously earlier timestamp for ordering tests.
+        first_record["recorded_at"] = (
+            datetime.fromisoformat(first_record["recorded_at"]) - timedelta(seconds=1)
+        ).isoformat()
+        write_json(micros[0], first_record)
+
         micro_dir = root / "rag" / "live" / "micro-checkpoints" / "2026" / "09" / "18"
         legacy_path = micro_dir / "legacy-v1.json"
         legacy_record = {
@@ -110,6 +118,32 @@ def main() -> None:
             raise AssertionError(verify.stdout)
         if "v1_legacy=1" not in verify.stdout:
             raise AssertionError(verify.stdout)
+
+        live_snapshot = json.loads(live_path.read_text(encoding="utf-8"))
+        live_reordered = dict(live_snapshot)
+        live_reordered["recent_micro_checkpoints"] = list(
+            reversed(live_snapshot["recent_micro_checkpoints"])
+        )
+        live_reordered["last_micro_checkpoint"] = live_reordered[
+            "recent_micro_checkpoints"
+        ][-1]
+        write_json(live_path, live_reordered)
+        rejected = run(root, "verify", check=False)
+        if rejected.returncode == 0 or "ordered by recorded_at" not in (
+            rejected.stdout + rejected.stderr
+        ):
+            raise AssertionError("temporally reordered live window unexpectedly accepted")
+        write_json(live_path, live_snapshot)
+
+        duplicate_micro = dict(first_record)
+        duplicate_micro_path = micro_dir / "duplicate-id-v2.json"
+        write_json(duplicate_micro_path, duplicate_micro)
+        rejected = run(root, "verify", check=False)
+        if rejected.returncode == 0 or "Duplicate micro_id" not in (
+            rejected.stdout + rejected.stderr
+        ):
+            raise AssertionError("duplicate micro_id unexpectedly accepted")
+        duplicate_micro_path.unlink()
 
         bad_v2_path = micro_dir / "bad-v2.json"
         bad_v2 = {
