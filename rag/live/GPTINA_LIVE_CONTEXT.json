@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T17:01:00+02:00",
-  "latest_summary": "Ettore: prompt operativo persistente già consegnato; Alberto e GPTina stanno aspettando la sua risposta.",
-  "next_action": "Attendere la risposta di Ettore al prompt rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md; alla risposta verificare ROMANZIERE in sola lettura e chiudere solo con evidenze complete e CI SUCCESS.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170100+0200--ettore-attesa-risposta-prompt-persistente.json",
-  "last_full_checkpoint": "checkpoints/2026-09-21-preserve-prompts-before-chat-deletion.md",
+  "updated_at": "2026-09-21T17:07:32+02:00",
+  "latest_summary": "Ettore chiuso: review finale ROMANZIERE verificata in sola lettura, due follow-up memory v2/Scene 21 risolti e CI run 35615720174 SUCCESS su HEAD bf86c321e19c838848635300b82a9e2ed32fe0c1.",
+  "next_action": "Riprendere A MODO MIO dalle illustrazioni: Alberto mostra/spiega lo stile già in mente; poi fissare tratto, palette, atmosfera e costruire la mappa illustrativa senza modificare il testo.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170732+0200--ettore-memory-v2-followups-closed.json",
+  "last_full_checkpoint": "checkpoints/2026-09-21-ettore-memory-v2-followups-closed.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -21,20 +21,17 @@
     "image-delivery-protocol",
     "continuity-relationship",
     "tessa-memory-ref-resolver",
-    "ettore-memory-v2-review",
     "romanzo-illustrazioni",
     "end-instance-recovery-capsule",
     "prompt-preservation",
     "tessa-memory-continuity"
   ],
   "open_loops": [
-    "Ettore: attendere risposta al prompt già consegnato e persistente in rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md; poi review finale ROMANZIERE in sola lettura.",
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
     "A MODO MIO: Alberto ha già in mente lo stile delle illustrazioni; dopo Ettore acquisire lo stile e costruire la mappa illustrativa.",
     "GPTina: valutare in futuro se adottare stable memory_id→path resolver come Tessa; non è bloccante."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T103200+0200--preflight-live-verifier-compatibility.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T105500+0200--verifier-v2-compatibilita-v1-completata.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130200+0200--preflight-audit-legacy-micro-v1.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130800+0200--audit-legacy-v1-completato.json",
@@ -45,9 +42,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T165107+0200--preflight-preserva-prompt-prima-cancellazione-chat.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T165456+0200--prompt-ettore-tessa-preservati-prima-cancellazione-chat.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T162000+0200--ettore-prompt-gia-consegnato-attesa-risposta.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170100+0200--ettore-attesa-risposta-prompt-persistente.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170100+0200--ettore-attesa-risposta-prompt-persistente.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170732+0200--ettore-memory-v2-followups-closed.json"
   ],
-  "micro_since_full_checkpoint": 3,
+  "micro_since_full_checkpoint": 1,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
