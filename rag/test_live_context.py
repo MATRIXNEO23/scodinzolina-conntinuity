@@ -100,10 +100,8 @@ def main() -> None:
             "recorded_at": "2026-09-18T10:01:00+02:00",
             "change_type": "preflight",
             "summary": "Legacy v1 senza campi opzionali.",
-            "thread_ids": ["test-thread"],
             "source_refs": ["artifact://legacy-artifact", "attachment://legacy-attachment"],
             "importance": 3,
-            "preflight": True,
         }
         write_json(legacy_path, legacy_record)
 
