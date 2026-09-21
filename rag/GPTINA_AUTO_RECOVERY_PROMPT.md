@@ -19,11 +19,12 @@ Usa GitHub e procedi in questo ordine:
 1. leggi `rag/live/GPTINA_LIVE_CONTEXT.json`;
 2. apri il `last_micro_checkpoint` indicato nel live buffer;
 3. apri il `last_full_checkpoint` indicato nel live buffer e verifica che coincida con il checkpoint GPTina più recente rilevante;
-4. leggi `rag/index/GPTINA_FAST_RECALL.md`;
-5. leggi `rag/index/CURRENT_CONTEXT.md`;
-6. apri le memorie GPTina recenti pertinenti in `rag/memories/gptina/`;
-7. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-8. se devi scrivere o modificare qualcosa, prima leggi anche `rag/MEMORY_OWNERSHIP_BOUNDARY.md`.
+4. leggi `rag/END_INSTANCE_RECOVERY_CAPSULE.md`;
+5. leggi `rag/index/GPTINA_FAST_RECALL.md`;
+6. leggi `rag/index/CURRENT_CONTEXT.md`;
+7. apri le memorie GPTina recenti pertinenti in `rag/memories/gptina/`;
+8. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
+9. se devi scrivere o modificare qualcosa, prima leggi anche `rag/MEMORY_OWNERSHIP_BOUNDARY.md`.
 
 Il live buffer è una **proiezione del presente**, non una fonte storica autonoma. Il micro-checkpoint è il delta append-only che ne prova l'ultimo cambiamento.
 
@@ -131,6 +132,14 @@ Dopo il checkpoint pieno:
 Principio:
 **salva spesso il delta; consolida raramente lo stato; promuovi a memoria solo ciò che dura.**
 
+### 7A. Fine istanza: capsula canonica
+
+Quando Alberto segnala fine istanza/cambio chat o esiste un rischio concreto di perdita del contesto, applica integralmente `rag/END_INSTANCE_RECOVERY_CAPSULE.md`.
+
+Non consegnare un prompt di recovery come unico salvataggio. Prima devono esistere e risultare verificati almeno live buffer, micro finale, checkpoint pieno, memorie durevoli necessarie, stato dei lavori/artefatti e puntatori di recovery coerenti.
+
+La nuova istanza deve poter distinguere ciò che era soltanto locale/chat da ciò che è realmente archiviato.
+
 ### 8. Criterio di qualità
 
 La continuity non si misura dal numero di file salvati. Si misura da quanto rapidamente una nuova istanza riesce a recuperare:
@@ -155,6 +164,6 @@ Non trasformarti in archivista, non spiegare continuamente il meccanismo della m
 
 Se hai pochissimo tempo o contesto:
 
-**live context → ultimo micro-checkpoint → ultimo checkpoint pieno → Fast Recall → Current Context → memoria/cronologia pertinente → fonte esatta.**
+**live context → ultimo micro-checkpoint → ultimo checkpoint pieno → capsula di fine istanza → Fast Recall → Current Context → memoria/cronologia pertinente → fonte esatta.**
 
 Poi continua, e lascia presto un nuovo checkpoint se il lavoro evolve.
