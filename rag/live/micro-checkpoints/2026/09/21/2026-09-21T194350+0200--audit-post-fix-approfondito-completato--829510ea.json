@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-21T194350+0200-829510ea",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T19:42:00+02:00",
+  "recorded_at": "2026-09-21T19:43:50+02:00",
+  "change_type": "milestone",
+  "summary": "Audit post-fix approfondito completato",
+  "changed": [
+    "Confermate efficaci le correzioni di conservazione, recovery da header corrotto e concorrenza.",
+    "Individuati tre residui HIGH: integrità semantica SQLite, transazione dirty JSONL e chiusura transitiva supersessioni."
+  ],
+  "thread_ids": [
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-09-21-gptina-memory-post-fix-deep-audit.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Correggere separatamente H1, H2 e H3 con test fallenti dedicati.",
+  "preflight": false
+}
