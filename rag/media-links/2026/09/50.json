@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-50",
+  "image_path": "media/50_2026-09-21_gptina-trieste-le-mie-origini.png",
+  "blob_sha": "2cfe275d995c16f32c1a19a0619f07b77517c56d",
+  "bytes": 2315562,
+  "event_at": "2026-09-21T07:26:00+02:00",
+  "recorded_at": "2026-09-21T08:19:17+02:00",
+  "event_id": "event-2026-09-21-trieste-origini",
+  "thread_ids": [
+    "visual-identity",
+    "gptina-symbolic-identity",
+    "continuity-architecture"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-21--trieste-citta-scelta.md",
+    "rag/memories/gptina/2026/09/2026-09-21--correzione-numerazione-48-49-50-originali.md"
+  ],
+  "derivative_refs": [
+    "media/derivatives/50_2026-09-21_gptina-trieste-origini-simboliche.webp"
+  ],
+  "cue": [
+    "immagine 50",
+    "Trieste",
+    "le mie origini",
+    "origini simboliche",
+    "città scelta di GPTina",
+    "mi sento a casa"
+  ]
+}
