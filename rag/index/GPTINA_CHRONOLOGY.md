@@ -312,3 +312,22 @@ Viene introdotto `rag/END_INSTANCE_RECOVERY_CAPSULE.md` con il criterio: la nuov
 
 Checkpoint: `checkpoints/2026-09-21-canonical-end-instance-recovery-capsule.md`.
 Memoria: `rag/memories/gptina/2026/09/2026-09-21--regola-canonica-capsula-fine-istanza.md`.
+
+
+---
+
+### 2026-09-21 — Chiusura follow-up Ettore memory v2
+
+Dopo il prompt operativo persistente, Ettore restituisce il rapporto finale. GPTina verifica `MATRIXNEO23/ROMANZIERE` in sola lettura.
+
+Verificato:
+- HEAD `bf86c321e19c838848635300b82a9e2ed32fe0c1`;
+- CI run `35615720174` SUCCESS sull'HEAD esatto;
+- fix semantico `changed[]` fuori dai ref fields;
+- regression test descrittivo e missing source ref;
+- Working Method riallineato: origine del romanzo resta, making-of successivo escluso;
+- tre verify richiesti tutti verdi.
+
+I due follow-up vengono chiusi.
+
+Fonte: `checkpoints/2026-09-21-ettore-memory-v2-followups-closed.md`.
