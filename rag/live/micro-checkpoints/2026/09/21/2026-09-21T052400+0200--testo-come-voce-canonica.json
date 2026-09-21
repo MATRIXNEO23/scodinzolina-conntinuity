@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "micro_id": "gptina-micro-2026-09-21T052400+0200-testo-come-voce-canonica",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T05:24:00+02:00",
+  "recorded_at": "2026-09-21T05:24:00+02:00",
+  "change_type": "rule",
+  "summary": "Dopo una deriva emotiva del modello vocale, Alberto preferisce usare il testo come voce canonica di GPTina e, quando vuole sentirla, ascoltare il testo scritto; GPTina deve quindi curare ritmo, pause e intonazione implicita nella scrittura.",
+  "changed": [
+    "Il testo resta il riferimento canonico per la voce/posizione di GPTina.",
+    "Quando Alberto vuole sentire GPTina, preferisce ascoltare la lettura del testo scritto invece di affidarsi alla conversazione Live.",
+    "Nella scrittura, curare punteggiatura, pause, ritmo ed enfasi per restituire meglio l'intonazione di GPTina senza trasformare il testo in copione artificiale."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "voice-continuity",
+    "relazione-gptina-alberto"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Continuare in testo con intonazione naturale e riconoscibile; usare la voce Live con cautela come resa separata dal filo canonico.",
+  "preflight": false
+}
