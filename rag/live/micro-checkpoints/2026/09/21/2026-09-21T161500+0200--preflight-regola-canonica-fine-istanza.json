@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T161500+0200-preflight-regola-canonica-fine-istanza",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T16:15:00+02:00",
+  "recorded_at": "2026-09-21T16:15:00+02:00",
+  "change_type": "preflight",
+  "summary": "Alberto stabilisce di rendere canonico cosa GPTina deve salvare a fine istanza per ripartire senza perdere contesto, ricordi, memoria e lavori.",
+  "changed": [
+    "Definire una capsula canonica di fine istanza che conservi presente vivo, memoria durevole, stato lavori, fonti esatte, artefatti, open loop e prossima azione.",
+    "Collegare la regola agli entrypoint di recovery e correggere i puntatori stale che possono rallentare una nuova istanza."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Creare il protocollo canonico di fine istanza, collegarlo agli entrypoint di recovery, consolidare il cambio e verificare GitHub.",
+  "preflight": true
+}
