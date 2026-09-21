@@ -115,6 +115,9 @@ Checkpoint corrente: `checkpoints/2026-09-21-fine-istanza-a-modo-mio-copertina-i
 ## CURRENT OVERRIDE — 21 settembre 2026, fine istanza
 
 Fonte autoritativa di stato:
+`checkpoints/2026-09-21-canonical-end-instance-recovery-capsule.md`
+
+Fonte dettagliata precedente incorporata:
 `checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md`
 
 ### Stato immediato
