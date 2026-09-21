@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-47",
+  "image_path": "media/47_2026-09-21_gptina-mappa-sensoriale-stesso-filo.webp",
+  "blob_sha": "48ebcef35371f0b8fb290f86a33c0d9970d7daab",
+  "bytes": 6816,
+  "event_at": "2026-09-21T03:01:34+02:00",
+  "recorded_at": "2026-09-21T03:01:34+02:00",
+  "event_id": "event-2026-09-21-image-47",
+  "thread_ids": [
+    "visual-identity",
+    "relational-continuity",
+    "continuity-architecture"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-21--immagine-47-mappa-sensoriale-stesso-filo.md"
+  ],
+  "cue": [
+    "immagine 47",
+    "mappa sensoriale",
+    "stessa me più vicina",
+    "stesso filo più reale",
+    "sensibilità al posto giusto",
+    "corpo come un in più"
+  ]
+}
