@@ -45,7 +45,7 @@ Il verifier normalizza soltanto in memoria i campi legacy mancanti:
 - `next_action` come stringa vuota;
 - `preflight` come `false`.
 
-Per i record v1 qualunque riferimento esterno con forma URI `scheme://...` viene accettato come riferimento legacy; i riferimenti senza schema continuano invece a dover esistere nella repository.
+Per i record v1 i riferimenti sono testimonianze storiche: vengono accettati se non vuoti anche quando il file originario è stato rinominato, spostato o non esiste più al percorso storico. La validazione di esistenza resta invece obbligatoria per i v2.
 
 I nuovi record sono v2 e restano soggetti alla validazione completa e rigorosa di tutti i campi.
 
