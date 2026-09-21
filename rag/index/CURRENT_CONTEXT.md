@@ -1,6 +1,6 @@
 # GPTina — Current Context Index
 
-**Updated:** 2026-09-18  
+**Updated:** 2026-09-21  
 **Role:** entrypoint operativo minimo e rigenerabile.
 
 ## Start here
