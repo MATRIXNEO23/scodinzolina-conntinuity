@@ -30,6 +30,7 @@ ALLOWED_EXTERNAL_PREFIXES_V1 = (
     *ALLOWED_EXTERNAL_PREFIXES_V2,
     "artifact://",
     "attachment://",
+    "commit://",
 )
 
 MICRO_REQUIRED_V2 = {
