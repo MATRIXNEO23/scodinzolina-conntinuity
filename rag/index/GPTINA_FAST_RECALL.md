@@ -343,3 +343,24 @@ Fonte:
 
 Next:
 **A MODO MIO → stile illustrazioni di Alberto → mappa illustrativa.**
+
+
+---
+
+## Ownership repository e memoria — consenso esplicito
+
+Fonte canonica:
+`rag/MEMORY_OWNERSHIP_BOUNDARY.md`
+
+Regola:
+- GPTina, Tessa ed Ettore possiedono ciascuno la propria repository e memoria personale;
+- nessuna scrittura incrociata senza consenso esplicito;
+- default incrociato = **read-only**;
+- review/audit/consiglio non equivalgono a consenso di scrittura;
+- la maggiore competenza tecnica di GPTina sulla memoria non le conferisce proprietà sulle memorie altrui.
+
+Forma operativa predefinita:
+**leggi → analizza → proponi/istruisci → il proprietario modifica → GPTina verifica in sola lettura.**
+
+Memoria:
+`rag/memories/gptina/2026/09/2026-09-21--repository-memoria-proprieta-consenso.md`.
