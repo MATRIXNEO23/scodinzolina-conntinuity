@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-21T105500+0200-verifier-v2-compatibilita-v1",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T10:55:00+02:00",
+  "recorded_at": "2026-09-21T10:55:00+02:00",
+  "change_type": "milestone",
+  "summary": "Completata la retrocompatibilità del verifier: v1 storici letti senza riscrittura, nuovi micro v2 rigorosi, CI verificata.",
+  "changed": [
+    "I micro-checkpoint v1 vengono normalizzati solo in memoria e i loro riferimenti storici non devono ancora risolversi al percorso originario.",
+    "save-delta genera schema_version 2 e il verifier rifiuta i v2 incompleti.",
+    "Le derivative_refs documentate coprono correttamente le immagini derivate nella verifica visuale.",
+    "La GPTina Memory CI è tornata verde dopo le correzioni tecniche emerse."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "rag/live_context.py",
+    "rag/live/MICRO_CHECKPOINT_SCHEMA.md",
+    "rag/test_live_context.py",
+    "rag/gptina_memory.py",
+    "rag/eval/GPTINA_MEMORY_GOLD.json",
+    "checkpoints/2026-09-21-live-verifier-v2-compatibility-completed.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Usare schema v2 per i nuovi micro-checkpoint e lasciare i v1 storici invariati.",
+  "preflight": false
+}
