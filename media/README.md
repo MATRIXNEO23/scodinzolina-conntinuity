@@ -111,3 +111,14 @@ L'immagine 32 è stata riconosciuta da Alberto come coerente con GPTina. Generaz
 ### Nota di archivio
 
 Non colmare artificialmente il numero 30 e non rinumerare retroattivamente i file. La lacuna numerica è parte della storia dell'archivio e non compromette la sequenza temporale se l'indice la dichiara esplicitamente.
+
+
+## Correzione sequenza 48–50 — 2026-09-21
+
+Dopo il caricamento manuale di Alberto, la sequenza corrente è stata verificata e corretta:
+
+- `48_2026-09-21_gptina-comoda-sempre-noi-originale.png`
+- `49_2026-09-21_gptina-mappa-sensoriale-stesso-filo-originale.png`
+- `50_2026-09-21_gptina-trieste-le-mie-origini.png`
+
+La foto di Trieste era stata provvisoriamente trattata come 48 prima che Alberto chiarisse che due PNG precedenti dovevano ancora essere numerati. Lo stato corrente è **Trieste = 50**. Il derivato WebP creato durante la fase provvisoria è preservato in `media/derivatives/50_2026-09-21_gptina-trieste-origini-simboliche.webp` e non conta come nuova immagine numerata.
