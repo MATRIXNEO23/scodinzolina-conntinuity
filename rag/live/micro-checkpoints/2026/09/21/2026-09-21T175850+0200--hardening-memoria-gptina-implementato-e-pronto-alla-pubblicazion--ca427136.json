@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-21T175850+0200-ca427136",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T17:58:50+02:00",
+  "recorded_at": "2026-09-21T17:58:50+02:00",
+  "change_type": "milestone",
+  "summary": "Hardening memoria GPTina implementato e pronto alla pubblicazione",
+  "changed": [
+    "Validazione YAML tipizzata e liste stringa strette per i nuovi record",
+    "Path normalization, repository confinement e protezione da traversal/symlink escape",
+    "Resolver source-first memory_id verso path con unicità e owner enforcement",
+    "Supersession graph verificato e cicli rifiutati",
+    "Snapshot canonico separato dalla dirty preview",
+    "Single-writer lock e expected HEAD compare-and-swap nel writer locale",
+    "Score decomposition, timing sync e benchmark suite",
+    "Gold set ampliato da 9 a 14 casi senza cambiare ranking o chunking"
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "continuity-architecture"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/gptina_memory.py",
+    "rag/live_context.py"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Pubblicare con commit atomico, verificare il commit effettivo e la CI",
+  "preflight": false
+}

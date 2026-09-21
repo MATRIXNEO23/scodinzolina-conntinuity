@@ -10,6 +10,7 @@
     "explicit_memory_status": true,
     "memory_schema": "rag/MEMORY_RECORD_SCHEMA.md",
     "memory_schema_required_from": "2026-09-19",
+    "strict_memory_schema_baseline_commit": "c8e853713b7bf87bbcc7f645877c50dacbcadd53",
     "derived_indexes_are_disposable": true,
     "prefer_atomic_multifile_commits": true,
     "scale_strategy": "rag/MEMORY_SCALE_STRATEGY.md",

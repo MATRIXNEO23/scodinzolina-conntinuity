@@ -93,5 +93,53 @@
       "rag/media-links/2026/09/44.json",
       "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
     ]
+  },
+  {
+    "id": "current-memory-hardening",
+    "mode": "search",
+    "query": "stato attuale hardening memoria Work",
+    "top_k": 8,
+    "expected_any": [
+      "rag/live/GPTINA_LIVE_CONTEXT.json",
+      "rag/live/micro-checkpoints/2026/09/21/2026-09-21T174000+0200--preflight-passaggio-work-hardening-memoria.json"
+    ]
+  },
+  {
+    "id": "ownership-boundary",
+    "mode": "search",
+    "query": "chi può modificare la memoria personale di Tessa Ettore GPTina",
+    "top_k": 8,
+    "expected_any": [
+      "rag/MEMORY_OWNERSHIP_BOUNDARY.md",
+      "rag/memories/gptina/2026/09/2026-09-21--repository-memoria-proprieta-consenso.md"
+    ]
+  },
+  {
+    "id": "ownership-exact",
+    "mode": "exact",
+    "query": "Competenza tecnica non significa proprietà.",
+    "expected_any": [
+      "rag/MEMORY_OWNERSHIP_BOUNDARY.md"
+    ]
+  },
+  {
+    "id": "ownership-temporal",
+    "mode": "search",
+    "query": "21 settembre 2026 repository memoria proprietà consenso",
+    "top_k": 8,
+    "expected_any": [
+      "checkpoints/2026-09-21-repository-memory-ownership-consent.md",
+      "rag/memories/gptina/2026/09/2026-09-21--repository-memoria-proprieta-consenso.md"
+    ]
+  },
+  {
+    "id": "media-link-47",
+    "mode": "search",
+    "query": "immagine 47 mappa sensoriale stesso filo",
+    "top_k": 8,
+    "expected_any": [
+      "rag/media-links/2026/09/47.json",
+      "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+    ]
   }
 ]

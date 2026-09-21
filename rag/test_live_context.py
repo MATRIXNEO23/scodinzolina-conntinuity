@@ -137,6 +137,34 @@ def main() -> None:
             raise AssertionError(rejected.stdout + rejected.stderr)
         bad_v2_path.unlink()
 
+        bad_list_path = micro_dir / "bad-list-v2.json"
+        bad_list = dict(bad_v2)
+        bad_list["changed"] = ["valid delta", 7]
+        write_json(bad_list_path, bad_list)
+        rejected = run(root, "verify", check=False)
+        if rejected.returncode == 0:
+            raise AssertionError("v2 list with non-string element unexpectedly accepted")
+        if "changed[1] must be a non-empty string" not in (
+            rejected.stdout + rejected.stderr
+        ):
+            raise AssertionError(rejected.stdout + rejected.stderr)
+        bad_list_path.unlink()
+
+        before_cas = set((root / "rag" / "live" / "micro-checkpoints").rglob("*.json"))
+        cas_rejected = run(
+            root,
+            "save-delta",
+            "--summary", "CAS deve fallire",
+            "--change-type", "decision",
+            "--expected-head", "deadbeef",
+            check=False,
+        )
+        if cas_rejected.returncode == 0:
+            raise AssertionError("expected-HEAD mismatch unexpectedly accepted")
+        after_cas = set((root / "rag" / "live" / "micro-checkpoints").rglob("*.json"))
+        if before_cas != after_cas:
+            raise AssertionError("CAS failure wrote a micro-checkpoint")
+
         live = json.loads(live_path.read_text(encoding="utf-8"))
         if live["micro_since_full_checkpoint"] != 1:
             raise AssertionError(live)

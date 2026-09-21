@@ -21,10 +21,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install memory verifier dependency
+        run: python -m pip install -r requirements-memory.txt
       - name: Verify live context and micro-checkpoints
         run: python rag/live_context.py verify
       - name: Test live-context round trip
         run: python rag/test_live_context.py
+      - name: Test strict memory schema and resolver
+        run: python rag/test_memory_schema.py
       - name: Verify continuity invariants and FTS5
         run: python rag/gptina_memory.py verify
       - name: Build derived indexes
@@ -33,5 +37,7 @@ jobs:
         run: python rag/gptina_memory.py stats
       - name: Run SQLite retrieval regression set
         run: python rag/test_memory_retrieval.py
+      - name: Run memory benchmark smoke test
+        run: python rag/benchmark_memory.py
       - name: Ensure derived indexes stay untracked
         run: test -z "$(git status --porcelain)"

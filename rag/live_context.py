@@ -2,13 +2,23 @@
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
 import os
 import re
+import subprocess
 import sys
 import uuid
 from datetime import datetime
 from pathlib import Path
+
+from memory_schema import (
+    build_memory_resolver,
+    is_nonempty_string,
+    validate_local_ref,
+    validate_string_list,
+    validate_temporal,
+)
 
 ROOT = Path(
     os.environ.get("GPTINA_REPO_ROOT", str(Path(__file__).resolve().parents[1]))
@@ -58,6 +68,60 @@ LEGACY_V1_DEFAULTS = {
 
 def fail(message: str) -> None:
     raise SystemExit(message)
+
+
+def git_head() -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(ROOT), "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    return result.stdout.strip() or None
+
+
+@contextlib.contextmanager
+def writer_lock():
+    """Cooperative single-writer lock; readers remain lock-free."""
+    lock_dir = ROOT / ".git" if (ROOT / ".git").is_dir() else LIVE
+    lock_dir.mkdir(parents=True, exist_ok=True)
+    lock_path = lock_dir / "gptina-memory-writer.lock"
+    handle = lock_path.open("a+", encoding="utf-8")
+    try:
+        try:
+            import fcntl
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except ImportError:  # pragma: no cover - Windows fallback
+            import msvcrt
+            try:
+                msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
+            except OSError as exc:
+                fail(f"Another GPTina memory writer is active: {exc}")
+        except BlockingIOError:
+            fail("Another GPTina memory writer is active")
+        handle.seek(0)
+        handle.truncate()
+        handle.write(f"pid={os.getpid()} head={git_head() or 'none'}\n")
+        handle.flush()
+        yield
+    finally:
+        try:
+            import fcntl
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+        except (ImportError, OSError):
+            pass
+        handle.close()
+
+
+def require_expected_head(expected: str | None) -> None:
+    if not expected:
+        return
+    actual = git_head()
+    if actual != expected:
+        fail(f"HEAD compare-and-swap failed: expected={expected} actual={actual}")
 
 
 def rel(path: Path) -> str:
@@ -137,7 +201,7 @@ def ref_exists(ref: str, *, schema_version: int) -> bool:
         ALLOWED_EXTERNAL_PREFIXES_V2
     ):
         return True
-    return (ROOT / ref).exists()
+    return not validate_local_ref(ROOT, ref, "reference")
 
 def validate_micro(record: dict, path: Path | None = None) -> list[str]:
     errors: list[str] = []
@@ -168,27 +232,46 @@ def validate_micro(record: dict, path: Path | None = None) -> list[str]:
         or not 1 <= importance <= 5
     ):
         errors.append("importance must be integer 1..5")
-    if not str(normalized.get("summary") or "").strip():
-        errors.append("summary is empty")
-    if not isinstance(normalized.get("changed"), list):
-        errors.append("changed must be a list")
+    if not is_nonempty_string(normalized.get("summary")):
+        errors.append("summary must be a non-empty string")
+    errors.extend(validate_temporal(normalized.get("event_at"), "event_at", timezone_required=False))
+    errors.extend(validate_temporal(normalized.get("recorded_at"), "recorded_at", timezone_required=True))
+    if version == 2 and not is_nonempty_string(normalized.get("micro_id")):
+        errors.append("micro_id must be a non-empty string")
+    errors.extend(validate_string_list(normalized.get("changed"), "changed"))
     if not isinstance(normalized.get("next_action"), str):
         errors.append("next_action must be a string")
     for key in ("thread_ids", "source_refs", "memory_refs", "media_refs"):
-        if not isinstance(normalized.get(key), list):
-            errors.append(f"{key} must be a list")
+        errors.extend(validate_string_list(normalized.get(key), key))
+    if not isinstance(normalized.get("preflight"), bool):
+        errors.append("preflight must be a boolean")
+
+    resolver: dict[str, str] = {}
+    if version == 2:
+        resolver, _metadata, resolver_errors = build_memory_resolver(
+            ROOT, RAG / "memories" / "gptina"
+        )
+        errors.extend(f"memory resolver: {item}" for item in resolver_errors)
     for key in ("source_refs", "memory_refs", "media_refs"):
         refs = normalized.get(key)
         if not isinstance(refs, list):
             continue
         for ref in refs:
-            if not ref_exists(str(ref), schema_version=version):
+            if key == "memory_refs" and version == 2 and isinstance(ref, str) and ref in resolver:
+                continue
+            if not isinstance(ref, str) or not ref_exists(ref, schema_version=version):
                 errors.append(f"{key} missing ref: {ref}")
     if path and not path.as_posix().endswith(".json"):
         errors.append("micro-checkpoint path must end in .json")
     return errors
 
 def save_delta(args: argparse.Namespace) -> Path:
+    with writer_lock():
+        require_expected_head(args.expected_head)
+        return _save_delta_locked(args)
+
+
+def _save_delta_locked(args: argparse.Namespace) -> Path:
     if args.change_type not in ALLOWED_CHANGE_TYPES:
         fail(f"Unsupported change type: {args.change_type}")
 
@@ -226,8 +309,6 @@ def save_delta(args: argparse.Namespace) -> Path:
     errors = validate_micro(record, target)
     if errors:
         fail("Invalid micro-checkpoint:\n- " + "\n- ".join(errors))
-
-    atomic_write(target, json.dumps(record, ensure_ascii=False, indent=2) + "\n")
 
     live = load_live()
     recent = list(live.get("recent_micro_checkpoints") or [])
@@ -275,11 +356,24 @@ def save_delta(args: argparse.Namespace) -> Path:
         "Projection only. Append-only truth lives in "
         "micro-checkpoints/checkpoints/memories/sources.",
     )
-    atomic_write(LIVE_CONTEXT, json.dumps(live, ensure_ascii=False, indent=2) + "\n")
+    # Prepare both payloads, re-check HEAD, then publish under one cooperative
+    # writer lock. A crash can leave an orphan append-only micro-checkpoint,
+    # but never a live pointer to a missing micro-checkpoint.
+    micro_payload = json.dumps(record, ensure_ascii=False, indent=2) + "\n"
+    live_payload = json.dumps(live, ensure_ascii=False, indent=2) + "\n"
+    require_expected_head(args.expected_head)
+    atomic_write(target, micro_payload)
+    atomic_write(LIVE_CONTEXT, live_payload)
     return target
 
 
-def mark_checkpoint(path_text: str) -> None:
+def mark_checkpoint(path_text: str, expected_head: str | None = None) -> None:
+    with writer_lock():
+        require_expected_head(expected_head)
+        _mark_checkpoint_locked(path_text)
+
+
+def _mark_checkpoint_locked(path_text: str) -> None:
     path = (ROOT / path_text).resolve()
     checkpoints = (ROOT / "checkpoints").resolve()
     if checkpoints not in path.parents or not path.is_file():
@@ -382,9 +476,14 @@ def main() -> None:
     sp.add_argument("--next", dest="next_action", default="")
     sp.add_argument("--resolve", action="append", default=[])
     sp.add_argument("--preflight", action="store_true")
+    sp.add_argument(
+        "--expected-head",
+        help="Fail without writing if repository HEAD differs from this SHA",
+    )
 
     mp = sub.add_parser("mark-checkpoint", help="Point live context to a full checkpoint")
     mp.add_argument("path")
+    mp.add_argument("--expected-head")
 
     sub.add_parser("status", help="Show current live context")
     sub.add_parser("verify", help="Verify live buffer and all micro-checkpoints")
@@ -394,7 +493,7 @@ def main() -> None:
         target = save_delta(args)
         print(f"Created {rel(target)}")
     elif args.cmd == "mark-checkpoint":
-        mark_checkpoint(args.path)
+        mark_checkpoint(args.path, expected_head=args.expected_head)
         print(f"Marked full checkpoint: {args.path}")
     elif args.cmd == "status":
         print_status()

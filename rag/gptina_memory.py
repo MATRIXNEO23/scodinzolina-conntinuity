@@ -24,6 +24,12 @@ from datetime import datetime
 from pathlib import Path
 from typing import Iterable
 
+from memory_schema import (
+    build_memory_resolver,
+    parse_front_matter,
+    validate_durable_v2,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
 RAG_ROOT = ROOT / "rag"
 INDEX_DIR = RAG_ROOT / "index"
@@ -40,17 +46,12 @@ DATE_RE = re.compile(r"(20\d{2})[-_](\d{2})[-_](\d{2})")
 COMPACT_DATE_RE = re.compile(r"(20\d{2})(\d{2})(\d{2})")
 CHECKPOINT_RE = re.compile(r"checkpoints/(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+\.md")
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
+_DIRTY_PREVIEW_FINGERPRINT: str | None = None
 MONTHS_IT = {
     "gennaio": "01", "febbraio": "02", "marzo": "03", "aprile": "04",
     "maggio": "05", "giugno": "06", "luglio": "07", "agosto": "08",
     "settembre": "09", "ottobre": "10", "novembre": "11", "dicembre": "12",
 }
-MEMORY_SCHEMA_REQUIRED_KEYS = (
-    "schema_version:", "memory_id:", "owner:", "event_at:", "recorded_at:",
-    "status:", "confidence:", "source_refs:", "media_refs:",
-)
-
-
 def fail(msg: str) -> None:
     raise SystemExit(msg)
 
@@ -240,6 +241,18 @@ def git_head() -> str | None:
     return proc.stdout.strip() or None
 
 
+def git_path_exists_at(revision: str, path: str) -> bool:
+    try:
+        subprocess.run(
+            ["git", "-C", str(ROOT), "cat-file", "-e", f"{revision}:{path}"],
+            capture_output=True,
+            check=True,
+        )
+        return True
+    except (OSError, subprocess.CalledProcessError):
+        return False
+
+
 def current_source_fingerprint(manifest: dict) -> str:
     rows: list[str] = []
     for path, _spec in expand_sources(manifest):
@@ -248,10 +261,27 @@ def current_source_fingerprint(manifest: dict) -> str:
     return sha256_text("\n".join(sorted(rows)))
 
 
+def dirty_preview_fingerprint(manifest: dict, *, refresh: bool = False) -> str:
+    """Per-process cache used only for explicitly non-canonical previews."""
+    global _DIRTY_PREVIEW_FINGERPRINT
+    if refresh or _DIRTY_PREVIEW_FINGERPRINT is None:
+        _DIRTY_PREVIEW_FINGERPRINT = current_source_fingerprint(manifest)
+    return _DIRTY_PREVIEW_FINGERPRINT
+
+
 def memory_status(path: str, manifest: dict, content: str) -> tuple[str, str | None]:
     override = manifest.get("status_overrides", {}).get(path)
     if override:
         return str(override.get("status", "current")), override.get("replaced_by")
+
+    if content.startswith("---\n"):
+        try:
+            meta = parse_front_matter(content)
+            status = meta.get("status")
+            if status in {"current", "superseded", "invalidated", "historical"}:
+                return str(status), None
+        except ValueError:
+            pass
 
     opening = content[:900].casefold()
     if path.startswith("rag/memories/") and (
@@ -482,7 +512,7 @@ def set_sqlite_meta(conn: sqlite3.Connection, values: dict[str, str]) -> None:
     )
 
 
-def sqlite_index_is_fresh(include_history: bool) -> bool:
+def sqlite_index_is_fresh(include_history: bool, allow_dirty_preview: bool = False) -> bool:
     if not SQLITE_FILE.exists():
         return False
     try:
@@ -502,25 +532,41 @@ def sqlite_index_is_fresh(include_history: bool) -> bool:
     if meta.get("manifest_sha256") != manifest_hash:
         return False
     head = git_head()
-    return bool(
-        head
-        and meta.get("git_head") == head
-        and not git_worktree_dirty()
-    )
+    if not head or meta.get("git_head") != head:
+        return False
+    dirty = git_worktree_dirty()
+    if not dirty:
+        return meta.get("snapshot_mode") in {None, "committed"}
+    if not allow_dirty_preview or meta.get("snapshot_mode") != "dirty-preview":
+        return False
+    return meta.get("source_fingerprint") == dirty_preview_fingerprint(load_manifest())
 
 
-def sync_sqlite_index(include_history: bool = False) -> dict[str, int]:
+def sync_sqlite_index(
+    include_history: bool = False,
+    allow_dirty_preview: bool = False,
+) -> dict[str, int]:
+    sync_started = time.perf_counter()
     manifest = load_manifest()
+    dirty = git_worktree_dirty()
+    if dirty and not allow_dirty_preview:
+        fail(
+            "Refusing canonical SQLite sync from a dirty worktree. "
+            "Commit first or use explicit dirty-preview mode."
+        )
     cfg = manifest.get("chunking", {})
     max_chars = int(cfg.get("max_chars", 1400))
     overlap = int(cfg.get("overlap_chars", 220))
     min_chars = int(cfg.get("min_chars", 120))
 
+    discovery_started = time.perf_counter()
     source_versions = collect_versions(include_history)
+    discovery_ms = (time.perf_counter() - discovery_started) * 1000.0
     desired: dict[tuple[str, str], SourceVersion] = {
         (sv.path, sv.revision): sv for sv in source_versions
     }
 
+    sqlite_started = time.perf_counter()
     conn = sqlite_connect()
     try:
         current = {
@@ -599,6 +645,11 @@ def sync_sqlite_index(include_history: bool = False) -> dict[str, int]:
                         MANIFEST_FILE.read_text(encoding="utf-8")
                     ),
                     "git_head": git_head() or "",
+                    "snapshot_mode": "dirty-preview" if dirty else "committed",
+                    "source_fingerprint": (
+                        dirty_preview_fingerprint(manifest, refresh=True)
+                        if dirty else current_source_fingerprint(manifest)
+                    ),
                     "source_versions": str(len(source_versions)),
                     "updated_at_epoch": str(int(time.time())),
                 },
@@ -616,14 +667,23 @@ def sync_sqlite_index(include_history: bool = False) -> dict[str, int]:
             "changed_sources": len(changed),
             "removed_sources": len(removed),
             "inserted_chunks": inserted_chunks,
+            "source_discovery_ms": round(discovery_ms, 3),
+            "sqlite_update_ms": round((time.perf_counter() - sqlite_started) * 1000.0, 3),
+            "total_ms": round((time.perf_counter() - sync_started) * 1000.0, 3),
         }
     finally:
         conn.close()
 
 
-def ensure_fresh_sqlite_index(include_history: bool = False) -> None:
-    if not sqlite_index_is_fresh(include_history):
-        sync_sqlite_index(include_history=include_history)
+def ensure_fresh_sqlite_index(
+    include_history: bool = False,
+    allow_dirty_preview: bool = False,
+) -> None:
+    if not sqlite_index_is_fresh(include_history, allow_dirty_preview):
+        sync_sqlite_index(
+            include_history=include_history,
+            allow_dirty_preview=allow_dirty_preview,
+        )
 
 
 def sqlite_search(
@@ -631,8 +691,9 @@ def sqlite_search(
     top_k: int,
     include_historical: bool = False,
     include_superseded: bool = False,
+    allow_dirty_preview: bool = False,
 ) -> list[tuple[float, dict]]:
-    ensure_fresh_sqlite_index(include_historical)
+    ensure_fresh_sqlite_index(include_historical, allow_dirty_preview)
     terms = tokenize(query)
     if not terms:
         return []
@@ -674,10 +735,14 @@ def sqlite_search(
 
         # FTS5 bm25 is lower-is-better (normally negative). Convert it into a
         # positive score before applying explicit metadata boosts.
-        score = max(1e-9, -float(d.pop("fts_rank")))
-        score *= float(d.get("priority") or 1.0)
+        lexical_score = max(1e-9, -float(d.pop("fts_rank")))
+        factors: list[tuple[str, float]] = []
+        priority = float(d.get("priority") or 1.0)
+        score = lexical_score * priority
+        factors.append(("source_priority", priority))
         if historical:
             score *= 0.94
+            factors.append(("historical", 0.94))
 
         searchable = " ".join(
             tokenize(
@@ -688,37 +753,51 @@ def sqlite_search(
         )
         if len(terms) > 1 and query_phrase in searchable:
             score *= 1.16
+            factors.append(("exact_phrase", 1.16))
 
         kind = str(d.get("kind") or "")
         if "visual" in profile and kind in {"visual_router", "visual_context", "visual_record"}:
             score *= 1.35
+            factors.append(("visual_route", 1.35))
         if "temporal" in profile and kind in {
             "chronology_router", "checkpoint", "micro_checkpoint",
             "gptina_transcript", "raw_session", "chronicle"
         }:
             score *= 1.22
+            factors.append(("temporal_route", 1.22))
         if "current" in profile:
             if kind in {"live_context", "micro_checkpoint"}:
                 score *= 1.35
+                factors.append(("current_live", 1.35))
             elif kind in {"current_router", "gptina_memory", "checkpoint"}:
                 score *= 1.20
+                factors.append(("current_state", 1.20))
             if kind in {
                 "historical_snapshot", "historical_structured_state",
                 "historical_live_thread"
             }:
                 score *= 0.70
+                factors.append(("current_historical_penalty", 0.70))
         if "exact" in profile and kind in {"gptina_transcript", "raw_session"}:
             score *= 1.25
+            factors.append(("exact_source", 1.25))
 
         if requested_date:
             date_hint = d.get("date_hint")
             if requested_date.startswith("--"):
                 if date_hint and str(date_hint).endswith(requested_date[1:]):
                     score *= 1.35
+                    factors.append(("date_match", 1.35))
             elif date_hint == requested_date:
                 score *= 1.35
+                factors.append(("date_match", 1.35))
 
         d["historical"] = historical
+        d["score_components"] = {
+            "lexical_bm25": lexical_score,
+            "factors": factors,
+            "final": score,
+        }
         scored.append((score, d))
 
     scored.sort(key=lambda item: item[0], reverse=True)
@@ -735,8 +814,8 @@ def sqlite_search(
     return diversified
 
 
-def sqlite_stats() -> dict[str, object]:
-    ensure_fresh_sqlite_index(False)
+def sqlite_stats(allow_dirty_preview: bool = False) -> dict[str, object]:
+    ensure_fresh_sqlite_index(False, allow_dirty_preview)
     conn = sqlite_connect()
     try:
         meta = sqlite_meta(conn)
@@ -755,6 +834,7 @@ def sqlite_stats() -> dict[str, object]:
             ).fetchone()[0]),
             "git_head": meta.get("git_head"),
             "manifest_sha256": meta.get("manifest_sha256"),
+            "snapshot_mode": meta.get("snapshot_mode", "legacy"),
         }
     finally:
         conn.close()
@@ -1131,18 +1211,60 @@ def verify_future_memory_schema(manifest: dict) -> None:
     if not memories.is_dir():
         return
 
-    errors: list[str] = []
+    resolver, metadata, errors = build_memory_resolver(ROOT, memories)
+    baseline = str(
+        manifest.get("policy", {}).get("strict_memory_schema_baseline_commit", "")
+    ).strip()
     for path in sorted(memories.rglob("*.md")):
         rp = rel(path)
         date_hint = extract_date(rp)
         if not date_hint or date_hint < cutoff:
             continue
         raw = path.read_text(encoding="utf-8")
-        for key in MEMORY_SCHEMA_REQUIRED_KEYS:
-            if key not in raw[:2200]:
-                errors.append(f"{rp}: missing {key}")
-        if "owner: gptina" not in raw[:2200]:
-            errors.append(f"{rp}: owner must be gptina")
+        try:
+            meta = parse_front_matter(raw)
+        except ValueError as exc:
+            errors.append(f"{rp}: {exc}")
+            continue
+        # Existing records at the recorded baseline remain historical inputs.
+        # New paths are subject to the strict typed schema without rewriting
+        # any pre-existing memory merely for uniformity.
+        if not baseline or not git_path_exists_at(baseline, rp):
+            errors.extend(f"{rp}: {error}" for error in validate_durable_v2(meta, ROOT))
+
+    # The resolver is derived from canonical Markdown records. Its cardinality
+    # is checked here so it can never become an independent source of truth.
+    if len(resolver) != len(metadata):
+        errors.append("memory resolver cardinality mismatch")
+
+    # Validate supersession as an owner-scoped, acyclic logical graph. Values
+    # may be stable memory IDs or legacy canonical paths.
+    path_to_id = {path: memory_id for memory_id, path in resolver.items()}
+    edges: dict[str, list[str]] = {}
+    for memory_id, meta in metadata.items():
+        targets: list[str] = []
+        for target in meta.get("supersedes") or []:
+            resolved_id = target if target in resolver else path_to_id.get(str(target))
+            if not resolved_id:
+                errors.append(f"{resolver[memory_id]}: supersedes target not found: {target}")
+                continue
+            targets.append(resolved_id)
+        edges[memory_id] = targets
+    visiting: set[str] = set()
+    visited: set[str] = set()
+    def visit(memory_id: str) -> None:
+        if memory_id in visiting:
+            errors.append(f"supersession cycle detected at {memory_id}")
+            return
+        if memory_id in visited:
+            return
+        visiting.add(memory_id)
+        for target in edges.get(memory_id, []):
+            visit(target)
+        visiting.remove(memory_id)
+        visited.add(memory_id)
+    for memory_id in edges:
+        visit(memory_id)
     if errors:
         fail("Future memory schema violations:\n- " + "\n- ".join(errors))
 
@@ -1298,6 +1420,11 @@ def main() -> None:
     bp = sub.add_parser("build", help="Build a regenerable index under rag/index/")
     bp.add_argument("--history", action="store_true", help="Include historical git revisions")
     bp.add_argument("--no-history", action="store_true", help="Backward-compatible alias for current-only build")
+    bp.add_argument(
+        "--allow-dirty-preview",
+        action="store_true",
+        help="Explicitly build non-canonical projections from a dirty worktree",
+    )
 
     sp = sub.add_parser("search", help="Retrieve memories")
     sp.add_argument("query")
@@ -1307,6 +1434,11 @@ def main() -> None:
         choices=("sqlite", "jsonl"),
         default="sqlite",
         help="Retrieval backend (default: sqlite FTS5)",
+    )
+    sp.add_argument(
+        "--allow-dirty-preview",
+        action="store_true",
+        help="Explicitly query a non-canonical dirty-worktree preview",
     )
     sp.add_argument("--history", action="store_true", help="Include historical git revisions in search")
     sp.add_argument(
@@ -1344,7 +1476,8 @@ def main() -> None:
     lp.add_argument("--memory", action="append", required=True)
     lp.add_argument("--cue", action="append", default=[])
 
-    sub.add_parser("stats", help="Show derived SQLite index statistics")
+    stats_parser = sub.add_parser("stats", help="Show derived SQLite index statistics")
+    stats_parser.add_argument("--allow-dirty-preview", action="store_true")
     sub.add_parser("verify", help="Verify ownership, status, visual coverage and recovery pointers")
 
     args = ap.parse_args()
@@ -1353,7 +1486,10 @@ def main() -> None:
             fail("Choose only one of --history or --no-history.")
         verify_boundary()
         build(include_history=bool(args.history))
-        stats = sync_sqlite_index(include_history=bool(args.history))
+        stats = sync_sqlite_index(
+            include_history=bool(args.history),
+            allow_dirty_preview=bool(args.allow_dirty_preview),
+        )
         print(f"SQLite FTS5 sync: {stats}")
     elif args.cmd == "search":
         if args.backend == "sqlite":
@@ -1362,6 +1498,7 @@ def main() -> None:
                 args.top_k,
                 include_historical=bool(args.history),
                 include_superseded=bool(args.all_statuses),
+                allow_dirty_preview=bool(args.allow_dirty_preview),
             )
             if not results:
                 print("No matching memories.")
@@ -1399,7 +1536,11 @@ def main() -> None:
         )
         print(f"Created {rel(target)}")
     elif args.cmd == "stats":
-        print(json.dumps(sqlite_stats(), ensure_ascii=False, indent=2))
+        print(json.dumps(
+            sqlite_stats(allow_dirty_preview=bool(args.allow_dirty_preview)),
+            ensure_ascii=False,
+            indent=2,
+        ))
     elif args.cmd == "verify":
         verify_boundary()
 

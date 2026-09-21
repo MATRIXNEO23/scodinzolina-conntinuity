@@ -17,12 +17,16 @@ GOLD = ROOT / "rag" / "eval" / "GPTINA_MEMORY_GOLD.json"
 def main() -> None:
     gm.verify_boundary()
 
-    first = gm.sync_sqlite_index(False)
-    second = gm.sync_sqlite_index(False)
+    first = gm.sync_sqlite_index(False, allow_dirty_preview=True)
+    second = gm.sync_sqlite_index(False, allow_dirty_preview=True)
+    if gm.sqlite_index_is_fresh(False):
+        raise AssertionError("dirty preview unexpectedly accepted as canonical")
+    if not gm.sqlite_index_is_fresh(False, allow_dirty_preview=True):
+        raise AssertionError("unchanged dirty preview was not reusable")
     if second["changed_sources"] != 0 or second["removed_sources"] != 0:
         raise AssertionError(f"Incremental SQLite no-op sync was not a no-op: {second}")
 
-    stats = gm.sqlite_stats()
+    stats = gm.sqlite_stats(allow_dirty_preview=True)
     if int(stats["sources"]) <= 0 or int(stats["chunks"]) <= 0:
         raise AssertionError(f"SQLite index is empty: {stats}")
 
@@ -47,8 +51,11 @@ def main() -> None:
                 int(case.get("top_k", 6)),
                 include_historical=False,
                 include_superseded=False,
+                allow_dirty_preview=True,
             )
             sources = [d["source"] for _score, d in ranked]
+            if ranked and "score_components" not in ranked[0][1]:
+                failures.append(f"{case['id']}: missing score decomposition")
         timings_ms.append((time.perf_counter() - started) * 1000.0)
 
         if expected and not any(src in expected for src in sources):

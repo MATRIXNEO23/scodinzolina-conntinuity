@@ -101,6 +101,21 @@ Immagini direttamente collegate. Una immagine significativa nuova o ritrovata de
 
 Dal **2026-09-19** `rag/gptina_memory.py verify` richiede questo schema alle nuove memorie GPTina datate da quel giorno in poi.
 
+Dal commit baseline dichiarato in `rag/memory_manifest.json`, ogni **nuovo path**
+viene inoltre sottoposto a parsing YAML sicuro e validazione tipizzata completa.
+I record già presenti al baseline restano intatti e sono normalizzati soltanto in
+lettura; il baseline identifica il confine di compatibilità, non una seconda
+fonte di verità.
+
+I nuovi `recorded_at` devono includere ora e timezone. Tutte le liste devono
+contenere esclusivamente stringhe non vuote. I riferimenti locali sono
+normalizzati, devono restare confinati nella repository e non possono usare
+`..`, path assoluti o symlink che escano dal repository.
+
+`memory_id` è l'identità logica stabile. Il resolver `memory_id → path` è una
+proiezione ricostruita dai front matter canonici: ID duplicati o owner errati
+fanno fallire la verifica. Non esiste un registro manuale alternativo.
+
 
 ## Partizionamento futuro
 

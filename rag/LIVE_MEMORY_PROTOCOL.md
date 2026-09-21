@@ -137,6 +137,13 @@ Questo evita stati intermedi in cui, per esempio, la memoria esiste ma Fast Reca
 
 Se la modalità atomica non è disponibile, sono ammesse scritture sequenziali soltanto come fallback: non dichiarare il ciclo completato finché tutte le scritture e la verifica finale non sono riuscite.
 
+Il writer locale usa un lock cooperativo a writer singolo. I comandi mutanti
+accettano `--expected-head <sha>`: se HEAD non coincide, il write-back viene
+rifiutato prima della pubblicazione. Il micro-checkpoint viene installato prima
+del live buffer, quindi un crash può lasciare al massimo un micro append-only
+orfano; non può lasciare un live pointer verso un file inesistente. Le
+proiezioni vengono aggiornate soltanto dopo la pubblicazione canonica.
+
 Non aspettare la fine della sessione.
 
 ---

@@ -140,6 +140,14 @@ Il vecchio JSONL/BM25 resta disponibile come fallback/debug con `--backend jsonl
 
 Git continua a essere la source of truth.
 
+### Semantica dello snapshot
+
+Il retrieval canonico usa soltanto uno snapshot Git committato e riproducibile.
+Se il worktree è dirty, la sincronizzazione canonica fallisce invece di creare
+silenziosamente un indice ibrido. Una preview locale è possibile solo con
+opt-in esplicito `--allow-dirty-preview`; il database viene marcato
+`snapshot_mode=dirty-preview` e non va presentato come memoria pubblicata.
+
 ## 10. Crescita lunga
 
 La crescita non deve rendere più costosa ogni query.
