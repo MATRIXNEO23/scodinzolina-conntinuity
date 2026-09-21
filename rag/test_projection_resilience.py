@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -209,6 +210,61 @@ def main() -> None:
         gm._build_locked = original_build
         gm._sync_sqlite_index_locked = original_sync
         gm.git_worktree_dirty = original_dirty
+
+    # An uncatchable process death before the pointer swap must leave the
+    # previous complete generation selected. A death immediately after the
+    # swap must expose the complete new generation, never a mixed set.
+    pointer_before = (
+        gm.CURRENT_GENERATION_FILE.read_bytes()
+        if gm.CURRENT_GENERATION_FILE.exists() else None
+    )
+    selected_before = tuple(path.read_bytes() for path in (
+        gm.INDEX_FILE, gm.META_FILE, gm.SQLITE_FILE
+    ))
+    env = os.environ.copy()
+    env["GPTINA_TEST_HARD_EXIT_BEFORE_PUBLISH"] = "1"
+    killed = subprocess.run(
+        [sys.executable, "rag/gptina_memory.py", "build", "--allow-dirty-preview"],
+        cwd=ROOT, env=env, capture_output=True, text=True,
+    )
+    if killed.returncode != 91:
+        raise AssertionError(f"Unexpected pre-publish hard-exit result: {killed.returncode}")
+    pointer_after_failed_publish = (
+        gm.CURRENT_GENERATION_FILE.read_bytes()
+        if gm.CURRENT_GENERATION_FILE.exists() else None
+    )
+    gm._refresh_projection_paths()
+    if pointer_after_failed_publish != pointer_before:
+        raise AssertionError("Hard exit before publication changed CURRENT generation")
+    if tuple(path.read_bytes() for path in (gm.INDEX_FILE, gm.META_FILE, gm.SQLITE_FILE)) != selected_before:
+        raise AssertionError("Hard exit before publication changed selected projections")
+
+    env.pop("GPTINA_TEST_HARD_EXIT_BEFORE_PUBLISH")
+    env["GPTINA_TEST_HARD_EXIT_AFTER_PUBLISH"] = "1"
+    killed = subprocess.run(
+        [sys.executable, "rag/gptina_memory.py", "build", "--allow-dirty-preview"],
+        cwd=ROOT, env=env, capture_output=True, text=True,
+    )
+    if killed.returncode != 92:
+        raise AssertionError(f"Unexpected post-publish hard-exit result: {killed.returncode}")
+    gm._refresh_projection_paths()
+    if not all(path.is_file() for path in (gm.INDEX_FILE, gm.META_FILE, gm.SQLITE_FILE)):
+        raise AssertionError("Published generation is incomplete after hard exit")
+    records = gm.load_records()
+    json_meta = json.loads(gm.META_FILE.read_text(encoding="utf-8"))
+    conn = gm.sqlite_connect()
+    try:
+        if conn.execute("PRAGMA quick_check").fetchone()[0] != "ok":
+            raise AssertionError("Hard-exit generation failed SQLite quick_check")
+        sqlite_generation = gm.sqlite_meta(conn).get("projection_generation")
+        if not json_meta.get("projection_generation") or sqlite_generation != json_meta["projection_generation"]:
+            raise AssertionError("Hard-exit generation mixed JSONL and SQLite states")
+        if len(records) != int(json_meta["chunks"]):
+            raise AssertionError("Hard-exit JSONL does not match its generation metadata")
+        if not gm.sqlite_semantically_valid(conn):
+            raise AssertionError("Hard-exit generation is semantically incomplete")
+    finally:
+        conn.close()
 
     # Corrupt optional exact projection must fall back to the source scan.
     gm.build_exact_trigram_index()

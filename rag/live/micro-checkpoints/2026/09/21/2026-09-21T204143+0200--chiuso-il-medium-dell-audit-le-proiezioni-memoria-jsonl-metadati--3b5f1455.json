@@ -1,0 +1,24 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-21T204143+0200-3b5f1455",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T20:45:00+02:00",
+  "recorded_at": "2026-09-21T20:41:43+02:00",
+  "change_type": "milestone",
+  "summary": "Chiuso il MEDIUM dell'audit: le proiezioni memoria JSONL, metadati e SQLite sono ora pubblicate come generazioni immutabili tramite un unico puntatore atomico e durevole; crash brutali prima e dopo il cambio puntatore verificati senza stati misti, mentre tutte le memorie canoniche restano intatte e recuperabili.",
+  "changed": [
+    "Pubblicazione generazionale atomica delle proiezioni derivate, snapshot SQLite in sola lettura, marker comune di generazione e crash-test os._exit."
+  ],
+  "thread_ids": [
+    "gptina-memory-hardening"
+  ],
+  "source_refs": [
+    "checkpoints/2026-09-21-memory-atomic-generation-fix.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Monitorare CI; i soli rilievi residui sono LOW non bloccanti.",
+  "preflight": false
+}

@@ -100,7 +100,12 @@ def configure_temporary_projection(temp_root: Path, fingerprint: str, scale: int
     gm.ROOT = temp_root
     gm.RAG_ROOT = temp_rag
     gm.INDEX_DIR = temp_index
-    gm.SQLITE_FILE = temp_index / "gptina_memory.sqlite3"
+    gm.GENERATION_ROOT = temp_index / ".projection-generations"
+    gm.CURRENT_GENERATION_FILE = temp_index / ".projection-current"
+    gm.LEGACY_INDEX_FILE = temp_index / "memory_chunks.jsonl"
+    gm.LEGACY_META_FILE = temp_index / "index_meta.json"
+    gm.LEGACY_SQLITE_FILE = temp_index / "gptina_memory.sqlite3"
+    gm._refresh_projection_paths()
     gm.MANIFEST_FILE = manifest
     gm._DIRTY_PREVIEW_FINGERPRINT = None
     gm.git_worktree_dirty = lambda: False
@@ -257,7 +262,7 @@ def run_scale(
 
         db_bytes = sum(
             path.stat().st_size
-            for path in gm.INDEX_DIR.glob("gptina_memory.sqlite3*")
+            for path in gm.SQLITE_FILE.parent.glob(gm.SQLITE_FILE.name + "*")
             if path.is_file()
         )
         report = {

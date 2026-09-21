@@ -14,11 +14,13 @@ import fnmatch
 import hashlib
 import json
 import math
+import os
 import re
 import sqlite3
 import subprocess
 import sys
 import time
+import uuid
 from collections import Counter
 from dataclasses import dataclass
 from datetime import datetime
@@ -34,9 +36,32 @@ from memory_schema import (
 ROOT = Path(__file__).resolve().parents[1]
 RAG_ROOT = ROOT / "rag"
 INDEX_DIR = RAG_ROOT / "index"
-INDEX_FILE = INDEX_DIR / "memory_chunks.jsonl"
-META_FILE = INDEX_DIR / "index_meta.json"
-SQLITE_FILE = INDEX_DIR / "gptina_memory.sqlite3"
+GENERATION_ROOT = INDEX_DIR / ".projection-generations"
+CURRENT_GENERATION_FILE = INDEX_DIR / ".projection-current"
+LEGACY_INDEX_FILE = INDEX_DIR / "memory_chunks.jsonl"
+LEGACY_META_FILE = INDEX_DIR / "index_meta.json"
+LEGACY_SQLITE_FILE = INDEX_DIR / "gptina_memory.sqlite3"
+
+
+def _active_projection_paths() -> tuple[Path, Path, Path]:
+    """Resolve one complete published generation, or the legacy layout."""
+    try:
+        generation = CURRENT_GENERATION_FILE.read_text(encoding="utf-8").strip()
+    except OSError:
+        generation = ""
+    if generation and Path(generation).name == generation:
+        directory = GENERATION_ROOT / generation
+        required = (
+            directory / "memory_chunks.jsonl",
+            directory / "index_meta.json",
+            directory / "gptina_memory.sqlite3",
+        )
+        if all(path.is_file() for path in required):
+            return required
+    return LEGACY_INDEX_FILE, LEGACY_META_FILE, LEGACY_SQLITE_FILE
+
+
+INDEX_FILE, META_FILE, SQLITE_FILE = _active_projection_paths()
 EXACT_SQLITE_FILE = INDEX_DIR / "gptina_exact_trigram.sqlite3"
 MANIFEST_FILE = RAG_ROOT / "memory_manifest.json"
 VISUAL_INDEX_FILE = INDEX_DIR / "GPTINA_VISUAL_CHRONOLOGY.md"
@@ -82,6 +107,39 @@ def atomic_write_bytes(path: Path, payload: bytes) -> None:
     ensure_inside_rag(tmp)
     tmp.write_bytes(payload)
     tmp.replace(path)
+
+
+def durable_atomic_write(path: Path, payload: bytes) -> None:
+    """Publish one small file durably; used for the generation pointer."""
+    ensure_inside_rag(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + ".tmp")
+    ensure_inside_rag(tmp)
+    with tmp.open("wb") as handle:
+        handle.write(payload)
+        handle.flush()
+        os.fsync(handle.fileno())
+    tmp.replace(path)
+    try:
+        directory_fd = os.open(path.parent, os.O_RDONLY)
+    except (AttributeError, OSError):
+        return
+    try:
+        os.fsync(directory_fd)
+    finally:
+        os.close(directory_fd)
+
+
+def _set_projection_paths(directory: Path) -> None:
+    global INDEX_FILE, META_FILE, SQLITE_FILE
+    INDEX_FILE = directory / "memory_chunks.jsonl"
+    META_FILE = directory / "index_meta.json"
+    SQLITE_FILE = directory / "gptina_memory.sqlite3"
+
+
+def _refresh_projection_paths() -> None:
+    global INDEX_FILE, META_FILE, SQLITE_FILE
+    INDEX_FILE, META_FILE, SQLITE_FILE = _active_projection_paths()
 
 
 @contextlib.contextmanager
@@ -657,8 +715,7 @@ def sync_sqlite_index(
     include_history: bool = False,
     allow_dirty_preview: bool = False,
 ) -> dict[str, int]:
-    with projection_build_lock():
-        return _sync_sqlite_index_locked(include_history, allow_dirty_preview)
+    return build_all_projections(include_history, allow_dirty_preview)
 
 
 def _sync_sqlite_index_locked(
@@ -1011,8 +1068,7 @@ def build(
     include_history: bool = False,
     allow_dirty_preview: bool = False,
 ) -> None:
-    with projection_build_lock():
-        _build_locked(include_history, allow_dirty_preview)
+    build_all_projections(include_history, allow_dirty_preview)
 
 
 def _build_locked(
@@ -1144,8 +1200,9 @@ def build_all_projections(
     include_history: bool = False,
     allow_dirty_preview: bool = False,
 ) -> dict[str, int]:
-    """Publish JSONL and SQLite as one serialized, preflighted operation."""
+    """Build a complete immutable generation, then atomically select it."""
     with projection_build_lock():
+        _refresh_projection_paths()
         dirty = git_worktree_dirty()
         if dirty and not allow_dirty_preview:
             fail(
@@ -1155,43 +1212,75 @@ def build_all_projections(
         expected_head = git_head()
         manifest = load_manifest()
         expected_fingerprint = current_source_fingerprint(manifest)
-        old_index = INDEX_FILE.read_bytes() if INDEX_FILE.exists() else None
-        old_meta = META_FILE.read_bytes() if META_FILE.exists() else None
-        if SQLITE_FILE.exists():
+        previous_paths = (INDEX_FILE, META_FILE, SQLITE_FILE)
+        generation = f"gen-{int(time.time() * 1000)}-{uuid.uuid4().hex[:12]}"
+        staging = GENERATION_ROOT / (generation + ".staging")
+        published = GENERATION_ROOT / generation
+        ensure_inside_rag(staging)
+        ensure_inside_rag(published)
+        staging.mkdir(parents=True, exist_ok=False)
+        if previous_paths[2].exists():
             try:
-                checkpoint = sqlite3.connect(SQLITE_FILE, timeout=30.0)
+                source_db = sqlite3.connect(
+                    f"file:{previous_paths[2]}?mode=ro", uri=True, timeout=30.0
+                )
+                staged_db = sqlite3.connect(staging / "gptina_memory.sqlite3")
                 try:
-                    checkpoint.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+                    source_db.backup(staged_db)
                 finally:
-                    checkpoint.close()
+                    staged_db.close()
+                    source_db.close()
             except sqlite3.DatabaseError:
-                pass
-        old_sqlite = SQLITE_FILE.read_bytes() if SQLITE_FILE.exists() else None
+                (staging / "gptina_memory.sqlite3").write_bytes(
+                    previous_paths[2].read_bytes()
+                )
+        _set_projection_paths(staging)
         try:
             _build_locked(include_history, allow_dirty_preview)
             stats = _sync_sqlite_index_locked(include_history, allow_dirty_preview)
+            json_meta = json.loads(META_FILE.read_text(encoding="utf-8"))
+            json_meta["projection_generation"] = generation
+            atomic_write(
+                META_FILE,
+                json.dumps(json_meta, ensure_ascii=False, indent=2) + "\n",
+            )
+            with sqlite3.connect(SQLITE_FILE) as generation_db:
+                set_sqlite_meta(
+                    generation_db,
+                    {"projection_generation": generation},
+                )
             if (
                 git_head() != expected_head
                 or current_source_fingerprint(manifest) != expected_fingerprint
             ):
                 raise RuntimeError("Canonical sources changed during projection transaction; retry.")
+            for required in (INDEX_FILE, META_FILE, SQLITE_FILE):
+                if not required.is_file():
+                    raise RuntimeError(f"Incomplete projection generation: {required.name}")
+            with sqlite3.connect(SQLITE_FILE) as validation:
+                validation.row_factory = sqlite3.Row
+                if validation.execute("PRAGMA quick_check").fetchone()[0] != "ok":
+                    raise sqlite3.DatabaseError("Staged SQLite quick_check failed")
+                if not sqlite_semantically_valid(validation):
+                    raise sqlite3.DatabaseError("Staged SQLite semantic check failed")
+                if sqlite_meta(validation).get("projection_generation") != generation:
+                    raise sqlite3.DatabaseError("Staged SQLite generation marker mismatch")
+            if os.environ.get("GPTINA_TEST_HARD_EXIT_BEFORE_PUBLISH") == "1":
+                os._exit(91)
+            staging.replace(published)
+            durable_atomic_write(CURRENT_GENERATION_FILE, (generation + "\n").encode("utf-8"))
+            _set_projection_paths(published)
+            if os.environ.get("GPTINA_TEST_HARD_EXIT_AFTER_PUBLISH") == "1":
+                os._exit(92)
             return stats
         except BaseException:
-            if old_index is None:
-                INDEX_FILE.unlink(missing_ok=True)
-            else:
-                atomic_write(INDEX_FILE, old_index.decode("utf-8"))
-            if old_meta is None:
-                META_FILE.unlink(missing_ok=True)
-            else:
-                atomic_write(META_FILE, old_meta.decode("utf-8"))
-            for suffix in ("-wal", "-shm"):
-                Path(str(SQLITE_FILE) + suffix).unlink(missing_ok=True)
-            if old_sqlite is None:
-                SQLITE_FILE.unlink(missing_ok=True)
-            else:
-                atomic_write_bytes(SQLITE_FILE, old_sqlite)
+            _set_projection_paths(previous_paths[0].parent)
             raise
+        finally:
+            if staging.exists():
+                for candidate in staging.iterdir():
+                    candidate.unlink(missing_ok=True)
+                staging.rmdir()
 
 
 def load_records() -> list[dict]:
