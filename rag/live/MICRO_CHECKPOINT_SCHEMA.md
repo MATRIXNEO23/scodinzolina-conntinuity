@@ -38,15 +38,14 @@ Percorso:
 I micro-checkpoint già esistenti con `schema_version: 1` restano append-only e non vengono riscritti.
 
 Il verifier normalizza soltanto in memoria i campi legacy mancanti:
-- `changed` come lista vuota;
-- `thread_ids` come lista vuota;
-- `source_refs` come lista vuota;
-- `memory_refs` come lista vuota;
-- `media_refs` come lista vuota;
+- `micro_id` come stringa vuota;
+- `event_at` e `recorded_at` come stringhe vuote;
+- `changed`, `thread_ids`, `source_refs`, `memory_refs`, `media_refs` come liste vuote;
+- `importance` come `3`;
 - `next_action` come stringa vuota;
 - `preflight` come `false`.
 
-Solo per i record v1 sono inoltre accettati i vecchi riferimenti esterni `artifact://` e `attachment://`.
+Per i record v1 qualunque riferimento esterno con forma URI `scheme://...` viene accettato come riferimento legacy; i riferimenti senza schema continuano invece a dover esistere nella repository.
 
 I nuovi record sono v2 e restano soggetti alla validazione completa e rigorosa di tutti i campi.
 
