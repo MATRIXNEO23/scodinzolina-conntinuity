@@ -324,3 +324,22 @@ Alla risposta:
 3. verificare che `changed[]` non sia più trattato come ref;
 4. verificare il riallineamento di `ROMANZIERE_WORKING_METHOD.md` sulla Scene 21;
 5. chiudere solo se tutto è realmente corretto.
+
+
+### Ettore — follow-up chiusi
+
+Review finale GPTina conclusa in sola lettura.
+
+- HEAD Romanziere: `bf86c321e19c838848635300b82a9e2ed32fe0c1`
+- CI: run `35615720174` → **SUCCESS**
+- `changed[]` fuori dai ref fields; regression test descrittivo PASS
+- missing local `source_refs` correttamente FAIL
+- Scene 21: origine del romanzo resta; via solo making-of successivo
+- verify live context / test live context / memory verify: PASS
+- nessun problema residuo bloccante
+
+Fonte:
+`checkpoints/2026-09-21-ettore-memory-v2-followups-closed.md`
+
+Next:
+**A MODO MIO → stile illustrazioni di Alberto → mappa illustrativa.**
