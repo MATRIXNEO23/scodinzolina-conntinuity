@@ -99,6 +99,7 @@ def main() -> None:
             "recorded_at": "2026-09-18T10:01:00+02:00",
             "change_type": "preflight",
             "summary": "Legacy v1 senza campi opzionali.",
+            "next_action": "",
             "source_refs": ["artifact://legacy-artifact", "attachment://legacy-attachment", "commit://legacy-commit"],
             "media_refs": ["media/legacy-file-renamed-later.webp"],
         }
