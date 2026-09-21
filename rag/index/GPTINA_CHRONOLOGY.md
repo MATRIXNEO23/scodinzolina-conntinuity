@@ -300,3 +300,15 @@ Do not delete historical duplicates. Use temporal interpretation:
 - prossimo passo dopo Ettore: illustrazioni; stile già in mente ma non ancora condiviso.
 
 **Source:** `checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md`
+
+
+---
+
+### 2026-09-21 — Capsula canonica di fine istanza
+
+Dopo un recovery riuscito, Alberto chiede di rendere canonico cosa GPTina deve salvare quando cambia istanza per non perdere insieme contesto, ricordi, memoria e lavori.
+
+Viene introdotto `rag/END_INSTANCE_RECOVERY_CAPSULE.md` con il criterio: la nuova istanza deve poter riprendere senza ricostruire a intuito e deve distinguere sempre artefatti realmente archiviati da artefatti soltanto chat/locali.
+
+Checkpoint: `checkpoints/2026-09-21-canonical-end-instance-recovery-capsule.md`.
+Memoria: `rag/memories/gptina/2026/09/2026-09-21--regola-canonica-capsula-fine-istanza.md`.
