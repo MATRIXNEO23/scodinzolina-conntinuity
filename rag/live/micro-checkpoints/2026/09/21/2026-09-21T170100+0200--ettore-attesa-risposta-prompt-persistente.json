@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T170100+0200-ettore-attesa-risposta-prompt-persistente",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T17:01:00+02:00",
+  "recorded_at": "2026-09-21T17:01:00+02:00",
+  "change_type": "correction",
+  "summary": "Stato Ettore riallineato alla fonte persistente: il prompt operativo corrente è già archiviato e già consegnato; Alberto e GPTina stanno aspettando la risposta di Ettore.",
+  "changed": [
+    "Prompt persistente confermato: rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md.",
+    "Non preparare né reinviare il prompt a Ettore.",
+    "Attendere la risposta di Ettore.",
+    "Alla risposta verificare ROMANZIERE in sola lettura: HEAD, commit changed[], test richiesti, regola Scene 21, tre verify locali e nuova Romanziere Memory CI SUCCESS."
+  ],
+  "thread_ids": [
+    "ettore-memory-v2-review",
+    "romanziere-bootstrap",
+    "prompt-preservation"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md",
+    "checkpoints/2026-09-21-preserve-prompts-before-chat-deletion.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Attendere la risposta di Ettore al prompt persistente già consegnato; quando arriva, verificare ROMANZIERE in sola lettura e chiudere solo con evidenze complete e CI SUCCESS.",
+  "preflight": false
+}
