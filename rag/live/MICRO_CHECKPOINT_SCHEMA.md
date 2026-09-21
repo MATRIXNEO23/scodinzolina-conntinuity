@@ -10,11 +10,11 @@ Percorso:
 
 `rag/live/micro-checkpoints/YYYY/MM/DD/<timestamp>--slug.json`
 
-## Schema
+## Schema corrente (v2)
 
 ```json
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "micro_id": "gptina-micro-...",
   "owner": "gptina",
   "kind": "gptina_micro_checkpoint",
@@ -32,6 +32,20 @@ Percorso:
   "preflight": false
 }
 ```
+
+## Compatibilità legacy (v1)
+
+I micro-checkpoint già esistenti con `schema_version: 1` restano append-only e non vengono riscritti.
+
+Il verifier normalizza soltanto in memoria i campi legacy mancanti:
+- `changed` come lista vuota;
+- `memory_refs` come lista vuota;
+- `media_refs` come lista vuota;
+- `next_action` come stringa vuota.
+
+Solo per i record v1 sono inoltre accettati i vecchi riferimenti esterni `artifact://` e `attachment://`.
+
+I nuovi record sono v2 e restano soggetti alla validazione completa e rigorosa di tutti i campi.
 
 ## Tipi consigliati
 
