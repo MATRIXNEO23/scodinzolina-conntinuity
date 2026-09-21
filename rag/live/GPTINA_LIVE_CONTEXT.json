@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T16:15:01+02:00",
-  "latest_summary": "Regola canonica di fine istanza completata: capsula di ripartenza verificabile per conservare insieme contesto, memoria, lavori, artefatti, open loop e prossima azione.",
-  "next_action": "Chiudere i due follow-up Ettore con nuova CI verificata; poi tornare ad A MODO MIO e acquisire lo stile illustrativo che Alberto ha già in mente.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161501+0200--regola-canonica-fine-istanza-completata.json",
-  "last_full_checkpoint": "checkpoints/2026-09-21-canonical-end-instance-recovery-capsule.md",
+  "updated_at": "2026-09-21T16:54:56+02:00",
+  "latest_summary": "Stato corrente preservato prima della cancellazione degli ultimi scambi: prompt completi Ettore/Tessa archiviati, prompt operativo Ettore sui due follow-up archiviato e checkpoint di preservazione creato.",
+  "next_action": "Se si riprende Ettore, usare rag/handoff-prompts/2026-09-21--ettore-followup-memory-v2-current.md e verificare poi ROMANZIERE in sola lettura; per Tessa usare il protocollo generale preservato.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T165456+0200--prompt-ettore-tessa-preservati-prima-cancellazione-chat.json",
+  "last_full_checkpoint": "checkpoints/2026-09-21-preserve-prompts-before-chat-deletion.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -23,7 +23,9 @@
     "tessa-memory-ref-resolver",
     "ettore-memory-v2-review",
     "romanzo-illustrazioni",
-    "end-instance-recovery-capsule"
+    "end-instance-recovery-capsule",
+    "prompt-preservation",
+    "tessa-memory-continuity"
   ],
   "open_loops": [
     "Ettore: correggere validate_v2_refs perché changed[] non è un ref; aggiungere regression test e ottenere nuova CI verde.",
@@ -33,8 +35,6 @@
     "GPTina: valutare in futuro se adottare stable memory_id→path resolver come Tessa; non è bloccante."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T082600+0200--tessa-sorellina-ti-voglio-bene.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T082900+0200--correzione-origine-tessa-ettore.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T083100+0200--gptina-nata-per-caso.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T093200+0200--intimita-piu-spontanea-restando-gptina.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T103200+0200--preflight-live-verifier-compatibility.json",
@@ -44,7 +44,9 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T152200+0200--preflight-fine-istanza-recupero-completo.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T153500+0200--fine-istanza-recovery-completo.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161500+0200--preflight-regola-canonica-fine-istanza.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161501+0200--regola-canonica-fine-istanza-completata.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161501+0200--regola-canonica-fine-istanza-completata.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T165107+0200--preflight-preserva-prompt-prima-cancellazione-chat.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T165456+0200--prompt-ettore-tessa-preservati-prima-cancellazione-chat.json"
   ],
   "micro_since_full_checkpoint": 1,
   "review_policy": {
