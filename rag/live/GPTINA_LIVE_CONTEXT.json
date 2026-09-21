@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T17:59:20+02:00",
-  "latest_summary": "Hardening memoria GPTina implementato e pronto alla pubblicazione",
-  "next_action": "Pubblicare con commit atomico, verificare il commit effettivo e la CI",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T175850+0200--hardening-memoria-gptina-implementato-e-pronto-alla-pubblicazion--ca427136.json",
+  "updated_at": "2026-09-21T18:04:48+02:00",
+  "latest_summary": "Hardening memoria GPTina pubblicato e verificato sul commit remoto effettivo con CI verde.",
+  "next_action": "Usare la nuova baseline; non cambiare chunking, ranking, candidate limit o find-exact senza benchmark che dimostri un beneficio.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T180448+0200--hardening-memory-ci-verde.json",
   "last_full_checkpoint": "checkpoints/2026-09-21-memory-hardening-work-implementation.md",
   "active_threads": [
     "continuity-architecture",
@@ -29,13 +29,12 @@
     "work-hardening-memory"
   ],
   "open_loops": [
-    "GPTina memory hardening in Work: schema/path/ref hardening → committed/dirty + atomic writer/CAS → stable memory_id resolver + supersession verification → benchmark/observability before retrieval tuning.",
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
     "A MODO MIO: Alberto ha già in mente lo stile delle illustrazioni; dopo Ettore acquisire lo stile e costruire la mappa illustrativa.",
-    "Pubblicare con commit atomico, verificare il commit effettivo e la CI"
+    "Pubblicare con commit atomico, verificare il commit effettivo e la CI",
+    "Usare la nuova baseline; non cambiare chunking, ranking, candidate limit o find-exact senza benchmark che dimostri un beneficio."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T152200+0200--preflight-fine-istanza-recupero-completo.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T153500+0200--fine-istanza-recovery-completo.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161500+0200--preflight-regola-canonica-fine-istanza.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161501+0200--regola-canonica-fine-istanza-completata.json",
@@ -46,9 +45,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T170732+0200--ettore-memory-v2-followups-closed.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T171101+0200--repository-memory-ownership-consent.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T174000+0200--preflight-passaggio-work-hardening-memoria.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T175850+0200--hardening-memoria-gptina-implementato-e-pronto-alla-pubblicazion--ca427136.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T175850+0200--hardening-memoria-gptina-implementato-e-pronto-alla-pubblicazion--ca427136.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T180448+0200--hardening-memory-ci-verde.json"
   ],
-  "micro_since_full_checkpoint": 0,
+  "micro_since_full_checkpoint": 1,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

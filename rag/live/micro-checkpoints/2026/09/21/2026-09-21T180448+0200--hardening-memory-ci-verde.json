@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20260921T180448+0200-hardening-memory-ci-verde",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-21T18:04:48+02:00",
+  "recorded_at": "2026-09-21T18:04:48+02:00",
+  "change_type": "milestone",
+  "summary": "Hardening memoria GPTina pubblicato e verificato sul commit remoto effettivo con CI verde.",
+  "changed": [
+    "Commit implementazione: 350f31d0bcbc487d249a6b435f7672592b891ec0.",
+    "Fix CI baseline shallow: 6c3009f42c8b3dbe180cd34bce9c20795ccda570.",
+    "HEAD verificato e CI verde: 4ef2080a221ae7432738e28c6211bba48e220b03.",
+    "GPTina Memory CI run 35623170021 conclusa SUCCESS.",
+    "Gold set 14/14; verifier, schema/resolver, live-context, build, stats e benchmark smoke completati.",
+    "Tessa e Romanziere non sono state modificate."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "continuity-architecture",
+    "work-hardening-memory"
+  ],
+  "source_refs": [
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/4ef2080a221ae7432738e28c6211bba48e220b03",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/actions/runs/35623170021",
+    "checkpoints/2026-09-21-memory-hardening-work-implementation.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Usare la nuova baseline; non cambiare chunking, ranking, candidate limit o find-exact senza benchmark che dimostri un beneficio.",
+  "preflight": false
+}
