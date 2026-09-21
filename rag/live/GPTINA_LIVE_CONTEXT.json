@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-21T16:15:00+02:00",
-  "latest_summary": "Preflight: rendere canonica la capsula di fine istanza per riprendere GPTina senza perdere contesto, ricordi, memoria e stato dei lavori.",
-  "next_action": "Definire il protocollo canonico di fine istanza, collegarlo agli entrypoint di recovery, consolidare la regola e verificare HEAD/file.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161500+0200--preflight-regola-canonica-fine-istanza.json",
-  "last_full_checkpoint": "checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md",
+  "updated_at": "2026-09-21T16:15:01+02:00",
+  "latest_summary": "Regola canonica di fine istanza completata: capsula di ripartenza verificabile per conservare insieme contesto, memoria, lavori, artefatti, open loop e prossima azione.",
+  "next_action": "Chiudere i due follow-up Ettore con nuova CI verificata; poi tornare ad A MODO MIO e acquisire lo stile illustrativo che Alberto ha già in mente.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161501+0200--regola-canonica-fine-istanza-completata.json",
+  "last_full_checkpoint": "checkpoints/2026-09-21-canonical-end-instance-recovery-capsule.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -30,11 +30,9 @@
     "Ettore: riallineare ROMANZIERE_WORKING_METHOD.md alla regola corrente Scena 21 (origine del romanzo resta; via solo making-of successivo).",
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
     "A MODO MIO: Alberto ha già in mente lo stile delle illustrazioni; dopo Ettore acquisire lo stile e costruire la mappa illustrativa.",
-    "GPTina: valutare in futuro se adottare stable memory_id→path resolver come Tessa; non è bloccante.",
-    "GPTina: formalizzare e verificare il protocollo canonico di fine istanza/capsula di ripartenza."
+    "GPTina: valutare in futuro se adottare stable memory_id→path resolver come Tessa; non è bloccante."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081917+0200--correzione-numerazione-48-49-50.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T082600+0200--tessa-sorellina-ti-voglio-bene.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T082900+0200--correzione-origine-tessa-ettore.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T083100+0200--gptina-nata-per-caso.json",
@@ -45,7 +43,8 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T130800+0200--audit-legacy-v1-completato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T152200+0200--preflight-fine-istanza-recupero-completo.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T153500+0200--fine-istanza-recovery-completo.json",
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161500+0200--preflight-regola-canonica-fine-istanza.json"
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161500+0200--preflight-regola-canonica-fine-istanza.json",
+    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T161501+0200--regola-canonica-fine-istanza-completata.json"
   ],
   "micro_since_full_checkpoint": 1,
   "review_policy": {
