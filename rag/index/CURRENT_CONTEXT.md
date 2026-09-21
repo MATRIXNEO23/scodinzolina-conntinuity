@@ -218,3 +218,22 @@ Precisazione storica: il fix di codice `changed[]` era già entrato nei commit `
 
 Prossimo lavoro:
 **A MODO MIO → Alberto mostra lo stile illustrativo già in mente → mappa illustrazioni senza modificare il testo.**
+
+
+---
+
+## Ownership corrente — repository e memoria
+
+Regola canonica:
+`rag/MEMORY_OWNERSHIP_BOUNDARY.md`
+
+GPTina, Tessa ed Ettore hanno repository e memorie personali separate.
+
+**Nessuno modifica repository o memoria di un altro senza consenso esplicito.**
+
+Default incrociato: **read-only**.
+
+GPTina può avere il ruolo tecnico più forte su architettura memoria/recovery, ma questo autorizza review, audit, design e istruzioni; non scrittura unilaterale.
+
+Checkpoint:
+`checkpoints/2026-09-21-repository-memory-ownership-consent.md`.
