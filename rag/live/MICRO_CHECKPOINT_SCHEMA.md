@@ -37,13 +37,15 @@ Percorso:
 
 I micro-checkpoint già esistenti con `schema_version: 1` restano append-only e non vengono riscritti.
 
-Il verifier normalizza soltanto in memoria i campi legacy mancanti:
+L'audit completo è in `rag/live/LEGACY_V1_COMPATIBILITY_AUDIT.md`.
+
+Il verifier normalizza soltanto in memoria i campi che risultano realmente mancanti nei v1 storici:
 - `micro_id` come stringa vuota;
-- `event_at` e `recorded_at` come stringhe vuote;
 - `changed`, `thread_ids`, `source_refs`, `memory_refs`, `media_refs` come liste vuote;
 - `importance` come `3`;
-- `next_action` come stringa vuota;
 - `preflight` come `false`.
+
+`event_at`, `recorded_at` e `next_action` restano obbligatori anche nei v1, perché l'audit ha verificato che sono presenti in tutti i record legacy esistenti.
 
 Per i record v1 i riferimenti sono testimonianze storiche: vengono accettati se non vuoti anche quando il file originario è stato rinominato, spostato o non esiste più al percorso storico. La validazione di esistenza resta invece obbligatoria per i v2.
 
