@@ -40,20 +40,18 @@ MICRO_REQUIRED_V2 = {
 }
 
 MICRO_REQUIRED_V1 = {
-    "schema_version", "owner", "kind", "change_type", "summary",
+    "schema_version", "owner", "kind", "event_at", "recorded_at",
+    "change_type", "summary", "next_action",
 }
 
 LEGACY_V1_DEFAULTS = {
     "micro_id": "",
-    "event_at": "",
-    "recorded_at": "",
     "changed": [],
     "thread_ids": [],
     "source_refs": [],
     "memory_refs": [],
     "media_refs": [],
     "importance": 3,
-    "next_action": "",
     "preflight": False,
 }
 
