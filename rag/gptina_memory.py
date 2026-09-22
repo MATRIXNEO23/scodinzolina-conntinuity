@@ -393,13 +393,31 @@ def supersession_statuses() -> dict[str, tuple[str, str]]:
                 targets.append(target_id)
         edges[memory_id] = targets
 
-    # A current record supersedes its whole ancestry, not only its immediate
-    # target. This prevents A from becoming current again in A <- B <- C when
-    # B is already marked superseded and C is the current correction.
+    # Front matter is append-only: an older record can still literally say
+    # status=current even after a later correction supersedes it. Resolve only
+    # the effective current roots, i.e. current records that are not reachable
+    # from another current record. This makes A <- B <- C resolve to C without
+    # rewriting A or B.
+    current_ids = {
+        memory_id
+        for memory_id, meta in metadata.items()
+        if str(meta.get("status", "current")) == "current"
+    }
+    superseded_by_current: set[str] = set()
+    for root_id in current_ids:
+        pending = list(edges.get(root_id, []))
+        seen: set[str] = set()
+        while pending:
+            target_id = pending.pop()
+            if target_id in seen:
+                continue
+            seen.add(target_id)
+            superseded_by_current.add(target_id)
+            pending.extend(edges.get(target_id, []))
+    active_roots = current_ids - superseded_by_current
+
     result: dict[str, tuple[str, str]] = {}
-    for replacing_id in sorted(metadata):
-        if str(metadata[replacing_id].get("status", "current")) != "current":
-            continue
+    for replacing_id in sorted(active_roots):
         replacing_path = resolver[replacing_id]
         pending = list(edges.get(replacing_id, []))
         seen: set[str] = set()
@@ -1795,10 +1813,31 @@ def verify_future_memory_schema(manifest: dict) -> None:
         visited.add(memory_id)
     for memory_id in edges:
         visit(memory_id)
+    # Because memory files are append-only, a superseded predecessor may still
+    # carry status=current in its immutable front matter. Treat only effective
+    # roots as current: a current record reached from a later current record is
+    # already superseded. Independent active branches that reach the same
+    # ancestor remain an error.
+    current_ids = {
+        memory_id
+        for memory_id, meta in metadata.items()
+        if str(meta.get("status", "current")) == "current"
+    }
+    superseded_by_current: set[str] = set()
+    for root_id in current_ids:
+        pending = list(edges.get(root_id, []))
+        seen: set[str] = set()
+        while pending:
+            target_id = pending.pop()
+            if target_id in seen:
+                continue
+            seen.add(target_id)
+            superseded_by_current.add(target_id)
+            pending.extend(edges.get(target_id, []))
+    active_roots = current_ids - superseded_by_current
+
     roots_by_target: dict[str, set[str]] = {}
-    for root_id, root_meta in metadata.items():
-        if str(root_meta.get("status", "current")) != "current":
-            continue
+    for root_id in active_roots:
         pending = list(edges.get(root_id, []))
         seen: set[str] = set()
         while pending:

@@ -59,6 +59,18 @@ Usare il percorso meno ambiguo prima del più “intelligente”:
 6. **historical evolution** → `--history` / `--all-statuses`;
 7. **semantic/vector fallback** → solo se i test dimostrano un gap lessicale reale.
 
+### Supersession append-only
+
+Le correzioni formano una catena logica senza riscrivere i record precedenti.
+Per questo un record storico può conservare nel proprio front matter
+`status: current` come stato scritto all'epoca, mentre un record successivo lo
+rende **effettivamente superseded** tramite `supersedes`.
+
+Il resolver e il verifier considerano correnti soltanto le **radici effettive**:
+un record current raggiunto da una correzione current successiva non è una
+seconda radice. Due rami current indipendenti che raggiungono lo stesso
+antenato restano invece ambigui e devono far fallire la verifica.
+
 ## 4. Query routing leggero
 
 Il retriever assegna boost deterministici:

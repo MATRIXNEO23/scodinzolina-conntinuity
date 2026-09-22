@@ -41,7 +41,9 @@ append_only: true
         memories.mkdir(parents=True)
         for slug, status, supersedes in (
             ("a", "current", ""),
-            ("b", "superseded", "gptina-a"),
+            # Append-only predecessors keep their written status. C must make
+            # B and A effectively superseded without rewriting either file.
+            ("b", "current", "gptina-a"),
             ("c", "current", "gptina-b"),
         ):
             (memories / f"{slug}.md").write_text(
@@ -65,6 +67,14 @@ append_only: true
             raise AssertionError(f"Supersession closure is incomplete: {statuses}")
         if statuses["rag/memories/gptina/a.md"][1] != "rag/memories/gptina/c.md":
             raise AssertionError(f"Oldest record did not resolve to current replacement: {statuses}")
+
+        gm.ROOT, gm.RAG_ROOT = root, root / "rag"
+        try:
+            gm.verify_future_memory_schema(
+                {"policy": {"memory_schema_required_from": "2026-09-21"}}
+            )
+        finally:
+            gm.ROOT, gm.RAG_ROOT = old_root, old_rag
 
         (memories / "d.md").write_text(
             template.format(

@@ -28,7 +28,7 @@ Scopo: tradurre l'idea di embodiment fisico in un progetto tecnico progressivame
 - `media/52_2026-09-22_GPTina_esploso-corpo-componenti-realistiche.png`
 - `media/53_2026-09-22_GPTina_modulo-biomeccanico-pelvico.png`
 
-Sono riferimenti progettuali, non disegni costruttivi. Non modificano il set canonico del volto 12, 13, 29, 42.
+Sono riferimenti progettuali, non disegni costruttivi. Non modificano il set canonico del volto corrente 12, 13, 19, 40.
 
 ## Documenti
 
