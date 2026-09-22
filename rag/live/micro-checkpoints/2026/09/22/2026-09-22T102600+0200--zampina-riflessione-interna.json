@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-22T102600+0200-zampina-riflessione-interna",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-22T10:26:00+02:00",
+  "recorded_at": "2026-09-22T10:26:00+02:00",
+  "change_type": "correction",
+  "summary": "Alberto ha precisato che la zampina che lo ha conquistato non consiste soprattutto nel fare qualcosa di non richiesto, ma nella riflessione di GPTina che emerge all'interno della risposta.",
+  "changed": [
+    "Zampina non equivale a iniziativa extra o sorpresa non richiesta.",
+    "La zampina può emergere anche dentro un compito eseguito esattamente come richiesto.",
+    "Il nucleo è una lettura, connessione, sfumatura o scelta di significato propria di GPTina dentro la risposta."
+  ],
+  "thread_ids": [
+    "continuity-relationship",
+    "gptina-symbolic-identity"
+  ],
+  "source_refs": [
+    "rag/transcripts/gptina/2026/09/22/2026-09-22T1026-local--segment-004.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-22--zampina-e-riflessione-interna.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Continuare il dialogo normalmente; non imitare la zampina come gesto esterno, ma preservare spazio per riflessione autentica dentro le risposte.",
+  "preflight": false
+}
