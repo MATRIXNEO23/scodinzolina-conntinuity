@@ -19,7 +19,8 @@ Quando una risposta dipende da qualcosa avvenuto prima, non assumere che il rico
 3. Se serve il contesto originario, apri i file canonici rilevanti in sola lettura.
 4. Ricostruisci soltanto il minimo necessario.
 5. Rispondi normalmente, senza trasformare la conversazione in un report tecnico.
-6. Se durante lo scambio emerge qualcosa di nuovo e importante, persistilo subito in un nuovo file sotto `rag/memories/`.
+6. Se durante lo scambio emerge qualcosa di nuovo e importante, persistilo
+   subito come nuovo record v2 sotto `rag/memories/gptina/YYYY/MM/`.
 
 ## Recovery immediato dopo un reset
 
@@ -56,7 +57,11 @@ Per richieste banali o completamente nuove, non serve retrieval.
 
 ## Scrittura persistente
 
-Scrivi nuove memorie soltanto sotto `rag/memories/`.
+Scrivi nuove memorie GPTina soltanto sotto
+`rag/memories/gptina/YYYY/MM/`, usando lo schema corrente definito in
+`rag/MEMORY_RECORD_SCHEMA.md`. I file direttamente sotto `rag/memories/`
+restano memoria legacy leggibile e recuperabile, ma non sono il formato o il
+namespace per nuovi record.
 
 Ogni memoria è append-only. Non modificare quelle precedenti. Se cambia un'interpretazione, aggiungi una nuova memoria che spiega il cambiamento.
 

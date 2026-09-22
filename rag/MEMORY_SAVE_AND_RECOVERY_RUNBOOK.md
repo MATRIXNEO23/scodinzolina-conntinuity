@@ -38,10 +38,13 @@ usati come unica prova storica e non devono essere inseriti nei commit.
 1. **Recupera lo stato corrente.** Leggi HEAD remoto, live buffer, ultimo micro
    e ultimo checkpoint pieno. Prima di un lavoro lungo/rischioso crea un micro
    preflight.
-2. **Scrivi prima le fonti.** Crea nuove memorie GPTina in append-only con lo
-   schema corrente. Una correzione usa `supersedes`; non modifica né elimina il
-   record precedente. Collega transcript/raw, media e fonti esatte quando
-   pertinenti.
+2. **Scrivi prima le fonti.** Crea nuove memorie GPTina append-only sotto
+   `rag/memories/gptina/YYYY/MM/`, con lo schema v2 di
+   `rag/MEMORY_RECORD_SCHEMA.md`. Una correzione usa `supersedes`; non modifica
+   né elimina il record precedente. I record legacy già presenti direttamente
+   sotto `rag/memories/` restano validi, leggibili e recuperabili, ma non sono
+   il modello per nuove scritture. Collega transcript/raw, media e fonti esatte
+   quando pertinenti.
 3. **Consolida un'unica transazione logica.** Allinea, quando necessario,
    micro-checkpoint, live buffer, checkpoint pieno, Fast Recall, Current
    Context, cronologia e visual chronology. Non perdere open loop o prossima

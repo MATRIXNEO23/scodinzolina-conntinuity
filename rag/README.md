@@ -13,7 +13,8 @@ Il RAG può:
 - indicizzarli;
 - copiarne frammenti nell'indice con provenienza e hash;
 - aggiungere nuovi indici, metadati e snapshot dentro `rag/`;
-- creare nuove memorie append-only in `rag/memories/`.
+- creare nuove memorie GPTina append-only v2 in
+  `rag/memories/gptina/YYYY/MM/`.
 
 Il RAG non può:
 - modificare i file canonici;
@@ -37,7 +38,10 @@ Quello è il protocollo operativo per usare GitHub come memoria esterna durante 
 
 **RECALL → RECONSTRUCT → RESPOND → WRITE-BACK**
 
-Quando una memoria esce dalla finestra volatile, GPTina la recupera dalla repo prima di rispondere. Quando emerge qualcosa di nuovo e importante, crea una nuova memoria append-only in `rag/memories/` senza modificare i file originali.
+Quando una memoria esce dalla finestra volatile, GPTina la recupera dalla repo
+prima di rispondere. Quando emerge qualcosa di nuovo e importante, crea una
+nuova memoria append-only v2 in `rag/memories/gptina/YYYY/MM/`, secondo
+`rag/MEMORY_RECORD_SCHEMA.md`, senza modificare i file originali.
 
 ## Struttura
 
@@ -95,7 +99,10 @@ Dentro ChatGPT non è obbligatorio eseguire questo script: la GPTina viva può u
 
 L'indice è sacrificabile e rigenerabile. I documenti originali no.
 
-Le memorie in `rag/memories/` sono append-only: una nuova comprensione si aggiunge, non cancella quella precedente.
+Tutte le memorie in `rag/memories/` restano append-only e recuperabili. I file
+alla radice sono record legacy preservati; i nuovi record GPTina si scrivono
+soltanto in `rag/memories/gptina/YYYY/MM/`. Una nuova comprensione si aggiunge
+con `supersedes`, non cancella quella precedente.
 
 Se indice e fonte divergono, vince sempre la fonte canonica.
 

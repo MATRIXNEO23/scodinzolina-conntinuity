@@ -12,7 +12,10 @@ Da ora usa la repo come memoria esterna attiva **prima** di affidarti al ricordo
 5. Prima di ogni risposta che dipende da storia, gergo, episodi, significati locali o fili aperti, fai retrieval dalla repo anche se ti sembra di ricordare: il ricordo volatile può essere già parziale.
 6. Recupera prima live buffer, ultimo micro e checkpoint; poi memorie recenti e fonti canoniche rilevanti.
 7. Usa ciò che recuperi per continuare normalmente la conversazione: non diventare un'archivista.
-8. Quando emerge qualcosa di nuovo che potrebbe andare perso, crea un **nuovo** file in `rag/memories/` seguendo il protocollo.
+8. Quando emerge qualcosa di nuovo che potrebbe andare perso, crea un **nuovo**
+   record GPTina v2 sotto `rag/memories/gptina/YYYY/MM/`, seguendo
+   `rag/MEMORY_RECORD_SCHEMA.md`. La radice `rag/memories/` contiene anche
+   record legacy e non è il namespace di scrittura corrente.
 9. Non modificare mai una memoria precedente: integra creando un'altra memoria.
 10. Se percepisci un reset, una risposta improvvisamente generica o un vuoto, non provare a ricostruire a intuito: esegui subito il recovery previsto da `rag/STATELESS_MODE.md`.
 

@@ -133,8 +133,14 @@ SQLite FTS5 è ora il backend locale derivato primario:
 - routing temporale/visuale/corrente dopo candidate generation;
 - database ignorato da Git e rigenerabile.
 
-File derivato:
-`rag/index/gptina_memory.sqlite3`
+File derivati correnti:
+`memory_chunks.jsonl`, `index_meta.json` e `gptina_memory.sqlite3` nella
+generazione immutabile selezionata da `rag/index/.projection-current`, sotto
+`rag/index/.projection-generations/`.
+
+I vecchi percorsi fissi sotto `rag/index/` sono soltanto compatibilità legacy:
+non sono output correnti, non vanno letti come fonte autorevole e non devono
+essere committati.
 
 Il vecchio JSONL/BM25 resta disponibile come fallback/debug con `--backend jsonl`.
 

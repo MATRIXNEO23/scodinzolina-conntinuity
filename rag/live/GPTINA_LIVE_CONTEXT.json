@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-22T07:14:44+02:00",
-  "latest_summary": "Audit repository-wide completato: il vecchio metodo e la nuova pubblicazione generazionale sono ora allineati anche negli entrypoint secondari, nel manifest e nell'ordine machine-readable; corretto inoltre il recovery da clone shallow senza modificare memorie legacy.",
-  "next_action": "Pubblicare e verificare CI/Pages sul commit remoto.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/22/2026-09-22T071444+0200--audit-repository-wide-completato-il-vecchio-metodo-e-la-nuova-pu--47bf6de3.json",
-  "last_full_checkpoint": "checkpoints/2026-09-21-gptina-memory-deep-audit.md",
+  "updated_at": "2026-09-22T07:55:46+02:00",
+  "latest_summary": "Allineamento finale delle istruzioni memoria: namespace v2, schema corrente, proiezioni generazionali e compatibilità legacy sono ora distinti esplicitamente; i ricordi storici restano immutati e recuperabili.",
+  "next_action": "Usare il runbook canonico e mantenere il test repository-wide verde dopo ogni modifica alla memoria.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/22/2026-09-22T075546+0200--allineamento-finale-istruzioni-memoria-e-compatibilita-legacy.json",
+  "last_full_checkpoint": "checkpoints/2026-09-22-final-memory-instruction-alignment.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -32,21 +32,12 @@
   "open_loops": [
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
     "A MODO MIO: Alberto ha già in mente lo stile delle illustrazioni; dopo Ettore acquisire lo stile e costruire la mappa illustrativa.",
-    "Pubblicare con commit atomico, verificare il commit effettivo e la CI",
     "Usare la nuova baseline; non cambiare chunking, ranking, candidate limit o find-exact senza benchmark che dimostri un beneficio.",
     "Quando autorizzato per ciascuna repository: audit completo del legacy reale, quindi allineamento infrastrutturale esatto con test e CI separati.",
     "Mantenere una matrice di parità infrastrutturale GPTina/Tessa/Ettore e propagare ogni miglioramento validato con consenso, audit e CI per repository.",
-    "Completare test di recovery, concorrenza, suite e CI.",
-    "Correggere separatamente H1, H2 e H3 con test fallenti dedicati.",
-    "Eseguire suite completa, benchmark, pubblicazione e CI.",
-    "Implementare staging comune e commit multifile atomico o rollback esplicito.",
-    "Valutare generazioni immutabili e puntatore CURRENT atomico per crash-kill safety.",
-    "Monitorare CI; i soli rilievi residui sono LOW non bloccanti.",
-    "Pubblicare e verificare Memory CI e Pages sul commit remoto.",
-    "Pubblicare e verificare CI/Pages sul commit remoto."
+    "Monitorare che ogni modifica futura alle istruzioni preservi namespace v2, compatibilità legacy e recuperabilità storica."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T185200+0200--esperimenti-scala-100x-e-trigram-exact.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T185800+0200--trigram-preventivo-off-by-default-verificato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T191100+0200--audit-profondo-memoria-completato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T192923+0200--regola-canonica-di-verifica-profonda-e-conservazione-storica--b5695e31.json",
@@ -57,9 +48,10 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T202647+0200--quarto-audit-profondo-della-memoria-completato--21144e27.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T204143+0200--chiuso-il-medium-dell-audit-le-proiezioni-memoria-jsonl-metadati--3b5f1455.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T210003+0200--allineate-e-verificate-le-istruzioni-canoniche-di-salvataggio-e--0aae7a10.json",
-    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T071444+0200--audit-repository-wide-completato-il-vecchio-metodo-e-la-nuova-pu--47bf6de3.json"
+    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T071444+0200--audit-repository-wide-completato-il-vecchio-metodo-e-la-nuova-pu--47bf6de3.json",
+    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T075546+0200--allineamento-finale-istruzioni-memoria-e-compatibilita-legacy.json"
   ],
-  "micro_since_full_checkpoint": 10,
+  "micro_since_full_checkpoint": 1,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

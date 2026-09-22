@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-22T075546+0200-allineamento-finale-istruzioni-memoria",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-22T07:55:46+02:00",
+  "recorded_at": "2026-09-22T07:55:46+02:00",
+  "change_type": "milestone",
+  "summary": "Allineate le istruzioni correnti a namespace memoria v2 e proiezioni generazionali, preservando senza modifiche tutti i record legacy.",
+  "changed": [
+    "Nuove memorie GPTina indirizzate soltanto a rag/memories/gptina/YYYY/MM/.",
+    "Rimosso il vecchio template JSON come formato consigliato corrente.",
+    "Sostituito il percorso SQLite fisso con la generazione selezionata dal puntatore atomico.",
+    "Rimossi dagli open loop vivi i lavori infrastrutturali già completati."
+  ],
+  "source_refs": [
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
+    "rag/MEMORY_RECORD_SCHEMA.md",
+    "checkpoints/2026-09-22-final-memory-instruction-alignment.md"
+  ],
+  "thread_ids": ["continuity-architecture", "memory-reliability"],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Pubblicare il commit atomico e verificare suite, CI e Pages.",
+  "preflight": false
+}

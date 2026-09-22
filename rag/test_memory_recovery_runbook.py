@@ -26,6 +26,7 @@ def main() -> None:
         "rag/ACTIVE_INSTANCE_START.md",
         "rag/STATELESS_MODE.md",
         "rag/live/README.md",
+        "rag/memories/README.md",
     )
     for relative in required_docs:
         text = (ROOT / relative).read_text(encoding="utf-8")
@@ -50,6 +51,11 @@ def main() -> None:
     routed = {item.get("pattern") for item in manifest.get("rag_sources", [])}
     if RUNBOOK not in routed or "rag/END_INSTANCE_RECOVERY_CAPSULE.md" not in routed:
         raise AssertionError("Recovery runbook/capsule are not indexed retrieval sources")
+    for legacy_pattern in ("rag/memories/*.md", "rag/memories/*.json"):
+        if legacy_pattern not in routed:
+            raise AssertionError(
+                f"Legacy memories are no longer indexed/recoverable: {legacy_pattern}"
+            )
     exclusions = set(manifest.get("rag_exclude", []))
     for expected in (
         "rag/index/.projection-generations/**",
@@ -58,14 +64,53 @@ def main() -> None:
         if expected not in exclusions:
             raise AssertionError(f"Manifest does not exclude derived state: {expected}")
 
-    rag_readme = (ROOT / "rag/README.md").read_text(encoding="utf-8")
+    active_instruction_docs = (
+        "rag/README.md",
+        "rag/ACTIVE_INSTANCE_START.md",
+        "rag/STATELESS_MODE.md",
+        "rag/MEMORY_ARCHITECTURE_V2.md",
+        "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
+        "rag/memories/README.md",
+    )
     stale_claims = (
         "scrive soltanto `rag/index/memory_chunks.jsonl`",
-        "`rag/index/gptina_memory.sqlite3`",
+        "File derivato:\n`rag/index/gptina_memory.sqlite3`",
+        "crea un **nuovo** file in `rag/memories/`",
+        "persistilo subito in un nuovo file sotto `rag/memories/`",
+        "Scrivi nuove memorie soltanto sotto `rag/memories/`",
+        "creare nuove memorie append-only in `rag/memories/`",
+        "Ogni memoria nuova è un **nuovo file JSON**",
+        '\"id\": \"YYYY-MM-DD-slug\"',
     )
-    for claim in stale_claims:
-        if claim in rag_readme:
-            raise AssertionError(f"Legacy projection instruction is still active: {claim}")
+    for relative in active_instruction_docs:
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        for claim in stale_claims:
+            if claim in text:
+                raise AssertionError(
+                    f"Legacy instruction is still active in {relative}: {claim}"
+                )
+
+    current_write_docs = (
+        RUNBOOK,
+        "rag/README.md",
+        "rag/ACTIVE_INSTANCE_START.md",
+        "rag/STATELESS_MODE.md",
+        "rag/memories/README.md",
+    )
+    for relative in current_write_docs:
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        if "rag/memories/gptina/YYYY/MM/" not in text:
+            raise AssertionError(f"Current GPTina namespace is missing from {relative}")
+        if "rag/MEMORY_RECORD_SCHEMA.md" not in text:
+            raise AssertionError(f"Current memory schema is missing from {relative}")
+
+    architecture = (ROOT / "rag/MEMORY_ARCHITECTURE_V2.md").read_text(encoding="utf-8")
+    for required in (
+        "rag/index/.projection-generations/",
+        "rag/index/.projection-current",
+    ):
+        if required not in architecture:
+            raise AssertionError(f"Architecture omits generational projection path: {required}")
 
     state = json.loads((ROOT / "GPTINA_STATE.json").read_text(encoding="utf-8"))
     restore_order = state.get("restore_order", [])
