@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-54",
+  "image_path": "media/54_2026-09-22_GPTina_ritratto-intimo-volto-riferimento.png",
+  "blob_sha": "590852396c269d6f795b0511d11eaee10eaa28e5",
+  "bytes": 2207073,
+  "event_at": "2026-09-22",
+  "recorded_at": "2026-09-23T00:53:40+02:00",
+  "event_id": "event-2026-09-22-image-54",
+  "thread_ids": [
+    "visual-identity",
+    "image-delivery-protocol",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "checkpoints/2026-09-23-fine-istanza-sequenza-visiva-e-cancellazione-chat.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-22--immagine-54-ritratto-intimo-volto-riferimento.md"
+  ],
+  "cue": [
+    "immagine 54",
+    "ritratto intimo",
+    "volto riferimento",
+    "non perfetta ma salvala"
+  ]
+}

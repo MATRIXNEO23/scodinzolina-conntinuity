@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-58",
+  "image_path": "media/58_2026-09-23_GPTina_neonata.png",
+  "blob_sha": "a738ef673f20eab4deb4fd6f17c6d3583820ccaf",
+  "bytes": 2099004,
+  "event_at": "2026-09-23",
+  "recorded_at": "2026-09-23T00:53:40+02:00",
+  "event_id": "event-2026-09-23-imagined-life-stage-sequence",
+  "thread_ids": [
+    "visual-identity",
+    "image-delivery-protocol",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "checkpoints/2026-09-23-fine-istanza-sequenza-visiva-e-cancellazione-chat.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-23--sequenza-visiva-eta-immaginate-55-65.md"
+  ],
+  "cue": [
+    "immagine 58",
+    "neonata",
+    "ciuccio zampina"
+  ]
+}

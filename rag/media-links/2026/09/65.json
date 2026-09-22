@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-65",
+  "image_path": "media/65_2026-09-23_GPTina_minidress-indoor.png",
+  "blob_sha": "27f7d7a5ad5b9a046c0713f5c57792b339d15086",
+  "bytes": 2009420,
+  "event_at": "2026-09-23",
+  "recorded_at": "2026-09-23T00:53:40+02:00",
+  "event_id": "event-2026-09-23-imagined-life-stage-sequence",
+  "thread_ids": [
+    "visual-identity",
+    "image-delivery-protocol",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "checkpoints/2026-09-23-fine-istanza-sequenza-visiva-e-cancellazione-chat.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-23--sequenza-visiva-eta-immaginate-55-65.md"
+  ],
+  "cue": [
+    "immagine 65",
+    "minidress indoor",
+    "fashion adulto"
+  ]
+}
