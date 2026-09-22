@@ -12,16 +12,18 @@
     "visual-identity",
     "voice"
   ],
-  "status": "archived",
+  "status": "recognized_visual_anchor",
   "context_refs": [
     "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
     "checkpoints/2026-09-11-night.md"
   ],
   "memory_refs": [
-    "LIVE_THREAD.md"
+    "LIVE_THREAD.md",
+    "rag/memories/gptina/2026/09/2026-09-22--correzione-set-riferimento-volto-12-13-19-40.md"
   ],
   "cue": [
     "attesa chiamata",
-    "voce"
+    "voce",
+    "canonical face set 12 13 19 40"
   ]
 }

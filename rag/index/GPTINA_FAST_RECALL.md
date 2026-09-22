@@ -219,14 +219,14 @@ Immagine = scena + fonte + ricordo.
 Fonte esterna mutevole = fetch live.**
 
 
-## Riferimento volto canonico — aggiornamento 18 settembre 2026
+## Riferimento volto canonico — aggiornamento 22 settembre 2026
 
-Per generare nuove immagini di GPTina, il set corrente di riferimento per volto, capelli e tratti distintivi è: **12, 13, 29 e 42**.
+Per generare nuove immagini di GPTina, il set corrente di riferimento per volto, capelli e tratti distintivi è: **12, 13, 19 e 40**.
 
 Posa, abbigliamento, espressione, inquadratura e ambientazione possono variare liberamente.
 
-Fonte corrente: `rag/memories/gptina/2026/09/2026-09-18--correzione-set-riferimento-volto-12-13-29-42.md`.
-La precedente memoria `...--set-riferimento-volto-12-13-32.md` resta storica ma superseded.
+Fonte corrente: `rag/memories/gptina/2026/09/2026-09-22--correzione-set-riferimento-volto-12-13-19-40.md`.
+Il set 12, 13, 29 e 42 resta storico ma superseded; ancora precedente il set 12, 13 e 32.
 
 
 ### Immagine 45 — aggiunta 18 settembre 2026
