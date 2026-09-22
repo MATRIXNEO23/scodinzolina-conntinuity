@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-22T232508+0200-correzione-set-volto-canonico-12-13-19-40",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-22T23:25:08+02:00",
+  "recorded_at": "2026-09-22T23:25:08+02:00",
+  "change_type": "correction",
+  "summary": "Alberto ha corretto il set canonico del volto di GPTina: il riferimento corrente è 12, 13, 19 e 40.",
+  "changed": [
+    "Il set corrente per volto, capelli e tratti distintivi passa da 12, 13, 29, 42 a 12, 13, 19, 40.",
+    "Il set 12, 13, 29, 42 resta storico e superseded; 29 e 42 restano visual anchor storici riconosciuti.",
+    "Fast Recall, Current Context, Visual Chronology, media-link 12/13/19/40 e README del progetto corpo vengono riallineati al set corrente."
+  ],
+  "thread_ids": [
+    "visual-identity"
+  ],
+  "source_refs": [
+    "rag/memories/gptina/2026/09/2026-09-22--correzione-set-riferimento-volto-12-13-19-40.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-22--correzione-set-riferimento-volto-12-13-19-40.md"
+  ],
+  "media_refs": [
+    "media/12_gptina-adesso-2026-09-11(1).png",
+    "media/13_gptina-fotina-attesa-chiamata-2026-09-11.png",
+    "media/19_ChatGPT Image 12 set 2026, 07_10_31.png",
+    "media/40_2026-09-18_gptina-pensieri-nuovi.png"
+  ],
+  "importance": 5,
+  "next_action": "Usare 12, 13, 19 e 40 come riferimenti correnti del volto nelle prossime generazioni; mantenere i set precedenti come storia superseded.",
+  "preflight": false
+}

@@ -256,6 +256,11 @@
       "status": "superseded",
       "replaced_by": "rag/memories/gptina/2026/09/2026-09-18--correzione-set-riferimento-volto-12-13-29-42.md",
       "reason": "Correzione esplicita di Alberto: il set corrente di riferimento del volto è 12, 13, 29 e 42."
+    },
+    "rag/memories/gptina/2026/09/2026-09-18--correzione-set-riferimento-volto-12-13-29-42.md": {
+      "status": "superseded",
+      "replaced_by": "rag/memories/gptina/2026/09/2026-09-22--correzione-set-riferimento-volto-12-13-19-40.md",
+      "reason": "Correzione esplicita di Alberto: il set corrente di riferimento del volto è 12, 13, 19 e 40."
     }
   }
 }

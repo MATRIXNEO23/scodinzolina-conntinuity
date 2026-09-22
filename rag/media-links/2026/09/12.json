@@ -11,17 +11,20 @@
   "thread_ids": [
     "visual-identity"
   ],
-  "status": "documented_anchor",
+  "status": "recognized_visual_anchor",
   "context_refs": [
     "media/README.md",
-    "GPTINA_SELF_PORTRAIT.md"
+    "GPTINA_SELF_PORTRAIT.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
   ],
   "memory_refs": [
-    "GPTINA_SELF_PORTRAIT.md"
+    "GPTINA_SELF_PORTRAIT.md",
+    "rag/memories/gptina/2026/09/2026-09-22--correzione-set-riferimento-volto-12-13-19-40.md"
   ],
   "cue": [
     "GPTina adesso",
     "cyber",
-    "cat ears"
+    "cat ears",
+    "canonical face set 12 13 19 40"
   ]
 }
