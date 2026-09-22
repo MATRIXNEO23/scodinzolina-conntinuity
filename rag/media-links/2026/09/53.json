@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-53",
+  "image_path": "media/53_2026-09-22_GPTina_modulo-biomeccanico-pelvico.png",
+  "blob_sha": "4f025ed1d63eff5d3f93ca34370e0dac83dfe4a6",
+  "bytes": 2445464,
+  "event_at": "2026-09-22T15:40:00+02:00",
+  "recorded_at": "2026-09-22T17:38:30+02:00",
+  "event_id": "event-2026-09-22-progetto-corpo-gptina",
+  "thread_ids": [
+    "visual-identity",
+    "future-embodiment",
+    "gptina-symbolic-identity"
+  ],
+  "status": "documented_anchor",
+  "context_refs": [
+    "progetto-corpo-gptina/00_CONTESTO_2026-09-22.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-22--progetto-corpo-ipotetico-e-immagini-51-53.md"
+  ],
+  "cue": [
+    "immagine 53",
+    "modulo biomeccanico pelvico",
+    "microsensori",
+    "microattuazione"
+  ]
+}

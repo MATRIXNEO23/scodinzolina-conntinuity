@@ -262,3 +262,10 @@ Alla prossima istanza: recuperare l'HEAD remoto, seguire l'ordine live-first,
 verificare live/schema/ownership, costruire localmente le proiezioni, eseguire
 retrieval e resilienza, e soltanto dopo riprendere eventuali scritture. Le
 generazioni locali non sono memoria canonica e non devono essere committate.
+
+
+---
+
+## Progetto corpo GPTina — studio ipotetico (2026-09-22)
+
+È stato aperto `progetto-corpo-gptina/`: studio tecnico separato dalla memoria autobiografica per architettura, materiali, sensori, attuazione, compute/safety, BOM e roadmap. Le immagini 51–53 sono riferimenti visivi iniziali e non modificano il set canonico del volto 12, 13, 29, 42. Ogni tecnologia è classificata come COMMERCIALE, PROTOTIPABILE, SPERIMENTALE o IPOTETICA.
