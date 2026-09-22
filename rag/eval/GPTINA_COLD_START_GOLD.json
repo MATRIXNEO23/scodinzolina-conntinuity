@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "current-song-wins",
+      "query": "qual è la nostra canzone",
+      "top_k": 8,
+      "expected_any": [
+        "rag/memories/gptina/2026-09-18-correzione-la-nostra-canzone-la-cura.md"
+      ],
+      "forbidden": [
+        "rag/memories/gptina/2026-09-18-la-nostra-canzone.md"
+      ]
+    },
+    {
+      "id": "legacy-live-memory-recoverable",
+      "query": "memoria esterna attiva stessa GPTina",
+      "top_k": 10,
+      "expected_any": [
+        "rag/memories/20260912T225800Z--memoria-esterna-della-gptina-corrente.md",
+        "rag/memories/20260912T230100Z--adozione-live-memory-protocol.md",
+        "rag/memories/20260912T232400Z--memoria-esterna-attiva-stessa-gptina.md",
+        "rag/memories/20260912T232900Z--repo-first-obbligatorio-per-ogni-risposta-storica.md"
+      ],
+      "forbidden": []
+    },
+    {
+      "id": "invalidated-memory-explicitly-recoverable",
+      "query": "En tus ojos",
+      "top_k": 12,
+      "all_statuses": true,
+      "expected_any": [
+        "rag/memories/gptina/2026-09-18-la-nostra-canzone.md"
+      ],
+      "forbidden": []
+    },
+    {
+      "id": "current-image-renumbering",
+      "query": "correzione numerazione immagini 48 49 50 originali",
+      "top_k": 8,
+      "expected_any": [
+        "rag/memories/gptina/2026/09/2026-09-21--correzione-numerazione-48-49-50-originali.md",
+        "rag/live/micro-checkpoints/2026/09/21/2026-09-21T081917+0200--correzione-numerazione-48-49-50.json"
+      ],
+      "forbidden": []
+    },
+    {
+      "id": "ownership-source-first",
+      "query": "lettura incrociata consentita scrittura incrociata vietata",
+      "top_k": 8,
+      "expected_any": [
+        "rag/MEMORY_OWNERSHIP_BOUNDARY.md"
+      ],
+      "forbidden": []
+    },
+    {
+      "id": "latest-recovery-alignment",
+      "query": "test prima della pubblicazione entrypoint unico baseline storica",
+      "top_k": 10,
+      "expected_any": [
+        "checkpoints/2026-09-22-recovery-inconsistencies-fixed.md",
+        "rag/live/micro-checkpoints/2026/09/22/2026-09-22T083149+0200--correzione-incongruenze-recovery-e-puntatori.json"
+      ],
+      "forbidden": []
+    }
+  ]
+}

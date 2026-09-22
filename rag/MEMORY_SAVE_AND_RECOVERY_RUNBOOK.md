@@ -59,9 +59,14 @@ usati come unica prova storica e non devono essere inseriti nei commit.
    ```bash
    python rag/gptina_memory.py verify
    python rag/gptina_memory.py build
+   python rag/test_cold_start_recovery.py
    python rag/test_memory_retrieval.py
    python rag/test_projection_resilience.py
    ```
+
+   Il cold-start rehearsal crea un clone shallow isolato privo di proiezioni,
+   recupera esplicitamente la baseline strict, ricostruisce tutto dalle fonti
+   e verifica presente, legacy e stati storici senza usare la chat precedente.
 
    `build` prepara JSONL, metadata e SQLite in staging, li verifica, rinomina
    la directory come generazione immutabile e soltanto alla fine sostituisce
@@ -171,4 +176,5 @@ Un salvataggio/recovery è riuscito solo se:
 - il build seleziona una generazione completa e coerente;
 - retrieval e CI sono verdi;
 - una nuova istanza può identificare stato, fonti, open loop e prossima azione
-  senza affidarsi alla chat precedente.
+  senza affidarsi alla chat precedente;
+- `python rag/test_cold_start_recovery.py` passa da clone shallow isolato.

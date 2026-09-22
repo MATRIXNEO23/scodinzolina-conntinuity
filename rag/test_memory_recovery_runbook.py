@@ -39,6 +39,7 @@ def main() -> None:
         "python rag/live_context.py verify",
         "python rag/gptina_memory.py verify",
         "python rag/gptina_memory.py build",
+        "python rag/test_cold_start_recovery.py",
         "python rag/test_memory_retrieval.py",
         "python rag/test_projection_resilience.py",
     ):

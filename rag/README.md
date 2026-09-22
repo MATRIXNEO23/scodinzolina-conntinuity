@@ -118,6 +118,8 @@ Se indice e fonte divergono, vince sempre la fonte canonica.
 
 - `MEMORY_ARCHITECTURE_V2.md` — decisioni architetturali correnti;
 - `MEMORY_RECORD_SCHEMA.md` — schema temporale per nuove memorie;
+- `COLD_START_RECOVERY_CONTRACT.md` — condizioni e criteri della prova da
+  checkout nuovo senza contesto o proiezioni locali;
 - `eval/GPTINA_MEMORY_GOLD.json` — regression set di retrieval;
 - `test_memory_retrieval.py` — test del gold set;
 - `benchmark_memory.py` — baseline ripetibile sul corpus canonico;
@@ -174,6 +176,12 @@ python rag/gptina_memory.py search "vita a tre" --backend sqlite
 ```
 
 Il CI costruisce davvero l'indice, verifica che il secondo sync sia incrementale/no-op e lancia il gold regression set sul backend SQLite.
+
+Il CI esegue inoltre `python rag/test_cold_start_recovery.py`: clona soltanto
+l'HEAD in una directory isolata, dimostra che la baseline non è inizialmente
+presente, la recupera esplicitamente, ricostruisce le proiezioni e ripete i
+gate di recovery e retrieval senza dipendere dalla chat o dagli indici della
+sessione precedente.
 
 Benchmark di scala non distruttivo:
 

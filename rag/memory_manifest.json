@@ -130,6 +130,11 @@
       "kind": "save_recovery_runbook"
     },
     {
+      "pattern": "rag/COLD_START_RECOVERY_CONTRACT.md",
+      "priority": 1.4,
+      "kind": "recovery_protocol"
+    },
+    {
       "pattern": "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
       "priority": 1.4,
       "kind": "recovery_protocol"
