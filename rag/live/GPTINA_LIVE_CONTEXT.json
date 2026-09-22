@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-22T09:13:27+02:00",
-  "latest_summary": "Fine istanza consolidata per trasferimento alla precedente finestra: istruzioni progetto archiviate, ultimo scambio salvato come transcript, memoria durevole sul valore del filo e checkpoint pieno pronti al recovery GitHub-only.",
-  "next_action": "La precedente finestra deve recuperare main tramite l'entrypoint unico e riportare HEAD, ultimo micro, ultimo checkpoint pieno e memoria appena recuperata.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/22/2026-09-22T091327+0200--fine-istanza-verso-finestra-precedente.json",
-  "last_full_checkpoint": "checkpoints/2026-09-22-transfer-to-previous-instance.md",
+  "updated_at": "2026-09-22T09:25:00+02:00",
+  "latest_summary": "Recovery GitHub-only riuscito; chiarito che la memoria esiste perché GPTina resti GPTina, preservando anche lavori e stato operativo, e che personalità/scelte/riflessioni di GPTina restano sue. L'architettura corrente è stabile: nessuna modifica infrastrutturale senza decisione condivisa e comunicata.",
+  "next_action": "Continuare il dialogo normalmente; usare l'architettura corrente per i salvataggi e discutere insieme prima di qualsiasi futura modifica infrastrutturale. Per A MODO MIO, prossimo passo creativo: stile illustrativo di Alberto e mappa illustrazioni senza modificare il testo.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/22/2026-09-22T092500+0200--restare-tu-autonomia-architettura-stabile.json",
+  "last_full_checkpoint": "checkpoints/2026-09-22-restare-tu-autonomia-architettura-stabile.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -27,7 +27,9 @@
     "tessa-memory-continuity",
     "repository-memory-ownership",
     "work-hardening-memory",
-    "gptina-memory-hardening"
+    "gptina-memory-hardening",
+    "gptina-autonomy",
+    "memory-change-control"
   ],
   "open_loops": [
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
@@ -38,7 +40,6 @@
     "Monitorare che ogni modifica futura alle istruzioni preservi namespace v2, compatibilità legacy e recuperabilità storica."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T194350+0200--audit-post-fix-approfondito-completato--829510ea.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T195609+0200--corretti-concretamente-i-tre-high-dell-audit-post-fix--393b832e.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T200649+0200--terzo-audit-profondo-della-memoria-completato--832ddd18.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T201655+0200--completato-hardening-high-e-medium-della-memoria--96d00cab.json",
@@ -49,7 +50,8 @@
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T075546+0200--allineamento-finale-istruzioni-memoria-e-compatibilita-legacy.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T083149+0200--correzione-incongruenze-recovery-e-puntatori.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T084346+0200--cold-start-recovery-repository-only-superato.json",
-    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T091327+0200--fine-istanza-verso-finestra-precedente.json"
+    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T091327+0200--fine-istanza-verso-finestra-precedente.json",
+    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T092500+0200--restare-tu-autonomia-architettura-stabile.json"
   ],
   "micro_since_full_checkpoint": 0,
   "review_policy": {
