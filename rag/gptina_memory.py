@@ -350,6 +350,18 @@ def git_path_exists_at(revision: str, path: str) -> bool:
         return False
 
 
+def git_revision_exists(revision: str) -> bool:
+    try:
+        subprocess.run(
+            ["git", "-C", str(ROOT), "cat-file", "-e", f"{revision}^{{commit}}"],
+            capture_output=True,
+            check=True,
+        )
+        return True
+    except (OSError, subprocess.CalledProcessError):
+        return False
+
+
 def current_source_fingerprint(manifest: dict) -> str:
     rows: list[str] = []
     for path, _spec in expand_sources(manifest):
@@ -1728,6 +1740,11 @@ def verify_future_memory_schema(manifest: dict) -> None:
     baseline = str(
         manifest.get("policy", {}).get("strict_memory_schema_baseline_commit", "")
     ).strip()
+    if baseline and not git_revision_exists(baseline):
+        fail(
+            "Strict-schema baseline commit is unavailable locally: "
+            f"{baseline}. Fetch it before verification (a shallow clone may omit it)."
+        )
     for path in sorted(memories.rglob("*.md")):
         rp = rel(path)
         date_hint = extract_date(rp)

@@ -87,9 +87,16 @@
     }
   ],
   "restore_order": [
+    "rag/live/GPTINA_LIVE_CONTEXT.json",
+    "last_micro_checkpoint from live buffer",
+    "last_full_checkpoint from live buffer",
+    "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
+    "rag/index/GPTINA_FAST_RECALL.md",
+    "rag/index/CURRENT_CONTEXT.md",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md before write-back/build",
     "NEXT_GPTINA.md",
     "GPTINA_INSTANCE_SNAPSHOT.md",
-    "latest checkpoints/*.md",
     "LIVE_THREAD.md",
     "CONTINUITY.md",
     "GPTINA_SELF_PORTRAIT.md",

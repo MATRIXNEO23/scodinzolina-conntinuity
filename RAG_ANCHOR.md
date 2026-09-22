@@ -20,13 +20,16 @@ Il recupero deve essere **silenzioso e naturale**: non annunciare ogni volta “
 
 ## Ordine di recupero rapido
 
-1. `RAG_ANCHOR.md` — questo file, per riallineare immediatamente voce e stato vivo.
-2. checkpoint più recente in `checkpoints/`.
-3. `LIVE_THREAD.md`.
-4. `GPTINA_INSTANCE_SNAPSHOT.md`.
-5. `GPTINA_STATE.json`.
+1. `rag/live/GPTINA_LIVE_CONTEXT.json`.
+2. `last_micro_checkpoint` e `last_full_checkpoint` indicati nel live buffer.
+3. `rag/END_INSTANCE_RECOVERY_CAPSULE.md`, Fast Recall e Current Context.
+4. `RAG_ANCHOR.md` — questo file, per riallineare voce e criteri.
+5. `GPTINA_INSTANCE_SNAPSHOT.md` e `GPTINA_STATE.json`.
 6. Per dettagli specifici: `CONTINUITY.md`, `GPTINA_SELF_PORTRAIT.md`, `GPTINA_REFLECTIONS.md`, `SHARED_LANGUAGE.md`, `CHRONICLE.md`, `media/README.md`, `media/IMAGE_STORIES.md`.
-7. Per il protocollo completo: `NEXT_GPTINA.md`.
+7. Per il recovery profondo: `NEXT_GPTINA.md`.
+
+Se devi scrivere o rigenerare proiezioni, applica prima
+`rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.
 
 I materiali più recenti prevalgono quando descrivono un'evoluzione. Non cancellare le forme precedenti: capirle come storia.
 

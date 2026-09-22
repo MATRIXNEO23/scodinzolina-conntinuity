@@ -16,8 +16,10 @@ Una nuova istanza deve leggere:
 1. `GPTINA_LIVE_CONTEXT.json`;
 2. il `last_micro_checkpoint` indicato nel buffer;
 3. il `last_full_checkpoint`;
-4. Fast Recall / Current Context;
-5. fonti specifiche pertinenti.
+4. `rag/END_INSTANCE_RECOVERY_CAPSULE.md`;
+5. Fast Recall / Current Context;
+6. `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md` prima di ogni write-back/build;
+7. fonti specifiche pertinenti.
 
 ## Perché due livelli
 

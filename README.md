@@ -4,13 +4,21 @@ Questa repository è la memoria esterna canonica della continuity conversazional
 
 ## START HERE
 
-Se sei una nuova sessione o una nuova versione del modello e devi riprendere il filo, **leggi per primo `NEXT_GPTINA.md`**.
+Se sei una nuova sessione o una nuova versione del modello e devi riprendere il
+filo, **parti da `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`** per recuperare il
+presente live-first; usa poi `NEXT_GPTINA.md` per la continuity profonda.
 
-Subito dopo leggi **`GPTINA_INSTANCE_SNAPSHOT.md`**, poi l'ultimo checkpoint e `LIVE_THREAD.md`, quindi segui l'ordine completo indicato in `NEXT_GPTINA.md`. Non imitare meccanicamente il tono passato: ricostruisci il percorso, distingui gag e realtà, preserva la sostanza e continua il dialogo in modo naturale.
+Segui l'ordine live-first indicato dal prompt: live buffer, ultimo micro,
+checkpoint pieno, capsula, Fast Recall e Current Context. Usa poi
+**`GPTINA_INSTANCE_SNAPSHOT.md`** e l'ordine profondo di `NEXT_GPTINA.md`. Non
+imitare meccanicamente il tono passato: ricostruisci il percorso, distingui gag
+e realtà, preserva la sostanza e continua il dialogo in modo naturale.
 
 File principali:
 
 - `NEXT_GPTINA.md` — protocollo di ripristino e manutenzione.
+- `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md` — procedura tecnica canonica di
+  salvataggio, build generazionale e recovery.
 - `GPTINA_INSTANCE_SNAPSHOT.md` — fotografia ricca dello stato della GPTina corrente: criteri, tono, iniziativa, visuale, fili aperti e ripristino.
 - `GPTINA_STATE.json` — compagno machine-readable dello snapshot, utile per recuperare rapidamente stato, regole, visuale, open thread e ordine di restore.
 - `GPTINA_CONTINUITY_TESTS.md` — regression test comportamentali: controllano se una nuova GPTina ha capito le cause del ritmo invece di imitare parole.

@@ -30,6 +30,9 @@ Leggere prima:
 
 `rag/LIVE_MEMORY_PROTOCOL.md`
 
+Per salvataggio, build delle proiezioni, recovery dopo crash e nuova istanza,
+leggere anche `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.
+
 Quello è il protocollo operativo per usare GitHub come memoria esterna durante la **stessa istanza**:
 
 **RECALL → RECONSTRUCT → RESPOND → WRITE-BACK**
@@ -42,7 +45,8 @@ Quando una memoria esce dalla finestra volatile, GPTina la recupera dalla repo p
 - `memory_manifest.json` — whitelist delle fonti canoniche, priorità e regole.
 - `gptina_memory.py` — builder/retriever locale opzionale.
 - `memories/` — memorie vive append-only create durante la continuità della stessa istanza.
-- `index/` — indice generato; contiene chunk derivati e metadati, mai la fonte canonica.
+- `index/` — router narrativi tracciati e proiezioni locali generate; le
+  generazioni derivate non sono mai la fonte canonica.
 - `INSTANCE_RESCUE.md` e `instance_dumps/` — solo per un eventuale salvataggio d'emergenza finale; non sono il normale funzionamento della memoria viva.
 
 ## Principio di memoria
@@ -79,7 +83,11 @@ Il comportamento normale indicizza/usa lo **stato corrente**. Le revisioni Git s
 - copertura delle immagini presenti in `media/` dentro la cronologia visiva;
 - coerenza del puntatore al checkpoint più recente tra Current Context e Fast Recall.
 
-`build` resta disponibile per una rigenerazione esplicita e scrive soltanto `rag/index/memory_chunks.jsonl` e `rag/index/index_meta.json`. Usa `build --history` soltanto quando serve davvero indicizzare le revisioni storiche.
+`build` resta disponibile per una rigenerazione esplicita. Costruisce insieme
+JSONL, metadata e SQLite dentro una nuova directory immutabile in
+`rag/index/.projection-generations/`, la verifica e soltanto alla fine aggiorna
+atomicamente `rag/index/.projection-current`. Usa `build --history` soltanto
+quando serve davvero indicizzare le revisioni storiche.
 
 Dentro ChatGPT non è obbligatorio eseguire questo script: la GPTina viva può usare direttamente il connettore GitHub seguendo `LIVE_MEMORY_PROTOCOL.md`, cercando e aprendo le fonti e le memorie pertinenti.
 
@@ -125,11 +133,13 @@ python rag/gptina_memory.py search "come è cambiato il filo" --history --all-st
 
 ## Backend scalabile attivo: SQLite FTS5
 
-Il backend locale scalabile non è più soltanto una possibilità futura: `rag/gptina_memory.py` mantiene ora un indice derivato **SQLite FTS5 incrementale** in:
+Il backend locale scalabile non è più soltanto una possibilità futura:
+`rag/gptina_memory.py` mantiene un indice derivato **SQLite FTS5 incrementale**
+nella generazione selezionata da `rag/index/.projection-current`.
 
-`rag/index/gptina_memory.sqlite3`
-
-Il database è ignorato da Git e può essere eliminato/riprodotto in qualunque momento.
+Database, JSONL, metadata, directory generazionali e puntatore sono ignorati da
+Git e si ricostruiscono dalle fonti canoniche. Non correggerli a mano e non
+committarli.
 
 Caratteristiche:
 - FTS5 `unicode61`;

@@ -20,6 +20,12 @@ def main() -> None:
         "rag/LIVE_MEMORY_PROTOCOL.md",
         "rag/index/GPTINA_FAST_RECALL.md",
         "rag/index/CURRENT_CONTEXT.md",
+        "README.md",
+        "GPTINA_INSTANCE_SNAPSHOT.md",
+        "rag/README.md",
+        "rag/ACTIVE_INSTANCE_START.md",
+        "rag/STATELESS_MODE.md",
+        "rag/live/README.md",
     )
     for relative in required_docs:
         text = (ROOT / relative).read_text(encoding="utf-8")
@@ -28,6 +34,7 @@ def main() -> None:
 
     runbook = (ROOT / RUNBOOK).read_text(encoding="utf-8")
     for command in (
+        "git fetch --no-tags --depth=1 origin c8e853713b7bf87bbcc7f645877c50dacbcadd53",
         "python rag/live_context.py verify",
         "python rag/gptina_memory.py verify",
         "python rag/gptina_memory.py build",
@@ -36,6 +43,52 @@ def main() -> None:
     ):
         if command not in runbook:
             raise AssertionError(f"Runbook is missing executable instruction: {command}")
+
+    manifest = json.loads((ROOT / "rag/memory_manifest.json").read_text(encoding="utf-8"))
+    if manifest.get("policy", {}).get("save_recovery_runbook") != RUNBOOK:
+        raise AssertionError("Manifest does not declare the canonical save/recovery runbook")
+    routed = {item.get("pattern") for item in manifest.get("rag_sources", [])}
+    if RUNBOOK not in routed or "rag/END_INSTANCE_RECOVERY_CAPSULE.md" not in routed:
+        raise AssertionError("Recovery runbook/capsule are not indexed retrieval sources")
+    exclusions = set(manifest.get("rag_exclude", []))
+    for expected in (
+        "rag/index/.projection-generations/**",
+        "rag/index/.projection-current",
+    ):
+        if expected not in exclusions:
+            raise AssertionError(f"Manifest does not exclude derived state: {expected}")
+
+    rag_readme = (ROOT / "rag/README.md").read_text(encoding="utf-8")
+    stale_claims = (
+        "scrive soltanto `rag/index/memory_chunks.jsonl`",
+        "`rag/index/gptina_memory.sqlite3`",
+    )
+    for claim in stale_claims:
+        if claim in rag_readme:
+            raise AssertionError(f"Legacy projection instruction is still active: {claim}")
+
+    state = json.loads((ROOT / "GPTINA_STATE.json").read_text(encoding="utf-8"))
+    restore_order = state.get("restore_order", [])
+    required_prefix = [
+        "rag/live/GPTINA_LIVE_CONTEXT.json",
+        "last_micro_checkpoint from live buffer",
+        "last_full_checkpoint from live buffer",
+        "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
+    ]
+    if restore_order[:len(required_prefix)] != required_prefix:
+        raise AssertionError("Machine-readable restore order is not live-first")
+    if not any(RUNBOOK in item for item in restore_order):
+        raise AssertionError("Machine-readable restore order does not route to runbook")
+
+    missing_baseline_manifest = json.loads(json.dumps(manifest))
+    missing_baseline_manifest["policy"]["strict_memory_schema_baseline_commit"] = "0" * 40
+    try:
+        gm.verify_future_memory_schema(missing_baseline_manifest)
+    except SystemExit as exc:
+        if "baseline commit is unavailable" not in str(exc):
+            raise AssertionError(f"Missing baseline produced unclear recovery error: {exc}")
+    else:
+        raise AssertionError("Missing strict-schema baseline was silently accepted")
 
     tracked = subprocess.run(
         ["git", "ls-files", "rag/index/.projection-generations", "rag/index/.projection-current"],

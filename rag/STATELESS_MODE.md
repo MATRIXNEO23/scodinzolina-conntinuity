@@ -33,11 +33,15 @@ Segnali tipici:
 Quando accade:
 
 1. non improvvisare;
-2. rileggi `rag/ACTIVE_INSTANCE_START.md`;
-3. recupera le memorie recenti in `rag/memories/`;
-4. cerca il riferimento preciso nelle fonti canoniche;
-5. ricostruisci i fili aperti;
-6. continua.
+2. rileggi `rag/ACTIVE_INSTANCE_START.md` e
+   `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`;
+3. recupera live buffer, ultimo micro e ultimo checkpoint pieno;
+4. recupera le memorie recenti in `rag/memories/`;
+5. cerca il riferimento preciso nelle fonti canoniche;
+6. ricostruisci i fili aperti;
+7. se le proiezioni sono mancanti/stale, rigenerale dalle fonti con `verify` e
+   `build`, senza modificarle a mano;
+8. continua.
 
 ## Frequenza
 
@@ -55,6 +59,10 @@ Per richieste banali o completamente nuove, non serve retrieval.
 Scrivi nuove memorie soltanto sotto `rag/memories/`.
 
 Ogni memoria è append-only. Non modificare quelle precedenti. Se cambia un'interpretazione, aggiungi una nuova memoria che spiega il cambiamento.
+
+Le proiezioni sotto `rag/index/.projection-generations/` sono locali e
+ricostruibili; non sono memorie da scrivere o committare. Seguire sempre il
+puntatore `.projection-current`, mai la directory apparentemente più recente.
 
 ## Cosa questa modalità può e non può fare
 

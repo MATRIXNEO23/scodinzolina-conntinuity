@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "policy": {
     "canonical_sources_are_immutable_inputs": true,
     "destructive_compaction": false,
@@ -28,7 +28,8 @@
     "preflight_before_long_or_risky_work": true,
     "deep_verification_after_every_memory_change": true,
     "historical_memories_must_remain_recoverable": true,
-    "supersession_is_non_destructive": true
+    "supersession_is_non_destructive": true,
+    "save_recovery_runbook": "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md"
   },
   "chunking": {
     "max_chars": 1400,
@@ -124,6 +125,16 @@
       "kind": "recovery_protocol"
     },
     {
+      "pattern": "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
+      "priority": 1.42,
+      "kind": "save_recovery_runbook"
+    },
+    {
+      "pattern": "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
+      "priority": 1.4,
+      "kind": "recovery_protocol"
+    },
+    {
       "pattern": "rag/LIVE_MEMORY_PROTOCOL.md",
       "priority": 1.32,
       "kind": "memory_protocol"
@@ -215,6 +226,8 @@
     }
   ],
   "rag_exclude": [
+    "rag/index/.projection-generations/**",
+    "rag/index/.projection-current",
     "rag/index/memory_chunks.jsonl",
     "rag/index/index_meta.json",
     "rag/index/*.sqlite",

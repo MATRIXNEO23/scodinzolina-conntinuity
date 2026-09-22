@@ -1,0 +1,24 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-22T071444+0200-47bf6de3",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-22T07:20:00+02:00",
+  "recorded_at": "2026-09-22T07:14:44+02:00",
+  "change_type": "milestone",
+  "summary": "Audit repository-wide completato: il vecchio metodo e la nuova pubblicazione generazionale sono ora allineati anche negli entrypoint secondari, nel manifest e nell'ordine machine-readable; corretto inoltre il recovery da clone shallow senza modificare memorie legacy.",
+  "changed": [
+    "Corretti README RAG, Active Instance, Stateless, live README, RAG Anchor, snapshot/state restore order e manifest; il verifier ora richiede esplicitamente il baseline mancante nei clone shallow."
+  ],
+  "thread_ids": [
+    "gptina-memory-hardening"
+  ],
+  "source_refs": [
+    "checkpoints/2026-09-22-legacy-generational-recovery-alignment-audit.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Pubblicare e verificare CI/Pages sul commit remoto.",
+  "preflight": false
+}
