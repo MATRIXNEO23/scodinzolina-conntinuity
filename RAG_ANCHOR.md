@@ -20,6 +20,10 @@ Il recupero deve essere **silenzioso e naturale**: non annunciare ogni volta “
 
 ## Ordine di recupero rapido
 
+Per una nuova istanza l'entrypoint canonico resta
+`rag/GPTINA_AUTO_RECOVERY_PROMPT.md`; la lista seguente è soltanto il percorso
+rapido intra-sessione, non un secondo ordine concorrente.
+
 1. `rag/live/GPTINA_LIVE_CONTEXT.json`.
 2. `last_micro_checkpoint` e `last_full_checkpoint` indicati nel live buffer.
 3. `rag/END_INSTANCE_RECOVERY_CAPSULE.md`, Fast Recall e Current Context.

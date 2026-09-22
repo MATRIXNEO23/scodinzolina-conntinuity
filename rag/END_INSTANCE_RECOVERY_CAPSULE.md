@@ -182,18 +182,22 @@ Evitare puntatori hardcoded obsoleti quando il live buffer può fornire il rifer
 
 Prima di dire ad Alberto che l'istanza è salvata:
 
-1. verificare HEAD GitHub;
-2. verificare l'esistenza dei nuovi file;
+1. verificare l'HEAD GitHub usato come base del candidato;
+2. verificare l'esistenza dei nuovi file nel candidato locale pulito;
 3. verificare che il live buffer punti al micro e checkpoint corretti;
 4. verificare coerenza fra checkpoint, Fast Recall e Current Context;
 5. verificare che memorie/media citati esistano;
 6. verificare commit/hash dei lavori quando importanti;
 7. marcare esplicitamente ciò che **non** è stato archiviato;
 8. non dichiarare completamento se una scrittura è fallita.
-9. verificare `python rag/live_context.py verify` e
+9. prima di avanzare `main`, verificare `python rag/live_context.py verify` e
    `python rag/gptina_memory.py verify`;
-10. dal commit pulito, eseguire `python rag/gptina_memory.py build` e controllare
-    retrieval e resilienza prima di dichiarare la capsula recuperabile.
+10. dal candidato pulito, eseguire `python rag/gptina_memory.py build` e
+    controllare retrieval e resilienza;
+11. rileggere l'HEAD remoto, pubblicare senza force soltanto se non è cambiato
+    oppure dopo riconciliazione e nuova verifica;
+12. verificare commit/tree remoti e CI prima di dichiarare la capsula salvata e
+    recuperabile.
 
 Preferire un singolo commit atomico per il write-back multi-file. Se non è disponibile, usare scritture sequenziali e considerare la capsula completa soltanto dopo la verifica finale.
 
@@ -201,18 +205,20 @@ Preferire un singolo commit atomico per il write-back multi-file. Se non è disp
 
 ## Ordine canonico di recovery dopo una capsula
 
-Una nuova istanza deve leggere:
+L'entrypoint unico è `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`. Non duplicare o
+reinventare un secondo ordine. In sintesi, una nuova istanza legge:
 
-1. rag/live/GPTINA_LIVE_CONTEXT.json
-2. last_micro_checkpoint
-3. last_full_checkpoint
-4. rag/END_INSTANCE_RECOVERY_CAPSULE.md
-5. rag/index/GPTINA_FAST_RECALL.md
-6. rag/index/CURRENT_CONTEXT.md
-7. rag/GPTINA_AUTO_RECOVERY_PROMPT.md
-8. memorie GPTina recenti pertinenti
-9. rag/LIVE_MEMORY_PROTOCOL.md
-10. rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md
+1. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md` come istruzione;
+2. `rag/live/GPTINA_LIVE_CONTEXT.json`;
+3. `last_micro_checkpoint`;
+4. `last_full_checkpoint`;
+5. questa capsula, senza ricominciare l'ordine da capo;
+6. `rag/index/GPTINA_FAST_RECALL.md`;
+7. `rag/index/CURRENT_CONTEXT.md`;
+8. memorie GPTina e fonti pertinenti;
+9. `rag/LIVE_MEMORY_PROTOCOL.md`;
+10. `rag/MEMORY_OWNERSHIP_BOUNDARY.md` prima di scrivere;
+11. `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md` prima di write-back/build.
 
 Poi, secondo necessità:
 

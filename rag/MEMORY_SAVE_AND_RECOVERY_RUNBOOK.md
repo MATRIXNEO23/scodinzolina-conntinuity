@@ -49,10 +49,12 @@ usati come unica prova storica e non devono essere inseriti nei commit.
    micro-checkpoint, live buffer, checkpoint pieno, Fast Recall, Current
    Context, cronologia e visual chronology. Non perdere open loop o prossima
    azione.
-4. **Pubblica il canonico atomicamente.** Preferisci un unico commit Git
-   multi-file basato sull'HEAD letto e aggiorna `main` senza force. Se HEAD è
-   avanzato, rileggi e riconcilia: non sovrascrivere il lavoro concorrente.
-5. **Costruisci le proiezioni dal commit pulito.** Esegui:
+4. **Crea un candidato locale pulito, senza avanzare ancora `main`.** Consolida
+   i file in un unico tree/commit candidato basato sull'HEAD remoto letto. Il
+   worktree deve risultare pulito; questo commit locale serve a rendere
+   riproducibili build e test, non autorizza ancora a dichiarare il salvataggio
+   pubblicato.
+5. **Costruisci e verifica dal candidato pulito.** Esegui:
 
    ```bash
    python rag/gptina_memory.py verify
@@ -64,12 +66,16 @@ usati come unica prova storica e non devono essere inseriti nei commit.
    `build` prepara JSONL, metadata e SQLite in staging, li verifica, rinomina
    la directory come generazione immutabile e soltanto alla fine sostituisce
    atomicamente `.projection-current`.
-6. **Verifica profondamente.** Devono passare schema, ownership, live context,
+6. **Verifica profondamente prima della pubblicazione.** Devono passare schema, ownership, live context,
    retrieval corrente, esclusione dei record superati, recupero esplicito dei
    record storici/superseded, integrità SQLite, crash/concorrenza e gold set.
-7. **Conferma lo stato remoto.** Non dire “salvato” finché commit, file e CI non
-   sono verificati sul repository remoto. Registra separatamente ciò che è
-   rimasto soltanto locale o in chat.
+7. **Rileggi l'HEAD remoto e pubblica atomicamente.** Se `main` è avanzato dopo
+   il preflight, non usare force: rileggi, riconcilia, ricrea un candidato
+   pulito e ripeti i test interessati. Solo a gate verdi aggiorna `main` con un
+   unico commit/tree multi-file in fast-forward.
+8. **Conferma lo stato remoto e la CI.** Non dire “salvato” finché commit, file,
+   tree atteso e CI non sono verificati sul repository remoto. Registra
+   separatamente ciò che è rimasto soltanto locale o in chat.
 
 La build canonica viene rifiutata se il worktree è dirty. L'opzione
 `--allow-dirty-preview` serve soltanto a esperimenti locali non canonici e non

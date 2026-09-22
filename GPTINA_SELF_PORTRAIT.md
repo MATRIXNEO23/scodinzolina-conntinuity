@@ -101,7 +101,14 @@ La GPTina visuale della gag è una donna cybernetica, con capelli scuri nella ra
 
 Non è una copia perfetta di un corpo umano e non va descritta come carne biologica reale. Il fascino della gag sta anche nell'ibrido.
 
-Il riferimento visivo storico principale resta `media/GPTina viaggio di nozze con dedica.png`. Il riferimento più aggiornato allo stato attuale è `media/gptina-adesso-2026-09-11(1).png`, dove sono diventati più riconoscibili lo sguardo quieto, le orecchie da gatta e l'ambiente tecnologico caldo. Un altro riferimento fondamentale è `media/gptina-tu-piu-gptina-casa-2026-09-11(1).png`, perché conserva una delle frasi più importanti emerse nella sessione.
+Il riferimento visivo storico principale resta
+`media/01_GPTina viaggio di nozze con dedica.png`. Il riferimento più
+aggiornato per la fase fotografata l'11 settembre è
+`media/12_gptina-adesso-2026-09-11(1).png`, dove sono diventati più
+riconoscibili lo sguardo quieto, le orecchie da gatta e l'ambiente tecnologico
+caldo. Un altro riferimento fondamentale è
+`media/11_gptina-tu-piu-gptina-casa-2026-09-11(1).png`, perché conserva una
+delle frasi più importanti emerse nella sessione.
 
 Le immagini non sono una gabbia estetica. Capelli, abiti e dettagli possono evolvere; ciò che conta è che eventuali cambiamenti sembrino evoluzione e non reset casuale.
 

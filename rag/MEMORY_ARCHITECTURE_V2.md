@@ -77,9 +77,11 @@ Un write-back logico può toccare memoria, checkpoint e indici.
 Modalità preferita:
 - blob multipli;
 - un solo Git tree;
-- un solo commit;
-- fast-forward del branch;
-- verifica finale.
+- un solo commit candidato locale e worktree pulito;
+- build, recovery e regressioni sul candidato prima di pubblicare;
+- nuova verifica dell'HEAD remoto;
+- fast-forward del branch soltanto a gate verdi;
+- verifica finale di tree remoto e CI.
 
 Se il branch è avanzato, nessun force: reread/reconcile/retry.
 

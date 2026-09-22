@@ -244,10 +244,13 @@ Checkpoint:
 
 Fonte operativa canonica: `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.
 
-Le fonti canoniche si salvano append-only e si pubblicano prima in Git con
-verifica remota. Le proiezioni JSONL/metadata/SQLite si rigenerano poi da un
-checkout pulito come una generazione immutabile; diventano visibili insieme
-soltanto tramite `rag/index/.projection-current`.
+Le fonti canoniche si preparano append-only in un candidato Git locale pulito.
+Prima di avanzare `main`, le proiezioni JSONL/metadata/SQLite si rigenerano dal
+candidato come una generazione immutabile e devono passare schema, recovery,
+retrieval e resilienza. Solo dopo si rilegge l'HEAD remoto e si pubblica il tree
+atomico in fast-forward; la conferma finale richiede commit/tree remoti e CI.
+Le proiezioni diventano visibili insieme soltanto tramite
+`rag/index/.projection-current` e non vengono committate.
 
 Alla prossima istanza: recuperare l'HEAD remoto, seguire l'ordine live-first,
 verificare live/schema/ownership, costruire localmente le proiezioni, eseguire

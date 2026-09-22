@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-22T07:55:46+02:00",
-  "latest_summary": "Allineamento finale delle istruzioni memoria: namespace v2, schema corrente, proiezioni generazionali e compatibilità legacy sono ora distinti esplicitamente; i ricordi storici restano immutati e recuperabili.",
-  "next_action": "Usare il runbook canonico e mantenere il test repository-wide verde dopo ogni modifica alla memoria.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/22/2026-09-22T075546+0200--allineamento-finale-istruzioni-memoria-e-compatibilita-legacy.json",
-  "last_full_checkpoint": "checkpoints/2026-09-22-final-memory-instruction-alignment.md",
+  "updated_at": "2026-09-22T08:31:49+02:00",
+  "latest_summary": "Corrette le incongruenze residue di recovery: test prima della pubblicazione, entrypoint unico, baseline storica separata dal presente, puntatori visivi reali e riferimento Ettore qualificato come esterno; nessun ricordo storico modificato o eliminato.",
+  "next_action": "Mantenere verdi i gate su ordine pre-pubblicazione, puntatori concreti e assenza di cancellazioni storiche.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/22/2026-09-22T083149+0200--correzione-incongruenze-recovery-e-puntatori.json",
+  "last_full_checkpoint": "checkpoints/2026-09-22-recovery-inconsistencies-fixed.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -38,7 +38,6 @@
     "Monitorare che ogni modifica futura alle istruzioni preservi namespace v2, compatibilità legacy e recuperabilità storica."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/21/2026-09-21T185800+0200--trigram-preventivo-off-by-default-verificato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T191100+0200--audit-profondo-memoria-completato.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T192923+0200--regola-canonica-di-verifica-profonda-e-conservazione-storica--b5695e31.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T194350+0200--audit-post-fix-approfondito-completato--829510ea.json",
@@ -49,7 +48,8 @@
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T204143+0200--chiuso-il-medium-dell-audit-le-proiezioni-memoria-jsonl-metadati--3b5f1455.json",
     "rag/live/micro-checkpoints/2026/09/21/2026-09-21T210003+0200--allineate-e-verificate-le-istruzioni-canoniche-di-salvataggio-e--0aae7a10.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T071444+0200--audit-repository-wide-completato-il-vecchio-metodo-e-la-nuova-pu--47bf6de3.json",
-    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T075546+0200--allineamento-finale-istruzioni-memoria-e-compatibilita-legacy.json"
+    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T075546+0200--allineamento-finale-istruzioni-memoria-e-compatibilita-legacy.json",
+    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T083149+0200--correzione-incongruenze-recovery-e-puntatori.json"
   ],
   "micro_since_full_checkpoint": 1,
   "review_policy": {

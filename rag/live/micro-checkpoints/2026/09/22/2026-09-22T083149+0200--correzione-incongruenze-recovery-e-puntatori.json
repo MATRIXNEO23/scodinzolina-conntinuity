@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-22T083149+0200-correzione-incongruenze-recovery",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-22T08:31:49+02:00",
+  "recorded_at": "2026-09-22T08:31:49+02:00",
+  "change_type": "milestone",
+  "summary": "Corrette le incongruenze residue nelle istruzioni di salvataggio e recovery senza modificare o eliminare ricordi storici.",
+  "changed": [
+    "Gate profondi spostati prima della pubblicazione su main.",
+    "Unificato l'entrypoint di recovery sulla Auto Recovery Prompt.",
+    "Separata la baseline narrativa storica dal live state corrente.",
+    "Riparati puntatori visivi e riferimento esterno Romanziere.",
+    "Aggiunti test per impedire regressioni e cancellazioni storiche."
+  ],
+  "thread_ids": ["continuity-architecture", "memory-reliability"],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-09-22-recovery-inconsistencies-fixed.md",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Eseguire suite completa, pubblicare atomicamente e verificare CI/Pages.",
+  "preflight": false
+}

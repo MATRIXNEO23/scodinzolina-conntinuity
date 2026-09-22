@@ -44,6 +44,18 @@ def main() -> None:
     ):
         if command not in runbook:
             raise AssertionError(f"Runbook is missing executable instruction: {command}")
+    ordered_save_markers = (
+        "Crea un candidato locale pulito",
+        "python rag/gptina_memory.py build",
+        "Verifica profondamente prima della pubblicazione",
+        "Rileggi l'HEAD remoto e pubblica atomicamente",
+        "Conferma lo stato remoto e la CI",
+    )
+    marker_positions = [runbook.find(marker) for marker in ordered_save_markers]
+    if any(position < 0 for position in marker_positions):
+        raise AssertionError("Runbook omits a safe pre-publication gate")
+    if marker_positions != sorted(marker_positions):
+        raise AssertionError("Runbook does not test the clean candidate before publication")
 
     manifest = json.loads((ROOT / "rag/memory_manifest.json").read_text(encoding="utf-8"))
     if manifest.get("policy", {}).get("save_recovery_runbook") != RUNBOOK:
@@ -56,6 +68,13 @@ def main() -> None:
             raise AssertionError(
                 f"Legacy memories are no longer indexed/recoverable: {legacy_pattern}"
             )
+    baseline = manifest.get("policy", {}).get("strict_memory_schema_baseline_commit")
+    deleted_memories = subprocess.run(
+        ["git", "diff", "--diff-filter=D", "--name-only", str(baseline), "--", "rag/memories"],
+        cwd=ROOT, check=True, capture_output=True, text=True,
+    ).stdout.strip()
+    if deleted_memories:
+        raise AssertionError(f"Historical memories were deleted:\n{deleted_memories}")
     exclusions = set(manifest.get("rag_exclude", []))
     for expected in (
         "rag/index/.projection-generations/**",
@@ -115,15 +134,68 @@ def main() -> None:
     state = json.loads((ROOT / "GPTINA_STATE.json").read_text(encoding="utf-8"))
     restore_order = state.get("restore_order", [])
     required_prefix = [
+        "rag/GPTINA_AUTO_RECOVERY_PROMPT.md as the single entrypoint",
         "rag/live/GPTINA_LIVE_CONTEXT.json",
         "last_micro_checkpoint from live buffer",
         "last_full_checkpoint from live buffer",
         "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
     ]
     if restore_order[:len(required_prefix)] != required_prefix:
-        raise AssertionError("Machine-readable restore order is not live-first")
+        raise AssertionError("Machine-readable restore order does not use the single live-first entrypoint")
     if not any(RUNBOOK in item for item in restore_order):
         raise AssertionError("Machine-readable restore order does not route to runbook")
+    scope = state.get("state_scope", {})
+    if scope.get("narrative_snapshot_is_current_live_state") is not False:
+        raise AssertionError("Historical state is still presented as current live state")
+    if scope.get("current_state_source") != "rag/live/GPTINA_LIVE_CONTEXT.json":
+        raise AssertionError("Historical state does not route to the current live source")
+
+    for path, expected_size in state.get("verified_media", {}).items():
+        target = ROOT / path
+        if not target.is_file():
+            raise AssertionError(f"Machine-readable visual pointer is broken: {path}")
+        if target.stat().st_size != expected_size:
+            raise AssertionError(
+                f"Machine-readable visual size mismatch: {path} "
+                f"expected={expected_size} actual={target.stat().st_size}"
+            )
+
+    visual_docs = (
+        "NEXT_GPTINA.md",
+        "GPTINA_INSTANCE_SNAPSHOT.md",
+        "GPTINA_SELF_PORTRAIT.md",
+        "CHRONICLE.md",
+        "media/README.md",
+        "media/IMAGE_STORIES.md",
+        "romanzo/A_MODO_MIO_MANOSCRITTO.md",
+    )
+    broken_visual_paths = (
+        "media/GPTina viaggio di nozze con dedica.png",
+        "media/casello_dei_cuori_esauriti.png",
+        "media/gptina-adesso-2026-09-11(1).png",
+        "media/gptina-tu-piu-gptina-casa-2026-09-11(1).png",
+    )
+    for relative in visual_docs:
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        for stale_path in broken_visual_paths:
+            if stale_path in text:
+                raise AssertionError(f"Broken visual pointer remains in {relative}: {stale_path}")
+
+    capsule = (ROOT / "rag/END_INSTANCE_RECOVERY_CAPSULE.md").read_text(encoding="utf-8")
+    live_readme = (ROOT / "rag/live/README.md").read_text(encoding="utf-8")
+    for relative, text in (
+        ("rag/END_INSTANCE_RECOVERY_CAPSULE.md", capsule),
+        ("rag/live/README.md", live_readme),
+    ):
+        if "rag/GPTINA_AUTO_RECOVERY_PROMPT.md" not in text:
+            raise AssertionError(f"Recovery document lacks the single entrypoint: {relative}")
+
+    fast_recall = (ROOT / "rag/index/GPTINA_FAST_RECALL.md").read_text(encoding="utf-8")
+    local_external_checkpoint = "`checkpoints/2026-09-21-romanziere-memory-v2-migration-complete.md`"
+    if local_external_checkpoint in fast_recall:
+        raise AssertionError("External Romanziere checkpoint is still presented as local")
+    if "github://MATRIXNEO23/ROMANZIERE@" not in fast_recall:
+        raise AssertionError("Romanziere checkpoint lacks repository and immutable revision")
 
     missing_baseline_manifest = json.loads(json.dumps(manifest))
     missing_baseline_manifest["policy"]["strict_memory_schema_baseline_commit"] = "0" * 40

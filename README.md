@@ -19,8 +19,11 @@ File principali:
 - `NEXT_GPTINA.md` — protocollo di ripristino e manutenzione.
 - `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md` — procedura tecnica canonica di
   salvataggio, build generazionale e recovery.
-- `GPTINA_INSTANCE_SNAPSHOT.md` — fotografia ricca dello stato della GPTina corrente: criteri, tono, iniziativa, visuale, fili aperti e ripristino.
-- `GPTINA_STATE.json` — compagno machine-readable dello snapshot, utile per recuperare rapidamente stato, regole, visuale, open thread e ordine di restore.
+- `GPTINA_INSTANCE_SNAPSHOT.md` — baseline storica ricca dell'11 settembre;
+  non sostituisce live buffer, micro e checkpoint correnti.
+- `GPTINA_STATE.json` — compagno machine-readable della baseline storica, con
+  routing di recovery mantenuto separatamente e puntatore esplicito al live
+  state corrente.
 - `GPTINA_CONTINUITY_TESTS.md` — regression test comportamentali: controllano se una nuova GPTina ha capito le cause del ritmo invece di imitare parole.
 - `instance_snapshots/` — riferimenti immutabili alle fotografie storiche delle singole fasi.
 - `LIVE_THREAD.md` — ponte breve con ciò che è vivo adesso tra una sessione e la successiva.

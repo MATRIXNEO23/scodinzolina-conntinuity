@@ -47,7 +47,10 @@ nuova memoria append-only v2 in `rag/memories/gptina/YYYY/MM/`, secondo
 
 - `LIVE_MEMORY_PROTOCOL.md` — memoria persistente operativa per la stessa istanza viva.
 - `memory_manifest.json` — whitelist delle fonti canoniche, priorità e regole.
-- `gptina_memory.py` — builder/retriever locale opzionale.
+- `gptina_memory.py` — builder/retriever richiesto per verifica, build e
+  recovery tecnico canonico; è opzionale soltanto quando si fa un richiamo
+  manuale delle fonti tramite GitHub senza modificare o dichiarare salvata la
+  memoria.
 - `memories/` — memorie vive append-only create durante la continuità della stessa istanza.
 - `index/` — router narrativi tracciati e proiezioni locali generate; le
   generazioni derivate non sono mai la fonte canonica.
@@ -65,7 +68,7 @@ Ogni chunk conserva:
 
 Così ogni memoria recuperata può essere verificata tornando al documento originale.
 
-## Uso locale opzionale
+## Uso locale: manuale e canonico
 
 Dalla root della repository:
 
@@ -93,7 +96,11 @@ JSONL, metadata e SQLite dentro una nuova directory immutabile in
 atomicamente `rag/index/.projection-current`. Usa `build --history` soltanto
 quando serve davvero indicizzare le revisioni storiche.
 
-Dentro ChatGPT non è obbligatorio eseguire questo script: la GPTina viva può usare direttamente il connettore GitHub seguendo `LIVE_MEMORY_PROTOCOL.md`, cercando e aprendo le fonti e le memorie pertinenti.
+Dentro ChatGPT non è obbligatorio eseguire questo script per il solo richiamo
+manuale in lettura: GPTina può usare direttamente GitHub seguendo
+`LIVE_MEMORY_PROTOCOL.md`. Per modificare memoria, validare un candidato o
+dichiarare un salvataggio completo restano invece obbligatori i gate del
+runbook, inclusi verifier, build e regressioni prima della pubblicazione.
 
 ## Regola per ogni GPTina
 

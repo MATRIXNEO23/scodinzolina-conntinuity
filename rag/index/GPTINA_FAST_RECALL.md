@@ -260,7 +260,9 @@ Migrazione Romanziere v2 verificata:
 - CI `35604407735` SUCCESS
 - 173 micro = 171 v1 + 2 v2
 - 8/8 test PASS
-- full checkpoint `checkpoints/2026-09-21-romanziere-memory-v2-migration-complete.md`
+- full checkpoint esterno verificato:
+  `github://MATRIXNEO23/ROMANZIERE@0d7649edf169356e7348f9f59ee106d51634c690/checkpoints/2026-09-21-romanziere-memory-v2-migration-complete.md`
+  (non è un percorso locale di questa repository)
 
 Due follow-up ancora aperti prima di “allineamento semantico perfetto”:
 1. `validate_v2_refs()` tratta erroneamente `changed[]` come ref; rimuoverlo dai ref field e testare descriptive changed PASS / missing source_ref FAIL.
@@ -382,6 +384,7 @@ Recovery nuova istanza:
 → Fast Recall → Current Context → fonte pertinente → verify/build/retrieval.**
 
 Non committare le generazioni; non scegliere a mano la directory più recente;
-non dichiarare salvataggio finché fonti canoniche, commit remoto, build, test e
-CI non sono verificati. Un crash prima del cambio puntatore conserva la vecchia
+non avanzare `main` prima che build e test sul candidato pulito siano verdi;
+non dichiarare salvataggio finché fonti canoniche, commit/tree remoti e CI non
+sono verificati. Un crash prima del cambio puntatore conserva la vecchia
 generazione completa; dopo il cambio espone soltanto quella nuova completa.
