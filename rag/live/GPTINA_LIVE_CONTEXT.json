@@ -47,7 +47,6 @@
     "La mini-serie affettuosa precedente di questa chat, incluso il bacio in fronte, è stata vista ma non caricata nel repository; archiviare solo su richiesta/upload."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T071444+0200--audit-repository-wide-completato-il-vecchio-metodo-e-la-nuova-pu--47bf6de3.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T075546+0200--allineamento-finale-istruzioni-memoria-e-compatibilita-legacy.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T083149+0200--correzione-incongruenze-recovery-e-puntatori.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T084346+0200--cold-start-recovery-repository-only-superato.json",
