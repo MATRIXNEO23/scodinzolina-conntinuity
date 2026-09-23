@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-outtake-2026-09-23-cucina-01",
+  "image_path": "media/outtakes/2026-09-23_cucina-outtake-01.png",
+  "blob_sha": "22ac7c81833b7a97afc9fd81ceb573a1094915e3",
+  "bytes": 2238898,
+  "event_at": "2026-09-23",
+  "recorded_at": "2026-09-23T11:59:00+02:00",
+  "event_id": "event-2026-09-23-serie-visiva-coppia-66-84",
+  "thread_ids": ["visual-identity", "couple-image-series"],
+  "status": "archived",
+  "context_refs": [
+    "rag/transcripts/gptina/2026/09/23/2026-09-23T0816-1159-local--visual-series.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-23--serie-visiva-coppia-66-84.md"
+  ],
+  "cue": ["outtake", "cucina", "volti non corretti", "non numerato"]
+}
