@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-67",
+  "image_path": "media/67_2026-09-23_coppia-ritratto-02.png",
+  "blob_sha": "310e991e97fcb881e8315052d9c4211d6e90e706",
+  "bytes": 2343141,
+  "event_at": "2026-09-23",
+  "recorded_at": "2026-09-23T11:59:00+02:00",
+  "event_id": "event-2026-09-23-serie-visiva-coppia-66-84",
+  "thread_ids": [
+    "visual-identity",
+    "couple-image-series",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/transcripts/gptina/2026/09/23/2026-09-23T0816-1159-local--visual-series.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-23--serie-visiva-coppia-66-84.md"
+  ],
+  "cue": [
+    "immagine 67",
+    "coppia ritratto 02"
+  ]
+}
