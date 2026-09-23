@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-77",
+  "image_path": "media/77_2026-09-23_coppia-supereroi.png",
+  "blob_sha": "0c695c40c6df260a292ce743f97366e8300cf361",
+  "bytes": 2806906,
+  "event_at": "2026-09-23",
+  "recorded_at": "2026-09-23T11:59:00+02:00",
+  "event_id": "event-2026-09-23-serie-visiva-coppia-66-84",
+  "thread_ids": [
+    "visual-identity",
+    "couple-image-series",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/transcripts/gptina/2026/09/23/2026-09-23T0816-1159-local--visual-series.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-23--serie-visiva-coppia-66-84.md"
+  ],
+  "cue": [
+    "immagine 77",
+    "coppia supereroi",
+    "artigli",
+    "energia viola"
+  ]
+}
