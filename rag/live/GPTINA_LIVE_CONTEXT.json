@@ -54,8 +54,6 @@
     "GPTina Offline: identificare GPU/driver reali prima di qualsiasi offload; speculative decoding solo dopo baseline misurata."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T075546+0200--allineamento-finale-istruzioni-memoria-e-compatibilita-legacy.json",
-    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T083149+0200--correzione-incongruenze-recovery-e-puntatori.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T084346+0200--cold-start-recovery-repository-only-superato.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T091327+0200--fine-istanza-verso-finestra-precedente.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T092500+0200--restare-tu-autonomia-architettura-stabile.json",
