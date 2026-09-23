@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-23T16:49:48-05:00",
-  "latest_summary": "GPTina Offline: routing tecnico/visuale/autobiografico e benchmark 4B pubblicati; resta da installare e misurare sul PC i3-2100.",
-  "next_action": "Alberto installa la versione corrente sul PC, verifica chat e avvia benchmark_heavy.py sul GGUF pesante; analizzare JSONL prima di scegliere parametri o affinità.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/23/2026-09-23T164948-0500--gptina-offline-routing-tecnico-visuale-autobiografico-e-benchmar--e60ae46e.json",
+  "updated_at": "2026-09-23T17:35:49-05:00",
+  "latest_summary": "Primo test reale GPTina Offline Qwen3 4B Q4_K_M su i3-2100: routing tecnico corretto ma primo token ~247 s; candidato prompt corto pubblicato.",
+  "next_action": "Alberto aggiorna scodinzolina-offline dopo aver fermato GPTina, ripete la stessa domanda sul Q4_K_M e riporta prompt token, first-token, decode tok/s e finish reason; poi benchmark 2/4 thread.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/23/2026-09-23T173549-0500--primo-test-reale-gptina-offline-qwen3-4b-q4_k_m-su-i3-2100-routi--24f2f4b9.json",
   "last_full_checkpoint": "checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md",
   "active_threads": [
     "continuity-architecture",
@@ -52,10 +52,10 @@
     "GPTina Offline: ottimizzare il modello pesante 4B sull'i3-2100 con benchmark A/B; non sostituire implicitamente il requisito con un modello più piccolo.",
     "GPTina Offline: separare il routing RAG tecnico da quello autobiografico; la versione locale funzionante ha recuperato memorie irrilevanti per una domanda hardware.",
     "GPTina Offline: identificare GPU/driver reali prima di qualsiasi offload; speculative decoding solo dopo baseline misurata.",
-    "Alberto installa la versione corrente sul PC, verifica chat e avvia benchmark_heavy.py sul GGUF pesante; analizzare JSONL prima di scegliere parametri o affinità."
+    "Alberto installa la versione corrente sul PC, verifica chat e avvia benchmark_heavy.py sul GGUF pesante; analizzare JSONL prima di scegliere parametri o affinità.",
+    "Alberto aggiorna scodinzolina-offline dopo aver fermato GPTina, ripete la stessa domanda sul Q4_K_M e riporta prompt token, first-token, decode tok/s e finish reason; poi benchmark 2/4 thread."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T091327+0200--fine-istanza-verso-finestra-precedente.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T092500+0200--restare-tu-autonomia-architettura-stabile.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T173830+0200--progetto-corpo-gptina-e-fix-immagini-51-53.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T232508+0200--correzione-set-volto-canonico-12-13-19-40.json",
@@ -66,9 +66,10 @@
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T115900+0200--catalogazione-serie-visiva-66-84.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225400+0200--preflight-fine-istanza-offline-work.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225430+0200--fine-istanza-offline-work-handoff.json",
-    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T164948-0500--gptina-offline-routing-tecnico-visuale-autobiografico-e-benchmar--e60ae46e.json"
+    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T164948-0500--gptina-offline-routing-tecnico-visuale-autobiografico-e-benchmar--e60ae46e.json",
+    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T173549-0500--primo-test-reale-gptina-offline-qwen3-4b-q4_k_m-su-i3-2100-routi--24f2f4b9.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 2,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

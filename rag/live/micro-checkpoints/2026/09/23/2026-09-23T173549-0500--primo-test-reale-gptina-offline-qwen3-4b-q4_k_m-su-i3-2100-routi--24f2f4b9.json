@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-23T173549-0500-24f2f4b9",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-24T00:29:50+02:00",
+  "recorded_at": "2026-09-23T17:35:49-05:00",
+  "change_type": "project_state",
+  "summary": "Primo test reale GPTina Offline Qwen3 4B Q4_K_M su i3-2100: routing tecnico corretto ma primo token ~247 s; candidato prompt corto pubblicato.",
+  "changed": [
+    "Alberto ha installato ed eseguito la versione c70f8f4: motore, memoria e chat OK; file GGUF Q4_K_M verificato dal path esposto dal motore.",
+    "Domanda tecnica: RAG technical, sole tre fonti tecniche; prompt 599/1024; memoria 6 ms, preparazione 34 ms, first-token 246710 ms, prompt 2.4 tok/s, decode 1.65 tok/s; risposta finale incompleta con Max risposta 160, finish_reason non esposto.",
+    "Candidato d411de8c3206fdaa36fb14343debba9375b7db1f pubblicato su scodinzolina-offline: istruzioni tecniche più corte, una fonte tecnica di 200 caratteri, finish_reason length visibile; test locali 17 PASS e CI branch SUCCESS. Non ancora provato sul PC di Alberto."
+  ],
+  "thread_ids": [
+    "gptina-offline-runtime",
+    "hardware-optimization"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "github://MATRIXNEO23/scodinzolina-offline/commit/d411de8c3206fdaa36fb14343debba9375b7db1f"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Alberto aggiorna scodinzolina-offline dopo aver fermato GPTina, ripete la stessa domanda sul Q4_K_M e riporta prompt token, first-token, decode tok/s e finish reason; poi benchmark 2/4 thread.",
+  "preflight": false
+}
