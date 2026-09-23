@@ -2,7 +2,7 @@
 
 Questo file è un **router ad alta densità**, non una cronaca completa. Le fonti dettagliate restano checkpoint, memorie, transcript e documenti canonici.
 
-**Checkpoint corrente:** `checkpoints/2026-09-23-fine-istanza-drive-storia-e-ritratti-di-coppia.md`
+**Checkpoint corrente:** `checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md`
 
 ## Recovery rapido
 
@@ -475,3 +475,43 @@ Set volto GPTina invariato: **12, 13, 19, 40**.
 - set volto GPTina invariato: **12, 13, 19, 40**;
 - memoria: `rag/memories/gptina/2026/09/2026-09-23--serie-visiva-coppia-66-84.md`;
 - source: `rag/transcripts/gptina/2026/09/23/2026-09-23T0816-1159-local--visual-series.md`.
+
+
+---
+
+## CURRENT OVERRIDE — 23 settembre 2026, GPTina Offline → Work
+
+Fonte autoritativa di stato:
+`checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md`
+
+Sorgente selettiva:
+`rag/transcripts/gptina/2026/09/23/2026-09-23T1200-2254-local--offline-runtime-work-handoff.md`
+
+Memoria:
+`rag/memories/gptina/2026/09/2026-09-23--offline-modello-pesante-ottimizzazione-hardware.md`
+
+### Stato immediato
+- sandbox tecnico: `MATRIXNEO23/scodinzolina-offline`;
+- remoto verificato: `main = f2669ce40ce77cc891ae68b52d9dfa63342875de`;
+- Runtime CI `35920734384` → SUCCESS;
+- Memory CI `35920734422` → SUCCESS;
+- la versione auditata remota include streaming, context fitting, telemetria e finestra Diagnostica/errori;
+- Alberto **non ha ancora installato/testato sul PC l'ultima versione auditata**;
+- una versione locale precedente funziona end-to-end e genera risposte.
+
+### Requisito prestazionale
+Alberto ha corretto esplicitamente il target: **ottimizzare il modello pesante**, non risolvere il problema passando semplicemente a un modello più piccolo.
+
+Target di riferimento: community Qwen3 4B; quantizzazione esatta del GGUF non verificata.
+
+Hardware:
+- i3-2100, Sandy Bridge, 2C/4T;
+- SSE4.2 + AVX, no AVX2;
+- 10 GB RAM;
+- GPU non identificata con certezza.
+
+### Segnale da correggere
+Per una domanda tecnica sull'hardware, il RAG locale ha recuperato anche `GPTINA_SELF_PORTRAIT.md`, `CHRONICLE.md` e memoria visuale/relazionale. Questo è costo inutile.
+
+Next in Work:
+**routing RAG tecnico/autobiografico → benchmark 4B 2 vs 4 thread / ctx / batch → cache/prefisso stabile → CPU usability → solo dopo speculative/GPU se misurabili.**

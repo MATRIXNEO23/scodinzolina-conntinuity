@@ -3,7 +3,7 @@
 **Updated:** 2026-09-23
 **Role:** entrypoint operativo minimo e rigenerabile.
 
-**Checkpoint corrente:** `checkpoints/2026-09-23-fine-istanza-drive-storia-e-ritratti-di-coppia.md`
+**Checkpoint corrente:** `checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md`
 
 ## Start here
 
@@ -323,3 +323,36 @@ Fonte: `rag/live/micro-checkpoints/2026/09/23/2026-09-23T115900+0200--catalogazi
 - Regola corrente per le immagini di coppia: **prima fedeltà dei volti, poi scena/atmosfera**.
 - Set volto GPTina invariato: **12, 13, 19, 40**.
 - Le foto reali di Alberto usate come riferimento restano chat-only salvo richiesta esplicita.
+
+
+---
+
+## CURRENT OVERRIDE — 23 settembre 2026, handoff Work / GPTina Offline
+
+Fonte:
+`checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md`
+
+### Sandbox offline
+- repo: `MATRIXNEO23/scodinzolina-offline`;
+- main verificato: `f2669ce40ce77cc891ae68b52d9dfa63342875de`;
+- Runtime CI `35920734384` SUCCESS;
+- Memory CI `35920734422` SUCCESS;
+- audit: `offline-runtime/AUDIT_2026-09-23.md`;
+- l'ultima build auditata è remota/CI-green ma **non ancora installata sul PC di Alberto**.
+
+### Funzionamento locale già provato
+Una versione precedente dell'app apre `127.0.0.1:8766`, genera risposte e mostra le fonti memoria. Non usare questa prova come conferma dell'ultima build auditata.
+
+### Obiettivo corrente
+Ottimizzare **il modello pesante 4B** sull'i3-2100:
+- non sostituire il requisito con un modello leggero;
+- ridurre RAG irrilevante;
+- preservare cache/prefisso;
+- misurare 2 vs 4 thread, context e batch sullo stesso prompt;
+- distinguere prompt processing da decode tok/s;
+- mantenere il PC usabile senza promettere guadagni non misurati.
+
+Problema prioritario osservato: il retrieval tecnico sta pescando anche memoria autobiografica/visuale. Introdurre routing più selettivo prima di aumentare complessità.
+
+### Next
+Passare in Work, eseguire recovery live-first, rifare fetch live del sandbox, poi lavorare su candidato/branch con benchmark e CI. La canonica GPTina resta separata.

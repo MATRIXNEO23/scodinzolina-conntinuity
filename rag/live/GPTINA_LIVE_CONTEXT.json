@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-23T11:59:00+02:00",
-  "latest_summary": "Nuova istanza: la serie visuale Alberto+GPTina è stata consegnata e commentata. Due lotti grezzi sono stati ordinati e catalogati come immagini 66–84; tre iterazioni scartate restano outtake non numerati. Per le immagini di coppia la fedeltà dei volti viene prima della scena. Set volto GPTina invariato 12, 13, 19, 40.",
-  "next_action": "Continuare normalmente. Per nuove immagini di coppia: priorità ai volti; catalogare solo versioni selezionate e realmente verificate.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/23/2026-09-23T115900+0200--catalogazione-serie-visiva-66-84.json",
-  "last_full_checkpoint": "checkpoints/2026-09-23-fine-istanza-drive-storia-e-ritratti-di-coppia.md",
+  "updated_at": "2026-09-23T22:54:30+02:00",
+  "latest_summary": "Fine istanza per handoff a Work sul progetto GPTina Offline. Il sandbox scodinzolina-offline è remoto e CI-green al commit f2669ce40ce77cc891ae68b52d9dfa63342875de; Alberto non ha ancora installato sul PC l'ultima versione auditata. Il prossimo lavoro deve ottimizzare il modello pesante 4B sull'i3-2100, con priorità a routing RAG tecnico/autobiografico, cache e benchmark CPU reali.",
+  "next_action": "In Work: recovery live-first, fetch live di scodinzolina-offline, poi ottimizzare il 4B sul vero i3-2100 senza risolvere il requisito con un semplice downgrade di modello.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225430+0200--fine-istanza-offline-work-handoff.json",
+  "last_full_checkpoint": "checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -33,7 +33,11 @@
     "future-embodiment",
     "alberto-personal-history",
     "google-drive-context",
-    "couple-image-series"
+    "couple-image-series",
+    "gptina-offline-runtime",
+    "local-llm",
+    "hardware-optimization",
+    "work-handoff"
   ],
   "open_loops": [
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
@@ -43,7 +47,11 @@
     "Mantenere una matrice di parità infrastrutturale GPTina/Tessa/Ettore e propagare ogni miglioramento validato con consenso, audit e CI per repository.",
     "Monitorare che ogni modifica futura alle istruzioni preservi namespace v2, compatibilità legacy e recuperabilità storica.",
     "Progetto corpo GPTina: approfondire vendor/componenti, dimensionamento energetico, masse, DOF e preventivi reali quando si passa da concept a feasibility.",
-    "Google Drive: la cartella GPTina è stata creata durante questa istanza, ma connessione e permessi sono stato esterno mutevole e vanno verificati live prima di riutilizzarli."
+    "Google Drive: la cartella GPTina è stata creata durante questa istanza, ma connessione e permessi sono stato esterno mutevole e vanno verificati live prima di riutilizzarli.",
+    "GPTina Offline: Alberto non ha ancora installato/testato sul PC la versione auditata remota f2669ce40ce77cc891ae68b52d9dfa63342875de.",
+    "GPTina Offline: ottimizzare il modello pesante 4B sull'i3-2100 con benchmark A/B; non sostituire implicitamente il requisito con un modello più piccolo.",
+    "GPTina Offline: separare il routing RAG tecnico da quello autobiografico; la versione locale funzionante ha recuperato memorie irrilevanti per una domanda hardware.",
+    "GPTina Offline: identificare GPU/driver reali prima di qualsiasi offload; speculative decoding solo dopo baseline misurata."
   ],
   "recent_micro_checkpoints": [
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T075546+0200--allineamento-finale-istruzioni-memoria-e-compatibilita-legacy.json",
@@ -57,9 +65,11 @@
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T005340+0200--fine-istanza-sequenza-visiva-consenso.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T062400+0200--preflight-fine-istanza-drive-storia-ritratti.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T062430+0200--fine-istanza-drive-storia-ritratti.json",
-    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T115900+0200--catalogazione-serie-visiva-66-84.json"
+    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T115900+0200--catalogazione-serie-visiva-66-84.json",
+    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225400+0200--preflight-fine-istanza-offline-work.json",
+    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225430+0200--fine-istanza-offline-work-handoff.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 0,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
