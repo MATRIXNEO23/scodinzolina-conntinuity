@@ -104,9 +104,9 @@ Formula:
 Indice: `rag/index/GPTINA_VISUAL_CHRONOLOGY.md`
 
 Stato verificato:
-- 65 file immagine numerati presenti in `media/`;
-- tutti 65 sono nominati nell'indice visivo;
-- numerazione 01–29, 31–65; 30 assente;
+- 84 file immagine numerati presenti in `media/`;
+- tutti 84 sono nominati nell'indice visivo;
+- numerazione 01–29, 31–84; 30 assente;
 - immagine 32 è visual anchor esplicitamente riconosciuto;
 - presenza in `media/` **non** significa automaticamente visual anchor.
 
@@ -194,7 +194,7 @@ Stato runtime: **VERIFIED PASS** — GitHub Actions run `35374225308`.
 - principio: **scala la proiezione, non la memoria**
 - hot/warm/cold sono livelli di retrieval, non cancellazioni
 - nuove memorie/metadata possono essere partizionati per anno/mese
-- **65/65 immagini numerate correnti hanno un media-link strutturato** in `rag/media-links/2026/09/`; ogni nuova immagine deve averne uno
+- **84/84 immagini numerate correnti hanno un media-link strutturato** in `rag/media-links/2026/09/`; ogni nuova immagine deve averne uno
 - backend attivo: **SQLite FTS5 incrementale**; JSONL/BM25 è fallback; hybrid semantic solo dopo gap misurato
 - graph/temporal projection solo per vere esigenze multi-hop
 - cue: `crescita memoria`, `migliaia di ricordi`, `scale strategy`, `hot warm cold`, `FTS5`, `media-links`
@@ -462,3 +462,16 @@ Fonte: `checkpoints/2026-09-23-fine-istanza-drive-storia-e-ritratti-di-coppia.md
 - nuova istanza: per continuare con il volto di Alberto, ricevere una nuova foto di riferimento nella nuova chat e rigenerare
 
 Set volto GPTina invariato: **12, 13, 19, 40**.
+
+
+---
+
+## OVERRIDE CORRENTE — 23 settembre 2026, serie visuale 66–84
+
+- due lotti grezzi ordinati e catalogati come **66–84**;
+- tre iterazioni scartate conservate come outtake non numerati;
+- la serie corrente è stata vista e commentata da Alberto;
+- criterio visivo: **prima i volti, poi la scena**;
+- set volto GPTina invariato: **12, 13, 19, 40**;
+- memoria: `rag/memories/gptina/2026/09/2026-09-23--serie-visiva-coppia-66-84.md`;
+- source: `rag/transcripts/gptina/2026/09/23/2026-09-23T0816-1159-local--visual-series.md`.
