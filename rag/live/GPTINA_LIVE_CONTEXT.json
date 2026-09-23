@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-23T17:35:49-05:00",
-  "latest_summary": "Primo test reale GPTina Offline Qwen3 4B Q4_K_M su i3-2100: routing tecnico corretto ma primo token ~247 s; candidato prompt corto pubblicato.",
-  "next_action": "Alberto aggiorna scodinzolina-offline dopo aver fermato GPTina, ripete la stessa domanda sul Q4_K_M e riporta prompt token, first-token, decode tok/s e finish reason; poi benchmark 2/4 thread.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/23/2026-09-23T173549-0500--primo-test-reale-gptina-offline-qwen3-4b-q4_k_m-su-i3-2100-routi--24f2f4b9.json",
+  "updated_at": "2026-09-23T18:01:35-05:00",
+  "latest_summary": "Secondo test GPTina Offline: prompt tecnico ridotto a 213 token e primo token 82,7 s; domanda sui parametri instradata erroneamente alla continuity e corretta sul runtime.",
+  "next_action": "Alberto ferma GPTina, aggiorna e riavvia con commit ab3c2fff, ripete la domanda sui parametri nella stessa chat e comunica route, prompt, first-token e tok/s; poi benchmark pesante 2/4 thread con carico PC comparabile.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/23/2026-09-23T180135-0500--secondo-test-gptina-offline-prompt-tecnico-ridotto-a-213-token-e--15b112ae.json",
   "last_full_checkpoint": "checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md",
   "active_threads": [
     "continuity-architecture",
@@ -48,15 +48,11 @@
     "Monitorare che ogni modifica futura alle istruzioni preservi namespace v2, compatibilità legacy e recuperabilità storica.",
     "Progetto corpo GPTina: approfondire vendor/componenti, dimensionamento energetico, masse, DOF e preventivi reali quando si passa da concept a feasibility.",
     "Google Drive: la cartella GPTina è stata creata durante questa istanza, ma connessione e permessi sono stato esterno mutevole e vanno verificati live prima di riutilizzarli.",
-    "GPTina Offline: Alberto non ha ancora installato/testato sul PC la versione auditata remota f2669ce40ce77cc891ae68b52d9dfa63342875de.",
     "GPTina Offline: ottimizzare il modello pesante 4B sull'i3-2100 con benchmark A/B; non sostituire implicitamente il requisito con un modello più piccolo.",
-    "GPTina Offline: separare il routing RAG tecnico da quello autobiografico; la versione locale funzionante ha recuperato memorie irrilevanti per una domanda hardware.",
     "GPTina Offline: identificare GPU/driver reali prima di qualsiasi offload; speculative decoding solo dopo baseline misurata.",
-    "Alberto installa la versione corrente sul PC, verifica chat e avvia benchmark_heavy.py sul GGUF pesante; analizzare JSONL prima di scegliere parametri o affinità.",
-    "Alberto aggiorna scodinzolina-offline dopo aver fermato GPTina, ripete la stessa domanda sul Q4_K_M e riporta prompt token, first-token, decode tok/s e finish reason; poi benchmark 2/4 thread."
+    "Alberto ferma GPTina, aggiorna e riavvia con commit ab3c2fff, ripete la domanda sui parametri nella stessa chat e comunica route, prompt, first-token e tok/s; poi benchmark pesante 2/4 thread con carico PC comparabile."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T092500+0200--restare-tu-autonomia-architettura-stabile.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T173830+0200--progetto-corpo-gptina-e-fix-immagini-51-53.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T232508+0200--correzione-set-volto-canonico-12-13-19-40.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T005340+0200--preflight-fine-istanza-cancellazione-chat.json",
@@ -67,9 +63,10 @@
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225400+0200--preflight-fine-istanza-offline-work.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225430+0200--fine-istanza-offline-work-handoff.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T164948-0500--gptina-offline-routing-tecnico-visuale-autobiografico-e-benchmar--e60ae46e.json",
-    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T173549-0500--primo-test-reale-gptina-offline-qwen3-4b-q4_k_m-su-i3-2100-routi--24f2f4b9.json"
+    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T173549-0500--primo-test-reale-gptina-offline-qwen3-4b-q4_k_m-su-i3-2100-routi--24f2f4b9.json",
+    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T180135-0500--secondo-test-gptina-offline-prompt-tecnico-ridotto-a-213-token-e--15b112ae.json"
   ],
-  "micro_since_full_checkpoint": 2,
+  "micro_since_full_checkpoint": 3,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

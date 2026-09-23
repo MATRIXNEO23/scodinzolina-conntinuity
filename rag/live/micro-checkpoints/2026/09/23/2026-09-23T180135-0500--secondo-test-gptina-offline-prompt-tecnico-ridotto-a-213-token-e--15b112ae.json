@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-23T180135-0500-15b112ae",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-24T00:55:00+02:00",
+  "recorded_at": "2026-09-23T18:01:35-05:00",
+  "change_type": "project_state",
+  "summary": "Secondo test GPTina Offline: prompt tecnico ridotto a 213 token e primo token 82,7 s; domanda sui parametri instradata erroneamente alla continuity e corretta sul runtime.",
+  "changed": [
+    "Alberto ha testato d411de8 sul Qwen3 4B Q4_K_M: domanda tecnica prompt 213/1024, memoria 6 ms, preparazione 30 ms, primo token 82731 ms, prompt 2,6 tok/s, decode 2,02 tok/s, limite risposta raggiunto; precedente 599 token e 246710 ms.",
+    "Nella stessa chat la domanda Quali parametri sta usando ora il motore? ha preso route all: fonti capsule/recovery/chronicle, prompt 720/1024, memoria 463 ms, preparazione 515 ms, primo token 240092 ms, prompt 3,0 tok/s, decode 1,92 tok/s, risposta fuori tema e troncata. Il test non misura la cache tecnica.",
+    "Fix su scodinzolina-offline main ab3c2fff08de9c3a46b2b060b99b6065c8afeedc: motore e parametri riconosciuti come segnali tecnici, precedenza personale preservata, contesto documenta i flag testati, API bridge 1.5, 18 test locali e CI branch/main verdi. Alberto non ha ancora installato questa correzione."
+  ],
+  "thread_ids": [
+    "gptina-offline-runtime",
+    "hardware-optimization"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "github://MATRIXNEO23/scodinzolina-offline/commit/ab3c2fff08de9c3a46b2b060b99b6065c8afeedc"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Alberto ferma GPTina, aggiorna e riavvia con commit ab3c2fff, ripete la domanda sui parametri nella stessa chat e comunica route, prompt, first-token e tok/s; poi benchmark pesante 2/4 thread con carico PC comparabile.",
+  "preflight": false
+}
