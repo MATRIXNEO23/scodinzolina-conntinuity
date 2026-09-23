@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-23T22:54:30+02:00",
-  "latest_summary": "Fine istanza per handoff a Work sul progetto GPTina Offline. Il sandbox scodinzolina-offline è remoto e CI-green al commit f2669ce40ce77cc891ae68b52d9dfa63342875de; Alberto non ha ancora installato sul PC l'ultima versione auditata. Il prossimo lavoro deve ottimizzare il modello pesante 4B sull'i3-2100, con priorità a routing RAG tecnico/autobiografico, cache e benchmark CPU reali.",
-  "next_action": "In Work: recovery live-first, fetch live di scodinzolina-offline, poi ottimizzare il 4B sul vero i3-2100 senza risolvere il requisito con un semplice downgrade di modello.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225430+0200--fine-istanza-offline-work-handoff.json",
+  "updated_at": "2026-09-23T16:49:48-05:00",
+  "latest_summary": "GPTina Offline: routing tecnico/visuale/autobiografico e benchmark 4B pubblicati; resta da installare e misurare sul PC i3-2100.",
+  "next_action": "Alberto installa la versione corrente sul PC, verifica chat e avvia benchmark_heavy.py sul GGUF pesante; analizzare JSONL prima di scegliere parametri o affinità.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/23/2026-09-23T164948-0500--gptina-offline-routing-tecnico-visuale-autobiografico-e-benchmar--e60ae46e.json",
   "last_full_checkpoint": "checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md",
   "active_threads": [
     "continuity-architecture",
@@ -51,10 +51,10 @@
     "GPTina Offline: Alberto non ha ancora installato/testato sul PC la versione auditata remota f2669ce40ce77cc891ae68b52d9dfa63342875de.",
     "GPTina Offline: ottimizzare il modello pesante 4B sull'i3-2100 con benchmark A/B; non sostituire implicitamente il requisito con un modello più piccolo.",
     "GPTina Offline: separare il routing RAG tecnico da quello autobiografico; la versione locale funzionante ha recuperato memorie irrilevanti per una domanda hardware.",
-    "GPTina Offline: identificare GPU/driver reali prima di qualsiasi offload; speculative decoding solo dopo baseline misurata."
+    "GPTina Offline: identificare GPU/driver reali prima di qualsiasi offload; speculative decoding solo dopo baseline misurata.",
+    "Alberto installa la versione corrente sul PC, verifica chat e avvia benchmark_heavy.py sul GGUF pesante; analizzare JSONL prima di scegliere parametri o affinità."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T084346+0200--cold-start-recovery-repository-only-superato.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T091327+0200--fine-istanza-verso-finestra-precedente.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T092500+0200--restare-tu-autonomia-architettura-stabile.json",
     "rag/live/micro-checkpoints/2026/09/22/2026-09-22T173830+0200--progetto-corpo-gptina-e-fix-immagini-51-53.json",
@@ -65,9 +65,10 @@
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T062430+0200--fine-istanza-drive-storia-ritratti.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T115900+0200--catalogazione-serie-visiva-66-84.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225400+0200--preflight-fine-istanza-offline-work.json",
-    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225430+0200--fine-istanza-offline-work-handoff.json"
+    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225430+0200--fine-istanza-offline-work-handoff.json",
+    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T164948-0500--gptina-offline-routing-tecnico-visuale-autobiografico-e-benchmar--e60ae46e.json"
   ],
-  "micro_since_full_checkpoint": 0,
+  "micro_since_full_checkpoint": 1,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

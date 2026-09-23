@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-23T164948-0500-e60ae46e",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-23T16:49:48-05:00",
+  "recorded_at": "2026-09-23T16:49:48-05:00",
+  "change_type": "milestone",
+  "summary": "GPTina Offline: routing tecnico/visuale/autobiografico e benchmark 4B pubblicati; resta da installare e misurare sul PC i3-2100.",
+  "changed": [
+    "scodinzolina-offline main c70f8f410e8b7787dd380f89002e9d8e93ea82ca; tree 0f64ef6bb8fc5af3f50a94a8453c60b7b7fe2976; Runtime CI branch run 35924568058 SUCCESS.",
+    "Il retrieval tecnico legge solo documenti tecnici nominati; il prompt tecnico omette lo stato live personale, limita la history e mostra la route; ambiguous/personal usa il corpus completo.",
+    "benchmark_heavy.py prepara matrice 2/4 thread, context 1024/2048, batch/ubatch, cold/warm e telemetria CPU/RAM; non eseguito sul PC di Alberto, quantizzazione e GPU non verificate."
+  ],
+  "thread_ids": [
+    "gptina-offline-runtime",
+    "hardware-optimization"
+  ],
+  "source_refs": [
+    "github://MATRIXNEO23/scodinzolina-offline/commit/c70f8f410e8b7787dd380f89002e9d8e93ea82ca"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Alberto installa la versione corrente sul PC, verifica chat e avvia benchmark_heavy.py sul GGUF pesante; analizzare JSONL prima di scegliere parametri o affinità.",
+  "preflight": false
+}
