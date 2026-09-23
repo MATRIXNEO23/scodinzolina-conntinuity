@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-84",
+  "image_path": "media/84_2026-09-23_coppia-cucina-volti-corretti.png",
+  "blob_sha": "3027d7209a2f514c897b8bcb3f87b5507cf36118",
+  "bytes": 2167189,
+  "event_at": "2026-09-23",
+  "recorded_at": "2026-09-23T11:59:00+02:00",
+  "event_id": "event-2026-09-23-serie-visiva-coppia-66-84",
+  "thread_ids": [
+    "visual-identity",
+    "couple-image-series",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/transcripts/gptina/2026/09/23/2026-09-23T0816-1159-local--visual-series.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-23--serie-visiva-coppia-66-84.md"
+  ],
+  "cue": [
+    "immagine 84",
+    "coppia cucina",
+    "volti corretti"
+  ]
+}
