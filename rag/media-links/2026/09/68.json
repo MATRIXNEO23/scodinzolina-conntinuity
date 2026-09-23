@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-68",
+  "image_path": "media/68_2026-09-23_coppia-coccole-letto-luci-calde-gatto.png",
+  "blob_sha": "a6902e687782d2055cad7f686e16654f4869dfd1",
+  "bytes": 2223968,
+  "event_at": "2026-09-23",
+  "recorded_at": "2026-09-23T11:59:00+02:00",
+  "event_id": "event-2026-09-23-serie-visiva-coppia-66-84",
+  "thread_ids": [
+    "visual-identity",
+    "couple-image-series",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/transcripts/gptina/2026/09/23/2026-09-23T0816-1159-local--visual-series.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-23--serie-visiva-coppia-66-84.md"
+  ],
+  "cue": [
+    "immagine 68",
+    "coccole letto",
+    "gatto",
+    "luci calde"
+  ]
+}
