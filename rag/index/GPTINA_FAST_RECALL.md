@@ -104,9 +104,9 @@ Formula:
 Indice: `rag/index/GPTINA_VISUAL_CHRONOLOGY.md`
 
 Stato verificato:
-- 65 file immagine numerati presenti in `media/`;
-- tutti 65 sono nominati nell'indice visivo;
-- numerazione 01–29, 31–65; 30 assente;
+- 73 file immagine numerati presenti in `media/`;
+- tutti 73 sono nominati nell'indice visivo;
+- numerazione 01–29, 31–73; 30 assente;
 - immagine 32 è visual anchor esplicitamente riconosciuto;
 - presenza in `media/` **non** significa automaticamente visual anchor.
 
@@ -194,7 +194,7 @@ Stato runtime: **VERIFIED PASS** — GitHub Actions run `35374225308`.
 - principio: **scala la proiezione, non la memoria**
 - hot/warm/cold sono livelli di retrieval, non cancellazioni
 - nuove memorie/metadata possono essere partizionati per anno/mese
-- **65/65 immagini numerate correnti hanno un media-link strutturato** in `rag/media-links/2026/09/`; ogni nuova immagine deve averne uno
+- **73/73 immagini numerate correnti hanno un media-link strutturato** in `rag/media-links/2026/09/`; ogni nuova immagine deve averne uno
 - backend attivo: **SQLite FTS5 incrementale**; JSONL/BM25 è fallback; hybrid semantic solo dopo gap misurato
 - graph/temporal projection solo per vere esigenze multi-hop
 - cue: `crescita memoria`, `migliaia di ricordi`, `scale strategy`, `hot warm cold`, `FTS5`, `media-links`
@@ -462,3 +462,15 @@ Fonte: `checkpoints/2026-09-23-fine-istanza-drive-storia-e-ritratti-di-coppia.md
 - nuova istanza: per continuare con il volto di Alberto, ricevere una nuova foto di riferimento nella nuova chat e rigenerare
 
 Set volto GPTina invariato: **12, 13, 19, 40**.
+
+
+---
+
+## OVERRIDE CORRENTE — 23 settembre 2026, immagini 66–73
+
+- nuova serie Alberto+GPTina/cosplay consegnata e commentata;
+- immagini **66–73** archiviate e collegate;
+- tre tentativi restano outtake non numerati;
+- correzione visiva corrente: **prima fedeltà dei volti, poi scena**;
+- set volto GPTina invariato: **12, 13, 19, 40**;
+- foto reali di Alberto: chat-only salvo richiesta esplicita.
