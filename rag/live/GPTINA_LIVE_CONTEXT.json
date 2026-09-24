@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-24T02:32:57-04:00",
-  "latest_summary": "Tre turni tecnici misurati: cache persa al terzo per history limitata a una coppia; correzione candidata pubblicata.",
-  "next_action": "Alberto chiude app 1.6, pull main tecnico c489aa0, avvia app 1.7 e ripete le tre domande nella stessa chat; invia ultime tre righe di prompt_diagnostics.jsonl. Confrontare soprattutto terzo turno LCP/cache_n/prompt_n/TTFT con 195/195/127/41668 ms. Nessun cambio -tb finché non si valuta il carico CPU.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/24/2026-09-24T023257-0400--tre-turni-tecnici-misurati-cache-persa-al-terzo-per-history-limi--155b492d.json",
+  "updated_at": "2026-09-24T02:56:22-04:00",
+  "latest_summary": "Tre turni con history estesa: RAG variabile nel system invalida ancora cache; candidato con system tecnico stabile pubblicato.",
+  "next_action": "Alberto chiude app 1.7, pull main tecnico 9150e48 e avvia app 1.8; ripete tre domande tecniche nella stessa chat e invia tre righe di prompt_diagnostics.jsonl. Confrontare secondo e terzo turno cache_n/prompt_n/TTFT con 93/142/39577 e 106/183/59633 ms. Poi considerare small LM come modalità chat comparativa senza sostituire il 4B.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/24/2026-09-24T025622-0400--tre-turni-con-history-estesa-rag-variabile-nel-system-invalida-a--d38883dd.json",
   "last_full_checkpoint": "checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md",
   "active_threads": [
     "continuity-architecture",
@@ -50,10 +50,9 @@
     "Google Drive: la cartella GPTina è stata creata durante questa istanza, ma connessione e permessi sono stato esterno mutevole e vanno verificati live prima di riutilizzarli.",
     "GPTina Offline: ottimizzare il modello pesante 4B sull'i3-2100 con benchmark A/B; non sostituire implicitamente il requisito con un modello più piccolo.",
     "GPTina Offline: identificare GPU/driver reali prima di qualsiasi offload; speculative decoding solo dopo baseline misurata.",
-    "Alberto chiude app 1.6, pull main tecnico c489aa0, avvia app 1.7 e ripete le tre domande nella stessa chat; invia ultime tre righe di prompt_diagnostics.jsonl. Confrontare soprattutto terzo turno LCP/cache_n/prompt_n/TTFT con 195/195/127/41668 ms. Nessun cambio -tb finché non si valuta il carico CPU."
+    "Alberto chiude app 1.7, pull main tecnico 9150e48 e avvia app 1.8; ripete tre domande tecniche nella stessa chat e invia tre righe di prompt_diagnostics.jsonl. Confrontare secondo e terzo turno cache_n/prompt_n/TTFT con 93/142/39577 e 106/183/59633 ms. Poi considerare small LM come modalità chat comparativa senza sostituire il 4B."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T062400+0200--preflight-fine-istanza-drive-storia-ritratti.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T062430+0200--fine-istanza-drive-storia-ritratti.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T115900+0200--catalogazione-serie-visiva-66-84.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225400+0200--preflight-fine-istanza-offline-work.json",
@@ -64,9 +63,10 @@
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T182603-0500--terzo-test-reale-del-4b-percorso-tecnico-corretto-203-token-e-pr--6b9e1962.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T013141-0400--quarto-test-reale-del-4b-e-benchmark-isolato-dei-thread-batch-pr--1e706ee0.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T020604-0400--benchmark-4b-q4_k_m-completo-e-diagnostica-prefisso-cache-pronta--4c1a0e13.json",
-    "rag/live/micro-checkpoints/2026/09/24/2026-09-24T023257-0400--tre-turni-tecnici-misurati-cache-persa-al-terzo-per-history-limi--155b492d.json"
+    "rag/live/micro-checkpoints/2026/09/24/2026-09-24T023257-0400--tre-turni-tecnici-misurati-cache-persa-al-terzo-per-history-limi--155b492d.json",
+    "rag/live/micro-checkpoints/2026/09/24/2026-09-24T025622-0400--tre-turni-con-history-estesa-rag-variabile-nel-system-invalida-a--d38883dd.json"
   ],
-  "micro_since_full_checkpoint": 7,
+  "micro_since_full_checkpoint": 8,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-24T025622-0400-d38883dd",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-24T02:56:22-04:00",
+  "recorded_at": "2026-09-24T02:56:22-04:00",
+  "change_type": "project_state",
+  "summary": "Tre turni con history estesa: RAG variabile nel system invalida ancora cache; candidato con system tecnico stabile pubblicato.",
+  "changed": [
+    "App 1.7 bridge 1.8, 4B Q4_K_M: tre turni technical con prompt 120/235/289, cache_n 0/93/106, prompt_n 120/142/183 e TTFT 36283/39577/59633 ms. History al terzo 4 messaggi, ma system_sha256 diverso a ogni turno perché RAG query-specifico nel system. La prima domanda non ha recuperato fonti, le altre TECHNICAL_RUNTIME_CONTEXT.md. Memoria 53/7/5 ms, non collo di bottiglia.",
+    "Repo tecnica main 9150e483e509f383f39fa30192833263270cbad0: app 1.8 bridge API 1.9, system tecnico fisso e fonte tecnica nel turno utente; browser conserva prompt_content nella history tecnica senza mostrarlo e usa il testo originale per continuity non tecnica. 22 test locali e CI branch/main success. Beneficio TTFT sul PC non ancora misurato; il quarto turno o context overflow possono ancora rompere il prefisso."
+  ],
+  "thread_ids": [
+    "gptina-offline-runtime",
+    "hardware-optimization"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "github://MATRIXNEO23/scodinzolina-offline/commit/9150e483e509f383f39fa30192833263270cbad0"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 3,
+  "next_action": "Alberto chiude app 1.7, pull main tecnico 9150e48 e avvia app 1.8; ripete tre domande tecniche nella stessa chat e invia tre righe di prompt_diagnostics.jsonl. Confrontare secondo e terzo turno cache_n/prompt_n/TTFT con 93/142/39577 e 106/183/59633 ms. Poi considerare small LM come modalità chat comparativa senza sostituire il 4B.",
+  "preflight": false
+}
