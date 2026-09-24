@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-24T023257-0400-155b492d",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-24T02:32:57-04:00",
+  "recorded_at": "2026-09-24T02:32:57-04:00",
+  "change_type": "project_state",
+  "summary": "Tre turni tecnici misurati: cache persa al terzo per history limitata a una coppia; correzione candidata pubblicata.",
+  "changed": [
+    "App 1.6 su Qwen3-4B Q4_K_M, stessa route technical, stessa fonte e stesso hash system per tre turni: turno 1 prompt 232, cache_n 0, prompt_n 232, TTFT 63680 ms; turno 2 prompt 328, LCP 232, cache_n 285, prompt_n 43, TTFT 14110 ms; turno 3 prompt 322, LCP 195, cache_n 195, prompt_n 127, TTFT 41668 ms. Nessun context adjustment. La seconda richiesta riusa anche 53 token generati; al terzo il bridge aveva eliminato lo scambio tecnico del turno 1.",
+    "Scodinzolina-offline main c489aa0a673b3f62f1a79e659fe871907c24e768: app 1.7 bridge API 1.8 conserva fino a due scambi tecnici contigui, il fitter elimina il più vecchio se necessario. 21 test locali; CI branch 35964901002 SUCCESS; CI main in corso. RAG, system, modello e flag motore invariati. Beneficio sul PC non ancora misurato; ripetere tre domande dopo riavvio."
+  ],
+  "thread_ids": [
+    "gptina-offline-runtime",
+    "hardware-optimization"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "github://MATRIXNEO23/scodinzolina-offline/commit/c489aa0a673b3f62f1a79e659fe871907c24e768"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 3,
+  "next_action": "Alberto chiude app 1.6, pull main tecnico c489aa0, avvia app 1.7 e ripete le tre domande nella stessa chat; invia ultime tre righe di prompt_diagnostics.jsonl. Confrontare soprattutto terzo turno LCP/cache_n/prompt_n/TTFT con 195/195/127/41668 ms. Nessun cambio -tb finché non si valuta il carico CPU.",
+  "preflight": false
+}
