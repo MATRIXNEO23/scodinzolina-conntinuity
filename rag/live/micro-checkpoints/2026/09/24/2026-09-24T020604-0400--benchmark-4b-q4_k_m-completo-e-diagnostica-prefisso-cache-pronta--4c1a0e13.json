@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-24T020604-0400-4c1a0e13",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-24T02:06:04-04:00",
+  "recorded_at": "2026-09-24T02:06:04-04:00",
+  "change_type": "project_state",
+  "summary": "Benchmark 4B Q4_K_M completo e diagnostica prefisso/cache pronta per tre turni chat.",
+  "changed": [
+    "Benchmark prefill-threads sul PC: GGUF SHA-256 6615b7b5184931e4df9c6d0ae9cd29ca9319b73908d4423283d4cc401a12a1cd, 282 token cold e 64 decode identici, un solo slot. -tb2: TTFT 86297 ms, prefill 3,269 tok/s, decode 2,393, CPU 1,93 core, RSS 2611,8 MiB. -tb3: 72359 ms, 3,898, 2,155, CPU 2,57. -tb4: 66375 ms, 4,249, 2,224, CPU 3,21. Warm cache_n=281, prompt_n=1 in ogni configurazione; un solo cold per valore, nessun cambio launcher ancora.",
+    "Scodinzolina-offline main f3e615e59e6777f635db56c132061e939564ea4c: app 1.6 bridge API 1.7 aggiunge log locale prompt_diagnostics.jsonl con LCP token esatto fra richieste consecutive del bridge e timings originali; nessuna nuova chiamata tokenize, payload/model flags immutati. CI branch 35962777969 SUCCESS; main CI ancora da verificare. Prossimo passo tre domande tecniche consecutive sul PC dopo aggiornamento."
+  ],
+  "thread_ids": [
+    "gptina-offline-runtime",
+    "hardware-optimization"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "github://MATRIXNEO23/scodinzolina-offline/commit/f3e615e59e6777f635db56c132061e939564ea4c"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 3,
+  "next_action": "Alberto chiude GPTina Offline precedente, pull main tecnico f3e615e, riavvia app 1.6, fa tre domande tecniche consecutive nella stessa chat e invia logs/prompt_diagnostics.jsonl; confrontare LCP/cache_n/prompt_n/tempi. Ripetere baseline -tb2/4 se si deve scegliere il tradeoff CPU.",
+  "preflight": false
+}
