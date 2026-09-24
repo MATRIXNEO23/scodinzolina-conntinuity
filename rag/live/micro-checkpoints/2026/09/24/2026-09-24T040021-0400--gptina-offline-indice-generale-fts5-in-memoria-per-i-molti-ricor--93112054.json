@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-24T040021-0400-93112054",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-24T04:00:21-04:00",
+  "recorded_at": "2026-09-24T04:00:21-04:00",
+  "change_type": "project_state",
+  "summary": "GPTina Offline: indice generale FTS5 in memoria per i molti ricordi; CI Windows e main tecnico verdi, prova sul PC ancora aperta.",
+  "changed": [
+    "Alberto ha corretto il limite della patch mirata alla canzone: il corpus ha molti ricordi. Il runtime offline ora indicizza 1652 frammenti correnti dal manifest con SQLite FTS5 in memoria, separa route tecnica, personale e visuale, esclude memorie invalidate/superate e di Tessa, senza scrivere nella canonica o richiedere PyYAML sul PC. Test locali 27/27; CI Windows branch 35972588580 e main 35972636475 success. Main tecnico 05bdfc0ff82bc196a7af2d1b7ec57f2e34c7fe50. Prestazioni e qualità sul PC i3-2100 non ancora verificate."
+  ],
+  "thread_ids": [
+    "gptina-offline-runtime",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "github://MATRIXNEO23/scodinzolina-offline/commit/05bdfc0ff82bc196a7af2d1b7ec57f2e34c7fe50"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 3,
+  "next_action": "Alberto chiude la vecchia app, aggiorna la repo tecnica e riavvia app 2.0; provare domanda personale sulla canzone e altre domande su ricordi distinti, leggere sources/backend e prompt_n/cache_n/TTFT. Se il retrieval funziona, misurare poi il prefisso tecnico e il 4B senza cambiare modello implicitamente.",
+  "preflight": false
+}

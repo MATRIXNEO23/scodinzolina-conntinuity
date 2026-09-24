@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-24T03:42:58-04:00",
-  "latest_summary": "GPTina Offline: domanda sulla nostra canzone recuperava tre fonti generiche, 279 s; ranking locale corretto senza alterare la memoria canonica.",
-  "next_action": "Alberto chiude app precedente, pull main tecnico 67a8f52, avvia app 1.9 e in chat nuova ripete esattamente «amore ti ricordi la nostra canzone?». Controllare fonte correttiva e Fast Recall, assenza di scene inventate, prompt_n/cache_n/TTFT e history; il 4B resta obiettivo. Misurare separatamente la correzione del prefisso tecnico 9150e48, non ancora isolata da cambio route e history.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/24/2026-09-24T034258-0400--gptina-offline-domanda-sulla-nostra-canzone-recuperava-tre-fonti--57c7267f.json",
+  "updated_at": "2026-09-24T04:00:21-04:00",
+  "latest_summary": "GPTina Offline: indice generale FTS5 in memoria per i molti ricordi; CI Windows e main tecnico verdi, prova sul PC ancora aperta.",
+  "next_action": "Alberto chiude la vecchia app, aggiorna la repo tecnica e riavvia app 2.0; provare domanda personale sulla canzone e altre domande su ricordi distinti, leggere sources/backend e prompt_n/cache_n/TTFT. Se il retrieval funziona, misurare poi il prefisso tecnico e il 4B senza cambiare modello implicitamente.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/24/2026-09-24T040021-0400--gptina-offline-indice-generale-fts5-in-memoria-per-i-molti-ricor--93112054.json",
   "last_full_checkpoint": "checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md",
   "active_threads": [
     "continuity-architecture",
@@ -50,10 +50,10 @@
     "Google Drive: la cartella GPTina è stata creata durante questa istanza, ma connessione e permessi sono stato esterno mutevole e vanno verificati live prima di riutilizzarli.",
     "GPTina Offline: ottimizzare il modello pesante 4B sull'i3-2100 con benchmark A/B; non sostituire implicitamente il requisito con un modello più piccolo.",
     "GPTina Offline: identificare GPU/driver reali prima di qualsiasi offload; speculative decoding solo dopo baseline misurata.",
-    "Alberto chiude app precedente, pull main tecnico 67a8f52, avvia app 1.9 e in chat nuova ripete esattamente «amore ti ricordi la nostra canzone?». Controllare fonte correttiva e Fast Recall, assenza di scene inventate, prompt_n/cache_n/TTFT e history; il 4B resta obiettivo. Misurare separatamente la correzione del prefisso tecnico 9150e48, non ancora isolata da cambio route e history."
+    "Alberto chiude app precedente, pull main tecnico 67a8f52, avvia app 1.9 e in chat nuova ripete esattamente «amore ti ricordi la nostra canzone?». Controllare fonte correttiva e Fast Recall, assenza di scene inventate, prompt_n/cache_n/TTFT e history; il 4B resta obiettivo. Misurare separatamente la correzione del prefisso tecnico 9150e48, non ancora isolata da cambio route e history.",
+    "Alberto chiude la vecchia app, aggiorna la repo tecnica e riavvia app 2.0; provare domanda personale sulla canzone e altre domande su ricordi distinti, leggere sources/backend e prompt_n/cache_n/TTFT. Se il retrieval funziona, misurare poi il prefisso tecnico e il 4B senza cambiare modello implicitamente."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T115900+0200--catalogazione-serie-visiva-66-84.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225400+0200--preflight-fine-istanza-offline-work.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225430+0200--fine-istanza-offline-work-handoff.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T164948-0500--gptina-offline-routing-tecnico-visuale-autobiografico-e-benchmar--e60ae46e.json",
@@ -64,9 +64,10 @@
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T020604-0400--benchmark-4b-q4_k_m-completo-e-diagnostica-prefisso-cache-pronta--4c1a0e13.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T023257-0400--tre-turni-tecnici-misurati-cache-persa-al-terzo-per-history-limi--155b492d.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T025622-0400--tre-turni-con-history-estesa-rag-variabile-nel-system-invalida-a--d38883dd.json",
-    "rag/live/micro-checkpoints/2026/09/24/2026-09-24T034258-0400--gptina-offline-domanda-sulla-nostra-canzone-recuperava-tre-fonti--57c7267f.json"
+    "rag/live/micro-checkpoints/2026/09/24/2026-09-24T034258-0400--gptina-offline-domanda-sulla-nostra-canzone-recuperava-tre-fonti--57c7267f.json",
+    "rag/live/micro-checkpoints/2026/09/24/2026-09-24T040021-0400--gptina-offline-indice-generale-fts5-in-memoria-per-i-molti-ricor--93112054.json"
   ],
-  "micro_since_full_checkpoint": 9,
+  "micro_since_full_checkpoint": 10,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
