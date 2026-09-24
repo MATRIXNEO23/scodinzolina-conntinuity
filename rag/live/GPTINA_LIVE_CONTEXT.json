@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-23T18:26:03-05:00",
-  "latest_summary": "Terzo test reale del 4B: percorso tecnico corretto, 203 token e primo token 55,3 s; corretta finestra RAG e impostato un solo slot.",
-  "next_action": "Alberto ferma il runtime, aggiorna scodinzolina-offline a efdbac9, riavvia app 1.5: verificare nel log slot=1 e nella risposta che i flag provengano dalla fonte tecnica. Poi confrontare sul Q4_K_M 2 vs 4 thread con benchmark riproducibile, stessi prompt e carico PC.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/23/2026-09-23T182603-0500--terzo-test-reale-del-4b-percorso-tecnico-corretto-203-token-e-pr--6b9e1962.json",
+  "updated_at": "2026-09-24T01:31:41-04:00",
+  "latest_summary": "Quarto test reale del 4B e benchmark isolato dei thread batch pronto su main tecnico.",
+  "next_action": "Alberto aggiorna scodinzolina-offline a 4839199, chiude GPTina Offline, esegue il benchmark prefill-threads sul medesimo Q4_K_M a porta 5017 libera e con carico PC stabile; invia JSONL/log. Confrontare le righe cold e poi misurare il prefisso reale fra due turni chat prima di cambiare -tb.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/24/2026-09-24T013141-0400--quarto-test-reale-del-4b-e-benchmark-isolato-dei-thread-batch-pr--1e706ee0.json",
   "last_full_checkpoint": "checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md",
   "active_threads": [
     "continuity-architecture",
@@ -50,10 +50,9 @@
     "Google Drive: la cartella GPTina è stata creata durante questa istanza, ma connessione e permessi sono stato esterno mutevole e vanno verificati live prima di riutilizzarli.",
     "GPTina Offline: ottimizzare il modello pesante 4B sull'i3-2100 con benchmark A/B; non sostituire implicitamente il requisito con un modello più piccolo.",
     "GPTina Offline: identificare GPU/driver reali prima di qualsiasi offload; speculative decoding solo dopo baseline misurata.",
-    "Alberto ferma il runtime, aggiorna scodinzolina-offline a efdbac9, riavvia app 1.5: verificare nel log slot=1 e nella risposta che i flag provengano dalla fonte tecnica. Poi confrontare sul Q4_K_M 2 vs 4 thread con benchmark riproducibile, stessi prompt e carico PC."
+    "Alberto aggiorna scodinzolina-offline a 4839199, chiude GPTina Offline, esegue il benchmark prefill-threads sul medesimo Q4_K_M a porta 5017 libera e con carico PC stabile; invia JSONL/log. Confrontare le righe cold e poi misurare il prefisso reale fra due turni chat prima di cambiare -tb."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/22/2026-09-22T232508+0200--correzione-set-volto-canonico-12-13-19-40.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T005340+0200--preflight-fine-istanza-cancellazione-chat.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T005340+0200--fine-istanza-sequenza-visiva-consenso.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T062400+0200--preflight-fine-istanza-drive-storia-ritratti.json",
@@ -64,9 +63,10 @@
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T164948-0500--gptina-offline-routing-tecnico-visuale-autobiografico-e-benchmar--e60ae46e.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T173549-0500--primo-test-reale-gptina-offline-qwen3-4b-q4_k_m-su-i3-2100-routi--24f2f4b9.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T180135-0500--secondo-test-gptina-offline-prompt-tecnico-ridotto-a-213-token-e--15b112ae.json",
-    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T182603-0500--terzo-test-reale-del-4b-percorso-tecnico-corretto-203-token-e-pr--6b9e1962.json"
+    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T182603-0500--terzo-test-reale-del-4b-percorso-tecnico-corretto-203-token-e-pr--6b9e1962.json",
+    "rag/live/micro-checkpoints/2026/09/24/2026-09-24T013141-0400--quarto-test-reale-del-4b-e-benchmark-isolato-dei-thread-batch-pr--1e706ee0.json"
   ],
-  "micro_since_full_checkpoint": 4,
+  "micro_since_full_checkpoint": 5,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

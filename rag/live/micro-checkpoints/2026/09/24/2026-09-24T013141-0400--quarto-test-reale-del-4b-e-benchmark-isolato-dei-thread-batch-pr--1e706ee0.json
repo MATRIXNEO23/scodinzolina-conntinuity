@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-24T013141-0400-1e706ee0",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-24T01:31:41-04:00",
+  "recorded_at": "2026-09-24T01:31:41-04:00",
+  "change_type": "project_state",
+  "summary": "Quarto test reale del 4B e benchmark isolato dei thread batch pronto su main tecnico.",
+  "changed": [
+    "App 1.5 sul Q4_K_M: route technical, una fonte TECHNICAL_RUNTIME_CONTEXT.md, prompt 211/1024, memoria 6 ms, preparazione 25 ms, primo token 61965 ms, prompt 3,4 tok/s, decode 2,17 tok/s, Max risposta 160. Risposta ora include i flag ma interpreta erroneamente -np 1 come numero di processi; significa uno slot. Log slot=1 non visto.",
+    "Scodinzolina-offline main 483919941a2a62de2cccf0acd64c2e6ee515eed3: benchmark --mode prefill-threads confronta -tb 2/3/4 con -t 2, -c 1024, -b 256, -ub 128, -np 1 e stesso GGUF. CI branch 35960217880 e main 35960259766 SUCCESS. Nessun valore del launcher cambiato e nessun benchmark ancora eseguito sul PC."
+  ],
+  "thread_ids": [
+    "gptina-offline-runtime",
+    "hardware-optimization"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "github://MATRIXNEO23/scodinzolina-offline/commit/483919941a2a62de2cccf0acd64c2e6ee515eed3"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 3,
+  "next_action": "Alberto aggiorna scodinzolina-offline a 4839199, chiude GPTina Offline, esegue il benchmark prefill-threads sul medesimo Q4_K_M a porta 5017 libera e con carico PC stabile; invia JSONL/log. Confrontare le righe cold e poi misurare il prefisso reale fra due turni chat prima di cambiare -tb.",
+  "preflight": false
+}
