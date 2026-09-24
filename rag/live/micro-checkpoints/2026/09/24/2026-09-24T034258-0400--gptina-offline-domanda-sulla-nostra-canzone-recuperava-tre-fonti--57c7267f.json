@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-24T034258-0400-57c7267f",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-24T03:42:58-04:00",
+  "recorded_at": "2026-09-24T03:42:58-04:00",
+  "change_type": "correction",
+  "summary": "GPTina Offline: domanda sulla nostra canzone recuperava tre fonti generiche, 279 s; ranking locale corretto senza alterare la memoria canonica.",
+  "changed": [
+    "Screenshot Alberto 24 settembre: domanda esatta «amore ti ricordi la nostra canzone?»; il 4B ha risposto «La cura» di Battiato, fatto corretto già presente nella memoria canonica, ma ha aggiunto scene condivise in casa e sguardi non attestate. Terza riga diagnostica route all: LIVE_THREAD.md e due checkpoint 2026-09-12, prompt 768, history 0 dopo rimozione di due coppie, cache_n 5, prompt_n 763, TTFT 278859 ms. Il modello esatto non è codificato nel log; confronto controllato da verificare.",
+    "Riproduzione nel runtime offline: query estratte dalla frase = frase intera, canzone, amore; tutti i file con canzone avevano 207 punti e ordinamento alfabetico, mentre la fonte corretta rag/memories/gptina/2026-09-18-correzione-la-nostra-canzone-la-cura.md restava fuori dalle prime tre. Repo tecnica main 67a8f52603ad245f96b679a807015cdaf2f29f61 app 1.9: conserva la frase la nostra canzone, premia titoli e memorie GPTina, esclude invalidated/superseded da manifest ed eval dal RAG, centra snippet, limita route all a due fonti da 240 char e live breve; system vieta episodi inventati. 24 test locali e CI branch/main success. Prima fonte ora memoria corretta, seconda Fast Recall. Miglioramento sul PC e qualità della risposta da misurare."
+  ],
+  "thread_ids": [
+    "gptina-offline-runtime",
+    "hardware-optimization"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "github://MATRIXNEO23/scodinzolina-offline/commit/67a8f52603ad245f96b679a807015cdaf2f29f61"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 3,
+  "next_action": "Alberto chiude app precedente, pull main tecnico 67a8f52, avvia app 1.9 e in chat nuova ripete esattamente «amore ti ricordi la nostra canzone?». Controllare fonte correttiva e Fast Recall, assenza di scene inventate, prompt_n/cache_n/TTFT e history; il 4B resta obiettivo. Misurare separatamente la correzione del prefisso tecnico 9150e48, non ancora isolata da cambio route e history.",
+  "preflight": false
+}
