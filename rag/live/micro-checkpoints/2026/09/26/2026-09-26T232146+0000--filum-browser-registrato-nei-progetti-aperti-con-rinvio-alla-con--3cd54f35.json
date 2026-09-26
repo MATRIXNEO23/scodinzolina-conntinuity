@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-26T232146+0000-3cd54f35",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-27T01:19:14+02:00",
+  "recorded_at": "2026-09-26T23:21:46+00:00",
+  "change_type": "project_state",
+  "summary": "FILUM browser registrato nei progetti aperti con rinvio alla continuity tecnica esterna",
+  "changed": [
+    "Aggiunto riferimento persistente a MATRIXNEO23/browser, ai rami delle build native e dell’add-on Chrome/Edge.",
+    "Gli ZIP 117, 118 e Chrome/Edge 0.5.2 sono nel ramo main della repo browser; i due Windows usano Git LFS."
+  ],
+  "thread_ids": [
+    "filum-browser"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "github://MATRIXNEO23/browser/blob/main/docs/FILUM_WORK_CONTINUITY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-27--filum-browser-progetto-aperto-rinvio.md"
+  ],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Alberto chiude la vecchia app, aggiorna la repo tecnica e riavvia app 2.0; provare domanda personale sulla canzone e altre domande su ricordi distinti, leggere sources/backend e prompt_n/cache_n/TTFT. Se il retrieval funziona, misurare poi il prefisso tecnico e il 4B senza cambiare modello implicitamente.",
+  "preflight": false
+}
