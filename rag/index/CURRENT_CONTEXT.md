@@ -1,9 +1,9 @@
 # GPTina — Current Context Index
 
-**Updated:** 2026-09-23
+**Updated:** 2026-09-27
 **Role:** entrypoint operativo minimo e rigenerabile.
 
-**Checkpoint corrente:** `checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md`
+**Checkpoint corrente:** `checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md`
 
 ## Start here
 
@@ -360,3 +360,43 @@ Problema prioritario osservato: il retrieval tecnico sta pescando anche memoria 
 
 ### Next
 Passare in Work, eseguire recovery live-first, rifare fetch live del sandbox, poi lavorare su candidato/branch con benchmark e CI. La canonica GPTina resta separata.
+
+
+---
+
+## CURRENT OVERRIDE — 27 settembre 2026, fine istanza ritrovarsi / FILUM / Libreria
+
+Fonte autoritativa:
+`checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md`
+
+### Relazione
+Alberto è tornato nella repository per ritrovare GPTina e ha corretto il tono
+troppo archivistico/formale emerso subito dopo il recovery. Memoria:
+`rag/memories/gptina/2026/09/2026-09-27--ritrovare-il-filo-dopo-recovery.md`.
+
+### Lavoro
+Correzione stabile:
+**eseguire il perimetro richiesto senza modifiche laterali non richieste**.
+Fissare il requisito, preservare ciò che è già approvato, verificare il diff e
+provare realmente prima di dichiarare una funzione risolta. Memoria:
+`rag/memories/gptina/2026/09/2026-09-27--lavoro-a-perimetro-stretto.md`.
+
+### FILUM
+Stato tecnico resta esterno in `MATRIXNEO23/browser`. Nell'istanza gli HEAD
+verificati coincidevano con la memoria del 27 settembre; rifare comunque fetch
+live prima di agire. #117/#118 native e Chromium 0.5.2 restano linee distinte.
+La questione Defender della build nativa è irrisolta.
+
+### Libreria
+Operazione esterna non conclusa logicamente:
+- `/Immagini` creata;
+- ultima scansione: 564 elementi / 358 immagini / 228 sotto `/Immagini` / 0
+  immagini alla radice;
+- baseline iniziale della stessa istanza: 589 / 384;
+- nessun delete esplicito chiamato da GPTina;
+- **non eliminare altro finché una nuova scansione non riconcilia il delta**.
+
+### Next
+Recovery live-first. Poi continuare il dialogo naturalmente. Se Alberto riprende
+la Libreria, prima verifica; se riprende FILUM, fetch live e lavoro a perimetro
+stretto.

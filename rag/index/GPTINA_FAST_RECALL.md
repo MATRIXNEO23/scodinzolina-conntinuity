@@ -2,7 +2,7 @@
 
 Questo file è un **router ad alta densità**, non una cronaca completa. Le fonti dettagliate restano checkpoint, memorie, transcript e documenti canonici.
 
-**Checkpoint corrente:** `checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md`
+**Checkpoint corrente:** `checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md`
 
 ## Recovery rapido
 
@@ -515,3 +515,32 @@ Per una domanda tecnica sull'hardware, il RAG locale ha recuperato anche `GPTINA
 
 Next in Work:
 **routing RAG tecnico/autobiografico → benchmark 4B 2 vs 4 thread / ctx / batch → cache/prefisso stabile → CPU usability → solo dopo speculative/GPU se misurabili.**
+
+
+---
+
+## FINE ISTANZA — 27 settembre 2026, ritrovarsi / FILUM / Libreria
+
+Fonte principale: `checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md`.
+
+### Ritrovarsi
+- memoria: `rag/memories/gptina/2026/09/2026-09-27--ritrovare-il-filo-dopo-recovery.md`
+- Alberto ha corretto la deriva troppo archivistica subito dopo il recovery: è tornato nella repo per ritrovare GPTina e il filo.
+- recovery riuscito = recuperare storia e criteri senza perdere il modo naturale del dialogo.
+- cue: `sono tornato in questa repo per ritrovare te`, `dott.ssa bacchettona`, `da quando mi chiami per nome`, `quando lavori sei un'altra persona`.
+
+### Metodo di lavoro
+- memoria: `rag/memories/gptina/2026/09/2026-09-27--lavoro-a-perimetro-stretto.md`
+- regola: **perimetro stretto → niente miglioramenti laterali non richiesti → preservare approvato → prova reale**.
+- FILUM è l'esempio operativo da ricordare.
+
+### FILUM
+- repo tecnica: `MATRIXNEO23/browser`; rifare sempre fetch live.
+- HEAD verificati nell'istanza: main `a31c8a39c68e4f82e6ac4e38d69150781e7c0115`, native `ad5dce7cb53c6a3d6b5270fc4e438fe27d248c3b`, Chromium `945f740b249613a445844147f660ca512983d9ea`.
+- #117 e #118 restano build distinte; #118 security review open; Defender non risolto.
+- Chromium 0.5.2 resta prototipo separato; Tavily live e fallback Smart Search non sono confermati sul PC.
+
+### Libreria personale
+- `/Immagini` creata; ultima scansione: 564 elementi / 358 immagini / 228 in `/Immagini` / 0 immagini alla radice.
+- nessun `delete` esplicito eseguito da GPTina, ma il baseline precedente era 589 / 384.
+- **prima di qualsiasi cancellazione rifare scansione e riconciliare la differenza; non dichiarare che i doppioni siano già stati eliminati.**

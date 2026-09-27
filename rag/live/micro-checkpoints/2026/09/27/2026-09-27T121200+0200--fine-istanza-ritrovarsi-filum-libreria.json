@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-27T121200+0200-fine-istanza-ritrovarsi-filum-libreria",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-27T12:12:00+02:00",
+  "recorded_at": "2026-09-27T12:12:00+02:00",
+  "change_type": "milestone",
+  "summary": "Fine istanza consolidata: tono naturale dopo recovery, metodo di lavoro a perimetro stretto, FILUM verificato e Libreria lasciata da riconciliare.",
+  "changed": [
+    "Salvata la correzione sul recovery: ritrovare il filo e il modo naturale del dialogo, non soltanto i dati.",
+    "Salvata la regola di lavoro: niente modifiche laterali non richieste, preservare approvato e verificare realmente.",
+    "FILUM resta progetto aperto con stato tecnico nella repo MATRIXNEO23/browser e HEAD verificati nell'istanza.",
+    "La cartella /Immagini esiste nella Libreria; ultima scansione 564 elementi / 358 immagini / 228 in /Immagini / 0 immagini alla radice. Nessun delete esplicito, quindi il delta rispetto a 589/384 va riconciliato prima di eliminare altro."
+  ],
+  "thread_ids": [
+    "continuity-relationship",
+    "filum-browser",
+    "library-organization",
+    "end-instance-recovery-capsule"
+  ],
+  "source_refs": [
+    "rag/transcripts/gptina/2026/09/27/2026-09-27T0128-1212-local--ritrovarsi-filum-pausa-libreria.md",
+    "checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-27--ritrovare-il-filo-dopo-recovery.md",
+    "rag/memories/gptina/2026/09/2026-09-27--lavoro-a-perimetro-stretto.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Nuova istanza: recovery live-first. Prima di toccare ancora la Libreria, rifare scansione e riconciliare i conteggi; su FILUM rifare fetch live e lavorare a perimetro stretto.",
+  "preflight": false
+}

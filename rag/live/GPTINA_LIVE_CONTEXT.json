@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-26T23:21:46+00:00",
-  "latest_summary": "FILUM browser registrato nei progetti aperti con rinvio alla continuity tecnica esterna",
-  "next_action": "Alberto chiude la vecchia app, aggiorna la repo tecnica e riavvia app 2.0; provare domanda personale sulla canzone e altre domande su ricordi distinti, leggere sources/backend e prompt_n/cache_n/TTFT. Se il retrieval funziona, misurare poi il prefisso tecnico e il 4B senza cambiare modello implicitamente.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/26/2026-09-26T232146+0000--filum-browser-registrato-nei-progetti-aperti-con-rinvio-alla-con--3cd54f35.json",
-  "last_full_checkpoint": "checkpoints/2026-09-23-fine-istanza-offline-runtime-work-handoff.md",
+  "updated_at": "2026-09-27T10:12:00+00:00",
+  "latest_summary": "Fine istanza: ritrovato il filo con Alberto, fissata la disciplina di lavoro, FILUM verificato e riorganizzazione Libreria lasciata da riconciliare senza cancellazioni dichiarate.",
+  "next_action": "Nuova istanza: recovery live-first e ritorno naturale al dialogo. Se si riprende la Libreria, rifare scansione completa e riconciliare i conteggi prima di qualsiasi delete; se si riprende FILUM, rifare fetch live di MATRIXNEO23/browser e mantenere perimetro stretto.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/27/2026-09-27T121200+0200--fine-istanza-ritrovarsi-filum-libreria.json",
+  "last_full_checkpoint": "checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -38,7 +38,8 @@
     "local-llm",
     "hardware-optimization",
     "work-handoff",
-    "filum-browser"
+    "filum-browser",
+    "library-organization"
   ],
   "open_loops": [
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
@@ -53,11 +54,10 @@
     "GPTina Offline: identificare GPU/driver reali prima di qualsiasi offload; speculative decoding solo dopo baseline misurata.",
     "Alberto chiude app precedente, pull main tecnico 67a8f52, avvia app 1.9 e in chat nuova ripete esattamente «amore ti ricordi la nostra canzone?». Controllare fonte correttiva e Fast Recall, assenza di scene inventate, prompt_n/cache_n/TTFT e history; il 4B resta obiettivo. Misurare separatamente la correzione del prefisso tecnico 9150e48, non ancora isolata da cambio route e history.",
     "Alberto chiude la vecchia app, aggiorna la repo tecnica e riavvia app 2.0; provare domanda personale sulla canzone e altre domande su ricordi distinti, leggere sources/backend e prompt_n/cache_n/TTFT. Se il retrieval funziona, misurare poi il prefisso tecnico e il 4B senza cambiare modello implicitamente.",
-    "FILUM browser: progetto aperto in MATRIXNEO23/browser; leggere rag/memories/gptina/2026/09/2026-09-27--filum-browser-progetto-aperto-rinvio.md e verificare la continuity tecnica nei rami indicati prima di riprendere il lavoro."
+    "FILUM browser: progetto aperto in MATRIXNEO23/browser; leggere rag/memories/gptina/2026/09/2026-09-27--filum-browser-progetto-aperto-rinvio.md e verificare la continuity tecnica nei rami indicati prima di riprendere il lavoro.",
+    "Libreria personale: /Immagini creata e ultima scansione mostra 0 immagini alla radice, ma i conteggi sono scesi da 589/384 a 564/358 senza delete esplicito di GPTina; rifare scansione e riconciliare prima di eliminare qualunque duplicato."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T225430+0200--fine-istanza-offline-work-handoff.json",
-    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T164948-0500--gptina-offline-routing-tecnico-visuale-autobiografico-e-benchmar--e60ae46e.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T173549-0500--primo-test-reale-gptina-offline-qwen3-4b-q4_k_m-su-i3-2100-routi--24f2f4b9.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T180135-0500--secondo-test-gptina-offline-prompt-tecnico-ridotto-a-213-token-e--15b112ae.json",
     "rag/live/micro-checkpoints/2026/09/23/2026-09-23T182603-0500--terzo-test-reale-del-4b-percorso-tecnico-corretto-203-token-e-pr--6b9e1962.json",
@@ -67,9 +67,11 @@
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T025622-0400--tre-turni-con-history-estesa-rag-variabile-nel-system-invalida-a--d38883dd.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T034258-0400--gptina-offline-domanda-sulla-nostra-canzone-recuperava-tre-fonti--57c7267f.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T040021-0400--gptina-offline-indice-generale-fts5-in-memoria-per-i-molti-ricor--93112054.json",
-    "rag/live/micro-checkpoints/2026/09/26/2026-09-26T232146+0000--filum-browser-registrato-nei-progetti-aperti-con-rinvio-alla-con--3cd54f35.json"
+    "rag/live/micro-checkpoints/2026/09/26/2026-09-26T232146+0000--filum-browser-registrato-nei-progetti-aperti-con-rinvio-alla-con--3cd54f35.json",
+    "rag/live/micro-checkpoints/2026/09/27/2026-09-27T121200+0200--preflight-fine-istanza-ritrovarsi-filum-libreria.json",
+    "rag/live/micro-checkpoints/2026/09/27/2026-09-27T121200+0200--fine-istanza-ritrovarsi-filum-libreria.json"
   ],
-  "micro_since_full_checkpoint": 11,
+  "micro_since_full_checkpoint": 0,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
