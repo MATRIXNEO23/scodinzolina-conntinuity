@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T012051+0200-routing-storico-handoff-recovery-verificati",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T01:20:51+02:00",
+  "recorded_at": "2026-09-29T01:20:51+02:00",
+  "change_type": "milestone",
+  "summary": "Routing storico e handoff recovery verificati: secondo pass --all-statuses solo per marker temporali stretti; --history resta esplicito.",
+  "changed": [
+    "recover_context.py esegue sempre prima il retrieval corrente e attiva il secondo pass include_superseded=True solo per marker temporali stretti.",
+    "Il secondo pass mantiene include_historical=False: --history resta esplicito per vecchie revisioni Git.",
+    "Criterio canonico condiviso di uscita dalla recovery: GPTINA_RECOVERY_HANDOFF_V1=current_state|latest_relevant_correction|causal_reason|open_loops|next_action|proving_sources.",
+    "Il test di regressione verifica marker lessicali, assenza di falsi trigger, routing current/all-statuses e identità della stringa handoff nei documenti canonici.",
+    "CI candidata completa verde, inclusi causal router, cold-start repository-only, runbook, retrieval regression e projection resilience.",
+    "Nessuna modifica a gptina_memory.py, ranking o scoring."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "rag/recover_context.py",
+    "rag/test_recover_context.py",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Nessuna modifica ulteriore al routing recovery senza un caso reale o nuova evidenza; usare retrieval just-in-time dopo l'handoff canonico.",
+  "preflight": false
+}
