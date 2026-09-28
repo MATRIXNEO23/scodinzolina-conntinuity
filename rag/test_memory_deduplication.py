@@ -30,6 +30,16 @@ def run_live(root: Path, *args: str) -> subprocess.CompletedProcess[str]:
     )
 
 
+def run_memory_cli(*args: str) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        [sys.executable, str(ROOT / "rag" / "gptina_memory.py"), *args],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+
 def refs_signature(record: dict) -> tuple:
     return tuple(
         lc.normalized_values(record.get(key))
@@ -195,10 +205,43 @@ def test_durable_duplicate_correction_extension() -> None:
         raise AssertionError(extension)
 
 
+def test_check_duplicate_cli() -> None:
+    record = next(
+        item for item in gm.current_memory_duplicate_records()
+        if item.get("thread_ids")
+    )
+    thread = str(record["thread_ids"][0])
+    duplicate = run_memory_cli(
+        "check-duplicate",
+        str(record["text"]),
+        "--thread", thread,
+        "--top-k", "2",
+    )
+    if duplicate.returncode != 2:
+        raise AssertionError(duplicate.stdout + duplicate.stderr)
+    duplicate_payload = json.loads(duplicate.stdout)
+    if duplicate_payload.get("verdict") != "duplicate":
+        raise AssertionError(duplicate_payload)
+
+    correction = run_memory_cli(
+        "check-duplicate",
+        str(record["text"]),
+        "--thread", thread,
+        "--supersedes", str(record["memory_id"]),
+        "--top-k", "2",
+    )
+    if correction.returncode != 0:
+        raise AssertionError(correction.stdout + correction.stderr)
+    correction_payload = json.loads(correction.stdout)
+    if correction_payload.get("verdict") != "correction":
+        raise AssertionError(correction_payload)
+
+
 def main() -> None:
     calibrate_current_corpus()
     test_duplicate_micro_noop()
     test_durable_duplicate_correction_extension()
+    test_check_duplicate_cli()
     print(
         "OK: duplicate rejected, correction verified, genuine extension accepted; "
         "threshold calibrated on current corpus."
