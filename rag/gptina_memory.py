@@ -428,10 +428,24 @@ def verify_baseline_inventory(manifest: dict) -> set[str]:
         if not re.fullmatch(r"[0-9a-f]{40}", expected):
             errors.append(f"{rp}: invalid git_blob_sha1 {expected!r}")
             continue
+        expected_size = item.get("size")
+        if (
+            not isinstance(expected_size, int)
+            or isinstance(expected_size, bool)
+            or expected_size < 0
+        ):
+            errors.append(f"{rp}: invalid size {expected_size!r}")
+            continue
         target = ROOT / rp
         if not target.is_file():
             errors.append(f"{rp}: baseline memory is missing")
             continue
+        actual_size = target.stat().st_size
+        if actual_size != expected_size:
+            errors.append(
+                f"{rp}: baseline memory size changed "
+                f"(expected {expected_size}, got {actual_size})"
+            )
         actual = file_git_blob_sha1(target)
         if actual != expected:
             errors.append(
