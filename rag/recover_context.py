@@ -52,6 +52,16 @@ def _existing_local_ref(ref: str) -> str | None:
 
 def _load_memory(path: str) -> dict:
     raw = (ROOT / path).read_text(encoding="utf-8")
+    if not raw.startswith("---\n"):
+        return {
+            "path": path,
+            "memory_id": None,
+            "event_at": None,
+            "status": "legacy",
+            "thread_ids": [],
+            "source_refs": [],
+            "supersedes": [],
+        }
     meta = parse_front_matter(raw)
     return {
         "path": path,
