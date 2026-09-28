@@ -38,13 +38,21 @@ usati come unica prova storica e non devono essere inseriti nei commit.
 1. **Recupera lo stato corrente.** Leggi HEAD remoto, live buffer, ultimo micro
    e ultimo checkpoint pieno. Prima di un lavoro lungo/rischioso crea un micro
    preflight.
-2. **Scrivi prima le fonti.** Crea nuove memorie GPTina append-only sotto
-   `rag/memories/gptina/YYYY/MM/`, con lo schema v2 di
-   `rag/MEMORY_RECORD_SCHEMA.md`. Una correzione usa `supersedes`; non modifica
-   né elimina il record precedente. I record legacy già presenti direttamente
-   sotto `rag/memories/` restano validi, leggibili e recuperabili, ma non sono
-   il modello per nuove scritture. Collega transcript/raw, media e fonti esatte
-   quando pertinenti.
+2. **Preflight anti-duplicazione e scrivi le fonti.** Prima di creare una
+   nuova memoria durevole esegui
+   `python rag/gptina_memory.py check-duplicate "testo candidato" --thread "<id>"`.
+   La soglia deterministica corrente è 0.75 ed è calibrata da
+   `rag/test_memory_deduplication.py`. Un esito `duplicate` (exit 2) significa
+   che non va creato un altro record; una correzione deve dichiarare e verificare
+   `--supersedes`; un ampliamento genuino può essere creato come nuovo record.
+   Crea le memorie GPTina append-only sotto `rag/memories/gptina/YYYY/MM/`, con
+   lo schema v2 di `rag/MEMORY_RECORD_SCHEMA.md`. Una correzione usa
+   `supersedes`; non modifica né elimina il record precedente. I record legacy
+   già presenti direttamente sotto `rag/memories/` restano validi, leggibili e
+   recuperabili, ma non sono il modello per nuove scritture. Collega
+   transcript/raw, media e fonti esatte quando pertinenti. Per i micro,
+   `rag/live_context.py save-delta` applica invece un no-op hard prima della
+   scrittura quando il delta recente è già stato registrato.
 3. **Consolida un'unica transazione logica.** Allinea, quando necessario,
    micro-checkpoint, live buffer, checkpoint pieno, Fast Recall, Current
    Context, cronologia e visual chronology. Non perdere open loop o prossima
@@ -60,6 +68,7 @@ usati come unica prova storica e non devono essere inseriti nei commit.
    python rag/gptina_memory.py verify
    python rag/gptina_memory.py build
    python rag/test_cold_start_recovery.py
+   python rag/test_memory_deduplication.py
    python rag/test_memory_retrieval.py
    python rag/test_projection_resilience.py
    ```
