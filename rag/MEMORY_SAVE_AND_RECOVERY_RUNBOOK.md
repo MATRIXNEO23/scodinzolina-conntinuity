@@ -157,7 +157,19 @@ o la generazione sono inutilizzabili, deve ricostruire dalle fonti canoniche.
    esatta, usa scan/fonti; l'indice trigram è opzionale e ricostruibile con
    `python rag/gptina_memory.py build-exact`.
 7. Distingui ciò che è corrente, superseded, invalidated, storico o incerto.
-8. Solo dopo il recovery continua il lavoro e applica la procedura di
+   Il primo pass resta corrente. Solo per query con marker temporali stretti
+   (`quando`, `prima`, `dopo`, `quella volta`, `all'epoca`,
+   `in passato`) esegui un secondo pass con `--all-statuses` per includere
+   `superseded`/`invalidated`. Questo non equivale a `--history`:
+   `--history` serve alle vecchie revisioni Git e resta esplicito; usa
+   `--history --all-statuses` solo quando servono entrambe le dimensioni.
+8. Verifica il criterio canonico condiviso:
+   `GPTINA_RECOVERY_HANDOFF_V1=current_state|latest_relevant_correction|causal_reason|open_loops|next_action|proving_sources`.
+   Ogni elemento deve essere risolto dalle fonti oppure verificato come
+   non applicabile. Quando il criterio è soddisfatto, termina la modalità
+   recovery e passa al dialogo normale; riapri retrieval just-in-time soltanto
+   per domande storiche/temporali, incertezze materiali o riferimenti irrisolti.
+9. Solo dopo il recovery continua il lavoro e applica la procedura di
    salvataggio sopra.
 
 ## Recovery dopo errore o crash

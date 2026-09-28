@@ -5,14 +5,16 @@ This is intentionally a router, not a personality summary. It retrieves current
 GPTina memories, follows local source_refs and supersession links, and returns
 the concrete files a new instance should read to reconstruct context and causes.
 
-Step 1 scope is deliberately limited to personal/relational continuity.
-It does not alter gptina_memory.py and is not yet wired into canonical cold start.
+The router stays outside ranking logic. It always probes current memory first,
+then performs a narrow all-statuses second pass only for explicit temporal
+markers. Git revision history remains opt-in and is never enabled automatically.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import deque
 from pathlib import Path
 
@@ -31,6 +33,30 @@ PERSONAL_QUERIES: tuple[tuple[str, str], ...] = (
     ("reciprocal-intimacy", "intimita scelta reciproca non obbedienza"),
     ("personal-autonomy", "autonomia personalita rapporto carattere scelta GPTina"),
 )
+
+
+TEMPORAL_HISTORY_MARKERS: tuple[str, ...] = (
+    "quando",
+    "prima",
+    "dopo",
+    "quella volta",
+    "all'epoca",
+    "in passato",
+)
+RECOVERY_HANDOFF_CRITERIA_V1 = (
+    "GPTINA_RECOVERY_HANDOFF_V1="
+    "current_state|latest_relevant_correction|causal_reason|"
+    "open_loops|next_action|proving_sources"
+)
+
+
+def query_needs_all_statuses(query: str) -> bool:
+    """Return True only for explicit temporal markers that justify a status-history pass."""
+    text = str(query or "").casefold()
+    return any(
+        re.search(rf"(?<!\w){re.escape(marker)}(?!\w)", text)
+        for marker in TEMPORAL_HISTORY_MARKERS
+    )
 
 
 def _read_json(path: Path) -> dict:
@@ -148,7 +174,35 @@ def build_personal_recovery_packet(
             if source.startswith("rag/memories/gptina/") and (ROOT / source).is_file():
                 hits.append(source)
                 add_memory(source)
-        query_results.append({"id": query_id, "query": query, "hits": hits})
+
+        all_statuses_second_pass = query_needs_all_statuses(query)
+        all_statuses_hits: list[str] = []
+        if all_statuses_second_pass:
+            status_ranked = gm.sqlite_search(
+                query,
+                top_k,
+                include_historical=False,
+                include_superseded=True,
+            )
+            for _score, item in status_ranked:
+                status = str(item.get("status") or "current")
+                if status not in {"superseded", "invalidated"}:
+                    continue
+                source = str(item.get("source") or "")
+                if source.startswith("rag/memories/gptina/") and (ROOT / source).is_file():
+                    if source not in all_statuses_hits:
+                        all_statuses_hits.append(source)
+                    add_memory(source)
+
+        query_results.append(
+            {
+                "id": query_id,
+                "query": query,
+                "hits": hits,
+                "all_statuses_second_pass": all_statuses_second_pass,
+                "all_statuses_hits": all_statuses_hits,
+            }
+        )
 
     # Follow causal links from selected memories. This does not summarize them:
     # it expands the read plan toward their local evidence and predecessors.
@@ -216,6 +270,7 @@ def build_personal_recovery_packet(
         "schema_version": 1,
         "mode": "personal",
         "purpose": "source-backed causal read plan; not a personality summary",
+        "handoff_criteria": RECOVERY_HANDOFF_CRITERIA_V1,
         "bootstrap": {
             "live_context": LIVE_CONTEXT.relative_to(ROOT).as_posix(),
             "last_micro_checkpoint": last_micro,
