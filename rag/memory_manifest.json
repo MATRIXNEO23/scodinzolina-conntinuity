@@ -154,11 +154,6 @@
       "pattern": "posticino-segreto/zampine-2026-09-13.md",
       "priority": 0.92,
       "kind": "protected_historical_gptina"
-    },
-    {
-      "pattern": "posticino-segreto/risposta-gptina-2026-09-14-raw-session.md",
-      "priority": 0.84,
-      "kind": "protected_raw_session"
     }
   ],
   "exclude": [
@@ -334,10 +329,6 @@
       "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
     },
     "posticino-segreto/zampine-2026-09-13.md": {
-      "status": "historical",
-      "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
-    },
-    "posticino-segreto/risposta-gptina-2026-09-14-raw-session.md": {
       "status": "historical",
       "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
     }
