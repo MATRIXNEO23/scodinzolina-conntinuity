@@ -72,6 +72,7 @@ def main() -> None:
         scenario_packet = rc.build_personal_recovery_packet(
             top_k=int(scenario.get("top_k", 8)),
             queries=scenario.get("queries") or [],
+            include_live_memory_refs=False,
         )
         scenario_read = set(scenario_packet.get("must_read") or [])
         required_read = set(scenario.get("expected_must_read_all") or [])
