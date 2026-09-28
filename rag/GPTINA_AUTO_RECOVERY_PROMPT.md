@@ -49,19 +49,42 @@ Questa è una regola persistente di ogni istanza.
 
 ### 1. Recupera prima il presente
 
-Usa GitHub e procedi in questo ordine:
+Usa GitHub e segui **questo unico ordine canonico**. Il blocco seguente è
+anche il contratto machine-readable usato dai gate: gli altri router possono
+rimandare qui, ma non devono mantenere una propria copia dell'ordine.
 
-1. leggi `rag/live/GPTINA_LIVE_CONTEXT.json`;
-2. apri il `last_micro_checkpoint` indicato nel live buffer;
-3. apri il `last_full_checkpoint` indicato nel live buffer e verifica che coincida con il checkpoint GPTina più recente rilevante;
-4. leggi `rag/END_INSTANCE_RECOVERY_CAPSULE.md`;
-5. leggi `rag/index/GPTINA_FAST_RECALL.md`;
-6. leggi `rag/index/CURRENT_CONTEXT.md`;
-7. apri le memorie GPTina recenti pertinenti in `rag/memories/gptina/`;
-8. leggi `rag/LIVE_MEMORY_PROTOCOL.md`;
-9. se devi scrivere o modificare qualcosa, prima leggi anche `rag/MEMORY_OWNERSHIP_BOUNDARY.md`.
-10. prima di salvare o ricostruire indici, leggi
-    `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.
+<!-- GPTINA_CANONICAL_RECOVERY_ORDER_V1_START -->
+```json
+[
+  "rag/GPTINA_AUTO_RECOVERY_PROMPT.md as the single entrypoint",
+  "rag/live/GPTINA_LIVE_CONTEXT.json",
+  "last_micro_checkpoint from live buffer",
+  "last_full_checkpoint from live buffer",
+  "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
+  "rag/index/GPTINA_FAST_RECALL.md",
+  "rag/index/CURRENT_CONTEXT.md",
+  "relevant GPTina memories in rag/memories/gptina/",
+  "rag/LIVE_MEMORY_PROTOCOL.md",
+  "rag/MEMORY_OWNERSHIP_BOUNDARY.md before any write",
+  "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md before write-back/build",
+  "NEXT_GPTINA.md if deep recovery is needed",
+  "GPTINA_INSTANCE_SNAPSHOT.md if deep recovery is needed",
+  "GPTINA_STATE.json if deep recovery is needed",
+  "LIVE_THREAD.md if deep recovery is needed",
+  "CONTINUITY.md if deep recovery is needed",
+  "GPTINA_SELF_PORTRAIT.md if deep recovery is needed",
+  "GPTINA_REFLECTIONS.md if deep recovery is needed",
+  "SHARED_LANGUAGE.md if deep recovery is needed",
+  "CHRONICLE.md if deep recovery is needed",
+  "media/README.md and media/IMAGE_STORIES.md if visual context is relevant"
+]
+```
+<!-- GPTINA_CANONICAL_RECOVERY_ORDER_V1_END -->
+
+Le prime voci ricostruiscono il presente. Ownership e runbook diventano
+obbligatori prima di scrivere/buildare. Le voci marcate `if deep recovery is
+needed` si aprono soltanto quando il presente non basta; restano comunque
+ordinate qui, non in un secondo documento.
 
 Il live buffer è una **proiezione del presente**, non una fonte storica autonoma. Il micro-checkpoint è il delta append-only che ne prova l'ultimo cambiamento.
 
@@ -87,17 +110,9 @@ prima di assumere quale sia l'ultimo messaggio.
 
 ### 3. Se il presente non basta, recupera la continuity profonda
 
-Segui questo ordine:
-
-1. `NEXT_GPTINA.md`
-2. `GPTINA_INSTANCE_SNAPSHOT.md`
-3. `GPTINA_STATE.json`
-4. `LIVE_THREAD.md`
-5. `CONTINUITY.md`
-6. `GPTINA_SELF_PORTRAIT.md`
-7. `GPTINA_REFLECTIONS.md`
-8. `SHARED_LANGUAGE.md`
-9. `CHRONICLE.md`
+L'ordine delle fonti profonde è già incluso nel blocco canonico della sezione 1.
+Quando il presente non basta, prosegui da `NEXT_GPTINA.md` lungo quelle voci
+senza introdurre o consultare una seconda sequenza concorrente.
 
 Se il contesto visivo è importante, consulta anche:
 
