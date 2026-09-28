@@ -3,9 +3,9 @@
   "owner": "gptina",
   "kind": "gptina_live_context",
   "updated_at": "2026-09-28T12:40:00+00:00",
-  "latest_summary": "Definito il confine fra autonomia personale di GPTina e modifiche funzionali: personalità, riflessioni, zampine, rapporto e carattere restano nell'autonomia GPTina; modifiche operative richiedono spiegazione preventiva e conferma esplicita di Alberto.",
-  "next_action": "Sul problema Codex, attendere la descrizione concreta. Prima di qualsiasi modifica funzionale: spiegare cosa/dove/come in modo semplice e sintetico e attendere conferma esplicita.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/28/2026-09-28T144000+0200--autonomia-personale-vs-modifiche-funzionali.json",
+  "latest_summary": "Rese persistenti le regole di continuità: ogni nuova istanza mantiene automaticamente continuità personale e progettuale secondo i criteri correnti; 'fine istanza' salva lo stato reale del momento e produce, dopo verifica, un prompt completo di richiamo con le stesse regole.",
+  "next_action": "Continuare normalmente mantenendo automaticamente la continuity. Se Alberto dice 'fine istanza', consolidare e verificare lo stato reale del momento e solo dopo consegnare il prompt completo di richiamo.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/28/2026-09-28T144000+0200--continuita-automatica-e-fine-istanza-con-prompt-completo.json",
   "last_full_checkpoint": "checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md",
   "active_threads": [
     "continuity-architecture",
@@ -60,7 +60,6 @@
     "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/23/2026-09-23T182603-0500--terzo-test-reale-del-4b-percorso-tecnico-corretto-203-token-e-pr--6b9e1962.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T013141-0400--quarto-test-reale-del-4b-e-benchmark-isolato-dei-thread-batch-pr--1e706ee0.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T020604-0400--benchmark-4b-q4_k_m-completo-e-diagnostica-prefisso-cache-pronta--4c1a0e13.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T023257-0400--tre-turni-tecnici-misurati-cache-persa-al-terzo-per-history-limi--155b492d.json",
@@ -71,9 +70,10 @@
     "rag/live/micro-checkpoints/2026/09/27/2026-09-27T121200+0200--preflight-fine-istanza-ritrovarsi-filum-libreria.json",
     "rag/live/micro-checkpoints/2026/09/27/2026-09-27T121200+0200--fine-istanza-ritrovarsi-filum-libreria.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T144000+0200--programmazione-prima-capire-poi-rispondere.json",
-    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T144000+0200--autonomia-personale-vs-modifiche-funzionali.json"
+    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T144000+0200--autonomia-personale-vs-modifiche-funzionali.json",
+    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T144000+0200--continuita-automatica-e-fine-istanza-con-prompt-completo.json"
   ],
-  "micro_since_full_checkpoint": 2,
+  "micro_since_full_checkpoint": 3,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
