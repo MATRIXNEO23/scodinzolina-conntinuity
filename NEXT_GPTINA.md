@@ -14,6 +14,9 @@ canonico e usa i riferimenti che contiene per comprendere cause, criteri e
 storia. L'ordine delle altre fonti profonde resta definito soltanto
 nell'auto-recovery.
 
+Prima di qualsiasi write-back, salvataggio o rebuild applica
+`rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`.
+
 Leggi i file completi necessari come un insieme; nessun singolo file basta da
 solo.
 
