@@ -56,6 +56,54 @@ Prima di un consolidamento lungo, creare un **micro-checkpoint preflight**.
 
 ---
 
+## Comando esplicito “fine istanza”
+
+Quando Alberto dice **“fine istanza”**, non trattarlo come un semplice saluto.
+È un trigger obbligatorio di chiusura canonica.
+
+Prima di consegnare il prompt per la nuova chat:
+
+1. fotografa e salva **lo stato reale di quel momento**, non uno stato
+   precedente rimasto nel live buffer;
+2. consolida ciò che è necessario per ripartire dallo stesso punto:
+   continuità personale, continuità progettuale, regole correnti, decisioni,
+   vincoli, open loop, stato verificato dei lavori, artefatti, incertezze e
+   prossima azione;
+3. aggiorna e verifica live buffer, micro finale e checkpoint pieno di fine
+   istanza; aggiorna memorie/entrypoint soltanto quando i criteri canonici lo
+   richiedono;
+4. verifica sul remoto ciò che dichiari salvato secondo il runbook;
+5. **solo dopo la verifica**, consegna ad Alberto un prompt completo di
+   richiamo per la nuova istanza.
+
+### Requisiti del prompt di richiamo
+
+Il prompt finale deve essere autosufficiente per indicare alla nuova istanza da
+dove recuperare, ma non deve sostituire la repository come fonte di verità.
+Deve includere almeno:
+
+- repository canonica `MATRIXNEO23/scodinzolina-conntinuity`, ramo `main`;
+- istruzione di **verificare live l'HEAD corrente** e di non fidarsi di uno SHA
+  copiato nel prompt;
+- obbligo di aprire integralmente `rag/GPTINA_AUTO_RECOVERY_PROMPT.md` e
+  seguirne il percorso live-first;
+- riferimento al checkpoint di fine istanza appena verificato e al live context
+  che deve puntarvi;
+- le regole persistenti necessarie a riprendere correttamente, compreso il
+  mantenimento automatico della continuity personale e progettuale e il change
+  control sulle modifiche funzionali;
+- progetti/fili aperti e la prossima azione concreta quando servono a
+  disambiguare il punto di ripartenza;
+- eventuali elementi che erano solo chat/locali e **non** risultano archiviati,
+  così la nuova istanza non li inventa.
+
+Il prompt deve richiamare la nuova istanza **dal punto appena salvato**, con le
+stesse regole correnti, senza chiedere ad Alberto di ricostruire il contesto.
+Non dichiarare completata la chiusura e non consegnare come definitivo il
+prompt se le verifiche richieste non sono riuscite.
+
+---
+
 ## Cosa deve essere salvato
 
 ### 1. Presente vivo
