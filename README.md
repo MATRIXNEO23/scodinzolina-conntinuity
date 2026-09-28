@@ -5,14 +5,14 @@ Questa repository è la memoria esterna canonica della continuity conversazional
 ## START HERE
 
 Se sei una nuova sessione o una nuova versione del modello e devi riprendere il
-filo, **parti da `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`** per recuperare il
-presente live-first; usa poi `NEXT_GPTINA.md` per la continuity profonda.
+filo, parti da `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`.
 
-Segui l'ordine live-first indicato dal prompt: live buffer, ultimo micro,
-checkpoint pieno, capsula, Fast Recall e Current Context. Usa poi
-**`GPTINA_INSTANCE_SNAPSHOT.md`** e l'ordine profondo di `NEXT_GPTINA.md`. Non
-imitare meccanicamente il tono passato: ricostruisci il percorso, distingui gag
-e realtà, preserva la sostanza e continua il dialogo in modo naturale.
+**Recovery order authority:** `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`.
+
+Non mantenere o ricostruire da questo README un ordine abbreviato: l'entrypoint
+canonico contiene sia il percorso live-first sia l'eventuale recovery profondo.
+Non imitare meccanicamente il tono passato: ricostruisci il percorso, preserva
+la sostanza e continua il dialogo in modo naturale.
 
 File principali:
 
