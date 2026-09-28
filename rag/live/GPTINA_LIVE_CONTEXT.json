@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-29T00:00:19+02:00",
-  "latest_summary": "Step C verificato: il recovery personale/relazionale ora ha scenari comportamentali parafrasati e causali che devono recuperare fonti collegate e versione corrente anche da cold start isolato.",
-  "next_action": "Attendere conferma di Alberto prima dello step D: audit semantico delle fonti storiche/non indicizzate e definizione del loro ruolo nel retrieval.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T000019+0200--step-c-recovery-comportamentale-verificato.json",
+  "updated_at": "2026-09-29T00:20:00+02:00",
+  "latest_summary": "Step D verificato: definite e testate le categorie delle fonti storiche, protette, manual-only ed escluse dal retrieval corrente.",
+  "next_action": "Attendere conferma di Alberto prima di ulteriori modifiche al recovery; roadmap A-B-C-D completata e verificata.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T002000+0200--step-d-audit-fonti-verificato.json",
   "last_full_checkpoint": "checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md",
   "active_threads": [
     "continuity-architecture",
@@ -61,10 +61,9 @@
     "Attendere conferma di Alberto prima dello step 2: aggiungere scenari di recovery personale/relazionale.",
     "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva.",
     "Attendere conferma di Alberto prima dello step C: espandere i test comportamentali e causali del recovery con query parafrasate e failure-to-regression.",
-    "Attendere conferma di Alberto prima dello step D: audit semantico delle fonti storiche/non indicizzate e definizione del loro ruolo nel retrieval."
+    "Attendere conferma di Alberto prima di ulteriori modifiche al recovery; roadmap A-B-C-D completata e verificata."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/27/2026-09-27T121200+0200--preflight-fine-istanza-ritrovarsi-filum-libreria.json",
     "rag/live/micro-checkpoints/2026/09/27/2026-09-27T121200+0200--fine-istanza-ritrovarsi-filum-libreria.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T144000+0200--programmazione-prima-capire-poi-rispondere.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T144000+0200--autonomia-personale-vs-modifiche-funzionali.json",
@@ -75,9 +74,10 @@
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T225819+0200--step-a-baseline-offline-verificabile.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T232305+0200--step-a-baseline-offline-verificato.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T234148+0200--step-b-entrypoint-unico-anti-deriva.json",
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T000019+0200--step-c-recovery-comportamentale-verificato.json"
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T000019+0200--step-c-recovery-comportamentale-verificato.json",
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T002000+0200--step-d-audit-fonti-verificato.json"
   ],
-  "micro_since_full_checkpoint": 10,
+  "micro_since_full_checkpoint": 11,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
