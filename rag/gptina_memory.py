@@ -364,7 +364,7 @@ def git_revision_exists(revision: str) -> bool:
 
 def file_git_blob_sha1(path: Path) -> str:
     payload = path.read_bytes()
-    header = f"blob {len(payload)}\\0".encode("ascii")
+    header = f"blob {len(payload)}".encode("ascii") + b"\x00"
     return hashlib.sha1(header + payload).hexdigest()
 
 
