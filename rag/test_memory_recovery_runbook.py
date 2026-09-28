@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import subprocess
+import tempfile
 from pathlib import Path
 
 import gptina_memory as gm
@@ -207,6 +208,33 @@ def main() -> None:
             raise AssertionError(f"Missing inventory produced unclear recovery error: {exc}")
     else:
         raise AssertionError("Missing offline baseline inventory was silently accepted")
+
+    inventory_ref = manifest["policy"]["strict_memory_schema_baseline_inventory"]
+    inventory = json.loads((ROOT / inventory_ref).read_text(encoding="utf-8"))
+    sample_record = dict(inventory["records"][0])
+    with tempfile.TemporaryDirectory(prefix="gptina-baseline-missing-") as temp:
+        isolated_root = Path(temp)
+        isolated_inventory = dict(inventory)
+        isolated_inventory["records"] = [sample_record]
+        isolated_inventory["record_count"] = 1
+        target_inventory = isolated_root / inventory_ref
+        target_inventory.parent.mkdir(parents=True, exist_ok=True)
+        target_inventory.write_text(
+            json.dumps(isolated_inventory, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        original_root = gm.ROOT
+        gm.ROOT = isolated_root
+        try:
+            try:
+                gm.verify_baseline_inventory(manifest)
+            except SystemExit as exc:
+                if "baseline memory is missing" not in str(exc):
+                    raise AssertionError(f"Deleted baseline produced unclear error: {exc}")
+            else:
+                raise AssertionError("Deleted baseline memory was silently accepted")
+        finally:
+            gm.ROOT = original_root
 
     sample_path = sorted(baseline_paths)[0]
     original_hash = gm.file_git_blob_sha1
