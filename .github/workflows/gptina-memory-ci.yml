@@ -49,6 +49,8 @@ jobs:
         run: python rag/gptina_memory.py verify
       - name: Build derived indexes
         run: python rag/gptina_memory.py build
+      - name: Test causal personal recovery router
+        run: python rag/test_recover_context.py
       - name: Rehearse repository-only cold start
         run: python rag/test_cold_start_recovery.py
       - name: Verify save and recovery runbook
