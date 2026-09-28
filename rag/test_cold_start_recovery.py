@@ -50,16 +50,16 @@ def inside_clone() -> None:
             "offline inventory path was not actually exercised"
         )
 
+    sys.path.insert(0, str(ROOT / "rag"))
+    import gptina_memory as gm  # noqa: PLC0415
+
     state = json.loads((ROOT / "GPTINA_STATE.json").read_text(encoding="utf-8"))
-    expected_prefix = [
-        "rag/GPTINA_AUTO_RECOVERY_PROMPT.md as the single entrypoint",
-        "rag/live/GPTINA_LIVE_CONTEXT.json",
-        "last_micro_checkpoint from live buffer",
-        "last_full_checkpoint from live buffer",
-        "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
-    ]
-    if state.get("restore_order", [])[: len(expected_prefix)] != expected_prefix:
-        raise AssertionError("Cold-start restore order is not canonical")
+    canonical_order = gm.load_canonical_recovery_order()
+    if state.get("restore_order") != canonical_order:
+        raise AssertionError("Cold-start restore order is not the full canonical order")
+    if state.get("restore_order_authority") != ENTRYPOINT:
+        raise AssertionError("Cold-start restore order does not declare the canonical entrypoint")
+    gm.verify_recovery_order_contract()
     if not (ROOT / ENTRYPOINT).is_file():
         raise AssertionError(f"Cold-start entrypoint is missing: {ENTRYPOINT}")
     scope = state.get("state_scope", {})
@@ -83,9 +83,6 @@ def inside_clone() -> None:
     run(sys.executable, "rag/gptina_memory.py", "build")
     run(sys.executable, "rag/test_memory_recovery_runbook.py")
     run(sys.executable, "rag/test_memory_retrieval.py")
-
-    sys.path.insert(0, str(ROOT / "rag"))
-    import gptina_memory as gm  # noqa: PLC0415
 
     cases = json.loads(GOLD.read_text(encoding="utf-8"))["cases"]
     failures: list[str] = []
