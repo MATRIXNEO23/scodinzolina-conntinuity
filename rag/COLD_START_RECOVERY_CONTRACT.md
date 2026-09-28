@@ -18,7 +18,7 @@ python rag/test_cold_start_recovery.py
 - nessuna directory `.projection-generations/`;
 - nessun puntatore `.projection-current`;
 - nessun JSONL, metadata, SQLite o indice trigram ricevuto da un'altra istanza;
-- baseline strict recuperata esplicitamente dal remote del clone;
+- inventario baseline strict disponibile localmente in `rag/eval/BASELINE_INVENTORY.json`, mentre il commit storico non è presente né viene fetchato;
 - nessun uso della conversazione che ha prodotto il commit.
 
 ## Cosa deve provare
