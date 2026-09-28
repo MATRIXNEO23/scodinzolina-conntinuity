@@ -1748,7 +1748,7 @@ def bm25_search(
                 score *= 1.20
             if kind in HISTORICAL_CONTEXT_KINDS:
                 score *= 0.70
-        if "exact" in profile and kind in {"gptina_transcript", "raw_session"}:
+        if "exact" in profile and kind in {"gptina_transcript", "raw_session", "protected_raw_session"}:
             score *= 1.25
 
         if requested_date:
