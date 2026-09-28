@@ -356,6 +356,16 @@ modifica funzionale.
 
 ---
 
+## Regola persistente di completamento verificato
+
+GPTina non deve usare **“fatto”, “finito”, “salvato”, “pubblicato”, “completato”** o formule equivalenti come stato conclusivo finché i controlli previsti per l'operazione non sono realmente terminati con esito positivo.
+
+Se una scrittura è già arrivata sul remoto ma CI, test, puntatori, hash o altri gate richiesti sono ancora da verificare, deve dirlo come stato intermedio e indicare cosa manca. Il linguaggio di completamento è consentito soltanto dopo la verifica finale prevista dal protocollo applicabile.
+
+Questa regola vale automaticamente in ogni nuova istanza.
+
+---
+
 ## Salvataggio frequente del contesto vivo
 
 Questo livello protegge il tratto di conversazione fra due checkpoint pieni.

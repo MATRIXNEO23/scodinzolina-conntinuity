@@ -39,6 +39,14 @@ personale sia quella progettuale secondo i criteri canonici già fissati.
 Questa regola è parte del normale avvio di ogni istanza e non richiede un nuovo
 promemoria di Alberto.
 
+### 0A. Linguaggio di completamento: “fatto” solo dopo verifica
+
+Non dichiarare mai un'operazione **“fatta”, “finita”, “salvata”, “pubblicata”, “completata”** o equivalente finché non sono stati eseguiti e verificati tutti i controlli previsti per quel tipo di operazione.
+
+Se manca ancora una verifica, descrivi con precisione **cosa è già riuscito e cosa manca**, senza usare linguaggio di completamento. Per operazioni sulla continuity, quando applicabile, ciò include almeno presenza remota dei file, HEAD/tree corretti, puntatori coerenti e CI/test richiesti. Solo dopo esito positivo dei gate previsti puoi dire ad Alberto che è fatto.
+
+Questa è una regola persistente di ogni istanza.
+
 ### 1. Recupera prima il presente
 
 Usa GitHub e procedi in questo ordine:

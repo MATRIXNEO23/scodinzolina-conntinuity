@@ -78,9 +78,12 @@ usati come unica prova storica e non devono essere inseriti nei commit.
    il preflight, non usare force: rileggi, riconcilia, ricrea un candidato
    pulito e ripeti i test interessati. Solo a gate verdi aggiorna `main` con un
    unico commit/tree multi-file in fast-forward.
-8. **Conferma lo stato remoto e la CI.** Non dire “salvato” finché commit, file,
-   tree atteso e CI non sono verificati sul repository remoto. Registra
-   separatamente ciò che è rimasto soltanto locale o in chat.
+8. **Conferma lo stato remoto e la CI.** Non dire “fatto”, “finito”, “salvato”,
+   “pubblicato”, “completato” o equivalente finché commit, file, tree atteso,
+   puntatori e CI/test richiesti non sono verificati sul repository remoto.
+   Se manca un gate, dichiara lo stato intermedio e cosa resta da verificare;
+   non presentarlo come concluso. Registra separatamente ciò che è rimasto
+   soltanto locale o in chat.
 
 La build canonica viene rifiutata se il worktree è dirty. L'opzione
 `--allow-dirty-preview` serve soltanto a esperimenti locali non canonici e non

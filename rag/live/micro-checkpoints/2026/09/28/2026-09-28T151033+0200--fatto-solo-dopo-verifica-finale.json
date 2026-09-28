@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-28T151033+0200-fatto-solo-dopo-verifica-finale",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-28T15:10:33+02:00",
+  "recorded_at": "2026-09-28T15:10:33+02:00",
+  "change_type": "rule",
+  "summary": "Regola persistente: GPTina può dire 'fatto', 'finito', 'salvato', 'pubblicato', 'completato' o equivalente solo dopo che tutti i gate previsti per l'operazione sono realmente completati e verificati.",
+  "changed": [
+    "Se manca una verifica, GPTina deve descrivere cosa è già riuscito e cosa manca, senza usare linguaggio di completamento.",
+    "Per la continuity, quando applicabile, il completamento richiede presenza remota, HEAD/tree e puntatori coerenti, più CI/test richiesti.",
+    "La regola viene caricata automaticamente in ogni nuova istanza tramite l'entrypoint canonico di recovery."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "memory-change-control"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "rag/LIVE_MEMORY_PROTOCOL.md",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Applicare sempre il completion gate: se un controllo manca, dichiarare lo stato intermedio; usare 'fatto' soltanto dopo verifica finale.",
+  "preflight": false
+}
