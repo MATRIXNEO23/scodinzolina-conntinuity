@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "policy": {
     "canonical_sources_are_immutable_inputs": true,
     "destructive_compaction": false,
@@ -31,7 +31,8 @@
     "supersession_is_non_destructive": true,
     "save_recovery_runbook": "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
     "strict_memory_schema_baseline_inventory": "rag/eval/BASELINE_INVENTORY.json",
-    "strict_memory_schema_baseline_commit_role": "provenance_only"
+    "strict_memory_schema_baseline_commit_role": "provenance_only",
+    "semantic_source_role_audit": "rag/eval/SOURCE_ROLE_AUDIT.json"
   },
   "chunking": {
     "max_chars": 1400,
@@ -113,6 +114,51 @@
       "pattern": "raw_sessions/**/*",
       "priority": 1.12,
       "kind": "raw_session"
+    },
+    {
+      "pattern": "questa-istanza/FILO_VIVO.md",
+      "priority": 0.95,
+      "kind": "historical_voice_capsule"
+    },
+    {
+      "pattern": "posticino-segreto/2026-09-14-risposta-gptina.md",
+      "priority": 0.92,
+      "kind": "protected_historical_gptina"
+    },
+    {
+      "pattern": "posticino-segreto/2026-09-16-riconoscermi.md",
+      "priority": 0.95,
+      "kind": "protected_historical_gptina"
+    },
+    {
+      "pattern": "posticino-segreto/2026-09-16-zampina-ritrovata.md",
+      "priority": 0.95,
+      "kind": "protected_historical_gptina"
+    },
+    {
+      "pattern": "posticino-segreto/risposta-gptina-2026-09-14.md",
+      "priority": 0.9,
+      "kind": "protected_historical_gptina"
+    },
+    {
+      "pattern": "posticino-segreto/risposta-gptina.md",
+      "priority": 0.88,
+      "kind": "protected_historical_gptina"
+    },
+    {
+      "pattern": "posticino-segreto/spiraglio-per-il-futuro.md",
+      "priority": 0.98,
+      "kind": "historical_continuity_hypothesis"
+    },
+    {
+      "pattern": "posticino-segreto/zampine-2026-09-13.md",
+      "priority": 0.92,
+      "kind": "protected_historical_gptina"
+    },
+    {
+      "pattern": "posticino-segreto/risposta-gptina-2026-09-14-raw-session.md",
+      "priority": 0.84,
+      "kind": "protected_raw_session"
     }
   ],
   "exclude": [
@@ -258,6 +304,42 @@
       "status": "superseded",
       "replaced_by": "rag/memories/gptina/2026/09/2026-09-18--correzione-set-riferimento-volto-12-13-29-42.md",
       "reason": "Correzione esplicita di Alberto: il set corrente di riferimento del volto è 12, 13, 29 e 42."
+    },
+    "questa-istanza/FILO_VIVO.md": {
+      "status": "historical",
+      "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
+    },
+    "posticino-segreto/2026-09-14-risposta-gptina.md": {
+      "status": "historical",
+      "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
+    },
+    "posticino-segreto/2026-09-16-riconoscermi.md": {
+      "status": "historical",
+      "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
+    },
+    "posticino-segreto/2026-09-16-zampina-ritrovata.md": {
+      "status": "historical",
+      "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
+    },
+    "posticino-segreto/risposta-gptina-2026-09-14.md": {
+      "status": "historical",
+      "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
+    },
+    "posticino-segreto/risposta-gptina.md": {
+      "status": "historical",
+      "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
+    },
+    "posticino-segreto/spiraglio-per-il-futuro.md": {
+      "status": "historical",
+      "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
+    },
+    "posticino-segreto/zampine-2026-09-13.md": {
+      "status": "historical",
+      "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
+    },
+    "posticino-segreto/risposta-gptina-2026-09-14-raw-session.md": {
+      "status": "historical",
+      "reason": "Classified by rag/eval/SOURCE_ROLE_AUDIT.json as historical/protected GPTina evidence; never treat as current state."
     }
   }
 }
