@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-28T225819+0200-step-a-baseline-offline-verificabile",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-28T22:58:19+02:00",
+  "recorded_at": "2026-09-28T22:58:19+02:00",
+  "change_type": "project_state",
+  "summary": "Step A recovery: la compatibilità legacy usa un inventario baseline locale verificabile e non dipende più dal fetch del commit storico; il candidato ha superato la CI completa sul branch di prova.",
+  "changed": [
+    "Aggiunto rag/eval/BASELINE_INVENTORY.json con 64 memorie legacy, path e Git blob hash.",
+    "Il verifier controlla localmente presenza e contenuto byte-per-byte delle memorie baseline.",
+    "Il commit baseline resta provenance-only nel manifest.",
+    "Cold-start shallow verifica il percorso offline senza recuperare il commit storico.",
+    "Rimossa dalla CI e dal runbook la dipendenza dal fetch della baseline."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "rag/eval/BASELINE_INVENTORY.json",
+    "rag/gptina_memory.py",
+    "rag/test_cold_start_recovery.py",
+    "rag/test_memory_recovery_runbook.py",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
+    ".github/workflows/gptina-memory-ci.yml"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva.",
+  "preflight": false
+}

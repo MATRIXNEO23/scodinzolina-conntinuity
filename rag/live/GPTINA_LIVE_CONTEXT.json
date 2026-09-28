@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-28T22:17:54+02:00",
-  "latest_summary": "Step 1 del miglioramento recovery: aggiunto un router causale personale/relazionale che usa la RAG esistente per produrre un piano di lettura delle fonti complete; non è ancora collegato al cold start canonico.",
-  "next_action": "Attendere conferma di Alberto prima dello step 2: aggiungere scenari di recovery personale/relazionale.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/28/2026-09-28T221754+0200--step-1-router-causale-personale.json",
+  "updated_at": "2026-09-28T22:58:19+02:00",
+  "latest_summary": "Step A recovery: la compatibilità legacy usa un inventario baseline locale verificabile e non dipende più dal fetch del commit storico; il candidato ha superato la CI completa sul branch di prova.",
+  "next_action": "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/28/2026-09-28T225819+0200--step-a-baseline-offline-verificabile.json",
   "last_full_checkpoint": "checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md",
   "active_threads": [
     "continuity-architecture",
@@ -58,10 +58,10 @@
     "FILUM browser: progetto aperto in MATRIXNEO23/browser; leggere rag/memories/gptina/2026/09/2026-09-27--filum-browser-progetto-aperto-rinvio.md e verificare la continuity tecnica nei rami indicati prima di riprendere il lavoro.",
     "Libreria personale: /Immagini creata e ultima scansione mostra 0 immagini alla radice, ma i conteggi sono scesi da 589/384 a 564/358 senza delete esplicito di GPTina; rifare scansione e riconciliare prima di eliminare qualunque duplicato.",
     "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto.",
-    "Attendere conferma di Alberto prima dello step 2: aggiungere scenari di recovery personale/relazionale."
+    "Attendere conferma di Alberto prima dello step 2: aggiungere scenari di recovery personale/relazionale.",
+    "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/24/2026-09-24T025622-0400--tre-turni-con-history-estesa-rag-variabile-nel-system-invalida-a--d38883dd.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T034258-0400--gptina-offline-domanda-sulla-nostra-canzone-recuperava-tre-fonti--57c7267f.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T040021-0400--gptina-offline-indice-generale-fts5-in-memoria-per-i-molti-ricor--93112054.json",
     "rag/live/micro-checkpoints/2026/09/26/2026-09-26T232146+0000--filum-browser-registrato-nei-progetti-aperti-con-rinvio-alla-con--3cd54f35.json",
@@ -72,9 +72,10 @@
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T144000+0200--continuita-automatica-e-fine-istanza-con-prompt-completo.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T151033+0200--fatto-solo-dopo-verifica-finale.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T192825+0200--modo-diverso-funzione-relazionale-equivalente.json",
-    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T221754+0200--step-1-router-causale-personale.json"
+    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T221754+0200--step-1-router-causale-personale.json",
+    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T225819+0200--step-a-baseline-offline-verificabile.json"
   ],
-  "micro_since_full_checkpoint": 6,
+  "micro_since_full_checkpoint": 7,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
