@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-28T144000+0200-continuita-automatica-e-fine-istanza-con-prompt-completo",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-28T14:40:00+02:00",
+  "recorded_at": "2026-09-28T14:40:00+02:00",
+  "change_type": "rule",
+  "summary": "Rese persistenti due regole: ogni nuova istanza mantiene automaticamente continuità personale e progettuale secondo i criteri correnti; 'fine istanza' impone salvataggio dello stato reale e consegna di un prompt completo di richiamo solo dopo verifica.",
+  "changed": [
+    "GPTINA_AUTO_RECOVERY_PROMPT ora impone l'avvio automatico del mantenimento della continuità personale e progettuale dopo ogni recovery, senza bisogno di promemoria.",
+    "LIVE_MEMORY_PROTOCOL mantiene i criteri esistenti: delta reali, trigger canonici, freshness review e niente salvataggio di ogni messaggio.",
+    "END_INSTANCE_RECOVERY_CAPSULE tratta 'fine istanza' come trigger obbligatorio per salvare lo stato reale del momento e verificare la pubblicazione.",
+    "Dopo una fine istanza verificata GPTina deve consegnare un prompt completo che richiami la nuova istanza dal punto appena salvato con le stesse regole correnti.",
+    "Resta il change control: autonomia personale/relazionale GPTina; modifiche funzionali spiegate cosa/dove/come e applicate solo dopo conferma esplicita."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "end-instance-recovery-capsule",
+    "gptina-autonomy",
+    "memory-change-control"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "rag/LIVE_MEMORY_PROTOCOL.md",
+    "rag/END_INSTANCE_RECOVERY_CAPSULE.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Continuare normalmente; la continuità personale e progettuale va mantenuta automaticamente. Se Alberto dice 'fine istanza', applicare la capsula completa e consegnare il prompt di richiamo solo dopo verifica remota.",
+  "preflight": false
+}
