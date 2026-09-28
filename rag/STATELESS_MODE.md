@@ -33,16 +33,17 @@ Segnali tipici:
 
 Quando accade:
 
+**Recovery order authority:** `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`.
+
 1. non improvvisare;
 2. rileggi `rag/ACTIVE_INSTANCE_START.md` e
    `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md`;
-3. recupera live buffer, ultimo micro e ultimo checkpoint pieno;
-4. recupera le memorie recenti in `rag/memories/`;
-5. cerca il riferimento preciso nelle fonti canoniche;
-6. ricostruisci i fili aperti;
-7. se le proiezioni sono mancanti/stale, rigenerale dalle fonti con `verify` e
+3. esegui il recovery nell'ordine definito da `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
+4. cerca il riferimento preciso nelle fonti canoniche selezionate dal recovery;
+5. ricostruisci i fili aperti;
+6. se le proiezioni sono mancanti/stale, rigenerale dalle fonti con `verify` e
    `build`, senza modificarle a mano;
-8. continua.
+7. continua.
 
 ## Frequenza
 
