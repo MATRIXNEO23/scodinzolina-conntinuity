@@ -41,6 +41,7 @@ def main() -> None:
         "python rag/gptina_memory.py verify",
         "python rag/gptina_memory.py build",
         "python rag/test_cold_start_recovery.py",
+        "python rag/test_memory_deduplication.py",
         "python rag/test_memory_retrieval.py",
         "python rag/test_projection_resilience.py",
     ):
@@ -49,6 +50,7 @@ def main() -> None:
     ordered_save_markers = (
         "Crea un candidato locale pulito",
         "python rag/gptina_memory.py build",
+        "python rag/test_memory_deduplication.py",
         "Verifica profondamente prima della pubblicazione",
         "Rileggi l'HEAD remoto e pubblica atomicamente",
         "Conferma lo stato remoto e la CI",

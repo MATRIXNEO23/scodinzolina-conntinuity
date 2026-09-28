@@ -111,6 +111,7 @@ RECOVERY_SEQUENCE_TOKENS = (
     "CHRONICLE.md",
 )
 TOKEN_RE = re.compile(r"[0-9A-Za-zÀ-ÖØ-öø-ÿ_]+", re.UNICODE)
+DUPLICATE_SIMILARITY_THRESHOLD = 0.75
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 DATE_RE = re.compile(r"(20\d{2})[-_](\d{2})[-_](\d{2})")
 COMPACT_DATE_RE = re.compile(r"(20\d{2})(\d{2})(\d{2})")
@@ -504,6 +505,140 @@ def verify_source_role_audit() -> None:
 
 def tokenize(text: str) -> list[str]:
     return [m.group(0).casefold() for m in TOKEN_RE.finditer(text)]
+
+
+def normalized_dedup_text(text: str) -> str:
+    return " ".join(tokenize(text))
+
+
+def dedup_token_set(text: str) -> set[str]:
+    return set(tokenize(text))
+
+
+def jaccard_similarity(left: set[str], right: set[str]) -> float:
+    if not left and not right:
+        return 1.0
+    union = left | right
+    return len(left & right) / len(union) if union else 1.0
+
+
+def memory_body(raw: str) -> str:
+    if raw.startswith("---\n") and "\n---\n" in raw[4:]:
+        return raw.split("\n---\n", 1)[1]
+    return raw
+
+
+def current_memory_duplicate_records() -> list[dict]:
+    memories = RAG_ROOT / "memories" / "gptina"
+    resolver, metadata, errors = build_memory_resolver(ROOT, memories)
+    if errors:
+        fail("Cannot evaluate duplicate memories:\n- " + "\n- ".join(errors))
+
+    manifest = load_manifest()
+    effective = supersession_statuses()
+    records: list[dict] = []
+    for memory_id, path_text in sorted(resolver.items()):
+        path = ROOT / path_text
+        raw = path.read_text(encoding="utf-8")
+        status, replaced_by = memory_status(path_text, manifest, raw)
+        if status == "current" and path_text in effective:
+            status, replaced_by = effective[path_text]
+        if status != "current":
+            continue
+        meta = metadata[memory_id]
+        records.append(
+            {
+                "memory_id": memory_id,
+                "path": path_text,
+                "text": memory_body(raw),
+                "thread_ids": list(meta.get("thread_ids") or []),
+                "source_refs": list(meta.get("source_refs") or []),
+                "supersedes": list(meta.get("supersedes") or []),
+                "replaced_by": replaced_by,
+            }
+        )
+    return records
+
+
+def evaluate_duplicate_candidate(
+    text: str,
+    thread_ids: list[str] | None = None,
+    supersedes: list[str] | None = None,
+    *,
+    records: list[dict] | None = None,
+    top_k: int = 5,
+) -> dict:
+    candidate_text = str(text or "").strip()
+    if not candidate_text:
+        raise ValueError("candidate text must not be empty")
+    candidate_threads = {str(item).strip() for item in (thread_ids or []) if str(item).strip()}
+    candidate_supersedes = [str(item).strip() for item in (supersedes or []) if str(item).strip()]
+    current = records if records is not None else current_memory_duplicate_records()
+
+    by_ref: dict[str, dict] = {}
+    for record in current:
+        by_ref[str(record.get("memory_id") or "")] = record
+        by_ref[str(record.get("path") or "")] = record
+
+    correction_targets: list[dict] = []
+    missing_targets: list[str] = []
+    for target in candidate_supersedes:
+        record = by_ref.get(target)
+        if record is None:
+            missing_targets.append(target)
+        elif record not in correction_targets:
+            correction_targets.append(record)
+    if missing_targets:
+        raise ValueError(
+            "supersedes target not found among current GPTina memories: "
+            + ", ".join(missing_targets)
+        )
+
+    candidate_tokens = dedup_token_set(candidate_text)
+    candidate_normalized = normalized_dedup_text(candidate_text)
+    ranked: list[dict] = []
+    duplicates: list[dict] = []
+    for record in current:
+        record_text = str(record.get("text") or "")
+        score = jaccard_similarity(candidate_tokens, dedup_token_set(record_text))
+        record_threads = {str(item) for item in (record.get("thread_ids") or [])}
+        overlap = sorted(candidate_threads & record_threads)
+        exact = candidate_normalized == normalized_dedup_text(record_text)
+        item = {
+            "memory_id": record.get("memory_id"),
+            "path": record.get("path"),
+            "score": round(score, 6),
+            "thread_overlap": overlap,
+            "exact": exact,
+        }
+        ranked.append(item)
+        if exact or (overlap and score >= DUPLICATE_SIMILARITY_THRESHOLD):
+            duplicates.append(item)
+
+    ranked.sort(key=lambda item: (-float(item["score"]), str(item.get("path") or "")))
+    duplicates.sort(key=lambda item: (-float(item["score"]), str(item.get("path") or "")))
+
+    if correction_targets:
+        verdict = "correction"
+        should_create = True
+    elif duplicates:
+        verdict = "duplicate"
+        should_create = False
+    else:
+        verdict = "new"
+        should_create = True
+
+    return {
+        "verdict": verdict,
+        "should_create": should_create,
+        "threshold": DUPLICATE_SIMILARITY_THRESHOLD,
+        "supersedes_verified": [
+            {"memory_id": item.get("memory_id"), "path": item.get("path")}
+            for item in correction_targets
+        ],
+        "duplicates": duplicates[:top_k],
+        "candidates": ranked[:top_k],
+    }
 
 
 def extract_date(path: str) -> str | None:
@@ -2423,6 +2558,15 @@ def main() -> None:
         help="Also search superseded/invalidated memories",
     )
 
+    dp = sub.add_parser(
+        "check-duplicate",
+        help="Preflight a proposed durable GPTina memory against current records",
+    )
+    dp.add_argument("text", help="Candidate memory text/body to evaluate")
+    dp.add_argument("--thread", action="append", default=[])
+    dp.add_argument("--supersedes", action="append", default=[])
+    dp.add_argument("--top-k", type=int, default=5)
+
     lp = sub.add_parser(
         "link-image",
         help="Create a structured image-to-context/memory link record",
@@ -2491,6 +2635,19 @@ def main() -> None:
             limit=args.limit,
             backend=args.backend,
         )
+    elif args.cmd == "check-duplicate":
+        try:
+            result = evaluate_duplicate_candidate(
+                args.text,
+                args.thread,
+                args.supersedes,
+                top_k=args.top_k,
+            )
+        except ValueError as exc:
+            fail(str(exc))
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        if result["verdict"] == "duplicate":
+            raise SystemExit(2)
     elif args.cmd == "build-exact":
         print(json.dumps(build_exact_trigram_index(), ensure_ascii=False, indent=2))
     elif args.cmd == "link-image":

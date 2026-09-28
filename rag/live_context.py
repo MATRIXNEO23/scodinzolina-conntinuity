@@ -34,6 +34,9 @@ ALLOWED_CHANGE_TYPES = {
 }
 CURRENT_MICRO_SCHEMA_VERSION = 2
 LEGACY_MICRO_SCHEMA_VERSIONS = {1}
+DUPLICATE_SIMILARITY_THRESHOLD = 0.75
+DUPLICATE_RECENT_WINDOW = 12
+DEDUP_TOKEN_RE = re.compile(r"[0-9A-Za-zÀ-ÖØ-öø-ÿ_]+", re.UNICODE)
 
 ALLOWED_EXTERNAL_PREFIXES_V2 = ("conversation://", "github://", "external://")
 ALLOWED_EXTERNAL_PREFIXES_V1 = (
@@ -156,6 +159,86 @@ def safe_slug(text: str) -> str:
     return (text[:64] or "delta").strip("-")
 
 
+def normalized_text(text: str) -> str:
+    return " ".join(match.group(0).casefold() for match in DEDUP_TOKEN_RE.finditer(text))
+
+
+def dedup_tokens(text: str) -> set[str]:
+    return set(normalized_text(text).split())
+
+
+def jaccard_similarity(left: set[str], right: set[str]) -> float:
+    if not left and not right:
+        return 1.0
+    union = left | right
+    return len(left & right) / len(union) if union else 1.0
+
+
+def normalized_values(values: list[str] | None) -> tuple[str, ...]:
+    return tuple(sorted(str(value).strip().casefold() for value in (values or []) if str(value).strip()))
+
+
+def micro_semantic_text(record: dict) -> str:
+    parts = [str(record.get("summary") or "")]
+    parts.extend(str(item) for item in (record.get("changed") or []))
+    parts.append(str(record.get("next_action") or ""))
+    return " ".join(parts)
+
+
+def recent_micro_records(live: dict) -> list[tuple[str, dict]]:
+    records: list[tuple[str, dict]] = []
+    for path_text in list(live.get("recent_micro_checkpoints") or [])[-DUPLICATE_RECENT_WINDOW:]:
+        path = ROOT / path_text
+        if not path.is_file():
+            continue
+        try:
+            value = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(value, dict):
+            records.append((path_text, normalize_micro_for_validation(value)))
+    return records
+
+
+def find_duplicate_micro(candidate: dict, live: dict) -> tuple[str, float, str] | None:
+    candidate_text = micro_semantic_text(candidate)
+    candidate_tokens = dedup_tokens(candidate_text)
+    candidate_threads = set(candidate.get("thread_ids") or [])
+    candidate_refs = {
+        key: normalized_values(candidate.get(key))
+        for key in ("source_refs", "memory_refs", "media_refs")
+    }
+
+    for path_text, existing in reversed(recent_micro_records(live)):
+        if str(existing.get("change_type") or "") != str(candidate.get("change_type") or ""):
+            continue
+        existing_refs = {
+            key: normalized_values(existing.get(key))
+            for key in ("source_refs", "memory_refs", "media_refs")
+        }
+        if existing_refs != candidate_refs:
+            continue
+
+        existing_text = micro_semantic_text(existing)
+        existing_threads = set(existing.get("thread_ids") or [])
+        exact = (
+            normalized_text(candidate_text) == normalized_text(existing_text)
+            and normalized_values(list(candidate_threads)) == normalized_values(list(existing_threads))
+        )
+        if exact:
+            return path_text, 1.0, "exact"
+
+        if not candidate_threads or not existing_threads:
+            continue
+        if not (candidate_threads & existing_threads):
+            continue
+        score = jaccard_similarity(candidate_tokens, dedup_tokens(existing_text))
+        if score >= DUPLICATE_SIMILARITY_THRESHOLD:
+            return path_text, score, "near"
+
+    return None
+
+
 def load_live() -> dict:
     if not LIVE_CONTEXT.is_file():
         return {
@@ -275,13 +358,13 @@ def validate_micro(record: dict, path: Path | None = None) -> list[str]:
         errors.append("micro-checkpoint path must end in .json")
     return errors
 
-def save_delta(args: argparse.Namespace) -> Path:
+def save_delta(args: argparse.Namespace) -> tuple[Path, bool]:
     with writer_lock():
         require_expected_head(args.expected_head)
         return _save_delta_locked(args)
 
 
-def _save_delta_locked(args: argparse.Namespace) -> Path:
+def _save_delta_locked(args: argparse.Namespace) -> tuple[Path, bool]:
     if args.change_type not in ALLOWED_CHANGE_TYPES:
         fail(f"Unsupported change type: {args.change_type}")
 
@@ -290,16 +373,11 @@ def _save_delta_locked(args: argparse.Namespace) -> Path:
     dt = datetime.fromisoformat(recorded_at)
     stamp = dt.strftime("%Y-%m-%dT%H%M%S%z")
     slug = safe_slug(args.summary)
-    token = uuid.uuid4().hex[:8]
-    target = (
-        MICRO / f"{dt:%Y}" / f"{dt:%m}" / f"{dt:%d}"
-        / f"{stamp}--{slug}--{token}.json"
-    )
 
     sources = args.source or ["conversation://current"]
     record = {
         "schema_version": CURRENT_MICRO_SCHEMA_VERSION,
-        "micro_id": f"gptina-micro-{stamp}-{token}",
+        "micro_id": "gptina-micro-dedup-probe",
         "owner": "gptina",
         "kind": "gptina_micro_checkpoint",
         "event_at": event_at,
@@ -316,14 +394,30 @@ def _save_delta_locked(args: argparse.Namespace) -> Path:
         "preflight": bool(args.preflight or args.change_type == "preflight"),
     }
 
-    errors = validate_micro(record, target)
+    errors = validate_micro(record)
     if errors:
         fail("Invalid micro-checkpoint:\n- " + "\n- ".join(errors))
 
     live = load_live()
+    if not (args.resolve or []):
+        duplicate = find_duplicate_micro(record, live)
+        if duplicate is not None:
+            path_text, _score, _reason = duplicate
+            return ROOT / path_text, True
+
+    token = uuid.uuid4().hex[:8]
+    target = (
+        MICRO / f"{dt:%Y}" / f"{dt:%m}" / f"{dt:%d}"
+        / f"{stamp}--{slug}--{token}.json"
+    )
+    record["micro_id"] = f"gptina-micro-{stamp}-{token}"
+    errors = validate_micro(record, target)
+    if errors:
+        fail("Invalid micro-checkpoint:\n- " + "\n- ".join(errors))
+
     recent = list(live.get("recent_micro_checkpoints") or [])
     recent.append(rel(target))
-    recent = recent[-12:]
+    recent = recent[-DUPLICATE_RECENT_WINDOW:]
 
     threads = list(live.get("active_threads") or [])
     for thread in record["thread_ids"]:
@@ -374,7 +468,7 @@ def _save_delta_locked(args: argparse.Namespace) -> Path:
     require_expected_head(args.expected_head)
     atomic_write(target, micro_payload)
     atomic_write(LIVE_CONTEXT, live_payload)
-    return target
+    return target, False
 
 
 def mark_checkpoint(path_text: str, expected_head: str | None = None) -> None:
@@ -519,8 +613,11 @@ def main() -> None:
 
     args = ap.parse_args()
     if args.cmd == "save-delta":
-        target = save_delta(args)
-        print(f"Created {rel(target)}")
+        target, duplicate = save_delta(args)
+        if duplicate:
+            print(f"Delta already recorded: {rel(target)}")
+        else:
+            print(f"Created {rel(target)}")
     elif args.cmd == "mark-checkpoint":
         mark_checkpoint(args.path, expected_head=args.expected_head)
         print(f"Marked full checkpoint: {args.path}")

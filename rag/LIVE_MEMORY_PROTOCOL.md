@@ -410,6 +410,41 @@ python rag/live_context.py save-delta \
   --next "prossima azione"
 ```
 
+### Anti-duplicazione prima della scrittura
+
+La soglia deterministica corrente è **0.75** ed è definita esplicitamente sia
+nel writer live sia nel precheck delle memorie durevoli. La regressione
+`rag/test_memory_deduplication.py` la calibra sul corpus corrente e fallisce
+se le fonti esistenti la rendono troppo aggressiva.
+
+Per i micro-checkpoint, `save-delta` confronta il candidato con gli ultimi 12
+micro recenti **prima** di generare il nuovo UUID e prima di modificare il live
+buffer. Un duplicato esatto normalizzato, oppure un near-duplicate con stesso
+`change_type`, almeno un `thread_id` comune, stessa provenance strutturata e
+Jaccard >= 0.75, produce exit 0 con:
+
+`Delta already recorded: <path>`
+
+e non crea file né modifica buffer, contatori o puntatori. Se `--resolve` è
+presente il no-op non viene applicato, perché la chiamata può avere un effetto
+di stato legittimo.
+
+Per una memoria durevole, prima di creare manualmente un nuovo record usare:
+
+```bash
+python rag/gptina_memory.py check-duplicate "testo candidato" \
+  --thread "thread-id"
+```
+
+Esiti:
+- `duplicate` → exit 2: non creare un nuovo record;
+- `correction` → exit 0 quando il target `--supersedes` è verificato;
+- `new` → exit 0: il candidato non supera il gate di duplicazione.
+
+Il tool è un precheck: non scrive memoria e non sostituisce il giudizio sulla
+provenienza. Una correzione resta append-only e usa `supersedes`; un
+ampliamento genuino resta un nuovo record collegato dal thread e dalle fonti.
+
 ### Trigger immediati
 
 Salva subito un micro-delta su:

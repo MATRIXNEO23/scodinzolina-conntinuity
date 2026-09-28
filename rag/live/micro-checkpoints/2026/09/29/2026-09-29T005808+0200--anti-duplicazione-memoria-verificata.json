@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T005808+0200-anti-duplicazione-memoria-verificata",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T00:58:08+02:00",
+  "recorded_at": "2026-09-29T00:58:08+02:00",
+  "change_type": "milestone",
+  "summary": "Anti-duplicazione verificata: soglia deterministica 0.75, no-op hard per micro e precheck check-duplicate per memorie durevoli.",
+  "changed": [
+    "Soglia esplicita 0.75 in live_context.py e gptina_memory.py.",
+    "Calibrazione sul corpus corrente: massimo Jaccard same-thread delle memorie 0.297806; finestra reale micro sotto le condizioni del guard 0.000000.",
+    "save-delta evita file e mutazioni del live buffer quando il delta recente è già registrato.",
+    "check-duplicate distingue duplicate, correction con supersedes verificato e new.",
+    "Protocollo, runbook, cold-start e CI includono il gate; regressioni dedicate verdi."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "continuity-architecture"
+  ],
+  "source_refs": [
+    "rag/live_context.py",
+    "rag/gptina_memory.py",
+    "rag/test_memory_deduplication.py",
+    "rag/LIVE_MEMORY_PROTOCOL.md",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Nessuna modifica ulteriore alla deduplicazione senza un caso reale o una nuova evidenza; mantenere il gate calibrato nella CI.",
+  "preflight": false
+}
