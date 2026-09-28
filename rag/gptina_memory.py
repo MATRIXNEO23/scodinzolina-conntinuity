@@ -1387,7 +1387,7 @@ def sqlite_search(
             if kind in HISTORICAL_CONTEXT_KINDS:
                 score *= 0.70
                 factors.append(("current_historical_penalty", 0.70))
-        if "exact" in profile and kind in {"gptina_transcript", "raw_session", "protected_raw_session"}:
+        if "exact" in profile and kind in {"gptina_transcript", "raw_session"}:
             score *= 1.25
             factors.append(("exact_source", 1.25))
 
