@@ -72,7 +72,6 @@ HISTORICAL_CONTEXT_KINDS = {
     "historical_voice_capsule",
     "protected_historical_gptina",
     "historical_continuity_hypothesis",
-    "protected_raw_session",
 }
 VISUAL_INDEX_FILE = INDEX_DIR / "GPTINA_VISUAL_CHRONOLOGY.md"
 CURRENT_CONTEXT_FILE = INDEX_DIR / "CURRENT_CONTEXT.md"
@@ -1374,7 +1373,7 @@ def sqlite_search(
             factors.append(("visual_route", 1.35))
         if "temporal" in profile and kind in {
             "chronology_router", "checkpoint", "micro_checkpoint",
-            "gptina_transcript", "raw_session", "protected_raw_session", "chronicle"
+            "gptina_transcript", "raw_session", "chronicle"
         }:
             score *= 1.22
             factors.append(("temporal_route", 1.22))
@@ -1740,7 +1739,7 @@ def bm25_search(
         if "visual" in profile and kind in {"visual_router", "visual_context"}:
             score *= 1.35
         if "temporal" in profile and kind in {
-            "chronology_router", "checkpoint", "gptina_transcript", "raw_session", "protected_raw_session", "chronicle"
+            "chronology_router", "checkpoint", "gptina_transcript", "raw_session", "chronicle"
         }:
             score *= 1.22
         if "current" in profile:
