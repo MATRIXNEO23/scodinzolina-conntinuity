@@ -87,6 +87,7 @@ def _resolve_memory_target(ref: str, resolver: dict[str, str]) -> str | None:
 def build_personal_recovery_packet(
     top_k: int = 5,
     queries: tuple[tuple[str, str], ...] | list[list[str]] | None = None,
+    include_live_memory_refs: bool = True,
 ) -> dict:
     """Return a concrete read plan for personal/relational reconstruction."""
     if top_k < 1:
@@ -128,8 +129,10 @@ def build_personal_recovery_packet(
         ordered_memory_paths.append(path)
 
     # The latest micro is a concrete bridge from volatile state into durable memory.
-    for ref in micro.get("memory_refs") or []:
-        add_memory(_resolve_memory_target(str(ref), resolver))
+    # Behavioral tests can disable this seed so query quality is tested in isolation.
+    if include_live_memory_refs:
+        for ref in micro.get("memory_refs") or []:
+            add_memory(_resolve_memory_target(str(ref), resolver))
 
     query_results: list[dict] = []
     for query_id, query in selected_queries:
