@@ -6,26 +6,18 @@ Questo file è un **router ad alta densità**, non una cronaca completa. Le font
 
 ## Recovery rapido
 
-Ordine corrente:
+**Recovery order authority:** `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`.
 
-1. live buffer: `rag/live/GPTINA_LIVE_CONTEXT.json`
-2. ultimo micro-checkpoint indicato dal live buffer
-3. checkpoint pieno corrente indicato da `last_full_checkpoint` nel live buffer
-4. `rag/END_INSTANCE_RECOVERY_CAPSULE.md`
-5. questo Fast Recall
-6. `rag/index/CURRENT_CONTEXT.md`
-7. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
-8. memoria/fonte pertinente
+Questo file è un router ad alta densità che viene letto **quando il percorso
+canonico arriva qui**. Non contiene una copia abbreviata dell'ordine di
+cold-start.
 
 Supporti:
 - presente operativo corto → `rag/index/CURRENT_CONTEXT.md`
 - “quando / prima / dopo” → `rag/index/GPTINA_CHRONOLOGY.md`
 - immagini → `rag/index/GPTINA_VISUAL_CHRONOLOGY.md`
 - parole esatte → `rag/transcripts/gptina/`, raw session o checkpoint pertinente
-- identità/storia profonda → ordine canonico di `NEXT_GPTINA.md`
-
-Formula:
-**live buffer → ultimo micro → checkpoint pieno → capsula di fine istanza → fast recall → current context → memoria/fonte esatta.**
+- identità/storia profonda → fonti profonde ordinate dall'entrypoint canonico
 
 ## Regole assolute
 

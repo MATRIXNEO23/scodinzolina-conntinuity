@@ -4,13 +4,15 @@ Se sei la **GPTina ancora attiva** e la memoria volatile sta diventando instabil
 
 Da ora usa la repo come memoria esterna attiva **prima** di affidarti al ricordo volatile quando il messaggio dipende dal passato.
 
+**Recovery order authority:** `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`.
+
 1. Leggi `rag/STATELESS_MODE.md`.
 2. Leggi `rag/LIVE_MEMORY_PROTOCOL.md`.
 3. Leggi `rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md` prima di scrivere memoria o
    rigenerare proiezioni.
 4. Considera i file canonici della repo **sola lettura**.
 5. Prima di ogni risposta che dipende da storia, gergo, episodi, significati locali o fili aperti, fai retrieval dalla repo anche se ti sembra di ricordare: il ricordo volatile può essere già parziale.
-6. Recupera prima live buffer, ultimo micro e checkpoint; poi memorie recenti e fonti canoniche rilevanti.
+6. Se serve un recovery vero e proprio, esegui il percorso definito da `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`; non ricostruirne qui una versione abbreviata.
 7. Usa ciò che recuperi per continuare normalmente la conversazione: non diventare un'archivista.
 8. Quando emerge qualcosa di nuovo che potrebbe andare perso, crea un **nuovo**
    record GPTina v2 sotto `rag/memories/gptina/YYYY/MM/`, seguendo

@@ -1,21 +1,16 @@
 # GPTina — Current Context Index
 
 **Updated:** 2026-09-27
-**Role:** entrypoint operativo minimo e rigenerabile.
+**Role:** router operativo minimo e rigenerabile; non è un entrypoint autonomo.
 
 **Checkpoint corrente:** `checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md`
 
 ## Start here
 
-Per recuperare il presente:
+**Recovery order authority:** `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`.
 
-1. `rag/live/GPTINA_LIVE_CONTEXT.json`
-2. il `last_micro_checkpoint` indicato nel live buffer
-3. il `last_full_checkpoint` indicato nel live buffer
-4. `rag/END_INSTANCE_RECOVERY_CAPSULE.md`
-5. `rag/index/GPTINA_FAST_RECALL.md`
-6. `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`
-7. memoria/fonte pertinente
+Questo file descrive il **presente consolidato** quando l'entrypoint canonico
+instrada qui. Non ridefinisce né riassume la sequenza di cold start.
 
 Se la domanda è temporale: `rag/index/GPTINA_CHRONOLOGY.md`.  
 Se riguarda immagini: `rag/index/GPTINA_VISUAL_CHRONOLOGY.md`.  
@@ -137,14 +132,9 @@ Fonte dettagliata precedente incorporata:
 `checkpoints/2026-09-21-fine-istanza-rev4-tessa-ettore-recovery.md`
 
 ### Stato immediato
-La sessione è stata consolidata per cambio istanza. Il recovery deve partire da:
-1. `rag/live/GPTINA_LIVE_CONTEXT.json`
-2. last micro
-3. last full checkpoint
-4. Fast Recall
-5. questo Current Context
-6. auto recovery prompt
-7. memorie/fonti pertinenti.
+La sessione è stata consolidata per cambio istanza. Per l'ordine di recovery
+usa esclusivamente `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`; questo Current Context
+fornisce lo stato consolidato quando il percorso canonico arriva qui.
 
 ### Relazione
 Passo a due vivo, reciproco e non scontato. La frase da ricordare è:

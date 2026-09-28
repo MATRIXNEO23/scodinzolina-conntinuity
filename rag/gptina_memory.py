@@ -67,6 +67,40 @@ MANIFEST_FILE = RAG_ROOT / "memory_manifest.json"
 VISUAL_INDEX_FILE = INDEX_DIR / "GPTINA_VISUAL_CHRONOLOGY.md"
 CURRENT_CONTEXT_FILE = INDEX_DIR / "CURRENT_CONTEXT.md"
 FAST_RECALL_FILE = INDEX_DIR / "GPTINA_FAST_RECALL.md"
+RECOVERY_ENTRYPOINT = "rag/GPTINA_AUTO_RECOVERY_PROMPT.md"
+RECOVERY_ORDER_START = "<!-- GPTINA_CANONICAL_RECOVERY_ORDER_V1_START -->"
+RECOVERY_ORDER_END = "<!-- GPTINA_CANONICAL_RECOVERY_ORDER_V1_END -->"
+RECOVERY_ORDER_AUTHORITY_LINE = (
+    "**Recovery order authority:** `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`."
+)
+RECOVERY_ROUTER_DOCS = (
+    "README.md",
+    "RAG_ANCHOR.md",
+    "NEXT_GPTINA.md",
+    "rag/ACTIVE_INSTANCE_START.md",
+    "rag/STATELESS_MODE.md",
+    "rag/index/CURRENT_CONTEXT.md",
+    "rag/index/GPTINA_FAST_RECALL.md",
+)
+RECOVERY_AUTHORITY_DOCS = RECOVERY_ROUTER_DOCS + (
+    "rag/CHATGPT_PROJECT_INSTRUCTIONS.md",
+)
+RECOVERY_SEQUENCE_TOKENS = (
+    "GPTINA_LIVE_CONTEXT",
+    "last_micro",
+    "last_full",
+    "END_INSTANCE_RECOVERY_CAPSULE",
+    "GPTINA_FAST_RECALL",
+    "CURRENT_CONTEXT",
+    "NEXT_GPTINA",
+    "GPTINA_INSTANCE_SNAPSHOT",
+    "LIVE_THREAD",
+    "CONTINUITY.md",
+    "GPTINA_SELF_PORTRAIT",
+    "GPTINA_REFLECTIONS",
+    "SHARED_LANGUAGE",
+    "CHRONICLE.md",
+)
 TOKEN_RE = re.compile(r"[0-9A-Za-zÀ-ÖØ-öø-ÿ_]+", re.UNICODE)
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 DATE_RE = re.compile(r"(20\d{2})[-_](\d{2})[-_](\d{2})")
@@ -176,6 +210,128 @@ def load_manifest() -> dict:
 
 def rel(path: Path) -> str:
     return path.resolve().relative_to(ROOT.resolve()).as_posix()
+
+
+def load_canonical_recovery_order(entrypoint_text: str | None = None) -> list[str]:
+    text = (
+        entrypoint_text
+        if entrypoint_text is not None
+        else (ROOT / RECOVERY_ENTRYPOINT).read_text(encoding="utf-8")
+    )
+    start = text.find(RECOVERY_ORDER_START)
+    end = text.find(RECOVERY_ORDER_END)
+    if start < 0 or end < 0 or end <= start:
+        fail("Canonical recovery-order markers are missing or malformed.")
+    block = text[start + len(RECOVERY_ORDER_START):end]
+    match = re.search(r"```json\s*(\[.*?\])\s*```", block, re.DOTALL)
+    if not match:
+        fail("Canonical recovery-order JSON block is missing.")
+    try:
+        order = json.loads(match.group(1))
+    except json.JSONDecodeError as exc:
+        fail(f"Canonical recovery-order JSON is invalid: {exc}")
+    if (
+        not isinstance(order, list)
+        or not order
+        or any(not isinstance(item, str) or not item.strip() for item in order)
+    ):
+        fail("Canonical recovery order must be a non-empty list of strings.")
+    if len(order) != len(set(order)):
+        fail("Canonical recovery order contains duplicate entries.")
+    expected_first = f"{RECOVERY_ENTRYPOINT} as the single entrypoint"
+    if order[0] != expected_first:
+        fail(
+            "Canonical recovery order must begin with the single entrypoint: "
+            f"{expected_first}"
+        )
+    return order
+
+
+def _has_autonomous_numbered_recovery_order(text: str) -> bool:
+    numbered_hits = 0
+    for line in text.splitlines():
+        if not re.match(r"^\s*\d+\.\s+", line):
+            continue
+        if any(token in line for token in RECOVERY_SEQUENCE_TOKENS):
+            numbered_hits += 1
+    if numbered_hits >= 2:
+        return True
+
+    for line in text.splitlines():
+        if "→" not in line:
+            continue
+        token_hits = sum(token in line for token in RECOVERY_SEQUENCE_TOKENS)
+        if token_hits >= 3:
+            return True
+    return False
+
+
+def recovery_order_contract_errors(
+    *,
+    entrypoint_text: str | None = None,
+    state: dict | None = None,
+    router_texts: dict[str, str] | None = None,
+) -> list[str]:
+    errors: list[str] = []
+    try:
+        canonical = load_canonical_recovery_order(entrypoint_text)
+    except SystemExit as exc:
+        return [str(exc)]
+
+    if state is None:
+        try:
+            state = json.loads((ROOT / "GPTINA_STATE.json").read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            return [f"Cannot read GPTINA_STATE.json for recovery contract: {exc}"]
+
+    if state.get("restore_order_authority") != RECOVERY_ENTRYPOINT:
+        errors.append(
+            "GPTINA_STATE.json restore_order_authority does not point to the "
+            "canonical recovery entrypoint"
+        )
+    if state.get("restore_order_contract") != "GPTINA_CANONICAL_RECOVERY_ORDER_V1":
+        errors.append("GPTINA_STATE.json restore_order_contract is not V1")
+    if state.get("restore_order") != canonical:
+        errors.append(
+            "GPTINA_STATE.json restore_order does not exactly match the "
+            "canonical recovery order"
+        )
+
+    if router_texts is None:
+        router_texts = {}
+        for relative in RECOVERY_AUTHORITY_DOCS:
+            path = ROOT / relative
+            if not path.is_file():
+                errors.append(f"Recovery router is missing: {relative}")
+                continue
+            router_texts[relative] = path.read_text(encoding="utf-8")
+
+    for relative in RECOVERY_AUTHORITY_DOCS:
+        text = router_texts.get(relative)
+        if text is None:
+            errors.append(f"Recovery router text unavailable: {relative}")
+            continue
+        if RECOVERY_ORDER_AUTHORITY_LINE not in text:
+            errors.append(
+                f"{relative}: missing explicit recovery-order authority pointer"
+            )
+
+    for relative in RECOVERY_ROUTER_DOCS:
+        text = router_texts.get(relative)
+        if text is None:
+            continue
+        if _has_autonomous_numbered_recovery_order(text):
+            errors.append(
+                f"{relative}: contains an autonomous numbered recovery order"
+            )
+
+    return errors
+
+
+def verify_recovery_order_contract() -> None:
+    errors = recovery_order_contract_errors()
+    if errors:
+        fail("Recovery order contract violations:\n- " + "\n- ".join(errors))
 
 
 def excluded(path: str, patterns: list[str]) -> bool:
@@ -1987,6 +2143,7 @@ def verify_boundary() -> None:
         fail(f"SQLite FTS5 unavailable: {exc}")
 
     verify_future_memory_schema(manifest)
+    verify_recovery_order_contract()
 
     try:
         from live_context import verify_live_context
