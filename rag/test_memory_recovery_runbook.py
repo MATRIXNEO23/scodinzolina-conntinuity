@@ -35,7 +35,7 @@ def main() -> None:
 
     runbook = (ROOT / RUNBOOK).read_text(encoding="utf-8")
     for command in (
-        "git fetch --no-tags --depth=1 origin c8e853713b7bf87bbcc7f645877c50dacbcadd53",
+        "rag/eval/BASELINE_INVENTORY.json",
         "python rag/live_context.py verify",
         "python rag/gptina_memory.py verify",
         "python rag/gptina_memory.py build",
@@ -69,13 +69,11 @@ def main() -> None:
             raise AssertionError(
                 f"Legacy memories are no longer indexed/recoverable: {legacy_pattern}"
             )
-    baseline = manifest.get("policy", {}).get("strict_memory_schema_baseline_commit")
-    deleted_memories = subprocess.run(
-        ["git", "diff", "--diff-filter=D", "--name-only", str(baseline), "--", "rag/memories"],
-        cwd=ROOT, check=True, capture_output=True, text=True,
-    ).stdout.strip()
-    if deleted_memories:
-        raise AssertionError(f"Historical memories were deleted:\n{deleted_memories}")
+    baseline_paths = gm.verify_baseline_inventory(manifest)
+    if len(baseline_paths) != 64:
+        raise AssertionError(
+            f"Offline baseline inventory cardinality drifted: {len(baseline_paths)} != 64"
+        )
     exclusions = set(manifest.get("rag_exclude", []))
     for expected in (
         "rag/index/.projection-generations/**",
@@ -198,15 +196,33 @@ def main() -> None:
     if "github://MATRIXNEO23/ROMANZIERE@" not in fast_recall:
         raise AssertionError("Romanziere checkpoint lacks repository and immutable revision")
 
-    missing_baseline_manifest = json.loads(json.dumps(manifest))
-    missing_baseline_manifest["policy"]["strict_memory_schema_baseline_commit"] = "0" * 40
+    missing_inventory_manifest = json.loads(json.dumps(manifest))
+    missing_inventory_manifest["policy"]["strict_memory_schema_baseline_inventory"] = (
+        "rag/eval/DOES_NOT_EXIST.json"
+    )
     try:
-        gm.verify_future_memory_schema(missing_baseline_manifest)
+        gm.verify_future_memory_schema(missing_inventory_manifest)
     except SystemExit as exc:
-        if "baseline commit is unavailable" not in str(exc):
-            raise AssertionError(f"Missing baseline produced unclear recovery error: {exc}")
+        if "Baseline inventory is missing" not in str(exc):
+            raise AssertionError(f"Missing inventory produced unclear recovery error: {exc}")
     else:
-        raise AssertionError("Missing strict-schema baseline was silently accepted")
+        raise AssertionError("Missing offline baseline inventory was silently accepted")
+
+    sample_path = sorted(baseline_paths)[0]
+    original_hash = gm.file_git_blob_sha1
+    gm.file_git_blob_sha1 = (
+        lambda path: "0" * 40 if gm.rel(path) == sample_path else original_hash(path)
+    )
+    try:
+        try:
+            gm.verify_future_memory_schema(manifest)
+        except SystemExit as exc:
+            if "baseline memory content changed" not in str(exc):
+                raise AssertionError(f"Tampered baseline produced unclear error: {exc}")
+        else:
+            raise AssertionError("Tampered baseline memory was silently accepted")
+    finally:
+        gm.file_git_blob_sha1 = original_hash
 
     tracked = subprocess.run(
         ["git", "ls-files", "rag/index/.projection-generations", "rag/index/.projection-current"],

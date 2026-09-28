@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "policy": {
     "canonical_sources_are_immutable_inputs": true,
     "destructive_compaction": false,
@@ -29,7 +29,9 @@
     "deep_verification_after_every_memory_change": true,
     "historical_memories_must_remain_recoverable": true,
     "supersession_is_non_destructive": true,
-    "save_recovery_runbook": "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md"
+    "save_recovery_runbook": "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
+    "strict_memory_schema_baseline_inventory": "rag/eval/BASELINE_INVENTORY.json",
+    "strict_memory_schema_baseline_commit_role": "provenance_only"
   },
   "chunking": {
     "max_chars": 1400,

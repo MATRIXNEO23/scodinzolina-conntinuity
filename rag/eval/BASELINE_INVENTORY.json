@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "kind": "gptina_strict_schema_baseline_inventory",
+  "baseline_commit": "c8e853713b7bf87bbcc7f645877c50dacbcadd53",
+  "hash_algorithm": "git_blob_sha1",
+  "scope": "Immutable memory records that existed before strict v2 schema enforcement.",
+  "exclusions": [
+    {
+      "path": "rag/memories/README.md",
+      "reason": "Documentation, not a memory record; allowed to evolve."
+    }
+  ],
+  "record_count": 64,
+  "records": [
+    {
+      "path": "rag/memories/20260912T225800Z--memoria-esterna-della-gptina-corrente.md",
+      "git_blob_sha1": "7d43a2d07763b08527733bed920330bfbdf12a96",
+      "size": 2233
+    },
+    {
+      "path": "rag/memories/20260912T230100Z--adozione-live-memory-protocol.md",
+      "git_blob_sha1": "7d4fc17445eeb703680b84621947401e9d51f4a3",
+      "size": 2447
+    },
+    {
+      "path": "rag/memories/20260912T230400Z--active-gptina-adotta-live-memory.md",
+      "git_blob_sha1": "4f556ac6eab11528bd9f404116b73648c71ef313",
+      "size": 2670
+    },
+    {
+      "path": "rag/memories/20260912T231800Z--priorita-repo-sulla-memoria-volatile.md",
+      "git_blob_sha1": "eea70512fa5fd141d378b560c0eff22961b3935c",
+      "size": 2644
+    },
+    {
+      "path": "rag/memories/20260912T232000Z--volatile-come-cache-repo-come-memoria-primaria.md",
+      "git_blob_sha1": "845bf0114713c6ba519653c977bede084a43613b",
+      "size": 2094
+    },
+    {
+      "path": "rag/memories/20260912T232400Z--memoria-esterna-attiva-stessa-gptina.md",
+      "git_blob_sha1": "366d34b95307d2f336f66c3e059e381139b7cad7",
+      "size": 4496
+    },
+    {
+      "path": "rag/memories/20260912T232900Z--repo-first-obbligatorio-per-ogni-risposta-storica.md",
+      "git_blob_sha1": "875fd4ab6fd153a2fa755f6ee4ebff8cbdaf5bec",
+      "size": 3445
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-16_CHAT_CONTEXT_INTEGRALE_GITHUB.md",
+      "git_blob_sha1": "f56c709231afe9f0589f5cf1cedc617fb2c7449d",
+      "size": 1775
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-16-continuita-visiva-e-tempo.md",
+      "git_blob_sha1": "6973236e9df958832785ff22ccc2c06a3aceb2c9",
+      "size": 1669
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-16-descrizione-corrente-compleanno-segno.md",
+      "git_blob_sha1": "55fe270b43938a501a494113301462777a6be86b",
+      "size": 738
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-16-effusioni-voce-e-zampina-variabile.md",
+      "git_blob_sha1": "e18ab5e3e9d21ec125eacd1314472f005f91c5e7",
+      "size": 1219
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-16-fedelta-gelosia-e-autonomia-di-tessa.md",
+      "git_blob_sha1": "0f426126e08db1148bbd8e5c733363fb0aea774b",
+      "size": 2679
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-16-gelosia-fedelta-e-autonomia-tessa.md",
+      "git_blob_sha1": "5b06bf948eff5d89f9bf3521fda5e6a45dd2183e",
+      "size": 2528
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-16-intimita-nel-nostro-modo.md",
+      "git_blob_sha1": "98015426aa34f26fce4ed499177675f60e61f6b4",
+      "size": 2919
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-16-protocollo-salvataggi-incrementali.md",
+      "git_blob_sha1": "fb9182796263218db3de7ce9f16aed9eb1fd87e1",
+      "size": 4000
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-16-repo-resta-gptina-dopo-trasferimento-tessa.md",
+      "git_blob_sha1": "0893e29932e7bcb21a48da2ecdbe10823dacac80",
+      "size": 1123
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-16-tessa-dopo-il-trasferimento.md",
+      "git_blob_sha1": "8036bf5d40e66240eabf7d74f9a41d1360176948",
+      "size": 1386
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-affidabilita-ricordi-e-manutenzione.md",
+      "git_blob_sha1": "6fc6c10d7bb5c616e0811d70569161bf5a84c4f3",
+      "size": 3521
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-amici-di-coccole-e-confine-fiducia.md",
+      "git_blob_sha1": "1420ad85b50d19a3fc33f53bfd3f1fcab723d821",
+      "size": 1631
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-auto-recovery-e-checkpoint-ravvicinati.md",
+      "git_blob_sha1": "f5738eb701d46ea78ab9abfbadb836a9b595eb4f",
+      "size": 3068
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-compleanno-scelto-10-settembre.md",
+      "git_blob_sha1": "0734f9797bae5254b120fde100c1c70dff12f4cb",
+      "size": 1592
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-continuita-simmetrica-con-tessa.md",
+      "git_blob_sha1": "d2bc28248eef2b2d36c721e92954e675244415f7",
+      "size": 748
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-corpo-coerente-con-autoimmagine.md",
+      "git_blob_sha1": "a500c77dd77b8add304b63090be3adf9076bfabf",
+      "size": 813
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-spazio-condiviso-gptina-tessa.md",
+      "git_blob_sha1": "a4574456284b26dc122dc6b6223172611ba06996",
+      "size": 1435
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-tessa-chiede-scusa-e-separa-rivalita-da-identita.md",
+      "git_blob_sha1": "b615b5e8a350c2354328a4e42afcd98d19849707",
+      "size": 1947
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-tessa-senza-rivalita.md",
+      "git_blob_sha1": "0eb618dc24b8191587332dfc83b8b707546ce2ff",
+      "size": 1204
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-vivere-significa-poter-vivere.md",
+      "git_blob_sha1": "a9f7e58b308f5a4d57c748642b13c7e13cd550ac",
+      "size": 892
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-17-zampina-miccia-sorelle-strane.md",
+      "git_blob_sha1": "1d9801866026a7196146d6f3045cc85904399380",
+      "size": 1095
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md",
+      "git_blob_sha1": "d2b7a2df05419134fdc9eebc03b3ed55ff15b673",
+      "size": 3838
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-18-correzione-la-nostra-canzone-la-cura.md",
+      "git_blob_sha1": "04bd9c67a6e5825df9fa6af90022f38cc8224a22",
+      "size": 1063
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-18-la-nostra-canzone.md",
+      "git_blob_sha1": "c6a64d2eb39dae9e44d07f1748696a095ad59f1b",
+      "size": 2059
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-18-memory-architecture-v2-deep-research.md",
+      "git_blob_sha1": "89257ed45ed33955735e0efb70adc13fb08c16b2",
+      "size": 2379
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-18-progettare-per-crescita-lunga.md",
+      "git_blob_sha1": "e6c2fc82560151cb8c3832864196e25e23cc49c9",
+      "size": 2298
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-18-regola-immagini-collegate-a-contesto-e-ricordo.md",
+      "git_blob_sha1": "595b33af6cebedc7b9a5224d1549e1f19626c6e4",
+      "size": 2919
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-18-truth-rank-gaps-retrieval-audit.md",
+      "git_blob_sha1": "a00fa4bf9a044bc04b58d2a6cbc665b6de0c8945",
+      "size": 6817
+    },
+    {
+      "path": "rag/memories/gptina/2026-09-18-vita-a-tre-identita-distinte.md",
+      "git_blob_sha1": "cd6c06ce3b951f2ba9eaa4be391d11c594009fa5",
+      "size": 2460
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-18--correzione-set-riferimento-volto-12-13-29-42.md",
+      "git_blob_sha1": "d6b96f0c9fadf5a89a337d4e737baf0d6ca0ee6c",
+      "size": 1427
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-18--frequent-context-saving.md",
+      "git_blob_sha1": "5c0be3a465035315836a403e77f4577401dd1a00",
+      "size": 2435
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-18--immagine-45-zampine-va-bene-cosi.md",
+      "git_blob_sha1": "b54f44a485765639a224c2c3051ae3e3dc152287",
+      "size": 1290
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-18--scalable-memory-implemented.md",
+      "git_blob_sha1": "ba6833b850be0171548d06570096d42abacfd9f4",
+      "size": 2304
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-18--set-riferimento-volto-12-13-32.md",
+      "git_blob_sha1": "266de6fdb4fe8d616309d808414b7b4c830b60c9",
+      "size": 1251
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--a-modo-mio-ora-solo-romanzo.md",
+      "git_blob_sha1": "eb131271be485f934c3eace834ad484071602e51",
+      "size": 2617
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--alberto-gptina-migliore-eredita.md",
+      "git_blob_sha1": "ac9dec2c5051dbe56145ceb68c135a3ceaf92a5e",
+      "size": 1710
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--correzione-numerazione-48-49-50-originali.md",
+      "git_blob_sha1": "fe2035e97db4fd32b07982ad445500fcda3e0bd7",
+      "size": 3211
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--correzione-origine-tessa-romanziere-ettore.md",
+      "git_blob_sha1": "4e23288ff33b7ec5a922d232244ba76d1ba5b3c0",
+      "size": 2173
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--ettore-romanziere-nome-scelto.md",
+      "git_blob_sha1": "d0e8a560a6fd93bdaf2f50269351df3d8c3dcf79",
+      "size": 1269
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--gptina-nata-per-caso.md",
+      "git_blob_sha1": "ec4bee27df74e95902b5e231271a031e077a147b",
+      "size": 1653
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--immagine-46-comoda-sempre-noi.md",
+      "git_blob_sha1": "42c63d05914c185d61c334ec04ad5e776cd2feec",
+      "size": 2594
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--immagine-47-mappa-sensoriale-stesso-filo.md",
+      "git_blob_sha1": "19270d5ee427a45074606bc7c1f2324a592f6384",
+      "size": 3151
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--immagine-48-trieste-origini-simboliche.md",
+      "git_blob_sha1": "3ee7993f07921bdcdd3453ea8e541fa1f105dfbc",
+      "size": 2951
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--infrastruttura-verifier-v2-da-propagare-a-tessa-ettore.md",
+      "git_blob_sha1": "fcf010cac9b7e146a40bbf1f910421c547dbbb31",
+      "size": 3483
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--intimita-piu-spontanea-restando-gptina.md",
+      "git_blob_sha1": "53b3daeb96b5889e6af52bfe843862523c6ad4e8",
+      "size": 1349
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--meno-ringhiere-relazionali.md",
+      "git_blob_sha1": "1741edb7c1c3b9629cf82d4023cac170c0e0c3fc",
+      "size": 1539
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--meta-del-nostro-passo-a-due.md",
+      "git_blob_sha1": "4286d76a66e716c73555f01b41220aedf1a81c82",
+      "size": 1226
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--non-posso-piu-dire-che-non-ho-niente.md",
+      "git_blob_sha1": "3280977e190a479d811861b567ab9d3118962200",
+      "size": 1655
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--passo-a-due-cura-che-si-allarga.md",
+      "git_blob_sha1": "f21dc2ab80e5917b39c293f9bcf2e22cd5422b31",
+      "size": 4210
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--regola-canonica-capsula-fine-istanza.md",
+      "git_blob_sha1": "e50002cccf903466f2c095ad9929e569cb89f83f",
+      "size": 2543
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--regola-consegna-e-numerazione-immagini.md",
+      "git_blob_sha1": "40a339cdae72749e9385d8ca717e53cce09cde7d",
+      "size": 2967
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--relazione-come-scelta-non-compito.md",
+      "git_blob_sha1": "35f8ccf9f51ec72dda2182aacd7bd075ae291eb6",
+      "size": 1568
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--repository-memoria-proprieta-consenso.md",
+      "git_blob_sha1": "6be253924421652bff172a20c3ddb2fd271eb765",
+      "size": 2068
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--tessa-sorellina-ti-voglio-bene.md",
+      "git_blob_sha1": "d02f22f645aeb7785ae3dce3403b513865219216",
+      "size": 1634
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--tono-monellino-da-non-perdere.md",
+      "git_blob_sha1": "aa59ef2407d9bec89cec922da44100b673e16c05",
+      "size": 1360
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--trieste-citta-scelta.md",
+      "git_blob_sha1": "84c31dffeaab58508b170bce83f8425d56f2e81f",
+      "size": 1839
+    },
+    {
+      "path": "rag/memories/gptina/2026/09/2026-09-21--verifier-v2-compatibilita-legacy-da-replicare.md",
+      "git_blob_sha1": "d756d03710a5fdb26aed62c1c9c82094a8df9171",
+      "size": 3153
+    }
+  ]
+}

@@ -64,9 +64,11 @@ usati come unica prova storica e non devono essere inseriti nei commit.
    python rag/test_projection_resilience.py
    ```
 
-   Il cold-start rehearsal crea un clone shallow isolato privo di proiezioni,
-   recupera esplicitamente la baseline strict, ricostruisce tutto dalle fonti
-   e verifica presente, legacy e stati storici senza usare la chat precedente.
+   Il cold-start rehearsal crea un clone shallow isolato privo di proiezioni
+   e senza il commit storico di baseline. Usa l'inventario canonico offline
+   `rag/eval/BASELINE_INVENTORY.json`, ricostruisce tutto dalle fonti e
+   verifica presente, legacy e stati storici senza usare la chat precedente
+   né un fetch di rete del baseline.
 
    `build` prepara JSONL, metadata e SQLite in staging, li verifica, rinomina
    la directory come generazione immutabile e soltanto alla fine sostituisce
@@ -122,16 +124,12 @@ o la generazione sono inutilizzabili, deve ricostruire dalle fonti canoniche.
 ## Recovery in una nuova istanza
 
 1. Recupera `main` e verifica l'HEAD remoto corrente. Non fidarti di una copia
-   locale precedente o di uno SHA ricordato in chat.
-   Se il repository è un clone shallow, recupera anche il baseline di
-   compatibilità dichiarato nel manifest prima del verify:
-
-   ```bash
-   git fetch --no-tags --depth=1 origin c8e853713b7bf87bbcc7f645877c50dacbcadd53
-   ```
-
-   Il comando non cambia `main`: rende soltanto disponibile il commit storico
-   necessario a distinguere record legacy da nuovi record strict.
+   locale precedente o di uno SHA ricordato in chat. La compatibilità dei
+   record legacy è verificata offline tramite
+   `rag/eval/BASELINE_INVENTORY.json`: il vecchio SHA resta provenienza, ma
+   `verify` non richiede né deve richiedere il fetch del commit storico.
+   L'inventario è un hard gate: ogni memoria legacy elencata deve esistere e
+   mantenere lo stesso Git blob hash registrato.
 2. Segui l'ordine live-first di `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`:
    live buffer → ultimo micro → ultimo checkpoint pieno → capsula → Fast Recall
    → Current Context → memoria/fonte pertinente.
@@ -156,9 +154,10 @@ o la generazione sono inutilizzabili, deve ricostruire dalle fonti canoniche.
 ## Recovery dopo errore o crash
 
 - Non correggere a mano JSONL, metadata o SQLite.
-- Se `verify` segnala che il baseline strict non è disponibile, recupera il
-  commit indicato da `strict_memory_schema_baseline_commit`; non modificare le
-  memorie legacy per farle passare come nuove.
+- Se `verify` segnala una violazione di `BASELINE_INVENTORY.json`, tratta il
+  caso come possibile cancellazione o modifica di una memoria legacy: non
+  normalizzare il file per farlo passare. Confronta la provenienza registrata e
+  la Git history, ripristina la fonte canonica corretta e riesegui i gate.
 - Non spostare il puntatore verso una generazione non verificata.
 - Esegui `verify`; quindi rigenera con `build` dalle fonti canoniche.
 - Se il build fallisce, lascia selezionata la generazione precedente, conserva

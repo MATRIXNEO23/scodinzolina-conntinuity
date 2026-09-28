@@ -37,7 +37,18 @@ def inside_clone() -> None:
 
     manifest = json.loads((ROOT / "rag/memory_manifest.json").read_text(encoding="utf-8"))
     baseline = manifest["policy"]["strict_memory_schema_baseline_commit"]
-    run("git", "cat-file", "-e", f"{baseline}^{{commit}}")
+    inventory = manifest["policy"]["strict_memory_schema_baseline_inventory"]
+    if not (ROOT / inventory).is_file():
+        raise AssertionError(f"Cold-start baseline inventory is missing: {inventory}")
+    baseline_present = subprocess.run(
+        ["git", "cat-file", "-e", f"{baseline}^{{commit}}"],
+        cwd=ROOT, text=True, capture_output=True,
+    )
+    if baseline_present.returncode == 0:
+        raise AssertionError(
+            "Cold-start clone unexpectedly contains historical baseline commit; "
+            "offline inventory path was not actually exercised"
+        )
 
     state = json.loads((ROOT / "GPTINA_STATE.json").read_text(encoding="utf-8"))
     expected_prefix = [
@@ -118,13 +129,15 @@ def outer_rehearsal() -> None:
             raise AssertionError(f"Cold clone is not shallow: commit_count={count}")
         manifest = json.loads((clone / "rag/memory_manifest.json").read_text(encoding="utf-8"))
         baseline = manifest["policy"]["strict_memory_schema_baseline_commit"]
+        inventory = manifest["policy"]["strict_memory_schema_baseline_inventory"]
+        if not (clone / inventory).is_file():
+            raise AssertionError(f"Offline baseline inventory missing from shallow clone: {inventory}")
         absent = subprocess.run(
             ["git", "cat-file", "-e", f"{baseline}^{{commit}}"],
             cwd=clone, text=True, capture_output=True,
         )
         if absent.returncode == 0:
-            raise AssertionError("Strict baseline unexpectedly exists before cold-start fetch")
-        run("git", "fetch", "--quiet", "--no-tags", "--depth=1", "origin", baseline, cwd=clone)
+            raise AssertionError("Strict baseline unexpectedly exists in one-commit shallow clone")
         run(sys.executable, "rag/test_cold_start_recovery.py", "--inside-clone", cwd=clone)
 
 

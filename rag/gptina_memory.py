@@ -362,6 +362,88 @@ def git_revision_exists(revision: str) -> bool:
         return False
 
 
+def file_git_blob_sha1(path: Path) -> str:
+    payload = path.read_bytes()
+    header = f"blob {len(payload)}\\0".encode("ascii")
+    return hashlib.sha1(header + payload).hexdigest()
+
+
+def verify_baseline_inventory(manifest: dict) -> set[str]:
+    policy = manifest.get("policy", {})
+    inventory_ref = str(policy.get("strict_memory_schema_baseline_inventory", "")).strip()
+    if not inventory_ref:
+        return set()
+
+    inventory_path = (ROOT / inventory_ref).resolve()
+    root = ROOT.resolve()
+    if inventory_path != root and root not in inventory_path.parents:
+        fail(f"Baseline inventory escapes repository root: {inventory_ref}")
+    if not inventory_path.is_file():
+        fail(f"Baseline inventory is missing: {inventory_ref}")
+
+    try:
+        inventory = json.loads(inventory_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        fail(f"Cannot read baseline inventory {inventory_ref}: {exc}")
+
+    errors: list[str] = []
+    if inventory.get("schema_version") != 1:
+        errors.append("schema_version must be 1")
+    if inventory.get("kind") != "gptina_strict_schema_baseline_inventory":
+        errors.append("kind must be gptina_strict_schema_baseline_inventory")
+    if inventory.get("hash_algorithm") != "git_blob_sha1":
+        errors.append("hash_algorithm must be git_blob_sha1")
+
+    provenance = str(policy.get("strict_memory_schema_baseline_commit", "")).strip()
+    recorded_provenance = str(inventory.get("baseline_commit", "")).strip()
+    if provenance and recorded_provenance != provenance:
+        errors.append(
+            "baseline_commit provenance mismatch: "
+            f"manifest={provenance} inventory={recorded_provenance}"
+        )
+
+    records = inventory.get("records")
+    if not isinstance(records, list) or not records:
+        errors.append("records must be a non-empty list")
+        records = []
+    if inventory.get("record_count") != len(records):
+        errors.append(
+            f"record_count mismatch: declared={inventory.get('record_count')} actual={len(records)}"
+        )
+
+    paths: set[str] = set()
+    for index, item in enumerate(records):
+        if not isinstance(item, dict):
+            errors.append(f"records[{index}] must be an object")
+            continue
+        rp = str(item.get("path", "")).strip()
+        expected = str(item.get("git_blob_sha1", "")).strip().lower()
+        if not rp.startswith("rag/memories/") or rp == "rag/memories/README.md":
+            errors.append(f"records[{index}] has invalid memory path: {rp!r}")
+            continue
+        if rp in paths:
+            errors.append(f"duplicate baseline path: {rp}")
+            continue
+        paths.add(rp)
+        if not re.fullmatch(r"[0-9a-f]{40}", expected):
+            errors.append(f"{rp}: invalid git_blob_sha1 {expected!r}")
+            continue
+        target = ROOT / rp
+        if not target.is_file():
+            errors.append(f"{rp}: baseline memory is missing")
+            continue
+        actual = file_git_blob_sha1(target)
+        if actual != expected:
+            errors.append(
+                f"{rp}: baseline memory content changed "
+                f"(expected {expected}, got {actual})"
+            )
+
+    if errors:
+        fail("Baseline inventory violations:\n- " + "\n- ".join(errors))
+    return paths
+
+
 def current_source_fingerprint(manifest: dict) -> str:
     rows: list[str] = []
     for path, _spec in expand_sources(manifest):
@@ -1755,13 +1837,16 @@ def verify_future_memory_schema(manifest: dict) -> None:
         return
 
     resolver, metadata, errors = build_memory_resolver(ROOT, memories)
+    baseline_paths = verify_baseline_inventory(manifest)
     baseline = str(
         manifest.get("policy", {}).get("strict_memory_schema_baseline_commit", "")
     ).strip()
-    if baseline and not git_revision_exists(baseline):
+    use_legacy_git_baseline = bool(baseline and not baseline_paths)
+    if use_legacy_git_baseline and not git_revision_exists(baseline):
         fail(
-            "Strict-schema baseline commit is unavailable locally: "
-            f"{baseline}. Fetch it before verification (a shallow clone may omit it)."
+            "Strict-schema baseline commit is unavailable locally and no offline "
+            "baseline inventory is configured: "
+            f"{baseline}."
         )
     for path in sorted(memories.rglob("*.md")):
         rp = rel(path)
@@ -1777,7 +1862,12 @@ def verify_future_memory_schema(manifest: dict) -> None:
         # Existing records at the recorded baseline remain historical inputs.
         # New paths are subject to the strict typed schema without rewriting
         # any pre-existing memory merely for uniformity.
-        if not baseline or not git_path_exists_at(baseline, rp):
+        grandfathered = (
+            rp in baseline_paths
+            if baseline_paths
+            else bool(baseline and git_path_exists_at(baseline, rp))
+        )
+        if not grandfathered:
             errors.extend(f"{rp}: {error}" for error in validate_durable_v2(meta, ROOT))
 
     # The resolver is derived from canonical Markdown records. Its cardinality
