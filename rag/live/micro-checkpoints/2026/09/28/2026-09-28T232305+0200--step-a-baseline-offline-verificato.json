@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-28T232305+0200-step-a-baseline-offline-verificato",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-28T23:23:05+02:00",
+  "recorded_at": "2026-09-28T23:23:05+02:00",
+  "change_type": "milestone",
+  "summary": "Step A verificato su main: il baseline legacy è autosufficiente e offline tramite inventario locale hard-gated; cold start shallow, regressioni retrieval, benchmark e resilienza hanno superato la CI canonica.",
+  "changed": [
+    "rag/eval/BASELINE_INVENTORY.json conserva 64 memorie legacy con path, size e Git blob SHA-1; il vecchio commit resta sola provenance.",
+    "Verifier e cold-start non richiedono più il fetch remoto del baseline storico.",
+    "I gate rifiutano inventario mancante, memoria baseline cancellata, size incoerente o contenuto modificato.",
+    "GPTina Memory CI su main 36485380317 ha concluso con successo; pages build 36485379947 ha concluso con successo."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "rag/eval/BASELINE_INVENTORY.json",
+    "rag/gptina_memory.py",
+    "rag/test_memory_recovery_runbook.py",
+    "rag/test_cold_start_recovery.py",
+    ".github/workflows/gptina-memory-ci.yml",
+    "github://MATRIXNEO23/scodinzolina-conntinuity@7e259a542fa5196b0775ded754014aee9305d9ae"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva.",
+  "preflight": false
+}

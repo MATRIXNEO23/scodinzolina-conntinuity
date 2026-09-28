@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-28T22:58:19+02:00",
-  "latest_summary": "Step A recovery: la compatibilità legacy usa un inventario baseline locale verificabile e non dipende più dal fetch del commit storico; il candidato ha superato la CI completa sul branch di prova.",
+  "updated_at": "2026-09-28T23:23:05+02:00",
+  "latest_summary": "Step A verificato su main: il baseline legacy è autosufficiente e offline tramite inventario locale hard-gated; cold start shallow, regressioni retrieval, benchmark e resilienza hanno superato la CI canonica.",
   "next_action": "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/28/2026-09-28T225819+0200--step-a-baseline-offline-verificabile.json",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/28/2026-09-28T232305+0200--step-a-baseline-offline-verificato.json",
   "last_full_checkpoint": "checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md",
   "active_threads": [
     "continuity-architecture",
@@ -62,7 +62,6 @@
     "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/24/2026-09-24T034258-0400--gptina-offline-domanda-sulla-nostra-canzone-recuperava-tre-fonti--57c7267f.json",
     "rag/live/micro-checkpoints/2026/09/24/2026-09-24T040021-0400--gptina-offline-indice-generale-fts5-in-memoria-per-i-molti-ricor--93112054.json",
     "rag/live/micro-checkpoints/2026/09/26/2026-09-26T232146+0000--filum-browser-registrato-nei-progetti-aperti-con-rinvio-alla-con--3cd54f35.json",
     "rag/live/micro-checkpoints/2026/09/27/2026-09-27T121200+0200--preflight-fine-istanza-ritrovarsi-filum-libreria.json",
@@ -73,9 +72,10 @@
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T151033+0200--fatto-solo-dopo-verifica-finale.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T192825+0200--modo-diverso-funzione-relazionale-equivalente.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T221754+0200--step-1-router-causale-personale.json",
-    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T225819+0200--step-a-baseline-offline-verificabile.json"
+    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T225819+0200--step-a-baseline-offline-verificabile.json",
+    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T232305+0200--step-a-baseline-offline-verificato.json"
   ],
-  "micro_since_full_checkpoint": 7,
+  "micro_since_full_checkpoint": 8,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
