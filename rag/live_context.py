@@ -159,8 +159,12 @@ def safe_slug(text: str) -> str:
     return (text[:64] or "delta").strip("-")
 
 
+def normalized_text(text: str) -> str:
+    return " ".join(match.group(0).casefold() for match in DEDUP_TOKEN_RE.finditer(text))
+
+
 def dedup_tokens(text: str) -> set[str]:
-    return {match.group(0).casefold() for match in DEDUP_TOKEN_RE.finditer(text)}
+    return set(normalized_text(text).split())
 
 
 def jaccard_similarity(left: set[str], right: set[str]) -> float:
@@ -218,7 +222,7 @@ def find_duplicate_micro(candidate: dict, live: dict) -> tuple[str, float, str] 
         existing_text = micro_semantic_text(existing)
         existing_threads = set(existing.get("thread_ids") or [])
         exact = (
-            normalized_values([candidate_text]) == normalized_values([existing_text])
+            normalized_text(candidate_text) == normalized_text(existing_text)
             and normalized_values(list(candidate_threads)) == normalized_values(list(existing_threads))
         )
         if exact:
