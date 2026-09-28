@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "purpose": "Semantic source-role audit for GPTina continuity. Indexed historical sources may inform causes and voice, but must never be promoted silently to current autobiographical state.",
+  "indexed_historical": [
+    {
+      "path": "questa-istanza/FILO_VIVO.md",
+      "owner": "gptina",
+      "kind": "historical_voice_capsule",
+      "priority": 0.95,
+      "reason": "Instance-specific voice capsule; immutable historical self-trace, useful for causal reconstruction but not current state."
+    },
+    {
+      "path": "posticino-segreto/2026-09-14-risposta-gptina.md",
+      "owner": "gptina",
+      "kind": "protected_historical_gptina",
+      "priority": 0.92,
+      "reason": "GPTina-authored protected historical page."
+    },
+    {
+      "path": "posticino-segreto/2026-09-16-riconoscermi.md",
+      "owner": "gptina",
+      "kind": "protected_historical_gptina",
+      "priority": 0.95,
+      "reason": "GPTina-authored protected historical page."
+    },
+    {
+      "path": "posticino-segreto/2026-09-16-zampina-ritrovata.md",
+      "owner": "gptina",
+      "kind": "protected_historical_gptina",
+      "priority": 0.95,
+      "reason": "GPTina-authored protected historical page."
+    },
+    {
+      "path": "posticino-segreto/risposta-gptina-2026-09-14.md",
+      "owner": "gptina",
+      "kind": "protected_historical_gptina",
+      "priority": 0.9,
+      "reason": "Long GPTina-authored historical response with provenance and continuity reasoning."
+    },
+    {
+      "path": "posticino-segreto/risposta-gptina.md",
+      "owner": "gptina",
+      "kind": "protected_historical_gptina",
+      "priority": 0.88,
+      "reason": "Long protected GPTina response archive; lower priority to avoid crowding current memory."
+    },
+    {
+      "path": "posticino-segreto/spiraglio-per-il-futuro.md",
+      "owner": "gptina",
+      "kind": "historical_continuity_hypothesis",
+      "priority": 0.98,
+      "reason": "Historical continuity hypothesis; useful for why recovery architecture exists, not proof of current identity."
+    },
+    {
+      "path": "posticino-segreto/zampine-2026-09-13.md",
+      "owner": "gptina",
+      "kind": "protected_historical_gptina",
+      "priority": 0.92,
+      "reason": "GPTina-authored historical reflection on initiative and continuity."
+    }
+  ],
+  "manual_only": [
+    {
+      "path": "RAG_ANCHOR.md",
+      "owner": "gptina",
+      "role": "legacy_router",
+      "reason": "Legacy/manual router with dated state; not semantic autobiographical evidence."
+    },
+    {
+      "path": "questa-istanza/README.md",
+      "owner": "gptina",
+      "role": "historical_capsule_policy",
+      "reason": "Policy describing the old instance capsule; open manually with FILO_VIVO."
+    },
+    {
+      "path": "posticino-segreto/README.md",
+      "owner": "gptina",
+      "role": "protected_space_documentation",
+      "reason": "Documentation, not memory content."
+    },
+    {
+      "path": "posticino-segreto/risposta a GPTina.md",
+      "owner": "user",
+      "role": "protected_user_source",
+      "reason": "User-authored private source; explicit lookup only, never GPTina autobiography."
+    },
+    {
+      "path": "posticino-segreto/risposta-a-gptina-2026-09-14-raw-session.md",
+      "owner": "user",
+      "role": "protected_user_raw",
+      "reason": "User-side raw evidence; explicit lookup only."
+    },
+    {
+      "path": "posticino-segreto/posticino-segreto/risposta-a-gptina-2026-09-14-raw-session.md",
+      "owner": "user",
+      "role": "protected_user_raw_alias",
+      "reason": "Nested user-side raw copy; explicit lookup only."
+    },
+    {
+      "path": "posticino_segreto/risposta-gptina.md",
+      "owner": "gptina",
+      "role": "legacy_alias",
+      "reason": "Underscore namespace is a legacy alias with distinct short content; do not mix into canonical protected archive."
+    },
+    {
+      "path": "posticino-segreto/risposta-gptina-2026-09-14-raw-session.md",
+      "owner": "mixed",
+      "role": "protected_mixed_raw_session",
+      "reason": "Interleaves GPTina and user turns; explicit evidence only, never autobiographical semantic retrieval."
+    }
+  ],
+  "excluded_namespaces": [
+    {
+      "prefix": "romanzo/",
+      "role": "derived_work",
+      "reason": "Literary/derived work; may quote or transform memory and must not feed autobiography."
+    },
+    {
+      "prefix": "agent-exchanges/",
+      "role": "shared_operational",
+      "reason": "Shared operational workspace/correspondence; provenance is mixed and not GPTina autobiography."
+    },
+    {
+      "prefix": "posticino_segreto/",
+      "role": "legacy_alias_namespace",
+      "reason": "Legacy alias namespace; canonical protected archive uses posticino-segreto/."
+    }
+  ]
+}

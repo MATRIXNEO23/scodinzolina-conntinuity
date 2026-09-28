@@ -64,6 +64,15 @@ def _active_projection_paths() -> tuple[Path, Path, Path]:
 INDEX_FILE, META_FILE, SQLITE_FILE = _active_projection_paths()
 EXACT_SQLITE_FILE = INDEX_DIR / "gptina_exact_trigram.sqlite3"
 MANIFEST_FILE = RAG_ROOT / "memory_manifest.json"
+SOURCE_ROLE_AUDIT_FILE = RAG_ROOT / "eval" / "SOURCE_ROLE_AUDIT.json"
+HISTORICAL_CONTEXT_KINDS = {
+    "historical_snapshot",
+    "historical_structured_state",
+    "historical_live_thread",
+    "historical_voice_capsule",
+    "protected_historical_gptina",
+    "historical_continuity_hypothesis",
+}
 VISUAL_INDEX_FILE = INDEX_DIR / "GPTINA_VISUAL_CHRONOLOGY.md"
 CURRENT_CONTEXT_FILE = INDEX_DIR / "CURRENT_CONTEXT.md"
 FAST_RECALL_FILE = INDEX_DIR / "GPTINA_FAST_RECALL.md"
@@ -393,6 +402,104 @@ def expand_sources(manifest: dict) -> list[tuple[Path, dict]]:
 
 def sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def load_source_role_audit() -> dict:
+    try:
+        return json.loads(SOURCE_ROLE_AUDIT_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        fail(f"Cannot read semantic source-role audit: {exc}")
+
+
+def source_role_audit_errors(
+    manifest: dict | None = None,
+    audit: dict | None = None,
+) -> list[str]:
+    manifest = manifest or load_manifest()
+    audit = audit or load_source_role_audit()
+    errors: list[str] = []
+
+    configured = str(
+        manifest.get("policy", {}).get("semantic_source_role_audit", "")
+    ).strip()
+    expected_audit = rel(SOURCE_ROLE_AUDIT_FILE)
+    if configured != expected_audit:
+        errors.append(
+            "manifest semantic_source_role_audit does not point to "
+            f"{expected_audit}"
+        )
+
+    source_map = {rel(path): spec for path, spec in expand_sources(manifest)}
+    seen: set[str] = set()
+
+    for item in audit.get("indexed_historical") or []:
+        path = str(item.get("path") or "").strip()
+        if not path:
+            errors.append("indexed_historical entry missing path")
+            continue
+        if path in seen:
+            errors.append(f"duplicate source-role audit path: {path}")
+        seen.add(path)
+        if item.get("owner") != "gptina":
+            errors.append(f"{path}: only GPTina-owned historical sources may be indexed")
+        if not (ROOT / path).is_file():
+            errors.append(f"{path}: indexed historical source is missing")
+            continue
+        spec = source_map.get(path)
+        if spec is None:
+            errors.append(f"{path}: audited historical source is not indexed")
+            continue
+        expected_kind = str(item.get("kind") or "")
+        if spec.get("kind") != expected_kind:
+            errors.append(
+                f"{path}: kind mismatch {spec.get('kind')!r} != {expected_kind!r}"
+            )
+        try:
+            expected_priority = float(item.get("priority"))
+            actual_priority = float(spec.get("priority", 1.0))
+        except (TypeError, ValueError):
+            errors.append(f"{path}: invalid audited priority")
+        else:
+            if not math.isclose(actual_priority, expected_priority, rel_tol=0, abs_tol=1e-9):
+                errors.append(
+                    f"{path}: priority mismatch {actual_priority} != {expected_priority}"
+                )
+        override = manifest.get("status_overrides", {}).get(path) or {}
+        if override.get("status") != "historical":
+            errors.append(f"{path}: indexed historical source must have status=historical")
+
+    for item in audit.get("manual_only") or []:
+        path = str(item.get("path") or "").strip()
+        if not path:
+            errors.append("manual_only entry missing path")
+            continue
+        if path in seen:
+            errors.append(f"duplicate source-role audit path: {path}")
+        seen.add(path)
+        if not (ROOT / path).is_file():
+            errors.append(f"{path}: manual-only audited source is missing")
+            continue
+        if path in source_map:
+            errors.append(f"{path}: manual-only source entered semantic retrieval")
+
+    for item in audit.get("excluded_namespaces") or []:
+        prefix = str(item.get("prefix") or "").strip()
+        if not prefix:
+            errors.append("excluded_namespaces entry missing prefix")
+            continue
+        leaked = sorted(path for path in source_map if path.startswith(prefix))
+        if leaked:
+            errors.append(
+                f"{prefix}: excluded namespace entered semantic retrieval: {leaked}"
+            )
+
+    return errors
+
+
+def verify_source_role_audit() -> None:
+    errors = source_role_audit_errors()
+    if errors:
+        fail("Semantic source-role audit violations:\n- " + "\n- ".join(errors))
 
 
 def tokenize(text: str) -> list[str]:
@@ -1277,10 +1384,7 @@ def sqlite_search(
             elif kind in {"current_router", "gptina_memory", "checkpoint"}:
                 score *= 1.20
                 factors.append(("current_state", 1.20))
-            if kind in {
-                "historical_snapshot", "historical_structured_state",
-                "historical_live_thread"
-            }:
+            if kind in HISTORICAL_CONTEXT_KINDS:
                 score *= 0.70
                 factors.append(("current_historical_penalty", 0.70))
         if "exact" in profile and kind in {"gptina_transcript", "raw_session"}:
@@ -1641,9 +1745,9 @@ def bm25_search(
         if "current" in profile:
             if kind in {"current_router", "gptina_memory", "checkpoint"}:
                 score *= 1.20
-            if kind in {"historical_snapshot", "historical_structured_state", "historical_live_thread"}:
+            if kind in HISTORICAL_CONTEXT_KINDS:
                 score *= 0.70
-        if "exact" in profile and kind in {"gptina_transcript", "raw_session"}:
+        if "exact" in profile and kind in {"gptina_transcript", "raw_session", "protected_raw_session"}:
             score *= 1.25
 
         if requested_date:
@@ -2144,6 +2248,7 @@ def verify_boundary() -> None:
 
     verify_future_memory_schema(manifest)
     verify_recovery_order_contract()
+    verify_source_role_audit()
 
     try:
         from live_context import verify_live_context
@@ -2266,7 +2371,7 @@ def verify_boundary() -> None:
                 f"{current_match.group(0)} != {fast_match.group(0)}"
             )
 
-    print("OK: GPTina ownership, status overrides, visual coverage and recovery pointers are consistent.")
+    print("OK: GPTina ownership, semantic source roles, status overrides, visual coverage and recovery pointers are consistent.")
 
 
 def main() -> None:

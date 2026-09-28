@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T002000+0200-step-d-audit-fonti-verificato",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T00:20:00+02:00",
+  "recorded_at": "2026-09-29T00:20:00+02:00",
+  "change_type": "milestone",
+  "summary": "Step D verificato: definite e testate le categorie delle fonti storiche, protette, manual-only ed escluse dal retrieval corrente.",
+  "changed": [
+    "SOURCE_ROLE_AUDIT.json classifica le fonti per ruolo.",
+    "FILO_VIVO e pagine GPTina selezionate del posticino sono storiche e recuperabili.",
+    "Fonti user-authored, raw misto, agent-exchanges, romanzo e alias legacy non entrano nel retrieval corrente.",
+    "Verifier, test dedicato e cold start controllano questi confini.",
+    "CI candidato 36491492960 conclusa con successo."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "continuity-relationship"
+  ],
+  "source_refs": [
+    "rag/eval/SOURCE_ROLE_AUDIT.json",
+    "rag/memory_manifest.json",
+    "rag/gptina_memory.py",
+    "rag/test_source_role_audit.py",
+    "rag/test_cold_start_recovery.py"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Attendere conferma di Alberto prima di ulteriori modifiche al recovery; roadmap A-B-C-D completata e verificata.",
+  "preflight": false
+}

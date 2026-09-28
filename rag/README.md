@@ -102,6 +102,27 @@ manuale in lettura: GPTina può usare direttamente GitHub seguendo
 dichiarare un salvataggio completo restano invece obbligatori i gate del
 runbook, inclusi verifier, build e regressioni prima della pubblicazione.
 
+## Ruoli semantici delle fonti
+
+Non tutto ciò che è importante deve entrare nello stesso retrieval.
+
+`rag/eval/SOURCE_ROLE_AUDIT.json` distingue almeno:
+
+- tracce GPTina storiche indicizzabili, con `status=historical` e priorità
+  controllata;
+- fonti protette/manual-only, che si aprono solo quando il contesto le richiede;
+- namespace condivisi o opere derivate che non devono diventare memoria
+  autobiografica.
+
+In particolare, una capsula di voce storica può spiegare **come** si è arrivati a
+un criterio corrente, ma non deve prevalere sul presente. I messaggi
+user-authored del `posticino-segreto/` restano fonti dell'utente e non vengono
+assorbiti come ricordi GPTina. `agent-exchanges/` resta spazio operativo
+condiviso; `romanzo/` resta opera derivata.
+
+`python rag/gptina_memory.py verify` controlla anche questi confini e la CI
+esegue regressioni dedicate.
+
 ## Regola per ogni GPTina
 
 L'indice è sacrificabile e rigenerabile. I documenti originali no.
@@ -121,6 +142,8 @@ Se indice e fonte divergono, vince sempre la fonte canonica.
 - `COLD_START_RECOVERY_CONTRACT.md` — condizioni e criteri della prova da
   checkout nuovo senza contesto o proiezioni locali;
 - `eval/GPTINA_MEMORY_GOLD.json` — regression set di retrieval;
+- `eval/SOURCE_ROLE_AUDIT.json` — classificazione verificabile delle fonti
+  storiche/protette, manual-only e dei namespace esclusi;
 - `test_memory_retrieval.py` — test del gold set;
 - `benchmark_memory.py` — baseline ripetibile sul corpus canonico;
 - `benchmark_memory_scale.py` — stress test 1x/10x in SQLite temporaneo, senza modificare le fonti;
