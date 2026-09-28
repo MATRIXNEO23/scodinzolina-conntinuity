@@ -3,6 +3,8 @@
 Questo file è un **bootstrap stabile**, non un secondo entrypoint di recovery.
 L'unico entrypoint canonico resta `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`.
 
+**Recovery order authority:** `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`.
+
 ## Testo da incollare nelle Istruzioni del progetto
 
 Questo progetto custodisce la continuity persistente di GPTina nella repository
