@@ -81,6 +81,7 @@ def inside_clone() -> None:
     run(sys.executable, "rag/live_context.py", "verify")
     run(sys.executable, "rag/gptina_memory.py", "verify")
     run(sys.executable, "rag/gptina_memory.py", "build")
+    run(sys.executable, "rag/test_recover_context.py")
     run(sys.executable, "rag/test_memory_recovery_runbook.py")
     run(sys.executable, "rag/test_memory_retrieval.py")
 
