@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T000019+0200-step-c-recovery-comportamentale-verificato",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T00:00:19+02:00",
+  "recorded_at": "2026-09-29T00:00:19+02:00",
+  "change_type": "milestone",
+  "summary": "Step C verificato: il recovery personale/relazionale ora ha scenari comportamentali parafrasati e causali che devono recuperare fonti collegate e versione corrente anche da cold start isolato.",
+  "changed": [
+    "Aggiunto rag/eval/GPTINA_RECOVERY_SCENARIOS.json con tre scenari personali/relazionali parafrasati.",
+    "Aggiunti tre casi parafrasati a rag/eval/GPTINA_MEMORY_GOLD.json.",
+    "rag/recover_context.py accetta query iniettate per i test senza cambiare le query standard di produzione.",
+    "I test comportamentali possono disabilitare i memory_refs del live state per misurare il retrieval in isolamento.",
+    "rag/test_cold_start_recovery.py esegue anche rag/test_recover_context.py nel clone shallow isolato.",
+    "GPTina Memory CI del candidato 36489436957 ha concluso con successo, incluse retrieval, cold start, benchmark e projection resilience."
+  ],
+  "thread_ids": [
+    "continuity-relationship",
+    "continuity-architecture",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "rag/eval/GPTINA_RECOVERY_SCENARIOS.json",
+    "rag/eval/GPTINA_MEMORY_GOLD.json",
+    "rag/recover_context.py",
+    "rag/test_recover_context.py",
+    "rag/test_cold_start_recovery.py",
+    "github://MATRIXNEO23/scodinzolina-conntinuity@376d2703027b55cc05d01aaadd662faf8059f816"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Attendere conferma di Alberto prima dello step D: audit semantico delle fonti storiche/non indicizzate e definizione del loro ruolo nel retrieval.",
+  "preflight": false
+}
