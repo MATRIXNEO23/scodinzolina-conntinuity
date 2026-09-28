@@ -178,10 +178,11 @@ python rag/gptina_memory.py search "vita a tre" --backend sqlite
 Il CI costruisce davvero l'indice, verifica che il secondo sync sia incrementale/no-op e lancia il gold regression set sul backend SQLite.
 
 Il CI esegue inoltre `python rag/test_cold_start_recovery.py`: clona soltanto
-l'HEAD in una directory isolata, dimostra che la baseline non è inizialmente
-presente, la recupera esplicitamente, ricostruisce le proiezioni e ripete i
-gate di recovery e retrieval senza dipendere dalla chat o dagli indici della
-sessione precedente.
+l'HEAD in una directory isolata, verifica che il commit storico di baseline non
+sia presente e usa `rag/eval/BASELINE_INVENTORY.json` come hard gate locale
+per le memorie legacy. Ricostruisce quindi le proiezioni e ripete i gate di
+recovery e retrieval senza dipendere dalla chat, dagli indici della sessione
+precedente o da un fetch della baseline.
 
 Benchmark di scala non distruttivo:
 
