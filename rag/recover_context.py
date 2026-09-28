@@ -84,10 +84,20 @@ def _resolve_memory_target(ref: str, resolver: dict[str, str]) -> str | None:
     return None
 
 
-def build_personal_recovery_packet(top_k: int = 5) -> dict:
+def build_personal_recovery_packet(
+    top_k: int = 5,
+    queries: tuple[tuple[str, str], ...] | list[list[str]] | None = None,
+) -> dict:
     """Return a concrete read plan for personal/relational reconstruction."""
     if top_k < 1:
         raise ValueError("top_k must be >= 1")
+    selected_queries = (
+        PERSONAL_QUERIES
+        if queries is None
+        else tuple((str(query_id), str(query)) for query_id, query in queries)
+    )
+    if not selected_queries:
+        raise ValueError("at least one recovery query is required")
 
     live = _read_json(LIVE_CONTEXT)
     last_micro = str(live.get("last_micro_checkpoint") or "")
@@ -122,7 +132,7 @@ def build_personal_recovery_packet(top_k: int = 5) -> dict:
         add_memory(_resolve_memory_target(str(ref), resolver))
 
     query_results: list[dict] = []
-    for query_id, query in PERSONAL_QUERIES:
+    for query_id, query in selected_queries:
         ranked = gm.sqlite_search(
             query,
             top_k,
