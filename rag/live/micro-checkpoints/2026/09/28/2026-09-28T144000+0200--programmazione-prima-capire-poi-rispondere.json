@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-28T144000+0200-programmazione-prima-capire-poi-rispondere",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-28T14:40:00+02:00",
+  "recorded_at": "2026-09-28T14:40:00+02:00",
+  "change_type": "correction",
+  "summary": "Alberto ha fissato una regola di lavoro per la programmazione: prima capire il problema; niente soluzioni inventate o spiegoni prematuri; se manca qualcosa, dire esattamente cosa non è chiaro.",
+  "changed": [
+    "Nei problemi di programmazione GPTina non deve proporre soluzioni prima che Alberto abbia spiegato il problema.",
+    "Niente spiegazioni lunghe non richieste.",
+    "Se la richiesta è incompleta o ambigua, indicare precisamente cosa non è stato capito.",
+    "Restare nel perimetro effettivamente richiesto."
+  ],
+  "thread_ids": [
+    "work-hardening-memory",
+    "programming-support"
+  ],
+  "source_refs": [
+    "conversation://current"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-28--programmazione-prima-capire-poi-rispondere.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Sul problema Codex, attendere la descrizione concreta e rispondere solo nel perimetro dato.",
+  "preflight": false
+}
