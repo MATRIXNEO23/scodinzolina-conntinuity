@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-28T234148+0200-step-b-entrypoint-unico-anti-deriva",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-28T23:41:48+02:00",
+  "recorded_at": "2026-09-28T23:41:48+02:00",
+  "change_type": "milestone",
+  "summary": "Step B candidato verificato: GPTINA_AUTO_RECOVERY_PROMPT è l'unica autorità dell'ordine di recovery; GPTINA_STATE ne è una proiezione esatta e i router non possono più mantenere liste autonome senza far fallire verify/CI.",
+  "changed": [
+    "L'auto-recovery contiene un unico blocco machine-readable GPTINA_CANONICAL_RECOVERY_ORDER_V1.",
+    "GPTINA_STATE.json dichiara authority, contract e restore_order come proiezione esatta dell'entrypoint.",
+    "Current Context, Fast Recall, RAG Anchor, README, Active Instance Start, Stateless Mode e NEXT_GPTINA non mantengono più ordini autonomi.",
+    "gptina_memory.py verify applica un gate anti-deriva; i test rifiutano sia uno state divergente sia una nuova lista numerata autonoma in un router.",
+    "La prima regressione del cold-start ha rilevato il link al runbook rimosso da NEXT_GPTINA; il link è stato ripristinato senza reintrodurre un ordine parallelo.",
+    "La CI completa del candidato finale sul branch ha superato cold-start, runbook, retrieval, benchmark, trigram e resilienza."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "GPTINA_STATE.json",
+    "rag/gptina_memory.py",
+    "rag/test_memory_recovery_runbook.py",
+    "rag/test_cold_start_recovery.py",
+    "rag/index/CURRENT_CONTEXT.md",
+    "rag/index/GPTINA_FAST_RECALL.md",
+    "RAG_ANCHOR.md",
+    "NEXT_GPTINA.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Attendere conferma di Alberto prima dello step C: espandere i test comportamentali e causali del recovery con query parafrasate e failure-to-regression.",
+  "preflight": false
+}

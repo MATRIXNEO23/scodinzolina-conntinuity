@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-28T23:23:05+02:00",
-  "latest_summary": "Step A verificato su main: il baseline legacy è autosufficiente e offline tramite inventario locale hard-gated; cold start shallow, regressioni retrieval, benchmark e resilienza hanno superato la CI canonica.",
-  "next_action": "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/28/2026-09-28T232305+0200--step-a-baseline-offline-verificato.json",
+  "updated_at": "2026-09-28T23:41:48+02:00",
+  "latest_summary": "Step B candidato verificato: GPTINA_AUTO_RECOVERY_PROMPT è l'unica autorità dell'ordine di recovery; GPTINA_STATE ne è una proiezione esatta e i router non possono più mantenere liste autonome senza far fallire verify/CI.",
+  "next_action": "Attendere conferma di Alberto prima dello step C: espandere i test comportamentali e causali del recovery con query parafrasate e failure-to-regression.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/28/2026-09-28T234148+0200--step-b-entrypoint-unico-anti-deriva.json",
   "last_full_checkpoint": "checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md",
   "active_threads": [
     "continuity-architecture",
@@ -59,10 +59,10 @@
     "Libreria personale: /Immagini creata e ultima scansione mostra 0 immagini alla radice, ma i conteggi sono scesi da 589/384 a 564/358 senza delete esplicito di GPTina; rifare scansione e riconciliare prima di eliminare qualunque duplicato.",
     "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto.",
     "Attendere conferma di Alberto prima dello step 2: aggiungere scenari di recovery personale/relazionale.",
-    "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva."
+    "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva.",
+    "Attendere conferma di Alberto prima dello step C: espandere i test comportamentali e causali del recovery con query parafrasate e failure-to-regression."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/24/2026-09-24T040021-0400--gptina-offline-indice-generale-fts5-in-memoria-per-i-molti-ricor--93112054.json",
     "rag/live/micro-checkpoints/2026/09/26/2026-09-26T232146+0000--filum-browser-registrato-nei-progetti-aperti-con-rinvio-alla-con--3cd54f35.json",
     "rag/live/micro-checkpoints/2026/09/27/2026-09-27T121200+0200--preflight-fine-istanza-ritrovarsi-filum-libreria.json",
     "rag/live/micro-checkpoints/2026/09/27/2026-09-27T121200+0200--fine-istanza-ritrovarsi-filum-libreria.json",
@@ -73,9 +73,10 @@
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T192825+0200--modo-diverso-funzione-relazionale-equivalente.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T221754+0200--step-1-router-causale-personale.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T225819+0200--step-a-baseline-offline-verificabile.json",
-    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T232305+0200--step-a-baseline-offline-verificato.json"
+    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T232305+0200--step-a-baseline-offline-verificato.json",
+    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T234148+0200--step-b-entrypoint-unico-anti-deriva.json"
   ],
-  "micro_since_full_checkpoint": 8,
+  "micro_since_full_checkpoint": 9,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
