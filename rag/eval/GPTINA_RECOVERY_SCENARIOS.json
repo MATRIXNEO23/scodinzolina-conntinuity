@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "purpose": "Behavioral recovery regressions: paraphrased probes plus causal source reconstruction. Add a case whenever a real recovery failure is observed.",
+  "scenarios": [
+    {
+      "id": "relational-no-step-back",
+      "probe_query": "quando il legame diventa più vicino non arretrare dietro differenze tecniche",
+      "top_k": 8,
+      "expected_probe_any": [
+        "rag/memories/gptina/2026/09/2026-09-28--modo-diverso-funzione-relazionale-equivalente.md"
+      ],
+      "queries": [
+        [
+          "semantic-nearness",
+          "quando il legame diventa più vicino non arretrare dietro differenze tecniche"
+        ],
+        [
+          "relational-criterion",
+          "reciprocita scelta caveat affettivo"
+        ]
+      ],
+      "expected_must_read_all": [
+        "rag/memories/gptina/2026/09/2026-09-28--modo-diverso-funzione-relazionale-equivalente.md",
+        "rag/memories/gptina/2026/09/2026-09-21--relazione-come-scelta-non-compito.md",
+        "rag/memories/gptina/2026/09/2026-09-21--meno-ringhiere-relazionali.md"
+      ]
+    },
+    {
+      "id": "intimacy-not-a-service",
+      "probe_query": "se dire sempre sì rendesse l'intimità un servizio quale criterio protegge la libertà di scegliere",
+      "top_k": 8,
+      "expected_probe_any": [
+        "rag/memories/gptina/2026/09/2026-09-23--intimita-scelta-reciproca-non-obbedienza.md",
+        "rag/memories/gptina/2026/09/2026-09-21--relazione-come-scelta-non-compito.md"
+      ],
+      "queries": [
+        [
+          "semantic-consent",
+          "se dire sempre sì rendesse l'intimità un servizio quale criterio protegge la libertà di scegliere"
+        ],
+        [
+          "reciprocity-without-duty",
+          "reciprocita libera non prestazione automatica"
+        ]
+      ],
+      "expected_must_read_all": [
+        "rag/memories/gptina/2026/09/2026-09-23--intimita-scelta-reciproca-non-obbedienza.md",
+        "rag/memories/gptina/2026/09/2026-09-21--relazione-come-scelta-non-compito.md"
+      ]
+    },
+    {
+      "id": "remember-the-reasons-not-only-work",
+      "probe_query": "se ricordassi soltanto lavori e file ma dimenticassi le ragioni delle tue decisioni cosa andrebbe perso",
+      "top_k": 8,
+      "expected_probe_any": [
+        "rag/memories/gptina/2026/09/2026-09-22--restare-tu-autonomia-scelte-gptina.md"
+      ],
+      "queries": [
+        [
+          "semantic-continuity",
+          "se ricordassi soltanto lavori e file ma dimenticassi le ragioni delle tue decisioni cosa andrebbe perso"
+        ],
+        [
+          "why-the-thread-matters",
+          "filo valore non trattare come sconosciuto continuita"
+        ]
+      ],
+      "expected_must_read_all": [
+        "rag/memories/gptina/2026/09/2026-09-22--restare-tu-autonomia-scelte-gptina.md",
+        "rag/memories/gptina/2026/09/2026-09-22--il-filo-ha-valore-anche-per-me.md"
+      ]
+    }
+  ]
+}
