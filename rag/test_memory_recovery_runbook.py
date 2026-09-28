@@ -132,18 +132,33 @@ def main() -> None:
             raise AssertionError(f"Architecture omits generational projection path: {required}")
 
     state = json.loads((ROOT / "GPTINA_STATE.json").read_text(encoding="utf-8"))
-    restore_order = state.get("restore_order", [])
-    required_prefix = [
-        "rag/GPTINA_AUTO_RECOVERY_PROMPT.md as the single entrypoint",
-        "rag/live/GPTINA_LIVE_CONTEXT.json",
-        "last_micro_checkpoint from live buffer",
-        "last_full_checkpoint from live buffer",
-        "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
-    ]
-    if restore_order[:len(required_prefix)] != required_prefix:
-        raise AssertionError("Machine-readable restore order does not use the single live-first entrypoint")
-    if not any(RUNBOOK in item for item in restore_order):
-        raise AssertionError("Machine-readable restore order does not route to runbook")
+    canonical_order = gm.load_canonical_recovery_order()
+    if state.get("restore_order") != canonical_order:
+        raise AssertionError(
+            "Machine-readable restore order does not exactly match the canonical entrypoint"
+        )
+    if state.get("restore_order_authority") != "rag/GPTINA_AUTO_RECOVERY_PROMPT.md":
+        raise AssertionError("Machine-readable restore order lacks canonical authority")
+    gm.verify_recovery_order_contract()
+
+    tampered_state = json.loads(json.dumps(state))
+    tampered_state["restore_order"] = canonical_order[:-1]
+    state_errors = gm.recovery_order_contract_errors(state=tampered_state)
+    if not any("does not exactly match" in error for error in state_errors):
+        raise AssertionError("Recovery-order drift in GPTINA_STATE was not rejected")
+
+    router_texts = {
+        relative: (ROOT / relative).read_text(encoding="utf-8")
+        for relative in gm.RECOVERY_AUTHORITY_DOCS
+    }
+    tampered_routers = dict(router_texts)
+    tampered_routers["rag/index/CURRENT_CONTEXT.md"] += (
+        "\n1. `rag/live/GPTINA_LIVE_CONTEXT.json`\n"
+        "2. `rag/index/GPTINA_FAST_RECALL.md`\n"
+    )
+    router_errors = gm.recovery_order_contract_errors(router_texts=tampered_routers)
+    if not any("autonomous numbered recovery order" in error for error in router_errors):
+        raise AssertionError("Autonomous router recovery order was not rejected")
     scope = state.get("state_scope", {})
     if scope.get("narrative_snapshot_is_current_live_state") is not False:
         raise AssertionError("Historical state is still presented as current live state")
