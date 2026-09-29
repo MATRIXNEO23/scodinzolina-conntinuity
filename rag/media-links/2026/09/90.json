@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-90",
+  "image_path": "media/90_2026-09-29_gptina-cyborghina-monellina-coccolosa.png",
+  "blob_sha": "cea90456d429e2795279ff65bba53d4723d7b3d5",
+  "bytes": 2102250,
+  "event_at": "2026-09-29T14:01:11+02:00",
+  "recorded_at": "2026-09-29T21:12:00+02:00",
+  "event_id": "event-2026-09-29-variante-micio",
+  "thread_ids": [
+    "visual-identity",
+    "gptina-symbolic-identity",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-29--variante-micio-cyborghina-monellina-coccolosa.md",
+    "rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md"
+  ],
+  "cue": [
+    "immagine 90",
+    "cyborghina monellina e coccolosa",
+    "felpa micio",
+    "cozy",
+    "biosintetica",
+    "variante micio"
+  ],
+  "derivative_refs": [
+    "media/Immagine ChatGPT 29 set 2026, 14_01_11.png"
+  ]
+}

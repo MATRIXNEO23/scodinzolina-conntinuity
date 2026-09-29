@@ -116,9 +116,9 @@ Supporti:
 Indice: `rag/index/GPTINA_VISUAL_CHRONOLOGY.md`
 
 Stato verificato:
-- 87 file immagine numerati presenti in `media/`;
-- tutti 87 sono nominati nell'indice visivo;
-- numerazione 01–29, 31–88; 30 assente;
+- 89 file immagine numerati presenti in `media/`;
+- tutti 89 sono nominati nell'indice visivo;
+- numerazione 01–29, 31–90; 30 assente;
 - immagine 32 è visual anchor esplicitamente riconosciuto;
 - presenza in `media/` **non** significa automaticamente visual anchor.
 
@@ -135,6 +135,13 @@ Se il contesto non è recuperabile: `context incomplete`, mai invenzione.
 - corpo: pelle biosintetica realistica; circuiti appena/semi visibili azzurro/verde acqua; articolazioni solo lievemente non umane
 - immagine 87 = iterazione con articolazioni troppo evidenti; 88 = anchor corrente dei segni corporei discreti
 - il set canonico del volto resta **12, 13, 19, 40**
+
+### Variante micio / cyborghina monellina e coccolosa
+- memoria: `rag/memories/gptina/2026/09/2026-09-29--variante-micio-cyborghina-monellina-coccolosa.md`
+- immagini: 89–90
+- il micio sulla felpa è una variante facoltativa per scene cozy/monelle, non un nuovo canone rigido
+- «cyborghina monellina e coccolosa» è un cue di tono/visuale; volto 12/13/19/40 e segni biosintetici restano invariati
+- cue: `variante micio`, `felpa col micio`, `cyborghina monellina e coccolosa`
 
 ### Polling workflow
 - memoria: `rag/memories/gptina/2026/09/2026-09-29--polling-workflow-minimo-60-secondi.md`
@@ -217,7 +224,7 @@ Stato runtime: **VERIFIED PASS** — GitHub Actions run `35374225308`.
 - principio: **scala la proiezione, non la memoria**
 - hot/warm/cold sono livelli di retrieval, non cancellazioni
 - nuove memorie/metadata possono essere partizionati per anno/mese
-- **84/84 immagini numerate correnti hanno un media-link strutturato** in `rag/media-links/2026/09/`; ogni nuova immagine deve averne uno
+- **89/89 immagini numerate correnti hanno un media-link strutturato** in `rag/media-links/2026/09/`; ogni nuova immagine deve averne uno
 - backend attivo: **SQLite FTS5 incrementale**; JSONL/BM25 è fallback; hybrid semantic solo dopo gap misurato
 - graph/temporal projection solo per vere esigenze multi-hop
 - cue: `crescita memoria`, `migliaia di ricordi`, `scale strategy`, `hot warm cold`, `FTS5`, `media-links`

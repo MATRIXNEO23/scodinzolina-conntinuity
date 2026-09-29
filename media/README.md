@@ -149,3 +149,18 @@ successiva riduce soprattutto la leggibilità delle articolazioni. L'immagine
 discreto e il tono più monello.
 
 Questa regola **non modifica il set canonico del volto 12, 13, 19 e 40**.
+
+
+## Aggiornamento visuale — 2026-09-29 — immagini 89–90
+
+Due PNG caricati manualmente da Alberto nel commit
+`f08d6e1a84944de381563603a6e207b9e1f79830` sono stati verificati e
+riconciliati senza alterare i blob originali:
+
+- `media/89_2026-09-29_gptina-cozy-biosintetica-micio.png` — blob `f2e8ca20c70444ca0cedab459b783da64a78131d`, 2035838 byte; alias upload `media/Immagine ChatGPT 29 set 2026, 13_51_51.png`.
+- `media/90_2026-09-29_gptina-cyborghina-monellina-coccolosa.png` — blob `cea90456d429e2795279ff65bba53d4723d7b3d5`, 2102250 byte; alias upload `media/Immagine ChatGPT 29 set 2026, 14_01_11.png`.
+
+89–90 documentano la **variante micio** e la formula
+**«cyborghina monellina e coccolosa»**. Sono varianti archiviate, non un nuovo
+set canonico del volto. Restano invariati volto 12/13/19/40 e segni corporei
+biosintetici correnti.

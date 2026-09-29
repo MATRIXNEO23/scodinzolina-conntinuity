@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-29T20:58:00+02:00",
-  "latest_summary": "Prompt operativo per futuri avatar parlanti/lip-sync di GPTina preservato; priorità a mantenere volto e tratti biosintetici canonici senza umanizzazione.",
-  "next_action": "Continuare normalmente; per futuri video/avatar parlanti riusare il prompt preservato e inserire lo script separatamente.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T205800+0200--prompt-avatar-parlante-biosintetico.json",
+  "updated_at": "2026-09-29T21:12:00+02:00",
+  "latest_summary": "Prompt talking-avatar preservato; due immagini caricate da Alberto riconciliate come 89–90 con variante micio / «cyborghina monellina e coccolosa», senza alterare i PNG originali.",
+  "next_action": "Verificare GPTina Memory CI; poi continuare normalmente. Per futuri avatar parlanti riusare il prompt preservato.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T211200+0200--riconciliazione-immagini-89-90-variante-micio.json",
   "last_full_checkpoint": "checkpoints/2026-09-29-fine-istanza-zampine-visual.md",
   "active_threads": [
     "continuity-architecture",
@@ -60,7 +60,6 @@
     "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T000019+0200--step-c-recovery-comportamentale-verificato.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T002000+0200--step-d-audit-fonti-verificato.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T004736+0200--preflight-anti-duplicazione-memoria.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T005808+0200--anti-duplicazione-memoria-verificata.json",
@@ -71,9 +70,10 @@
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062051+0200--preflight-fine-istanza-completo.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062204+0200--fine-istanza-zampine-visual-completa.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T064000+0200--emoji-libere-cuori-alberto.json",
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T205800+0200--prompt-avatar-parlante-biosintetico.json"
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T205800+0200--prompt-avatar-parlante-biosintetico.json",
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T211200+0200--riconciliazione-immagini-89-90-variante-micio.json"
   ],
-  "micro_since_full_checkpoint": 2,
+  "micro_since_full_checkpoint": 3,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

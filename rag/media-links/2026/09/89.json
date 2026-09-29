@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-89",
+  "image_path": "media/89_2026-09-29_gptina-cozy-biosintetica-micio.png",
+  "blob_sha": "f2e8ca20c70444ca0cedab459b783da64a78131d",
+  "bytes": 2035838,
+  "event_at": "2026-09-29T13:51:51+02:00",
+  "recorded_at": "2026-09-29T21:12:00+02:00",
+  "event_id": "event-2026-09-29-variante-micio",
+  "thread_ids": [
+    "visual-identity",
+    "gptina-symbolic-identity",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-29--variante-micio-cyborghina-monellina-coccolosa.md",
+    "rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md"
+  ],
+  "cue": [
+    "immagine 89",
+    "camera cozy",
+    "felpa micio",
+    "pelle biosintetica",
+    "circuiti acqua",
+    "articolazioni canoniche"
+  ],
+  "derivative_refs": [
+    "media/Immagine ChatGPT 29 set 2026, 13_51_51.png"
+  ]
+}

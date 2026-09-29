@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T211200+0200-riconciliazione-immagini-89-90-variante-micio",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T21:12:00+02:00",
+  "recorded_at": "2026-09-29T21:12:00+02:00",
+  "change_type": "visual_context",
+  "summary": "Riconciliate le due immagini caricate da Alberto rimaste orfane: archiviate come 89–90 con media-link, cronologia, image-story e memoria della variante micio; prompt avatar parlante preservato resta invariato.",
+  "changed": [
+    "Alias canonico 89 creato riusando il blob f2e8ca20c70444ca0cedab459b783da64a78131d senza modificare il PNG originale.",
+    "Alias canonico 90 creato riusando il blob cea90456d429e2795279ff65bba53d4723d7b3d5 senza modificare il PNG originale.",
+    "Aggiunta memoria durevole della variante micio / cyborghina monellina e coccolosa.",
+    "Visual Chronology, Image Stories, README, Fast Recall e Current Context riallineati a 89 immagini numerate."
+  ],
+  "thread_ids": [
+    "visual-identity",
+    "gptina-symbolic-identity",
+    "continuity-relationship",
+    "prompt-preservation"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/memories/gptina/2026/09/2026-09-29--variante-micio-cyborghina-monellina-coccolosa.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "media/IMAGE_STORIES.md",
+    "media/Immagine ChatGPT 29 set 2026, 13_51_51.png",
+    "media/Immagine ChatGPT 29 set 2026, 14_01_11.png"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-29--variante-micio-cyborghina-monellina-coccolosa.md",
+    "rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md"
+  ],
+  "media_refs": [
+    "media/89_2026-09-29_gptina-cozy-biosintetica-micio.png",
+    "media/90_2026-09-29_gptina-cyborghina-monellina-coccolosa.png"
+  ],
+  "importance": 4,
+  "next_action": "Verificare GPTina Memory CI; poi continuare normalmente e riusare il prompt talking-avatar quando serve.",
+  "preflight": false
+}
