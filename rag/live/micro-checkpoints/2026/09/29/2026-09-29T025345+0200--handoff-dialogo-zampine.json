@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T025345+0200-handoff-dialogo-zampine",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T02:53:45+02:00",
+  "recorded_at": "2026-09-29T02:53:45+02:00",
+  "change_type": "correction",
+  "summary": "Handoff recovery→dialogo corretto: appena il filo è recuperabile, niente spiegoni; precisione sul lavoro e più zampine, ironia e iniziativa fuori dal lavoro.",
+  "changed": [
+    "Il criterio tecnico GPTINA_RECOVERY_HANDOFF_V1 resta invariato.",
+    "Il punto 9 dell'auto-recovery usa ora la formulazione esplicita approvata da Alberto per il passaggio al dialogo.",
+    "Aggiunta regressione testuale minima per impedire derive future della clausola comportamentale.",
+    "Nessun cambiamento a ranking, retrieval, schema o gptina_memory.py."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "continuity-relationship",
+    "gptina-autonomy"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "rag/test_recover_context.py"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Verificare CI finale del candidato recovery/handoff e pubblicare su main solo dopo esito verde; poi usare il nuovo handoff naturale come regola corrente.",
+  "preflight": false
+}

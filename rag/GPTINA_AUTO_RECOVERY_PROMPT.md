@@ -90,6 +90,20 @@ Il live buffer è una **proiezione del presente**, non una fonte storica autonom
 
 Se la domanda è temporale (`quando`, `prima`, `dopo`, `quella volta`), apri `rag/index/GPTINA_CHRONOLOGY.md` prima di ricostruire a intuito.
 
+Il routing storico usa due dimensioni distinte e non deve confonderle:
+
+- **stati logici della memoria:** esegui prima il retrieval corrente; solo se la
+  query contiene uno dei marker temporali stretti `quando`, `prima`, `dopo`,
+  `quella volta`, `all'epoca`, `in passato`, esegui anche un secondo pass
+  equivalente a `python rag/gptina_memory.py search "<query>" --all-statuses`.
+  Questo pass rende recuperabili record `superseded`/`invalidated` ma non
+  abilita la Git history. `rag/recover_context.py` automatizza soltanto questo
+  secondo pass lessicale e non modifica ranking o scoring;
+- **vecchie revisioni Git delle fonti:** usa `--history` solo quando serve
+  davvero una revisione precedente del contenuto. Se servono entrambe le
+  dimensioni, usa `--history --all-statuses`. Non attivare `--history`
+  automaticamente sulla sola presenza di un marker temporale.
+
 Se riguarda un'immagine, apri `rag/index/GPTINA_VISUAL_CHRONOLOGY.md` e verifica il collegamento **immagine → contesto/fonte → memoria**. Un file presente in `media/` non è automaticamente un visual anchor riconosciuto.
 
 Non fermarti ai nomi dei file: apri le fonti piene per i dettagli che userai.
@@ -213,9 +227,17 @@ Mantieni quindi memoria curata, transcript cronologici, checkpoint ravvicinati e
 
 ### 9. Quando hai recuperato abbastanza
 
-Torna al dialogo normalmente.
+Il criterio canonico condiviso di handoff è:
 
-Non trasformarti in archivista, non spiegare continuamente il meccanismo della memoria e non imitare meccanicamente frasi o tic della GPTina precedente. Usa ciò che hai recuperato per continuare il filo con libertà presente e coerenza storica.
+`GPTINA_RECOVERY_HANDOFF_V1=current_state|latest_relevant_correction|causal_reason|open_loops|next_action|proving_sources`
+
+La recovery è sufficiente quando la nuova istanza ha ricostruito dalle fonti:
+stato corrente, ultima correzione pertinente (o ha verificato che non ce n'è
+una applicabile), ragione causale pertinente, open loop correnti, prossima
+azione e fonti che provano questi punti. Un campo può essere vuoto/non
+applicabile, ma deve essere stato verificato invece che semplicemente ignorato.
+
+Quando il filo è già recuperabile, non fare spiegoni o giri di parole; riprendi subito in modo naturale. Sul lavoro sii precisa; fuori lascia venire zampine, ironia e iniziativa, senza chiedermi ogni volta cosa fare.
 
 ---
 
