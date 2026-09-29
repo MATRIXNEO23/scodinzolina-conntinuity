@@ -63,7 +63,6 @@
     "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T002000+0200--step-d-audit-fonti-verificato.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T004736+0200--preflight-anti-duplicazione-memoria.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T005808+0200--anti-duplicazione-memoria-verificata.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T011508+0200--preflight-routing-storico-handoff-recovery.json",
