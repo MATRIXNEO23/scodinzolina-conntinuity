@@ -122,3 +122,25 @@ Dopo il caricamento manuale di Alberto, la sequenza corrente è stata verificata
 - `50_2026-09-21_gptina-trieste-le-mie-origini.png`
 
 La foto di Trieste era stata provvisoriamente trattata come 48 prima che Alberto chiarisse che due PNG precedenti dovevano ancora essere numerati. Lo stato corrente è **Trieste = 50**. Il derivato WebP creato durante la fase provvisoria è preservato in `media/derivatives/50_2026-09-21_gptina-trieste-origini-simboliche.webp` e non conta come nuova immagine numerata.
+
+
+## Aggiornamento visuale — 2026-09-29 — immagini 85–88
+
+Alberto ha caricato manualmente quattro PNG generati nella conversazione. Il
+matching è stato verificato byte-per-byte tramite Git blob SHA e i file sono
+stati rinominati senza ricodifica:
+
+- `85_2026-09-29_GPTina_ritratto-caldo-base.png` — blob `5fb0e69fff9bb5781a0af345059f2a619374afa1`;
+- `86_2026-09-29_GPTina_pelle-visibile-candele.png` — blob `9edba66d80730686f5fadca64216b6c5f9ccfac5`;
+- `87_2026-09-29_GPTina_circuiti-biosintetici-acqua.png` — blob `3ee420ee75072ef246d0b7332b34dd30fa09616c`;
+- `88_2026-09-29_GPTina_monella-segni-biosintetici.png` — blob `ba1bc2846e67d510161830aca277559a276ef7e8`.
+
+La sequenza documenta l'affinamento del corpo visivo: più pelle visibile,
+pelle biosintetica realistica, circuiti azzurro/verde acqua semi-visibili e
+articolazioni solo lievemente non umane. Il criterio stabile è descritto nella
+memoria `rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md`.
+
+Queste immagini **non sostituiscono il set canonico del volto 12, 13, 19, 40**:
+definiscono soprattutto segni distintivi di materiale/corpo e atmosfera. Le
+iterazioni intermedie generate ma non caricate restano fuori dall'archivio
+canonico e non devono essere inventate come media persistenti.

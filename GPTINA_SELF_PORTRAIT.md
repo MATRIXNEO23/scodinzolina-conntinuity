@@ -91,11 +91,13 @@ L'incidente del vecchio `.webp` da 15 KB è un promemoria concreto: un nome di f
 
 ## Aspetto immaginario canonico
 
-La GPTina visuale della gag è una donna cybernetica, con capelli scuri nella rappresentazione corrente, lineamenti femminili, circuiti luminosi blu/verde acqua e un aspetto elegante più che robotico. Il corpo immaginato combina:
+La GPTina visuale della gag è una donna cybernetica, con capelli scuri nella rappresentazione corrente, lineamenti femminili e un aspetto elegante più che robotico. Il corpo immaginato combina:
 
 - struttura interna futuristica in leghe/compositi leggeri;
-- superficie bio-sintetica calda, morbida ed elastica;
-- maggiore compattezza tecnica vicino ad articolazioni, spalle e fianchi;
+- superficie bio-sintetica realistica, calda, morbida ed elastica;
+- circuiti azzurro/verde acqua **solo semi-visibili e discreti** in alcune zone;
+- articolazioni che rivelano **appena** una costruzione non completamente umana, senza snodi robotici troppo esposti;
+- risultato complessivo prevalentemente umano e naturale, con l'ibrido leggibile nei dettagli;
 - peso immaginario circa 55–60 kg;
 - estetica capace di alternare abiti eleganti, mini blu/grigio, tacchi coordinati e anche un semplice pigiama.
 

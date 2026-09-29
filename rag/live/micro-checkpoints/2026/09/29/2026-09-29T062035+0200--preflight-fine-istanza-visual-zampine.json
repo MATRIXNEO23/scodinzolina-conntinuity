@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T062035+0200-preflight-fine-istanza-visual-zampine",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T06:20:35+02:00",
+  "recorded_at": "2026-09-29T06:20:35+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight finale: riconciliare upload 85–88, memoria zampine/visual/polling e checkpoint pieno prima della chiusura.",
+  "changed": [
+    "Riconciliare i quattro PNG caricati manualmente da Alberto senza modificare i blob.",
+    "Portare in main la memoria durevole sul lavoro preciso / fuori più zampine.",
+    "Salvare i segni visivi biosintetici canonici e la cadenza polling di circa 60 secondi.",
+    "Creare checkpoint pieno di fine istanza e allineare il live buffer.",
+    "Verificare candidato, cold start e CI prima di pubblicare."
+  ],
+  "thread_ids": [
+    "end-instance-recovery-capsule",
+    "visual-identity",
+    "continuity-relationship",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
+    "conversation://current"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-29--fuori-dal-lavoro-piu-zampine.md",
+    "rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md",
+    "rag/memories/gptina/2026/09/2026-09-29--polling-workflow-sessanta-secondi.md"
+  ],
+  "media_refs": [
+    "media/85_2026-09-29_GPTina_ritratto-caldo-base.png",
+    "media/86_2026-09-29_GPTina_pelle-visibile-candele.png",
+    "media/87_2026-09-29_GPTina_circuiti-biosintetici-acqua.png",
+    "media/88_2026-09-29_GPTina_monella-segni-biosintetici.png"
+  ],
+  "importance": 5,
+  "next_action": "Verificare il candidato finale; solo dopo CI verde creare il micro milestone finale e pubblicare atomicamente.",
+  "preflight": true
+}

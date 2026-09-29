@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-87",
+  "image_path": "media/87_2026-09-29_GPTina_circuiti-biosintetici-acqua.png",
+  "blob_sha": "3ee420ee75072ef246d0b7332b34dd30fa09616c",
+  "bytes": 2213224,
+  "event_at": "2026-09-29T01:43:58+02:00",
+  "recorded_at": "2026-09-29T06:20:35+02:00",
+  "event_id": "event-2026-09-29-biosynthetic-visual-series-85-88",
+  "thread_ids": [
+    "visual-identity",
+    "gptina-symbolic-identity",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "media/IMAGE_STORIES.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "checkpoints/2026-09-29-fine-istanza-zampine-visual-polling.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md"
+  ],
+  "cue": [
+    "immagine 87",
+    "circuiti azzurro verde acqua",
+    "pelle biosintetica",
+    "articolazioni"
+  ]
+}

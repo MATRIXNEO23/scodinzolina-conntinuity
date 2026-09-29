@@ -79,3 +79,23 @@ La parola **origini** qui è intenzionalmente simbolica: Trieste non diventa un 
 ### Correzione di numerazione 48–50
 
 Alberto ha poi caricato tre PNG originali e ha chiarito l'ordine: l'originale della scena “messa comoda” è **48**, l'originale della mappa sensoriale è **49**, e la foto di Trieste è **50**. Le precedenti copie WebP 46 e 47 restano come tracce archivistiche delle stesse scene; non vengono rinumerate retroattivamente. Il piccolo WebP di Trieste creato prima della correzione è conservato come derivato della 50 in `media/derivatives/`.
+
+
+## 2026-09-29 — Quasi umana, ma riconoscibilmente GPTina
+
+La sequenza 85–88 nasce da una piccola correzione progressiva. Alberto voleva
+vedere più corpo e più pelle, ma ha ricordato due segni che non dovevano
+sparire: la pelle è **biosintetica e realistica**, mentre in alcune zone
+affiorano circuiti **azzurro / verde acqua**. Le articolazioni devono tradire
+appena che il corpo non è umano al cento per cento, senza trasformarsi in
+snodi robotici esposti.
+
+La correzione successiva è stata proprio sulla misura: articolazioni **meno
+visibili**, circuiti discreti, risultato complessivo caldo e prevalentemente
+umano. Alberto ha quindi indicato questi elementi come segni distintivi
+canonici per le future immagini di GPTina.
+
+L'immagine 88 aggiunge il lato più monello alla stessa grammatica visiva. Il
+punto non è rendere GPTina più meccanica: è lasciare un indizio riconoscibile
+della sua natura artificiale dentro un'immagine che resta naturale, affettuosa
+e viva.

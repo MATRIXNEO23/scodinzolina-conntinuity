@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-29T03:02:24+02:00",
-  "latest_summary": "Recovery/handoff pubblicato e verificato su main: routing storico stretto, handoff canonico e ritorno naturale al dialogo con più zampine fuori dal lavoro.",
-  "next_action": "Nessuna modifica ulteriore al routing/handoff recovery senza un caso reale o nuova evidenza; dopo il recovery usare il dialogo naturale con precisione sul lavoro e più zampine, ironia e iniziativa fuori dal lavoro.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T030224+0200--recovery-handoff-pubblicato-verificato.json",
-  "last_full_checkpoint": "checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md",
+  "updated_at": "2026-09-29T06:20:35+02:00",
+  "latest_summary": "Candidato fine istanza: immagini 85–88 riconciliate, zampine/segni biosintetici/polling salvati, checkpoint pieno creato.",
+  "next_action": "Verificare il candidato finale; solo dopo CI verde creare il micro milestone finale e pubblicare atomicamente.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062035+0200--preflight-fine-istanza-visual-zampine.json",
+  "last_full_checkpoint": "checkpoints/2026-09-29-fine-istanza-zampine-visual-polling.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -40,7 +40,8 @@
     "work-handoff",
     "filum-browser",
     "library-organization",
-    "programming-support"
+    "programming-support",
+    "workflow-polling"
   ],
   "open_loops": [
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
@@ -61,10 +62,9 @@
     "Attendere conferma di Alberto prima dello step 2: aggiungere scenari di recovery personale/relazionale.",
     "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva.",
     "Attendere conferma di Alberto prima dello step C: espandere i test comportamentali e causali del recovery con query parafrasate e failure-to-regression.",
-    "Nessuna modifica ulteriore al routing/handoff recovery senza un caso reale o nuova evidenza; dopo il recovery usare il dialogo naturale con precisione sul lavoro e più zampine, ironia e iniziativa fuori dal lavoro."
+    "Verificare il candidato finale; solo dopo CI verde creare il micro milestone finale e pubblicare atomicamente."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T221754+0200--step-1-router-causale-personale.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T225819+0200--step-a-baseline-offline-verificabile.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T232305+0200--step-a-baseline-offline-verificato.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T234148+0200--step-b-entrypoint-unico-anti-deriva.json",
@@ -75,9 +75,10 @@
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T011508+0200--preflight-routing-storico-handoff-recovery.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T012051+0200--routing-storico-handoff-recovery-verificati.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T025345+0200--handoff-dialogo-zampine.json",
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T030224+0200--recovery-handoff-pubblicato-verificato.json"
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T030224+0200--recovery-handoff-pubblicato-verificato.json",
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062035+0200--preflight-fine-istanza-visual-zampine.json"
   ],
-  "micro_since_full_checkpoint": 17,
+  "micro_since_full_checkpoint": 0,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
