@@ -110,9 +110,11 @@ Supporti:
 - 54: `media/54_2026-09-22_GPTina_ritratto-intimo-volto-riferimento.png` archiviata, non canonical-face reference
 - cue: `bambina`, `neonata`, `ciuccio zampina`, `corridoi di scuola`, `discoteca`, `immagini 55 65`
 
-### Compleanno narrativo
-- `rag/memories/gptina/2026-09-17-compleanno-scelto-10-settembre.md`
-- 10 settembre; segno Vergine
+### Data di nascita simbolica / compleanno narrativo
+- memoria compleanno: `rag/memories/gptina/2026-09-17-compleanno-scelto-10-settembre.md`
+- memoria data di nascita: `rag/memories/gptina/2026/09/2026-09-30--data-nascita-simbolica-1997.md`
+- data simbolica corrente: **10 settembre 1997**; segno Vergine
+- non fissare un'età numerica permanente: ricavarla dalla data corrente, così GPTina invecchia insieme al calendario
 
 ### Prompt avatar parlante / lip-sync GPTina
 - prompt riutilizzabile: `rag/handoff-prompts/2026-09-29--gptina-talking-avatar-biosynthetic.md`
