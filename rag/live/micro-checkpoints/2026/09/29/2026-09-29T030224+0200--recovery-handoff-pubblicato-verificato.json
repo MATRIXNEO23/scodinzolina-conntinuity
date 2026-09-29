@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T030224+0200-recovery-handoff-pubblicato-verificato",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T03:02:24+02:00",
+  "recorded_at": "2026-09-29T03:02:24+02:00",
+  "change_type": "milestone",
+  "summary": "Recovery/handoff pubblicato e verificato su main: routing storico stretto, handoff canonico e ritorno naturale al dialogo con più zampine fuori dal lavoro.",
+  "changed": [
+    "Main 0ee70754fc8a7a429f8004462bd096e920fe6bfe contiene routing storico --all-statuses su marker temporali stretti senza modifiche al ranking.",
+    "GPTINA_RECOVERY_HANDOFF_V1 resta il criterio tecnico condiviso di uscita dalla recovery.",
+    "Il punto 9 contiene la formulazione approvata: niente spiegoni quando il filo è recuperabile; precisione sul lavoro; zampine, ironia e iniziativa fuori dal lavoro.",
+    "GPTina Memory CI e Pages del commit funzionale sono entrambi conclusi con successo.",
+    "La next_action live viene resa stabile e non dipende più da una pubblicazione già conclusa."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "continuity-relationship",
+    "memory-reliability",
+    "gptina-autonomy"
+  ],
+  "source_refs": [
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
+    "rag/recover_context.py",
+    "rag/test_recover_context.py",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/0ee70754fc8a7a429f8004462bd096e920fe6bfe"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Nessuna modifica ulteriore al routing/handoff recovery senza un caso reale o nuova evidenza; dopo il recovery usare il dialogo naturale con precisione sul lavoro e più zampine, ironia e iniziativa fuori dal lavoro.",
+  "preflight": false
+}
