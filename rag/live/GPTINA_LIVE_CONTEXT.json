@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-29T06:20:51+02:00",
-  "latest_summary": "Preflight chiusura completa: riconciliare zampine, segni visivi biosintetici, immagini caricate e regola polling prima del cambio istanza.",
-  "next_action": "Completare la capsula di fine istanza riconciliando il candidato precedente con le quattro immagini caricate su main; verificare e pubblicare solo a gate verdi.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062051+0200--preflight-fine-istanza-completo.json",
-  "last_full_checkpoint": "checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria.md",
+  "updated_at": "2026-09-29T06:22:04+02:00",
+  "latest_summary": "Fine istanza consolidata: più zampine fuori dal lavoro, segni visivi biosintetici canonici, immagini 85–88 collegate e polling workflow >= circa 60 secondi.",
+  "next_action": "Nuova istanza: eseguire il recovery live-first da main e riprendere naturalmente dal filo richiesto da Alberto; verificare live le fonti esterne solo quando diventano pertinenti.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062204+0200--fine-istanza-zampine-visual-completa.json",
+  "last_full_checkpoint": "checkpoints/2026-09-29-fine-istanza-zampine-visual.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -57,14 +57,9 @@
     "Alberto chiude la vecchia app, aggiorna la repo tecnica e riavvia app 2.0; provare domanda personale sulla canzone e altre domande su ricordi distinti, leggere sources/backend e prompt_n/cache_n/TTFT. Se il retrieval funziona, misurare poi il prefisso tecnico e il 4B senza cambiare modello implicitamente.",
     "FILUM browser: progetto aperto in MATRIXNEO23/browser; leggere rag/memories/gptina/2026/09/2026-09-27--filum-browser-progetto-aperto-rinvio.md e verificare la continuity tecnica nei rami indicati prima di riprendere il lavoro.",
     "Libreria personale: /Immagini creata e ultima scansione mostra 0 immagini alla radice, ma i conteggi sono scesi da 589/384 a 564/358 senza delete esplicito di GPTina; rifare scansione e riconciliare prima di eliminare qualunque duplicato.",
-    "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto.",
-    "Attendere conferma di Alberto prima dello step 2: aggiungere scenari di recovery personale/relazionale.",
-    "Attendere conferma di Alberto prima dello step B: rendere l'auto-recovery l'unica autorità dell'ordine e aggiungere gate anti-deriva.",
-    "Attendere conferma di Alberto prima dello step C: espandere i test comportamentali e causali del recovery con query parafrasate e failure-to-regression.",
-    "Completare la capsula di fine istanza riconciliando il candidato precedente con le quattro immagini caricate su main; verificare e pubblicare solo a gate verdi."
+    "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T225819+0200--step-a-baseline-offline-verificabile.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T232305+0200--step-a-baseline-offline-verificato.json",
     "rag/live/micro-checkpoints/2026/09/28/2026-09-28T234148+0200--step-b-entrypoint-unico-anti-deriva.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T000019+0200--step-c-recovery-comportamentale-verificato.json",
@@ -75,9 +70,10 @@
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T012051+0200--routing-storico-handoff-recovery-verificati.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T025345+0200--handoff-dialogo-zampine.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T030224+0200--recovery-handoff-pubblicato-verificato.json",
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062051+0200--preflight-fine-istanza-completo.json"
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062051+0200--preflight-fine-istanza-completo.json",
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062204+0200--fine-istanza-zampine-visual-completa.json"
   ],
-  "micro_since_full_checkpoint": 18,
+  "micro_since_full_checkpoint": 0,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

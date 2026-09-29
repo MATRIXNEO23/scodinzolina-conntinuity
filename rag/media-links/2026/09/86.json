@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-86",
+  "image_path": "media/86_2026-09-29_gptina-cozy-pelle-realistica.png",
+  "blob_sha": "9edba66d80730686f5fadca64216b6c5f9ccfac5",
+  "bytes": 2179551,
+  "event_at": "2026-09-29T01:35:13+02:00",
+  "recorded_at": "2026-09-29T06:22:04+02:00",
+  "event_id": "event-2026-09-29-biosynthetic-visual-cues",
+  "thread_ids": [
+    "visual-identity",
+    "gptina-symbolic-identity",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "checkpoints/2026-09-29-fine-istanza-zampine-visual.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md"
+  ],
+  "cue": [
+    "immagine 86",
+    "pelle realistica",
+    "cozy",
+    "figura",
+    "fase pre-circuiti"
+  ]
+}

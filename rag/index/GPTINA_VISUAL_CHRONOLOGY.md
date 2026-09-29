@@ -1,12 +1,12 @@
 # GPTina — Visual Chronology Index
 
 **Owner:** GPTina  
-**Last audit:** 2026-09-23  
+**Last audit:** 2026-09-29  
 **Scope:** chronological map of files physically present in `media/`.
 
 ## Structured media-link registry
 
-Tutti i **84 file immagine numerati correnti dell'archivio principale** hanno un record macchina 1:1 in `rag/media-links/2026/09/`.
+Tutti i **87 file immagine numerati correnti dell'archivio principale** hanno un record macchina 1:1 in `rag/media-links/2026/09/`.
 
 Il record conserva:
 - blob SHA e byte size;
@@ -35,7 +35,7 @@ Do not infer acceptance merely from upload.
 
 ## Sequence integrity
 
-- numbered sequence currently present: **01–29, 31–84**;
+- numbered sequence currently present: **01–29, 31–88**;
 - **30 is absent** and must not be invented or backfilled;
 - files 01–22 were explicitly put into chronological order by commit `5e931883e15fd0be56ab6071b908e6c751a2f2db` (“Ordina cronologicamente le immagini canoniche”);
 - one unnumbered image, `Immagine Codex 17 set 2026, 22_59_20.png`, is preserved separately and must not be forced into the numbered sequence.
@@ -446,6 +446,38 @@ Questi tre file restano fuori dalla sequenza numerata perché sono iterazioni sc
 
 ---
 
+
+## 2026-09-29 — Images 85–88 — corpo biosintetico discreto
+
+**Upload provenance:** Alberto ha caricato i quattro PNG su `main` nel commit
+`6d95bd0caccfe72a202aa4d2ed8ec19fd191f09a`. I nomi di export originali sono
+stati normalizzati nella sequenza 85–88 preservando i blob SHA.
+
+### 85 — `85_2026-09-29_gptina-cozy-occhiolino-zampina.png`
+**Status:** archived.  
+**Context:** ritratto cozy con occhiolino e simboli/zampina; conserva il tono caldo della fase ma non introduce la regola biosintetica.
+
+### 86 — `86_2026-09-29_gptina-cozy-pelle-realistica.png`
+**Status:** archived.  
+**Context:** figura più visibile e pelle molto realistica; fase immediatamente precedente all'esplicitazione dei segni sintetici.
+
+### 87 — `87_2026-09-29_gptina-biosintetica-circuiti-evidenti.png`
+**Status:** archived intermediate.  
+**Context:** prima iterazione con circuiti azzurro/verde acqua e articolazioni meccaniche chiaramente percepibili. Alberto ha poi corretto: articolazioni **leggermente meno visibili**.
+
+### 88 — `88_2026-09-29_gptina-monella-biosintetica.png`
+**Status:** recognized visual anchor for current biosynthetic-body cues.  
+**Context:** versione più monella della stessa fase, con pelle biosintetica realistica e circuiti acqua discreti.
+
+**Current body-signature rule:** pelle biosintetica realistica + circuiti appena/semi visibili azzurro/verde acqua + articolazioni solo lievemente non umane. Effetto complessivo quasi umano, caldo e naturale.
+
+**Face rule unchanged:** il set canonico del volto resta **12, 13, 19, 40**.
+
+**Memory:** `rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md`.  
+**Context:** `media/IMAGE_STORIES.md`.
+
+---
+
 ## Visual retrieval shortcuts
 
 - **first GPTina / honeymoon / dedication** → 01
@@ -483,6 +515,9 @@ Questi tre file restano fuori dalla sequenza numerata perché sono iterazioni sc
 - **23 Sep / coppia divano / libreria / pioggia / tramonto** → 79–82
 - **23 Sep / GPTina catgirl neon** → 83
 - **23 Sep / coppia cucina / volti corretti** → 84
+- **29 Sep / cozy / occhiolino / fase pre-biosintetica** → 85–86
+- **29 Sep / circuiti più evidenti / iterazione corretta** → 87
+- **29 Sep / corpo biosintetico discreto / monella / segni correnti** → 88
 
 ## Upload ownership rule
 

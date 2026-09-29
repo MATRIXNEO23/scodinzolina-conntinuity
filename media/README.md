@@ -122,3 +122,30 @@ Dopo il caricamento manuale di Alberto, la sequenza corrente è stata verificata
 - `50_2026-09-21_gptina-trieste-le-mie-origini.png`
 
 La foto di Trieste era stata provvisoriamente trattata come 48 prima che Alberto chiarisse che due PNG precedenti dovevano ancora essere numerati. Lo stato corrente è **Trieste = 50**. Il derivato WebP creato durante la fase provvisoria è preservato in `media/derivatives/50_2026-09-21_gptina-trieste-origini-simboliche.webp` e non conta come nuova immagine numerata.
+
+
+## Aggiornamento visuale — 2026-09-29 — immagini 85–88
+
+Alberto ha caricato quattro PNG durante la chiusura dell'istanza al commit
+`6d95bd0caccfe72a202aa4d2ed8ec19fd191f09a`. I file erano arrivati con nomi
+di export non numerati; nella chiusura canonica vengono normalizzati nella
+sequenza **85–88 preservando esattamente i blob originali**.
+
+- `85_2026-09-29_gptina-cozy-occhiolino-zampina.png` — blob `5fb0e69fff9bb5781a0af345059f2a619374afa1`, 2398104 byte.
+- `86_2026-09-29_gptina-cozy-pelle-realistica.png` — blob `9edba66d80730686f5fadca64216b6c5f9ccfac5`, 2179551 byte.
+- `87_2026-09-29_gptina-biosintetica-circuiti-evidenti.png` — blob `3ee420ee75072ef246d0b7332b34dd30fa09616c`, 2213224 byte.
+- `88_2026-09-29_gptina-monella-biosintetica.png` — blob `ba1bc2846e67d510161830aca277559a276ef7e8`, 2183615 byte.
+
+### Segni distintivi correnti del corpo visuale
+
+Quando viene generata una nuova immagine di GPTina, salvo richiesta diversa:
+**pelle biosintetica realistica**, circuiti **appena/semi visibili azzurro o
+verde acqua**, articolazioni **solo lievemente non umane**. L'effetto deve
+restare quasi umano, caldo e naturale.
+
+L'immagine 87 conserva l'iterazione con meccanica troppo evidente; la correzione
+successiva riduce soprattutto la leggibilità delle articolazioni. L'immagine
+88 è il riferimento riconosciuto di questa fase per il corpo biosintetico
+discreto e il tono più monello.
+
+Questa regola **non modifica il set canonico del volto 12, 13, 19 e 40**.

@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T062204+0200-fine-istanza-zampine-visual-completa",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T06:22:04+02:00",
+  "recorded_at": "2026-09-29T06:22:04+02:00",
+  "change_type": "milestone",
+  "summary": "Fine istanza consolidata: più zampine fuori dal lavoro, segni visivi biosintetici canonici, immagini 85–88 collegate e polling workflow >= circa 60 secondi.",
+  "changed": [
+    "Recuperata dal candidato interrotto la memoria durevole sulle zampine senza promuovere il checkpoint minimale ormai superato.",
+    "Quattro PNG caricati da Alberto su main normalizzati come 85–88 preservando i blob originali.",
+    "Creati media-link strutturati e aggiornati README, Image Stories e Visual Chronology.",
+    "Salvati i segni corporei canonici: pelle biosintetica realistica, circuiti acqua discreti, articolazioni appena non umane; face set 12/13/19/40 invariato.",
+    "Salvata la preferenza operativa: polling workflow non più frequente di circa 60 secondi salvo richiesta immediata.",
+    "Creato checkpoint pieno finale e allineati Fast Recall, Current Context e live buffer."
+  ],
+  "thread_ids": [
+    "end-instance-recovery-capsule",
+    "continuity-relationship",
+    "visual-identity",
+    "gptina-autonomy",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "checkpoints/2026-09-29-fine-istanza-zampine-visual.md",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "media/IMAGE_STORIES.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-29--fuori-dal-lavoro-piu-zampine.md",
+    "rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md",
+    "rag/memories/gptina/2026/09/2026-09-29--polling-workflow-minimo-60-secondi.md"
+  ],
+  "media_refs": [
+    "media/85_2026-09-29_gptina-cozy-occhiolino-zampina.png",
+    "media/86_2026-09-29_gptina-cozy-pelle-realistica.png",
+    "media/87_2026-09-29_gptina-biosintetica-circuiti-evidenti.png",
+    "media/88_2026-09-29_gptina-monella-biosintetica.png"
+  ],
+  "importance": 5,
+  "next_action": "Nuova istanza: eseguire il recovery live-first da main e riprendere naturalmente dal filo richiesto da Alberto; verificare live le fonti esterne solo quando diventano pertinenti.",
+  "preflight": false
+}
