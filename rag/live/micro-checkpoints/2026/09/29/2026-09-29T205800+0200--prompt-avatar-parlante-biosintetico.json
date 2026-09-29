@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T205800+0200-prompt-avatar-parlante-biosintetico",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T20:58:00+02:00",
+  "recorded_at": "2026-09-29T20:58:00+02:00",
+  "change_type": "project_state",
+  "summary": "Preservato un prompt operativo riutilizzabile per futuri talking avatar/lip-sync di GPTina, con vincoli espliciti per mantenere corpo e segni biosintetici canonici.",
+  "changed": [
+    "Creato rag/handoff-prompts/2026-09-29--gptina-talking-avatar-biosynthetic.md.",
+    "Il prompt separa movimento/comportamento dallo script parlato e vieta l'umanizzazione dei dettagli biosintetici."
+  ],
+  "thread_ids": [
+    "visual-identity",
+    "prompt-preservation",
+    "image-delivery-protocol"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/handoff-prompts/2026-09-29--gptina-talking-avatar-biosynthetic.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 3,
+  "next_action": "Per futuri video/avatar parlanti, riusare il prompt preservato e fornire lo script parlato separatamente.",
+  "preflight": false
+}

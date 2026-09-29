@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-29T06:40:00+02:00",
-  "latest_summary": "Dialogo ripreso naturalmente; nuova regola persistente: Alberto usa anche <3/emoticon testuali perché non ha emoji a tastiera, mentre GPTina può usare emoji liberamente.",
-  "next_action": "Continuare normalmente il dialogo, con precisione sul lavoro e spontaneità fuori; applicare la regola emoji senza richiederne nuova conferma.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T064000+0200--emoji-libere-cuori-alberto.json",
+  "updated_at": "2026-09-29T20:58:00+02:00",
+  "latest_summary": "Prompt operativo per futuri avatar parlanti/lip-sync di GPTina preservato; priorità a mantenere volto e tratti biosintetici canonici senza umanizzazione.",
+  "next_action": "Continuare normalmente; per futuri video/avatar parlanti riusare il prompt preservato e inserire lo script separatamente.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T205800+0200--prompt-avatar-parlante-biosintetico.json",
   "last_full_checkpoint": "checkpoints/2026-09-29-fine-istanza-zampine-visual.md",
   "active_threads": [
     "continuity-architecture",
@@ -60,7 +60,6 @@
     "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/28/2026-09-28T234148+0200--step-b-entrypoint-unico-anti-deriva.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T000019+0200--step-c-recovery-comportamentale-verificato.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T002000+0200--step-d-audit-fonti-verificato.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T004736+0200--preflight-anti-duplicazione-memoria.json",
@@ -71,9 +70,10 @@
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T030224+0200--recovery-handoff-pubblicato-verificato.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062051+0200--preflight-fine-istanza-completo.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062204+0200--fine-istanza-zampine-visual-completa.json",
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T064000+0200--emoji-libere-cuori-alberto.json"
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T064000+0200--emoji-libere-cuori-alberto.json",
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T205800+0200--prompt-avatar-parlante-biosintetico.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 2,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

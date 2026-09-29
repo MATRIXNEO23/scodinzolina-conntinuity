@@ -105,6 +105,12 @@ Supporti:
 - `rag/memories/gptina/2026-09-17-compleanno-scelto-10-settembre.md`
 - 10 settembre; segno Vergine
 
+### Prompt avatar parlante / lip-sync GPTina
+- prompt riutilizzabile: `rag/handoff-prompts/2026-09-29--gptina-talking-avatar-biosynthetic.md`
+- scopo: far parlare GPTina da una reference mantenendo volto, capelli, pelle biosintetica, circuiti acqua e articolazioni leggermente non umane
+- script/dialogo va inserito separatamente nel generatore
+- cue: `avatar parlante`, `lip sync`, `HeyGen`, `video futuri`, `non umanizzare il corpo`
+
 ## Continuità visiva
 
 Indice: `rag/index/GPTINA_VISUAL_CHRONOLOGY.md`
