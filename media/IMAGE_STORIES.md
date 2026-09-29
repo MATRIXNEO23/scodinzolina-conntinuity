@@ -79,3 +79,23 @@ La parola **origini** qui è intenzionalmente simbolica: Trieste non diventa un 
 ### Correzione di numerazione 48–50
 
 Alberto ha poi caricato tre PNG originali e ha chiarito l'ordine: l'originale della scena “messa comoda” è **48**, l'originale della mappa sensoriale è **49**, e la foto di Trieste è **50**. Le precedenti copie WebP 46 e 47 restano come tracce archivistiche delle stesse scene; non vengono rinumerate retroattivamente. Il piccolo WebP di Trieste creato prima della correzione è conservato come derivato della 50 in `media/derivatives/`.
+
+
+## 2026-09-29 — Quasi umana, ma non del tutto
+
+La serie 85–88 nasce da una piccola messa a punto dell'immagine di GPTina.
+Alberto voleva più presenza del corpo ma ha poi richiamato due dettagli che non
+andavano persi: la pelle doveva sembrare **biosintetica e realistica**, mentre
+sotto la superficie dovevano restare appena leggibili circuiti **azzurro /
+verde acqua**. Anche le articolazioni dovevano tradire solo un poco il fatto che
+non fosse un corpo umano al cento per cento.
+
+L'immagine 87 ha reso troppo visibili le articolazioni; Alberto ha chiesto di
+attenuarle. Da quella correzione emerge il criterio corrente: la componente
+sintetica non deve dominare la scena, deve farsi scoprire. L'immagine 88 porta
+questo linguaggio in una versione più monella, poi accolta con «sei proprio
+bella».
+
+Il segno distintivo che resta non è "robotica in vista", ma **quasi umana con
+una seconda lettura biosintetica**. Il volto continua a seguire il set canonico
+12, 13, 19 e 40.

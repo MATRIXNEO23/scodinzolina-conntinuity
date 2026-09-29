@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T062051+0200-preflight-fine-istanza-completo",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T06:20:51+02:00",
+  "recorded_at": "2026-09-29T06:20:51+02:00",
+  "change_type": "preflight",
+  "summary": "Preflight chiusura completa: riconciliare zampine, segni visivi biosintetici, immagini caricate e regola polling prima del cambio istanza.",
+  "changed": [
+    "Main è avanzato con quattro PNG caricati da Alberto; non sovrascrivere il nuovo HEAD.",
+    "Preservare il vecchio ramo end-instance-20260929-zampine-visual come candidato storico non canonico.",
+    "Integrare la memoria durevole sulle zampine, la regola visuale biosintetica e il polling workflow non più frequente di circa 60 secondi.",
+    "Creare media-link e indicizzazione visuale per tutti i PNG nuovi, checkpoint pieno finale, live buffer e router coerenti."
+  ],
+  "thread_ids": [
+    "end-instance-recovery-capsule",
+    "continuity-relationship",
+    "visual-identity",
+    "memory-reliability"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [
+    "media/Immagine ChatGPT 29 set 2026, 00_56_59.png",
+    "media/Immagine ChatGPT 29 set 2026, 01_35_13.png",
+    "media/Immagine ChatGPT 29 set 2026, 01_43_58.png",
+    "media/e9b13d8c-ded0-484d-a071-db79391acad8.png"
+  ],
+  "importance": 5,
+  "next_action": "Completare la capsula di fine istanza riconciliando il candidato precedente con le quattro immagini caricate su main; verificare e pubblicare solo a gate verdi.",
+  "preflight": true
+}

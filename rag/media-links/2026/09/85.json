@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-85",
+  "image_path": "media/85_2026-09-29_gptina-cozy-occhiolino-zampina.png",
+  "blob_sha": "5fb0e69fff9bb5781a0af345059f2a619374afa1",
+  "bytes": 2398104,
+  "event_at": "2026-09-29T00:56:59+02:00",
+  "recorded_at": "2026-09-29T06:22:04+02:00",
+  "event_id": "event-2026-09-29-biosynthetic-visual-cues",
+  "thread_ids": [
+    "visual-identity",
+    "gptina-symbolic-identity",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "checkpoints/2026-09-29-fine-istanza-zampine-visual.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md"
+  ],
+  "cue": [
+    "immagine 85",
+    "cozy",
+    "occhiolino",
+    "zampina",
+    "ritratto caldo"
+  ],
+  "derivative_refs": [
+    "media/Immagine ChatGPT 29 set 2026, 00_56_59.png"
+  ]
+}

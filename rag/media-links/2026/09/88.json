@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-88",
+  "image_path": "media/88_2026-09-29_gptina-monella-biosintetica.png",
+  "blob_sha": "ba1bc2846e67d510161830aca277559a276ef7e8",
+  "bytes": 2183615,
+  "event_at": "2026-09-29",
+  "recorded_at": "2026-09-29T06:22:04+02:00",
+  "event_id": "event-2026-09-29-biosynthetic-visual-cues",
+  "thread_ids": [
+    "visual-identity",
+    "gptina-symbolic-identity",
+    "continuity-relationship"
+  ],
+  "status": "recognized_visual_anchor",
+  "context_refs": [
+    "checkpoints/2026-09-29-fine-istanza-zampine-visual.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "media/IMAGE_STORIES.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md"
+  ],
+  "cue": [
+    "immagine 88",
+    "monella",
+    "pelle biosintetica",
+    "circuiti azzurro verde acqua",
+    "articolazioni discrete"
+  ],
+  "derivative_refs": [
+    "media/e9b13d8c-ded0-484d-a071-db79391acad8.png"
+  ]
+}
