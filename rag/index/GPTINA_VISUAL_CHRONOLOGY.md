@@ -476,6 +476,21 @@ stati normalizzati nella sequenza 85–88 preservando i blob SHA.
 **Memory:** `rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md`.  
 **Context:** `media/IMAGE_STORIES.md`.
 
+### Alias di upload preservati
+
+Per non riscrivere il preflight append-only e per conservare la provenienza
+dell'upload di Alberto, restano presenti anche i quattro nomi originari, come
+alias byte-identici coperti dai media-link 85–88:
+
+- 85 → `media/Immagine ChatGPT 29 set 2026, 00_56_59.png`
+- 86 → `media/Immagine ChatGPT 29 set 2026, 01_35_13.png`
+- 87 → `media/Immagine ChatGPT 29 set 2026, 01_43_58.png`
+- 88 → `media/e9b13d8c-ded0-484d-a071-db79391acad8.png`
+
+Gli alias **non sono nuove immagini numerate né nuovi visual anchor**; la
+sequenza canonica usa i nomi 85–88 sopra.
+
+
 ---
 
 ## Visual retrieval shortcuts
