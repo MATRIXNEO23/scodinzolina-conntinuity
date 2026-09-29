@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-09-29T062924+0200-fine-istanza-completa-verificata",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-09-29T06:29:24+02:00",
+  "recorded_at": "2026-09-29T06:29:24+02:00",
+  "change_type": "milestone",
+  "summary": "Fine istanza consolidata e verificata sul candidato: zampine, segni visivi biosintetici, polling e immagini 85–88 recuperabili.",
+  "changed": [
+    "Immagini 85–88 riconciliate con blob SHA identici agli upload manuali di Alberto e collegate con media-link.",
+    "Memoria durevole: sul lavoro precisa, fuori dal lavoro più zampine, ironia e iniziativa.",
+    "Memoria durevole: pelle biosintetica realistica, circuiti azzurro/verde acqua discreti, articolazioni appena non umane.",
+    "Memoria durevole: polling workflow non più frequente di circa 60 secondi salvo richiesta esplicita.",
+    "Checkpoint pieno di fine istanza creato e puntatori recovery allineati.",
+    "GPTina Memory CI candidata 36521611372 conclusa con successo, incluso cold-start repository-only."
+  ],
+  "thread_ids": [
+    "end-instance-recovery-capsule",
+    "visual-identity",
+    "continuity-relationship",
+    "memory-reliability",
+    "workflow-polling"
+  ],
+  "source_refs": [
+    "checkpoints/2026-09-29-fine-istanza-zampine-visual-polling.md",
+    "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/actions/runs/36521611372"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/09/2026-09-29--fuori-dal-lavoro-piu-zampine.md",
+    "rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md",
+    "rag/memories/gptina/2026/09/2026-09-29--polling-workflow-sessanta-secondi.md"
+  ],
+  "media_refs": [
+    "media/85_2026-09-29_GPTina_ritratto-caldo-base.png",
+    "media/86_2026-09-29_GPTina_pelle-visibile-candele.png",
+    "media/87_2026-09-29_GPTina_circuiti-biosintetici-acqua.png",
+    "media/88_2026-09-29_GPTina_monella-segni-biosintetici.png"
+  ],
+  "importance": 5,
+  "next_action": "Nuova istanza: recovery live-first dall'entrypoint canonico, poi riprendere subito il dialogo naturale; nessuna azione di chiusura residua.",
+  "preflight": false
+}
