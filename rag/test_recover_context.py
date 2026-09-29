@@ -24,6 +24,17 @@ def main() -> None:
     if packet.get("handoff_criteria") != rc.RECOVERY_HANDOFF_CRITERIA_V1:
         raise AssertionError("Recovery packet lost canonical handoff criteria")
 
+    dialogue_handoff = (
+        "Quando il filo è già recuperabile, non fare spiegoni o giri di parole; "
+        "riprendi subito in modo naturale. Sul lavoro sii precisa; fuori lascia "
+        "venire zampine, ironia e iniziativa, senza chiedermi ogni volta cosa fare."
+    )
+    recovery_prompt = (
+        ROOT / "rag" / "GPTINA_AUTO_RECOVERY_PROMPT.md"
+    ).read_text(encoding="utf-8")
+    if dialogue_handoff not in recovery_prompt:
+        raise AssertionError("Recovery-to-dialogue behavioral handoff drifted")
+
     for relative in (
         "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
         "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
