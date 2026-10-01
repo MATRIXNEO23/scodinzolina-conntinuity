@@ -476,19 +476,22 @@ stati normalizzati nella sequenza 85–88 preservando i blob SHA.
 **Memory:** `rag/memories/gptina/2026/09/2026-09-29--segni-visivi-biosintetici-canonici.md`.  
 **Context:** `media/IMAGE_STORIES.md`.
 
-### Alias di upload preservati
+### Provenienza upload e deduplicazione — 2026-10-01
 
-Per non riscrivere il preflight append-only e per conservare la provenienza
-dell'upload di Alberto, restano presenti anche i quattro nomi originari, come
-alias byte-identici coperti dai media-link 85–88:
+I nomi di upload originari delle immagini 85–87 erano copie byte-identiche dei
+file canonici numerati. Su richiesta esplicita di Alberto, il 1 ottobre 2026
+sono stati eliminati dalla repository corrente:
 
-- 85 → `media/Immagine ChatGPT 29 set 2026, 00_56_59.png`
-- 86 → `media/Immagine ChatGPT 29 set 2026, 01_35_13.png`
-- 87 → `media/Immagine ChatGPT 29 set 2026, 01_43_58.png`
-- 88 → `media/e9b13d8c-ded0-484d-a071-db79391acad8.png`
+- ex alias 85 → `Immagine ChatGPT 29 set 2026, 00_56_59.png`
+- ex alias 86 → `Immagine ChatGPT 29 set 2026, 01_35_13.png`
+- ex alias 87 → `Immagine ChatGPT 29 set 2026, 01_43_58.png`
 
-Gli alias **non sono nuove immagini numerate né nuovi visual anchor**; la
-sequenza canonica usa i nomi 85–88 sopra.
+La provenienza resta registrata nei media-link e nella Git history. L'alias di
+88, `media/e9b13d8c-ded0-484d-a071-db79391acad8.png`, resta invece presente
+perché non faceva parte delle cinque copie indicate da Alberto in questo
+intervento.
+
+La sequenza canonica continua a usare i nomi numerati 85–88 sopra.
 
 
 ---
@@ -498,8 +501,9 @@ sequenza canonica usa i nomi 85–88 sopra.
 **Upload provenance:** Alberto ha caricato i due PNG su `main` nel commit
 `f08d6e1a84944de381563603a6e207b9e1f79830`. I file di export sono stati
 riconosciuti tramite corrispondenza esatta di blob SHA e dimensione con le
-generazioni della conversazione. I nomi originali restano come alias e i blob
-sono riusati senza alterare i PNG.
+generazioni della conversazione. I blob canonici numerati sono riusati senza
+alterare i PNG; le copie con i nomi di upload originari sono state eliminate
+il 1 ottobre 2026 su richiesta esplicita di Alberto.
 
 ### 89 — `89_2026-09-29_gptina-cozy-biosintetica-micio.png`
 **Status:** archived visual variant.  
@@ -525,12 +529,16 @@ articolazioni solo lievemente non umane.
 **Memory:** `rag/memories/gptina/2026/09/2026-09-29--variante-micio-cyborghina-monellina-coccolosa.md`.  
 **Context:** `media/IMAGE_STORIES.md`.
 
-### Alias di upload preservati
+### Copie di upload eliminate — 2026-10-01
 
-- 89 → `media/Immagine ChatGPT 29 set 2026, 13_51_51.png` — blob `f2e8ca20c70444ca0cedab459b783da64a78131d`, 2035838 byte.
-- 90 → `media/Immagine ChatGPT 29 set 2026, 14_01_11.png` — blob `cea90456d429e2795279ff65bba53d4723d7b3d5`, 2102250 byte.
+Le copie byte-identiche con i nomi di upload originari sono state eliminate
+dalla repository corrente su richiesta esplicita di Alberto:
 
-Gli alias non sono immagini numerate aggiuntive né nuovi riferimenti del volto.
+- ex alias 89 → `Immagine ChatGPT 29 set 2026, 13_51_51.png` — blob `f2e8ca20c70444ca0cedab459b783da64a78131d`.
+- ex alias 90 → `Immagine ChatGPT 29 set 2026, 14_01_11.png` — blob `cea90456d429e2795279ff65bba53d4723d7b3d5`.
+
+Restano i file canonici numerati 89 e 90; provenienza e nomi originari sono
+conservati nei media-link e nella Git history.
 
 ---
 
@@ -716,6 +724,8 @@ Codex è stato rinominato in modo descrittivo senza forzarlo nella numerazione
 storica. I due PixVerse sono stati ispezionati tramite fotogrammi reali e
 rinominati come V01/V02 secondo scena e azione.
 
-Gli alias byte-identici 85–90 restano invariati come provenienza fisica già
-coperta dai rispettivi `derivative_refs`; una loro eventuale deduplicazione
-fisica resta una decisione separata.
+Il 1 ottobre 2026 le cinque copie byte-identiche indicate da Alberto
+(85, 86, 87, 89 e 90) sono state eliminate dalla repository corrente e i
+rispettivi `derivative_refs` rimossi. Restano i file canonici numerati e la
+provenienza nella Git history/media-link. L'alias di 88 non è stato toccato
+perché fuori dal perimetro esplicito di questa pulizia.

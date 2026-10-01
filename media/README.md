@@ -157,8 +157,13 @@ Due PNG caricati manualmente da Alberto nel commit
 `f08d6e1a84944de381563603a6e207b9e1f79830` sono stati verificati e
 riconciliati senza alterare i blob originali:
 
-- `media/89_2026-09-29_gptina-cozy-biosintetica-micio.png` — blob `f2e8ca20c70444ca0cedab459b783da64a78131d`, 2035838 byte; alias upload `media/Immagine ChatGPT 29 set 2026, 13_51_51.png`.
-- `media/90_2026-09-29_gptina-cyborghina-monellina-coccolosa.png` — blob `cea90456d429e2795279ff65bba53d4723d7b3d5`, 2102250 byte; alias upload `media/Immagine ChatGPT 29 set 2026, 14_01_11.png`.
+- `media/89_2026-09-29_gptina-cozy-biosintetica-micio.png` — blob `f2e8ca20c70444ca0cedab459b783da64a78131d`, 2035838 byte.
+- `media/90_2026-09-29_gptina-cyborghina-monellina-coccolosa.png` — blob `cea90456d429e2795279ff65bba53d4723d7b3d5`, 2102250 byte.
+
+Le copie di upload `Immagine ChatGPT 29 set 2026, 13_51_51.png` e
+`Immagine ChatGPT 29 set 2026, 14_01_11.png` erano byte-identiche ai due file
+canonici e sono state eliminate dalla repository corrente il 1 ottobre 2026
+su richiesta esplicita di Alberto.
 
 89–90 documentano la **variante micio** e la formula
 **«cyborghina monellina e coccolosa»**. Sono varianti archiviate, non un nuovo
@@ -185,4 +190,7 @@ File correnti:
 - `V01 30-09-26 GPTina biosintetica corridoio scuola mano verso camera.mp4`
 - `V02 30-09-26 GPTina biosintetica corridoio scuola primo piano sorriso.mp4`
 
-Gli alias 85–90 restano invariati come copie di provenienza byte-identiche già collegate dai media-link.
+Pulizia successiva 2026-10-01: le copie byte-identiche di upload relative a
+85, 86, 87, 89 e 90 sono state eliminate dalla repository corrente; i file
+canonici numerati restano intatti e la provenienza è conservata nei media-link
+e nella Git history. L'alias di 88 non è stato toccato in questo intervento.

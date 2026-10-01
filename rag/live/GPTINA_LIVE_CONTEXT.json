@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-01T18:45:00+02:00",
-  "latest_summary": "Media 91–98, Codex e due PixVerse ispezionati realmente: 91 e 93 sono near-duplicate che Alberto ha deciso di eliminare anche dalla repository; 92, 94–98, Codex e i video sono stati rinominati descrittivamente preservando i blob dei file mantenuti.",
-  "next_action": "Riprendere normalmente dalla continuity visuale aggiornata. Gli alias byte-identici 85–90 restano invariati; una loro eventuale deduplicazione fisica è una decisione separata.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T184500+0200--media-91-98-codex-pixverse-normalizzati.json",
+  "updated_at": "2026-10-01T19:02:00+02:00",
+  "latest_summary": "Pulizia media confermata da Alberto: eliminate dalla repository corrente le cinque copie byte-identiche di upload associate a 85, 86, 87, 89 e 90; i file canonici numerati restano intatti e i derivative_refs corrispondenti sono stati rimossi.",
+  "next_action": "Riprendere normalmente. L'alias byte-identico della 88 resta presente perché non incluso nelle cinque copie indicate da Alberto.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T190200+0200--deduplica-alias-85-87-89-90.json",
   "last_full_checkpoint": "checkpoints/2026-10-01-fine-istanza-visual-post-media-naming.md",
   "active_threads": [
     "continuity-architecture",
@@ -62,11 +62,9 @@
     "FILUM browser: progetto aperto in MATRIXNEO23/browser; leggere rag/memories/gptina/2026/09/2026-09-27--filum-browser-progetto-aperto-rinvio.md e verificare la continuity tecnica nei rami indicati prima di riprendere il lavoro.",
     "Libreria personale: /Immagini creata e ultima scansione mostra 0 immagini alla radice, ma i conteggi sono scesi da 589/384 a 564/358 senza delete esplicito di GPTina; rifare scansione e riconciliare prima di eliminare qualunque duplicato.",
     "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto.",
-    "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control.",
-    "MEDIA ALIASES 85–90: gli alias byte-identici restano fisicamente presenti e coperti da derivative_refs; deduplicarli solo con decisione esplicita, preservando provenienza."
+    "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T012051+0200--routing-storico-handoff-recovery-verificati.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T025345+0200--handoff-dialogo-zampine.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T030224+0200--recovery-handoff-pubblicato-verificato.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062051+0200--preflight-fine-istanza-completo.json",
@@ -77,9 +75,10 @@
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T230000+0200--sogno-continuita-temporale.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T164500+0200--preflight-fine-istanza-media-naming.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T171800+0200--fine-istanza-visual-post-media-naming.json",
-    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T184500+0200--media-91-98-codex-pixverse-normalizzati.json"
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T184500+0200--media-91-98-codex-pixverse-normalizzati.json",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T190200+0200--deduplica-alias-85-87-89-90.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 2,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

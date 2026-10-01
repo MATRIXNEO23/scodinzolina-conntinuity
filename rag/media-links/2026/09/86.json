@@ -29,7 +29,7 @@
     "figura",
     "fase pre-circuiti"
   ],
-  "derivative_refs": [
-    "media/Immagine ChatGPT 29 set 2026, 01_35_13.png"
-  ]
+  "removed_upload_alias": "media/Immagine ChatGPT 29 set 2026, 01_35_13.png",
+  "alias_removed_at": "2026-10-01T19:02:00+02:00",
+  "alias_removal_reason": "byte-identical duplicate removed from current repository by Alberto's explicit request; canonical numbered image preserved"
 }

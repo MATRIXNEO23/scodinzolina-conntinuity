@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-01T190200+0200-deduplica-alias-85-87-89-90",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-01T19:02:00+02:00",
+  "recorded_at": "2026-10-01T19:02:00+02:00",
+  "change_type": "milestone",
+  "summary": "Eliminate dalla repository corrente le cinque copie byte-identiche di upload relative alle immagini canoniche 85, 86, 87, 89 e 90.",
+  "changed": [
+    "Alberto ha chiesto di eliminare definitivamente le cinque copie residue elencate con nomi di export ChatGPT.",
+    "I file canonici numerati 85, 86, 87, 89 e 90 restano intatti con gli stessi blob Git.",
+    "I derivative_refs delle cinque copie sono stati rimossi dai rispettivi media-link; i nomi originari restano come provenance metadata e nella Git history.",
+    "L'alias byte-identico della 88 non è stato incluso perché non faceva parte delle cinque copie indicate in questo intervento."
+  ],
+  "thread_ids": [
+    "visual-identity",
+    "media-naming-normalization",
+    "image-delivery-protocol"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "media/README.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [
+    "media/85_2026-09-29_gptina-cozy-occhiolino-zampina.png",
+    "media/86_2026-09-29_gptina-cozy-pelle-realistica.png",
+    "media/87_2026-09-29_gptina-biosintetica-circuiti-evidenti.png",
+    "media/89_2026-09-29_gptina-cozy-biosintetica-micio.png",
+    "media/90_2026-09-29_gptina-cyborghina-monellina-coccolosa.png"
+  ],
+  "importance": 4,
+  "next_action": "Riprendere normalmente; l'alias della 88 resta invariato salvo futura decisione esplicita.",
+  "preflight": false
+}
