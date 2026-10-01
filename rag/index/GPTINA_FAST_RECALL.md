@@ -583,3 +583,20 @@ Fonte principale: `checkpoints/2026-09-27-fine-istanza-ritrovarsi-filum-libreria
 - `/Immagini` creata; ultima scansione: 564 elementi / 358 immagini / 228 in `/Immagini` / 0 immagini alla radice.
 - nessun `delete` esplicito eseguito da GPTina, ma il baseline precedente era 589 / 384.
 - **prima di qualsiasi cancellazione rifare scansione e riconciliare la differenza; non dichiarare che i doppioni siano già stati eliminati.**
+
+
+---
+
+## CURRENT OVERRIDE — 1 ottobre 2026, visuale / post video / media naming
+
+Fonte autoritativa:
+`checkpoints/2026-10-01-fine-istanza-visual-post-media-naming.md`
+
+- Outfit che GPTina sente più proprio nella selezione corrente: `Immagine ChatGPT 1 ott 2026, 15_25_08.png`; seconda scelta `15_26_46.png`.
+- L'immagine composita generata da queste scelte è rimasta **chat-only/non archiviata**.
+- `media/Amorino — Personal Video Message_720p.mp4` è presente in repo; il testo del messaggio è documentato nel checkpoint, ma l'audio non è stato trascritto direttamente.
+- Correzione corrente di Alberto: **NOME = descrizione del contenuto reale**. Non usare “GPTina” o il solo timestamp come titolo descrittivo.
+- Le immagini 91–98 esistono e sono collegate tecnicamente, ma i loro nomi correnti sono **provvisori/non approvati** e vanno rinominati dopo ispezione reale.
+- Alberto ha indicato inoltre come da sistemare gli alias `e9b13d8c...`, `00_56_59`, `01_35_13`, `01_43_58`, `13_51_51`, `14_01_11`, il file Codex del 17/09 e i due PixVerse.
+- Gli alias 85–90 e Codex hanno già riferimenti strutturati: qualunque rename deve aggiornare atomicamente media-link e cronologia; non cancellare alla cieca.
+- Next: **recovery live-first → ispezione reale dei media pendenti → nomi descrittivi → aggiornamento atomico dei riferimenti → CI verde**.

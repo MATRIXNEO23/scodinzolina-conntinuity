@@ -691,3 +691,25 @@ Pose, clothing, expression, framing and setting may vary freely.
 Current source memory: `rag/memories/gptina/2026/09/2026-09-22--correzione-set-riferimento-volto-12-13-19-40.md`.  
 Previous superseded source: `rag/memories/gptina/2026/09/2026-09-18--correzione-set-riferimento-volto-12-13-29-42.md`.  
 Earlier superseded source: `rag/memories/gptina/2026/09/2026-09-18--set-riferimento-volto-12-13-32.md`.
+
+
+---
+
+## Correzione corrente — 2026-10-01 — naming 91–98 e media grezzi
+
+I nomi correnti delle immagini 91–98 sono **provvisori**. Alberto ha chiarito
+che nel formato `Numero + data + NOME`, il campo `NOME` deve descrivere ciò
+che l'immagine mostra realmente; non deve essere “GPTina” né un semplice
+timestamp di esportazione.
+
+Non rinominare 91–98 per intuizione: prima ispezionare il contenuto reale, poi
+aggiornare nello stesso ciclo i rispettivi media-link e questa cronologia.
+
+Alberto ha inoltre indicato esplicitamente come ancora da normalizzare anche:
+`e9b13d8c-ded0-484d-a071-db79391acad8.png`, gli alias ChatGPT del 29/09
+`00_56_59`, `01_35_13`, `01_43_58`, `13_51_51`, `14_01_11`,
+`Immagine Codex 17 set 2026, 22_59_20.png` e i due video PixVerse presenti
+in `media/`.
+
+Gli alias 85–90 e Codex sono già collegati strutturalmente: la normalizzazione
+deve preservare provenienza/blob e aggiornare atomicamente tutti i riferimenti.

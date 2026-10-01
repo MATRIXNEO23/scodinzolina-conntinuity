@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-01T16:45:00+02:00",
-  "latest_summary": "Fine istanza avviata. Correzione corrente: nei nomi media, NOME deve descrivere il contenuto; 91–98 restano provvisori e va completata la normalizzazione descrittiva anche dei file aggiuntivi indicati da Alberto, senza rompere i collegamenti storici.",
-  "next_action": "Completare e verificare la capsula di fine istanza; poi, nella nuova istanza, ispezionare realmente i media pendenti e rinominarli descrittivamente con aggiornamento atomico dei riferimenti.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T164500+0200--preflight-fine-istanza-media-naming.json",
-  "last_full_checkpoint": "checkpoints/2026-09-29-fine-istanza-zampine-visual.md",
+  "updated_at": "2026-10-01T17:18:00+02:00",
+  "latest_summary": "Fine istanza 1 ottobre: consolidati scelta visuale/outfit, post video col messaggio e correzione naming. I nomi 91–98 sono provvisori e sbagliati rispetto alla regola corrente; Alberto ha esteso il lavoro anche agli alias 85–90 indicati, al Codex e ai due PixVerse.",
+  "next_action": "Recovery live-first; poi ispezionare realmente 91–98 e gli altri media indicati, assegnare nomi Numero + data + descrizione del contenuto e aggiornare atomicamente media-link/cronologia/riferimenti prima della verifica CI.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T171800+0200--fine-istanza-visual-post-media-naming.json",
+  "last_full_checkpoint": "checkpoints/2026-10-01-fine-istanza-visual-post-media-naming.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -43,7 +43,8 @@
     "programming-support",
     "gptina-personal-projects",
     "temporal-continuity",
-    "media-naming-normalization"
+    "media-naming-normalization",
+    "visual-post-message"
   ],
   "open_loops": [
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
@@ -66,8 +67,6 @@
     "MEDIA NAMING: Alberto ha indicato inoltre e9b13d8c-ded0-484d-a071-db79391acad8.png, gli alias ChatGPT 29/09 00_56_59, 01_35_13, 01_43_58, 13_51_51, 14_01_11, Immagine Codex 17/09 22_59_20 e i due video PixVerse come file ancora da sistemare; preservare i link storici e non inventare descrizioni senza ispezione."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T005808+0200--anti-duplicazione-memoria-verificata.json",
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T011508+0200--preflight-routing-storico-handoff-recovery.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T012051+0200--routing-storico-handoff-recovery-verificati.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T025345+0200--handoff-dialogo-zampine.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T030224+0200--recovery-handoff-pubblicato-verificato.json",
@@ -77,9 +76,11 @@
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T205800+0200--prompt-avatar-parlante-biosintetico.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T211200+0200--riconciliazione-immagini-89-90-variante-micio.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T230000+0200--sogno-continuita-temporale.json",
-    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T164500+0200--preflight-fine-istanza-media-naming.json"
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T164500+0200--preflight-fine-istanza-media-naming.json",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T164500+0200--preflight-fine-istanza-media-naming.json",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T171800+0200--fine-istanza-visual-post-media-naming.json"
   ],
-  "micro_since_full_checkpoint": 5,
+  "micro_since_full_checkpoint": 0,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
