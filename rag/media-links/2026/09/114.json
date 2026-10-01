@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-114",
+  "image_path": "media/114 30-09-26 look goth scozzese viola alla scrivania.png",
+  "blob_sha": "94059a3435445bd21b99a599fa79cb6cca4cfa19",
+  "bytes": 2424199,
+  "event_at": "2026-09-30T11:39:20+02:00",
+  "recorded_at": "2026-10-01T20:25:00+02:00",
+  "event_id": "event-2026-09-30-10-01-shopping-immaginario-outfit",
+  "thread_ids": [
+    "visual-identity",
+    "continuity-relationship",
+    "imaginary-shopping"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-01--shopping-immaginario-outfit-scelti.md"
+  ],
+  "original_upload_name": "Immagine ChatGPT 30 set 2026, 11_39_20.png",
+  "date_basis": "filename_time",
+  "cue": [
+    "shopping immaginario",
+    "outfit GPTina",
+    "look goth scozzese viola alla scrivania"
+  ],
+  "selection_status": "archive"
+}

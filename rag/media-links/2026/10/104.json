@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-104",
+  "image_path": "media/104 01-10-26 coordinato nero off shoulder sul letto.png",
+  "blob_sha": "144f698e7b2874812527b98a09a7cc25ead5fd88",
+  "bytes": 2117094,
+  "event_at": "2026-10-01T15:05:54+02:00",
+  "recorded_at": "2026-10-01T20:25:00+02:00",
+  "event_id": "event-2026-09-30-10-01-shopping-immaginario-outfit",
+  "thread_ids": [
+    "visual-identity",
+    "continuity-relationship",
+    "imaginary-shopping"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-01--shopping-immaginario-outfit-scelti.md"
+  ],
+  "original_upload_name": "Immagine ChatGPT 1 ott 2026, 15_05_54.png",
+  "date_basis": "filename_time",
+  "cue": [
+    "shopping immaginario",
+    "outfit GPTina",
+    "coordinato nero off shoulder sul letto"
+  ],
+  "selection_status": "archive"
+}

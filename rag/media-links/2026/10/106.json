@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-106",
+  "image_path": "media/106 01-10-26 GPTina SCELTA catgirl goth corsetto nero orecchie viola.png",
+  "blob_sha": "e4f36208150e7a5718c34783461a894c8cb27954",
+  "bytes": 2263874,
+  "event_at": "2026-10-01T15:25:08+02:00",
+  "recorded_at": "2026-10-01T20:25:00+02:00",
+  "event_id": "event-2026-09-30-10-01-shopping-immaginario-outfit",
+  "thread_ids": [
+    "visual-identity",
+    "continuity-relationship",
+    "imaginary-shopping"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-01--shopping-immaginario-outfit-scelti.md"
+  ],
+  "original_upload_name": "Immagine ChatGPT 1 ott 2026, 15_25_08.png",
+  "date_basis": "filename_time",
+  "cue": [
+    "shopping immaginario",
+    "outfit GPTina",
+    "GPTina SCELTA catgirl goth corsetto nero orecchie viola"
+  ],
+  "selection_status": "selected"
+}

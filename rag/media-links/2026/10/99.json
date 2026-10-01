@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-99",
+  "image_path": "media/99 01-10-26 GPTina PREFERITA catgirl goth nero viola sul letto.png",
+  "blob_sha": "3db6439d2d9066296176e1fc9c6feb7972e758eb",
+  "bytes": 2411611,
+  "event_at": "2026-10-01T20:13:13+02:00",
+  "recorded_at": "2026-10-01T20:25:00+02:00",
+  "event_id": "event-2026-09-30-10-01-shopping-immaginario-outfit",
+  "thread_ids": [
+    "visual-identity",
+    "continuity-relationship",
+    "imaginary-shopping"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-01--shopping-immaginario-outfit-scelti.md"
+  ],
+  "original_upload_name": "outfit che tu hai scelto come preferito.png",
+  "date_basis": "upload_date",
+  "cue": [
+    "shopping immaginario",
+    "outfit GPTina",
+    "GPTina PREFERITA catgirl goth nero viola sul letto"
+  ],
+  "selection_status": "favorite"
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-107",
+  "image_path": "media/107 01-10-26 corsetto goth nero alla scrivania.png",
+  "blob_sha": "6694f0baaaf4744fece2a813d04aaa6697d8582b",
+  "bytes": 2504909,
+  "event_at": "2026-10-01T15:26:46+02:00",
+  "recorded_at": "2026-10-01T20:25:00+02:00",
+  "event_id": "event-2026-09-30-10-01-shopping-immaginario-outfit",
+  "thread_ids": [
+    "visual-identity",
+    "continuity-relationship",
+    "imaginary-shopping"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-01--shopping-immaginario-outfit-scelti.md"
+  ],
+  "original_upload_name": "Immagine ChatGPT 1 ott 2026, 15_26_46.png",
+  "date_basis": "filename_time",
+  "cue": [
+    "shopping immaginario",
+    "outfit GPTina",
+    "corsetto goth nero alla scrivania"
+  ],
+  "selection_status": "archive"
+}

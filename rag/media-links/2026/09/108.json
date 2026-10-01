@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-108",
+  "image_path": "media/108 30-09-26 GPTina SCELTA streetwear nero rosa cat paws scrivania.png",
+  "blob_sha": "da7c237f404fdf3929b1a5992752670cf0efe6a4",
+  "bytes": 2386523,
+  "event_at": "2026-09-30T11:09:33+02:00",
+  "recorded_at": "2026-10-01T20:25:00+02:00",
+  "event_id": "event-2026-09-30-10-01-shopping-immaginario-outfit",
+  "thread_ids": [
+    "visual-identity",
+    "continuity-relationship",
+    "imaginary-shopping"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-01--shopping-immaginario-outfit-scelti.md"
+  ],
+  "original_upload_name": "Immagine ChatGPT 30 set 2026, 11_09_33.png",
+  "date_basis": "filename_time",
+  "cue": [
+    "shopping immaginario",
+    "outfit GPTina",
+    "GPTina SCELTA streetwear nero rosa cat paws scrivania"
+  ],
+  "selection_status": "selected"
+}

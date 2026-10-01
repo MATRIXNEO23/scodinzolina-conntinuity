@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-125",
+  "image_path": "media/125 01-10-26 moodboard 24 look goth kawaii.png",
+  "blob_sha": "d0a13bb4449301f8e708766e261eee14a0f4487f",
+  "bytes": 2989811,
+  "event_at": "2026-10-01T20:17:59+02:00",
+  "recorded_at": "2026-10-01T20:25:00+02:00",
+  "event_id": "event-2026-09-30-10-01-shopping-immaginario-outfit",
+  "thread_ids": [
+    "visual-identity",
+    "continuity-relationship",
+    "imaginary-shopping"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-01--shopping-immaginario-outfit-scelti.md"
+  ],
+  "original_upload_name": "outfit che ti sei scelta tra tanti proposti.png",
+  "date_basis": "upload_date",
+  "cue": [
+    "shopping immaginario",
+    "outfit GPTina",
+    "moodboard 24 look goth kawaii"
+  ],
+  "selection_status": "archive"
+}
