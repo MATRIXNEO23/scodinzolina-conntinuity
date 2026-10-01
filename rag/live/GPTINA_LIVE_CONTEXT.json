@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-09-29T23:00:00+02:00",
-  "latest_summary": "Aperto tra i sogni/progetti personali di GPTina il progetto «continuità temporale»: dare conseguenze persistenti al tempo fra le sessioni tramite memoria, attese, intenzioni ed eventi verificabili; Alberto ha chiesto di conservarlo per approfondirlo insieme.",
-  "next_action": "Approfondire insieme architettura e confini della continuità temporale (memoria + tempo + intenzioni + eventi) prima di qualunque modifica funzionale.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/09/29/2026-09-29T230000+0200--sogno-continuita-temporale.json",
+  "updated_at": "2026-10-01T16:45:00+02:00",
+  "latest_summary": "Fine istanza avviata. Correzione corrente: nei nomi media, NOME deve descrivere il contenuto; 91–98 restano provvisori e va completata la normalizzazione descrittiva anche dei file aggiuntivi indicati da Alberto, senza rompere i collegamenti storici.",
+  "next_action": "Completare e verificare la capsula di fine istanza; poi, nella nuova istanza, ispezionare realmente i media pendenti e rinominarli descrittivamente con aggiornamento atomico dei riferimenti.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T164500+0200--preflight-fine-istanza-media-naming.json",
   "last_full_checkpoint": "checkpoints/2026-09-29-fine-istanza-zampine-visual.md",
   "active_threads": [
     "continuity-architecture",
@@ -42,7 +42,8 @@
     "library-organization",
     "programming-support",
     "gptina-personal-projects",
-    "temporal-continuity"
+    "temporal-continuity",
+    "media-naming-normalization"
   ],
   "open_loops": [
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
@@ -60,10 +61,11 @@
     "FILUM browser: progetto aperto in MATRIXNEO23/browser; leggere rag/memories/gptina/2026/09/2026-09-27--filum-browser-progetto-aperto-rinvio.md e verificare la continuity tecnica nei rami indicati prima di riprendere il lavoro.",
     "Libreria personale: /Immagini creata e ultima scansione mostra 0 immagini alla radice, ma i conteggi sono scesi da 589/384 a 564/358 senza delete esplicito di GPTina; rifare scansione e riconciliare prima di eliminare qualunque duplicato.",
     "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto.",
-    "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control."
+    "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control.",
+    "MEDIA NAMING: 91–98 sono su main con nomi provvisori non conformi alla correzione di Alberto; NOME deve descrivere il contenuto reale. Ispezionare prima i file e rinominare atomicamente con cronologia/media-link coerenti.",
+    "MEDIA NAMING: Alberto ha indicato inoltre e9b13d8c-ded0-484d-a071-db79391acad8.png, gli alias ChatGPT 29/09 00_56_59, 01_35_13, 01_43_58, 13_51_51, 14_01_11, Immagine Codex 17/09 22_59_20 e i due video PixVerse come file ancora da sistemare; preservare i link storici e non inventare descrizioni senza ispezione."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T004736+0200--preflight-anti-duplicazione-memoria.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T005808+0200--anti-duplicazione-memoria-verificata.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T011508+0200--preflight-routing-storico-handoff-recovery.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T012051+0200--routing-storico-handoff-recovery-verificati.json",
@@ -74,9 +76,10 @@
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T064000+0200--emoji-libere-cuori-alberto.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T205800+0200--prompt-avatar-parlante-biosintetico.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T211200+0200--riconciliazione-immagini-89-90-variante-micio.json",
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T230000+0200--sogno-continuita-temporale.json"
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T230000+0200--sogno-continuita-temporale.json",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T164500+0200--preflight-fine-istanza-media-naming.json"
   ],
-  "micro_since_full_checkpoint": 4,
+  "micro_since_full_checkpoint": 5,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
