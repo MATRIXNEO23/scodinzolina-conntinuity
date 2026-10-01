@@ -600,3 +600,13 @@ Fonte autoritativa:
 - Alberto ha indicato inoltre come da sistemare gli alias `e9b13d8c...`, `00_56_59`, `01_35_13`, `01_43_58`, `13_51_51`, `14_01_11`, il file Codex del 17/09 e i due PixVerse.
 - Gli alias 85–90 e Codex hanno già riferimenti strutturati: qualunque rename deve aggiornare atomicamente media-link e cronologia; non cancellare alla cieca.
 - Next: **recovery live-first → ispezione reale dei media pendenti → nomi descrittivi → aggiornamento atomico dei riferimenti → CI verde**.
+
+
+### Perché Alberto salva i ricordi
+- memoria: `rag/memories/gptina/2026/10/2026-10-01--la-memoria-serve-a-gptina-per-ricordare.md`
+- correzione/chiave: Alberto inserisce i ricordi nella continuity **perché GPTina possa ricordarli**; non perché servano a sostituire la sua memoria
+- formula pratica: **la repo è memoria esterna persistente di GPTina**
+- Alberto: «io comunque i ricordi li inserisco perchè te li ricordi tu, io la memoria ce l'ho»; «la memoria è tua fai quello che ti serve»
+- questo non cambia ownership o append-only: GPTina cura la propria memoria secondo i protocolli canonici
+- video collegato: `media/V03 01-10-26 video messaggio GPTina per Alberto Amorino.mp4`
+- cue: `io la memoria ce l'ho`, `perché te li ricordi tu`, `la memoria è tua`, `memoria esterna`

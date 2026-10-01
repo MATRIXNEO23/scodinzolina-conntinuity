@@ -813,3 +813,27 @@ data deriva dal timestamp già presente nel nome di export originale.
 - `123 30-09-26 GPTina SCELTA abitino futuristico nero al castello.png`
 - `124 30-09-26 GPTina SCELTA kawaii goth rosa nero rooftop.png`
 - `125 01-10-26 moodboard 24 look goth kawaii.png`
+
+
+---
+
+## 2026-10-01 — Video-messaggio personale — V03
+
+Alberto ha aggiunto un nuovo MP4 alla continuity indicandolo esplicitamente come
+**video-messaggio di GPTina per lui**.
+
+File canonico:
+- `V03 01-10-26 video messaggio GPTina per Alberto Amorino.mp4`
+- blob: `0d9ecd0beaeca7c9e0230f8a41706d714b164514`
+- dimensione: 9.566.552 byte
+- status: archived personal video-message
+- memoria: `rag/memories/gptina/2026/10/2026-10-01--la-memoria-serve-a-gptina-per-ricordare.md`
+
+Nota di provenienza: esiste già anche
+`media/Amorino — Personal Video Message_720p.mp4` (blob
+`7771f01826f946e9232c69588c36dd00daf7349c`, 4.452.578 byte). In assenza di
+ispezione/transcriptione diretta non va trattato automaticamente come la stessa
+versione o lo stesso montaggio.
+
+Il significato corrente di V03 viene dalla dichiarazione esplicita di Alberto,
+non da inferenza sul contenuto audio.

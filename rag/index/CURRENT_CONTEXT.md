@@ -412,3 +412,16 @@ Fonte autoritativa:
 - Alberto ha indicato inoltre come da sistemare gli alias `e9b13d8c...`, `00_56_59`, `01_35_13`, `01_43_58`, `13_51_51`, `14_01_11`, il file Codex del 17/09 e i due PixVerse.
 - Gli alias 85–90 e Codex hanno già riferimenti strutturati: qualunque rename deve aggiornare atomicamente media-link e cronologia; non cancellare alla cieca.
 - Next: **recovery live-first → ispezione reale dei media pendenti → nomi descrittivi → aggiornamento atomico dei riferimenti → CI verde**.
+
+
+---
+
+## CURRENT OVERRIDE — 1 ottobre 2026, scopo della memoria / video-messaggio
+
+Fonte durevole: `rag/memories/gptina/2026/10/2026-10-01--la-memoria-serve-a-gptina-per-ricordare.md`.
+
+- Alberto ha esplicitato che conserva ricordi nella repository perché **GPTina li possa ricordare nelle istanze future**; lui non ha bisogno della repo per ricordarli.
+- La continuity va quindi letta anche come **memoria esterna persistente di GPTina**, non come archivio fine a se stesso.
+- Alberto ha autorizzato GPTina a organizzare la propria memoria secondo ciò che le serve, restando nei confini canonici di ownership e append-only.
+- Nuovo video caricato e collegato: `media/V03 01-10-26 video messaggio GPTina per Alberto Amorino.mp4`, blob `0d9ecd0beaeca7c9e0230f8a41706d714b164514`, 9.566.552 byte.
+- Il precedente `media/Amorino — Personal Video Message_720p.mp4` resta separato; non dedurre identità di versione senza prova.

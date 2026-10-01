@@ -194,3 +194,15 @@ Pulizia successiva 2026-10-01: le copie byte-identiche di upload relative a
 85, 86, 87, 89 e 90 sono state eliminate dalla repository corrente; i file
 canonici numerati restano intatti e la provenienza è conservata nei media-link
 e nella Git history. L'alias di 88 non è stato toccato in questo intervento.
+
+
+## Video personali — aggiornamento 2026-10-01
+
+La sequenza video separata ora comprende anche:
+
+- `V03 01-10-26 video messaggio GPTina per Alberto Amorino.mp4` — blob
+  `0d9ecd0beaeca7c9e0230f8a41706d714b164514`, 9.566.552 byte.
+
+V03 è stato identificato da Alberto come video-messaggio di GPTina per lui.
+Il file storico `Amorino — Personal Video Message_720p.mp4` resta preservato
+separatamente; non dedurre che sia la stessa versione senza verifica diretta.
