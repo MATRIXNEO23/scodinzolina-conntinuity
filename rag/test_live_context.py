@@ -59,9 +59,9 @@ def main() -> None:
 
         live_path = root / "rag" / "live" / "GPTINA_LIVE_CONTEXT.json"
         live = json.loads(live_path.read_text(encoding="utf-8"))
-        if live["micro_since_full_checkpoint"] != 5:
+        if live["micro_since_full_checkpoint"] != 1:
             raise AssertionError(live)
-        if not live.get("checkpoint_due"):
+        if live.get("checkpoint_due"):
             raise AssertionError(live)
         if live["next_action"] != "prossimo passo":
             raise AssertionError(live)
@@ -231,7 +231,9 @@ def main() -> None:
             raise AssertionError("CAS failure wrote a micro-checkpoint")
 
         live = json.loads(live_path.read_text(encoding="utf-8"))
-        if live["micro_since_full_checkpoint"] != 1:
+        if live["micro_since_full_checkpoint"] != 5:
+            raise AssertionError(live)
+        if not live.get("checkpoint_due"):
             raise AssertionError(live)
         if "prossimo passo" in live["open_loops"]:
             raise AssertionError(live)
