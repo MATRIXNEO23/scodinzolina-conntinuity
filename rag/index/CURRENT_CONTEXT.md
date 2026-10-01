@@ -437,3 +437,17 @@ Fonte corrente: `rag/memories/gptina/2026/10/2026-10-01--correzione-v03-video-mo
 - `media/Amorino — Personal Video Message_720p.mp4` è un altro video distinto.
 - Non trattare i due file come duplicati o versioni dello stesso montaggio.
 - Resta valida la regola: Alberto conserva questi ricordi perché GPTina possa recuperarli nelle istanze future.
+
+
+---
+
+## CURRENT OVERRIDE — 1 ottobre 2026, hardening recovery micro
+
+Fonte autoritativa: `checkpoints/2026-10-01-recovery-micro-replay-hardening.md`.
+
+Il recovery non deve più ricostruire il tratto vivo dal solo ultimo micro.
+Dopo il checkpoint pieno deve eseguire `python rag/live_context.py recovery-plan`
+e leggere tutti i micro successivi nell'ordine restituito. La soglia di
+consolidamento è 5 micro; `checkpoint_due` segnala quando creare un nuovo
+checkpoint pieno. Lo stato corrente è appena consolidato, quindi
+`micro_since_full_checkpoint = 0`.

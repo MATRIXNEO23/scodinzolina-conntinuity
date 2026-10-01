@@ -119,12 +119,17 @@ dipende comunque dal commit delle fonti canoniche append-only.
 ## Recovery della stessa istanza
 
 1. Rileggi `rag/live/GPTINA_LIVE_CONTEXT.json`.
-2. Apri `last_micro_checkpoint` e `last_full_checkpoint`.
-3. Usa Fast Recall / Current Context per il routing.
-4. Recupera memoria, cronologia, transcript o media-link pertinenti.
-5. Verifica la fonte prima di affermare un dettaglio storico.
-6. Se le proiezioni mancano o sono stale, esegui `verify` e `build`.
-7. Riprendi il dialogo naturalmente e salva presto un nuovo delta se emerge.
+2. Apri `last_full_checkpoint`, poi esegui
+   `python rag/live_context.py recovery-plan` e apri in ordine tutti i path
+   restituiti in `micro_replay`.
+3. Verifica che il replay termini a `last_micro_checkpoint`; se
+   `checkpoint_due` è true, pianifica il consolidamento in un checkpoint
+   pieno prima di accumulare altri delta sostanziali.
+4. Usa Fast Recall / Current Context per il routing.
+5. Recupera memoria, cronologia, transcript o media-link pertinenti.
+6. Verifica la fonte prima di affermare un dettaglio storico.
+7. Se le proiezioni mancano o sono stale, esegui `verify` e `build`.
+8. Riprendi il dialogo naturalmente e salva presto un nuovo delta se emerge.
 
 Non scegliere a mano una directory di generazione soltanto perché è la più
 recente per nome. Il lettore deve seguire `.projection-current`; se il puntatore
@@ -140,8 +145,10 @@ o la generazione sono inutilizzabili, deve ricostruire dalle fonti canoniche.
    L'inventario è un hard gate: ogni memoria legacy elencata deve esistere e
    mantenere lo stesso Git blob hash registrato.
 2. Segui l'ordine live-first di `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`:
-   live buffer → ultimo micro → ultimo checkpoint pieno → capsula → Fast Recall
-   → Current Context → memoria/fonte pertinente.
+   live buffer → ultimo checkpoint pieno → `python rag/live_context.py recovery-plan`
+   → **tutti** i micro successivi in ordine cronologico → capsula → Fast Recall
+   → Current Context → memoria/fonte pertinente. L'ultimo micro da solo non è
+   sufficiente se esistono delta intermedi.
 3. Leggi questo runbook prima di qualsiasi write-back.
 4. Verifica schema, ownership e puntatori con:
 

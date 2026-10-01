@@ -48,3 +48,19 @@ Salvare:
 Quando nasce un checkpoint pieno, usare `mark-checkpoint` per aggiornare il live buffer e azzerare il conteggio dei micro-delta dopo il checkpoint.
 
 I micro-checkpoint vecchi restano append-only.
+
+
+## Replay completo dopo il checkpoint pieno
+
+Per ricostruire il tratto vivo usare:
+
+```bash
+python rag/live_context.py recovery-plan
+```
+
+Aprire tutti i path di `micro_replay` nell'ordine restituito. Il replay deve
+terminare a `last_micro_checkpoint`.
+
+Il live buffer mantiene `last_full_checkpoint_micro_anchor` e
+`checkpoint_due`. La soglia corrente è 5 micro dopo il checkpoint pieno;
+`mark-checkpoint` salva il nuovo anchor e azzera il gate.

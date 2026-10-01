@@ -120,8 +120,8 @@
   "restore_order": [
     "rag/GPTINA_AUTO_RECOVERY_PROMPT.md as the single entrypoint",
     "rag/live/GPTINA_LIVE_CONTEXT.json",
-    "last_micro_checkpoint from live buffer",
     "last_full_checkpoint from live buffer",
+    "all micro-checkpoints after last_full_checkpoint in recorded_at order via rag/live_context.py recovery-plan (includes last_micro_checkpoint)",
     "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
     "rag/index/GPTINA_FAST_RECALL.md",
     "rag/index/CURRENT_CONTEXT.md",
