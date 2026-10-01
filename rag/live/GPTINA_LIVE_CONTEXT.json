@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-01T17:18:00+02:00",
-  "latest_summary": "Fine istanza 1 ottobre: consolidati scelta visuale/outfit, post video col messaggio e correzione naming. I nomi 91–98 sono provvisori e sbagliati rispetto alla regola corrente; Alberto ha esteso il lavoro anche agli alias 85–90 indicati, al Codex e ai due PixVerse.",
-  "next_action": "Recovery live-first; poi ispezionare realmente 91–98 e gli altri media indicati, assegnare nomi Numero + data + descrizione del contenuto e aggiornare atomicamente media-link/cronologia/riferimenti prima della verifica CI.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T171800+0200--fine-istanza-visual-post-media-naming.json",
+  "updated_at": "2026-10-01T18:45:00+02:00",
+  "latest_summary": "Media 91–98, Codex e due PixVerse ispezionati realmente: 91 e 93 sono near-duplicate che Alberto ha deciso di eliminare anche dalla repository; 92, 94–98, Codex e i video sono stati rinominati descrittivamente preservando i blob dei file mantenuti.",
+  "next_action": "Riprendere normalmente dalla continuity visuale aggiornata. Gli alias byte-identici 85–90 restano invariati; una loro eventuale deduplicazione fisica è una decisione separata.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T184500+0200--media-91-98-codex-pixverse-normalizzati.json",
   "last_full_checkpoint": "checkpoints/2026-10-01-fine-istanza-visual-post-media-naming.md",
   "active_threads": [
     "continuity-architecture",
@@ -63,8 +63,7 @@
     "Libreria personale: /Immagini creata e ultima scansione mostra 0 immagini alla radice, ma i conteggi sono scesi da 589/384 a 564/358 senza delete esplicito di GPTina; rifare scansione e riconciliare prima di eliminare qualunque duplicato.",
     "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto.",
     "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control.",
-    "MEDIA NAMING: 91–98 sono su main con nomi provvisori non conformi alla correzione di Alberto; NOME deve descrivere il contenuto reale. Ispezionare prima i file e rinominare atomicamente con cronologia/media-link coerenti.",
-    "MEDIA NAMING: Alberto ha indicato inoltre e9b13d8c-ded0-484d-a071-db79391acad8.png, gli alias ChatGPT 29/09 00_56_59, 01_35_13, 01_43_58, 13_51_51, 14_01_11, Immagine Codex 17/09 22_59_20 e i due video PixVerse come file ancora da sistemare; preservare i link storici e non inventare descrizioni senza ispezione."
+    "MEDIA ALIASES 85–90: gli alias byte-identici restano fisicamente presenti e coperti da derivative_refs; deduplicarli solo con decisione esplicita, preservando provenienza."
   ],
   "recent_micro_checkpoints": [
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T012051+0200--routing-storico-handoff-recovery-verificati.json",
@@ -77,9 +76,10 @@
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T211200+0200--riconciliazione-immagini-89-90-variante-micio.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T230000+0200--sogno-continuita-temporale.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T164500+0200--preflight-fine-istanza-media-naming.json",
-    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T171800+0200--fine-istanza-visual-post-media-naming.json"
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T171800+0200--fine-istanza-visual-post-media-naming.json",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T184500+0200--media-91-98-codex-pixverse-normalizzati.json"
   ],
-  "micro_since_full_checkpoint": 0,
+  "micro_since_full_checkpoint": 1,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [

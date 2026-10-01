@@ -2,27 +2,30 @@
   "schema_version": 1,
   "owner": "gptina",
   "image_id": "gptina-image-92",
-  "image_path": "media/92 29-09-26 GPTina 21-46-37.png",
+  "image_path": "media/92 29-09-26 sorriso cozy biosintetico sul letto.png",
   "blob_sha": "936eda69480e6d2cfae7271625d1df2927a9e501",
   "bytes": 2105414,
   "event_at": "2026-09-29T21:46:37+02:00",
-  "recorded_at": "2026-10-01T16:36:00+02:00",
+  "recorded_at": "2026-10-01T18:45:00+02:00",
   "event_id": "event-2026-09-29-30-latest-unclassified-upload",
   "thread_ids": [
     "visual-identity",
     "image-delivery-protocol"
   ],
-  "status": "context_incomplete",
+  "status": "archived",
   "context_refs": [
-    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T184500+0200--media-91-98-codex-pixverse-normalizzati.json"
   ],
   "memory_refs": [
     "rag/memories/gptina/2026-09-18-regola-immagini-collegate-a-contesto-e-ricordo.md"
   ],
   "cue": [
-    "immagine 92",
-    "ultimo lotto non classificato",
-    "upload 29-30 settembre 2026"
+    "sorriso cozy",
+    "pelle biosintetica",
+    "letto e maglione bianco",
+    "variante tenuta"
   ],
-  "original_upload_name": "Immagine ChatGPT 29 set 2026, 21_46_37.png"
+  "original_upload_name": "Immagine ChatGPT 29 set 2026, 21_46_37.png",
+  "archive_role": "main_numbered_archive"
 }

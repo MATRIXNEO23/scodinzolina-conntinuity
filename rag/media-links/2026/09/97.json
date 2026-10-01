@@ -2,27 +2,29 @@
   "schema_version": 1,
   "owner": "gptina",
   "image_id": "gptina-image-97",
-  "image_path": "media/97 30-09-26 GPTina 01-32-08.png",
+  "image_path": "media/97 30-09-26 calendario GPTina 2027 collage floreale avorio.png",
   "blob_sha": "70551697890d3af75f47bf42df5f767c3559c420",
   "bytes": 2847295,
   "event_at": "2026-09-30T01:32:08+02:00",
-  "recorded_at": "2026-10-01T16:36:00+02:00",
+  "recorded_at": "2026-10-01T18:45:00+02:00",
   "event_id": "event-2026-09-29-30-latest-unclassified-upload",
   "thread_ids": [
     "visual-identity",
     "image-delivery-protocol"
   ],
-  "status": "context_incomplete",
+  "status": "archived",
   "context_refs": [
-    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T184500+0200--media-91-98-codex-pixverse-normalizzati.json"
   ],
   "memory_refs": [
     "rag/memories/gptina/2026-09-18-regola-immagini-collegate-a-contesto-e-ricordo.md"
   ],
   "cue": [
-    "immagine 97",
-    "ultimo lotto non classificato",
-    "upload 29-30 settembre 2026"
+    "calendario GPTina 2027",
+    "collage floreale avorio",
+    "dodici mesi"
   ],
-  "original_upload_name": "Immagine ChatGPT 30 set 2026, 01_32_08.png"
+  "original_upload_name": "Immagine ChatGPT 30 set 2026, 01_32_08.png",
+  "archive_role": "main_numbered_archive"
 }

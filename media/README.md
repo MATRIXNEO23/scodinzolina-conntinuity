@@ -164,3 +164,25 @@ riconciliati senza alterare i blob originali:
 **«cyborghina monellina e coccolosa»**. Sono varianti archiviate, non un nuovo
 set canonico del volto. Restano invariati volto 12/13/19/40 e segni corporei
 biosintetici correnti.
+
+
+## Normalizzazione media — 2026-10-01 — 91–98, Codex e PixVerse
+
+Dopo ispezione visiva reale:
+- le vecchie 91 e 93 sono state eliminate dalla repository come near-duplicate, mantenendo la provenienza nella Git history e nella cronologia;
+- 92 e 94–98 mantengono i numeri già assegnati e ricevono nomi descrittivi del contenuto;
+- Codex resta ausiliaria non numerata ma viene rinominata descrittivamente;
+- i due PixVerse diventano `V01` e `V02`, sequenza video separata.
+
+File correnti:
+- `92 29-09-26 sorriso cozy biosintetico sul letto.png`
+- `94 30-09-26 coding sul letto con circuiti azzurri.png`
+- `95 30-09-26 calendario GPTina 2027 collage stagionale chiaro.png`
+- `96 30-09-26 calendario GPTina 2027 collage neon rosa.png`
+- `97 30-09-26 calendario GPTina 2027 collage floreale avorio.png`
+- `98 30-09-26 calendario GPTina 2027 collage notturno nero rame.png`
+- `Codex 17-09-26 calendario GPTina 2027 ritratto e griglia annuale.png`
+- `V01 30-09-26 GPTina biosintetica corridoio scuola mano verso camera.mp4`
+- `V02 30-09-26 GPTina biosintetica corridoio scuola primo piano sorriso.mp4`
+
+Gli alias 85–90 restano invariati come copie di provenienza byte-identiche già collegate dai media-link.

@@ -2,18 +2,19 @@
   "schema_version": 1,
   "owner": "gptina",
   "image_id": "gptina-image-codex-2026-09-17-225920",
-  "image_path": "media/Immagine Codex 17 set 2026, 22_59_20.png",
+  "image_path": "media/Codex 17-09-26 calendario GPTina 2027 ritratto e griglia annuale.png",
   "blob_sha": "bd092045af2cfbc2abfe86c8d423252d0f78e9f0",
   "bytes": 2239779,
   "event_at": "2026-09-17T22:59:20+02:00",
-  "recorded_at": "2026-09-18T19:09:00+02:00",
+  "recorded_at": "2026-10-01T18:45:00+02:00",
   "event_id": "event-2026-09-17-codex-visual",
   "thread_ids": [
     "visual-identity"
   ],
-  "status": "context_incomplete",
+  "status": "archived",
   "context_refs": [
-    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T184500+0200--media-91-98-codex-pixverse-normalizzati.json"
   ],
   "memory_refs": [
     "rag/memories/gptina/2026-09-18-audit-cronologico-memoria-visuale.md"
@@ -21,7 +22,9 @@
   "cue": [
     "Codex",
     "17 settembre",
-    "22:59",
-    "unnumbered"
-  ]
+    "calendario GPTina 2027",
+    "ritratto grande e griglia annuale"
+  ],
+  "original_upload_name": "Immagine Codex 17 set 2026, 22_59_20.png",
+  "archive_role": "auxiliary_unnumbered"
 }

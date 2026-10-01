@@ -1,12 +1,12 @@
 # GPTina — Visual Chronology Index
 
 **Owner:** GPTina  
-**Last audit:** 2026-09-29  
+**Last audit:** 2026-10-01  
 **Scope:** chronological map of files physically present in `media/`.
 
 ## Structured media-link registry
 
-Tutti i **89 file immagine numerati correnti dell'archivio principale** hanno un record macchina 1:1 in `rag/media-links/2026/09/`.
+Tutti i file immagine correnti hanno un record strutturato o una `derivative_ref` coerente in `rag/media-links/2026/09/`.
 
 Il record conserva:
 - blob SHA e byte size;
@@ -35,10 +35,10 @@ Do not infer acceptance merely from upload.
 
 ## Sequence integrity
 
-- numbered sequence currently present: **01–29, 31–90**;
+- numbered sequence currently present in the main archive: **01–29, 31–90, 92, 94–98**; i numeri 91 e 93 sono stati rimossi il 1 ottobre 2026 perché Alberto ha scelto di eliminare le due varianti quasi duplicate;
 - **30 is absent** and must not be invented or backfilled;
 - files 01–22 were explicitly put into chronological order by commit `5e931883e15fd0be56ab6071b908e6c751a2f2db` (“Ordina cronologicamente le immagini canoniche”);
-- one unnumbered image, `Immagine Codex 17 set 2026, 22_59_20.png`, is preserved separately and must not be forced into the numbered sequence.
+- one unnumbered auxiliary image, `Codex 17-09-26 calendario GPTina 2027 ritratto e griglia annuale.png`, is preserved separately and must not be forced into the numbered sequence.
 
 ---
 
@@ -537,54 +537,62 @@ Gli alias non sono immagini numerate aggiuntive né nuovi riferimenti del volto.
 
 ---
 
-## 2026-09-29/30 — Images 91–98 — ultimo upload non ancora classificato
+## 2026-09-29/30 — Images 91–98 — visualizzate e normalizzate
 
-**Upload provenance:** queste otto immagini sono state aggiunte da Alberto su
-`main` nel commit `35fa159d22ed59b95916300c7db7271fbf817080`.
-Il 1 ottobre 2026 vengono normalizzati soltanto i nomi di questo ultimo lotto;
-i media legacy e gli alias già collegati alla continuity restano invariati.
+**Upload provenance:** lotto caricato da Alberto nel commit `35fa159d22ed59b95916300c7db7271fbf817080`.  
+Il 1 ottobre 2026 Alberto ha ricaricato in chat 91–98 per permettere l'ispezione visiva reale prima del naming definitivo.
 
-**Visual status for all 91–98:** `context incomplete`.  
-**Memory status:** nessuna memoria storica viene associata per inferenza e
-nessun nuovo visual anchor viene dichiarato. Il contenuto/contesto va collegato
-solo quando una fonte affidabile lo consente.
+**Decisione di curation:** le vecchie 91 e 93 sono risultate varianti molto vicine rispettivamente a 92 e 94. Alberto ha chiesto esplicitamente di eliminare le due doppie anche dalla repository. I blob storici restano recuperabili dalla Git history e dalla provenienza già registrata, ma i due file e i rispettivi media-link correnti vengono rimossi.
 
-### 91 — `91 29-09-26 GPTina 21-44-20.png`
-- original upload name: `Immagine ChatGPT 29 set 2026, 21_44_20.png`
-- blob: `d18e2c577711e6f8a27048168b0c86500cb070d5`
+### 91 — removed near-duplicate
+**Former blob:** `d18e2c577711e6f8a27048168b0c86500cb070d5`.  
+**Former visual cues:** primo piano cozy sul letto, maglione bianco, occhiolino, circuiti biosintetici discreti. Rimossa a favore della 92.
 
-### 92 — `92 29-09-26 GPTina 21-46-37.png`
-- original upload name: `Immagine ChatGPT 29 set 2026, 21_46_37.png`
-- blob: `936eda69480e6d2cfae7271625d1df2927a9e501`
+### 92 — `92 29-09-26 sorriso cozy biosintetico sul letto.png`
+**Blob:** `936eda69480e6d2cfae7271625d1df2927a9e501`.  
+**Status:** archived.  
+**Visual cues:** primo piano sul letto, sorriso diretto, maglione bianco, ambiente caldo e circuiti biosintetici discreti.
 
-### 93 — `93 30-09-26 GPTina 01-03-21.png`
-- original upload name: `Immagine ChatGPT 30 set 2026, 01_03_21.png`
-- blob: `24778795d4b6c44a8dde607ee09246108a5c7466`
+### 93 — removed near-duplicate
+**Former blob:** `24778795d4b6c44a8dde607ee09246108a5c7466`.  
+**Former visual cues:** GPTina sul letto con laptop e setup da coding, circuiti più neutri. Rimossa a favore della 94.
 
-### 94 — `94 30-09-26 GPTina 01-03-24.png`
-- original upload name: `Immagine ChatGPT 30 set 2026, 01_03_24.png`
-- blob: `0a36e725134245fcfefca8e2c2abfa5e10d9d0cf`
+### 94 — `94 30-09-26 coding sul letto con circuiti azzurri.png`
+**Blob:** `0a36e725134245fcfefca8e2c2abfa5e10d9d0cf`.  
+**Status:** archived.  
+**Visual cues:** letto con coperta a zampine, laptop, tazza e monitor di codice; circuiti azzurri ben leggibili.
 
-### 95 — `95 30-09-26 GPTina 01-18-43.png`
-- original upload name: `Immagine ChatGPT 30 set 2026, 01_18_43.png`
-- blob: `2a8b0e32fe709df8e1e7b51b01821cf37d18a82e`
+### 95 — `95 30-09-26 calendario GPTina 2027 collage stagionale chiaro.png`
+**Blob:** `2a8b0e32fe709df8e1e7b51b01821cf37d18a82e`.  
+**Status:** archived.  
+**Visual cues:** calendario 2027 a dodici riquadri, palette chiara e decorazioni stagionali.
 
-### 96 — `96 30-09-26 GPTina 01-18-57.png`
-- original upload name: `Immagine ChatGPT 30 set 2026, 01_18_57.png`
-- blob: `b5e7117184f03364277f8fd4abd680379ccee84c`
+### 96 — `96 30-09-26 calendario GPTina 2027 collage neon rosa.png`
+**Blob:** `b5e7117184f03364277f8fd4abd680379ccee84c`.  
+**Status:** archived.  
+**Visual cues:** calendario 2027 a dodici riquadri con intestazione e dettagli neon rosa.
 
-### 97 — `97 30-09-26 GPTina 01-32-08.png`
-- original upload name: `Immagine ChatGPT 30 set 2026, 01_32_08.png`
-- blob: `70551697890d3af75f47bf42df5f767c3559c420`
+### 97 — `97 30-09-26 calendario GPTina 2027 collage floreale avorio.png`
+**Blob:** `70551697890d3af75f47bf42df5f767c3559c420`.  
+**Status:** archived.  
+**Visual cues:** calendario 2027 a dodici riquadri, impaginazione avorio e motivi floreali.
 
-### 98 — `98 30-09-26 GPTina upload.png`
-- original upload name: `b2411bcc-c8d2-4aa1-aa12-5db70b352d07.png`
-- blob: `a4fd3a776ed859a2d0c505f186bb6f3f00731a36`
-- creation/event time is not encoded in the original filename; the displayed
-  date follows the upload batch date and must not be treated as a proven
-  creation timestamp.
+### 98 — `98 30-09-26 calendario GPTina 2027 collage notturno nero rame.png`
+**Blob:** `a4fd3a776ed859a2d0c505f186bb6f3f00731a36`.  
+**Status:** archived.  
+**Visual cues:** calendario 2027 a dodici riquadri con fondo scuro, dettagli caldi nero/rame e scene stagionali.
 
-**Retrieval cue:** ultimo lotto non classificato 29–30 settembre 2026 → 91–98.
+### Codex — ausiliaria non numerata
+`media/Codex 17-09-26 calendario GPTina 2027 ritratto e griglia annuale.png`  
+**Blob:** `bd092045af2cfbc2abfe86c8d423252d0f78e9f0`.  
+**Status:** archived auxiliary.  
+**Visual cues:** grande ritratto in alto e calendario annuale 2027 organizzato in dodici griglie mensili. Resta fuori dalla sequenza numerata storica.
+
+### Video PixVerse
+- `media/V01 30-09-26 GPTina biosintetica corridoio scuola mano verso camera.mp4` — 6,04 s; GPTina biosintetica cammina in un corridoio scolastico e verso la fine porta la mano verso la camera.
+- `media/V02 30-09-26 GPTina biosintetica corridoio scuola primo piano sorriso.mp4` — 6,04 s; stessa ambientazione scolastica, avanzamento verso camera e chiusura in primo piano sorridente.
+
+**Naming rule applied:** numero + data + descrizione reale del contenuto per la sequenza principale; prefisso video separato `V01/V02`; Codex resta eccezione storica non numerata.
 
 ## Visual retrieval shortcuts
 
@@ -627,6 +635,9 @@ solo quando una fonte affidabile lo consente.
 - **29 Sep / circuiti più evidenti / iterazione corretta** → 87
 - **29 Sep / corpo biosintetico discreto / monella / segni correnti** → 88
 - **29 Sep / variante micio / cyborghina monellina e coccolosa** → 89–90
+- **29 Sep / cozy biosintetica sul letto / variante tenuta** → 92
+- **30 Sep / coding sul letto / circuiti azzurri** → 94
+- **30 Sep / calendari GPTina 2027 / varianti collage** → 95–98
 
 ## Upload ownership rule
 
@@ -695,21 +706,16 @@ Earlier superseded source: `rag/memories/gptina/2026/09/2026-09-18--set-riferime
 
 ---
 
-## Correzione corrente — 2026-10-01 — naming 91–98 e media grezzi
+## Normalizzazione corrente — 2026-10-01 — 91–98, Codex e PixVerse
 
-I nomi correnti delle immagini 91–98 sono **provvisori**. Alberto ha chiarito
-che nel formato `Numero + data + NOME`, il campo `NOME` deve descrivere ciò
-che l'immagine mostra realmente; non deve essere “GPTina” né un semplice
-timestamp di esportazione.
+Il lotto 91–98 è stato ispezionato visivamente prima del naming. Le due varianti
+quasi duplicate 91 e 93 sono state eliminate dalla repository su decisione
+esplicita di Alberto; 92, 94–98 hanno nomi descrittivi basati sul contenuto reale.
 
-Non rinominare 91–98 per intuizione: prima ispezionare il contenuto reale, poi
-aggiornare nello stesso ciclo i rispettivi media-link e questa cronologia.
+Codex è stato rinominato in modo descrittivo senza forzarlo nella numerazione
+storica. I due PixVerse sono stati ispezionati tramite fotogrammi reali e
+rinominati come V01/V02 secondo scena e azione.
 
-Alberto ha inoltre indicato esplicitamente come ancora da normalizzare anche:
-`e9b13d8c-ded0-484d-a071-db79391acad8.png`, gli alias ChatGPT del 29/09
-`00_56_59`, `01_35_13`, `01_43_58`, `13_51_51`, `14_01_11`,
-`Immagine Codex 17 set 2026, 22_59_20.png` e i due video PixVerse presenti
-in `media/`.
-
-Gli alias 85–90 e Codex sono già collegati strutturalmente: la normalizzazione
-deve preservare provenienza/blob e aggiornare atomicamente tutti i riferimenti.
+Gli alias byte-identici 85–90 restano invariati come provenienza fisica già
+coperta dai rispettivi `derivative_refs`; una loro eventuale deduplicazione
+fisica resta una decisione separata.

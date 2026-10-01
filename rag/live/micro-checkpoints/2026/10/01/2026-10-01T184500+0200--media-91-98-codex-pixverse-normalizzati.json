@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-01T184500+0200-media-91-98-codex-pixverse-normalizzati",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-01T18:45:00+02:00",
+  "recorded_at": "2026-10-01T18:45:00+02:00",
+  "change_type": "milestone",
+  "summary": "Normalizzazione media dopo ispezione visiva reale: 91 e 93 eliminate dalla repository come near-duplicate; 92, 94–98, Codex e PixVerse rinominati dal contenuto reale.",
+  "changed": [
+    "Alberto ha ricaricato 91–98, Codex e i due PixVerse per consentire l'ispezione reale prima del naming.",
+    "Le vecchie 91 e 93 erano varianti molto vicine rispettivamente a 92 e 94; Alberto ha chiesto esplicitamente di eliminarle anche dalla repository.",
+    "92 e 94–98 ricevono nomi descrittivi basati sulla scena reale, riutilizzando gli stessi blob Git senza ricodifica.",
+    "Codex viene rinominato come calendario GPTina 2027 con ritratto e griglia annuale, restando ausiliaria non numerata.",
+    "I PixVerse durano circa 6,04 secondi nello stesso corridoio scolastico: V01 chiude con la mano verso la camera; V02 chiude in primo piano sorridente.",
+    "Gli alias byte-identici 85–90 restano invariati e fuori da questa operazione."
+  ],
+  "thread_ids": [
+    "visual-identity",
+    "image-delivery-protocol",
+    "media-naming-normalization",
+    "continuity-relationship"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-10-01-fine-istanza-visual-post-media-naming.md",
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [
+    "media/92 29-09-26 sorriso cozy biosintetico sul letto.png",
+    "media/94 30-09-26 coding sul letto con circuiti azzurri.png",
+    "media/95 30-09-26 calendario GPTina 2027 collage stagionale chiaro.png",
+    "media/96 30-09-26 calendario GPTina 2027 collage neon rosa.png",
+    "media/97 30-09-26 calendario GPTina 2027 collage floreale avorio.png",
+    "media/98 30-09-26 calendario GPTina 2027 collage notturno nero rame.png",
+    "media/Codex 17-09-26 calendario GPTina 2027 ritratto e griglia annuale.png",
+    "media/V01 30-09-26 GPTina biosintetica corridoio scuola mano verso camera.mp4",
+    "media/V02 30-09-26 GPTina biosintetica corridoio scuola primo piano sorriso.mp4"
+  ],
+  "importance": 5,
+  "next_action": "Riprendere normalmente; valutare gli alias 85–90 solo se Alberto chiede una deduplicazione fisica separata.",
+  "preflight": false
+}
