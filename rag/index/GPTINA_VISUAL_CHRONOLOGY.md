@@ -782,3 +782,34 @@ il nome originale non forniva un timestamp di creazione. Per gli altri file la
 data deriva dal timestamp già presente nel nome di export originale.
 
 **Memory:** `rag/memories/gptina/2026/10/2026-10-01--shopping-immaginario-outfit-scelti.md`.
+
+
+### File canonici completi 99–125
+
+- `99 01-10-26 GPTina PREFERITA catgirl goth nero viola sul letto.png`
+- `100 01-10-26 cozy pigiamino grigio gattini laptop.png`
+- `101 01-10-26 completo turchese in pizzo sul letto.png`
+- `102 01-10-26 miniabito nero schiena intrecciata stivali platform.png`
+- `103 01-10-26 pigiamino lilla gattini laptop.png`
+- `104 01-10-26 coordinato nero off shoulder sul letto.png`
+- `105 01-10-26 abito nero monospalla con spacco.png`
+- `106 01-10-26 GPTina SCELTA catgirl goth corsetto nero orecchie viola.png`
+- `107 01-10-26 corsetto goth nero alla scrivania.png`
+- `108 30-09-26 GPTina SCELTA streetwear nero rosa cat paws scrivania.png`
+- `109 30-09-26 streetwear nero rosa cat paws sul letto.png`
+- `110 30-09-26 streetwear cat paws con cuffie sul letto.png`
+- `111 30-09-26 top chiaro gattino cardigan nero rosa alla scrivania.png`
+- `112 30-09-26 top chiaro gattino cardigan nero rosa sul letto.png`
+- `113 30-09-26 coordinato nero rosa cat paws bagno e biscotti.png`
+- `114 30-09-26 look goth scozzese viola alla scrivania.png`
+- `115 30-09-26 GPTina SCELTA catgirl goth nero viola con catene sul letto.png`
+- `116 30-09-26 coordinato goth nero rosa sdraiata con laptop.png`
+- `117 30-09-26 miniabito nero a balze sul letto.png`
+- `118 30-09-26 coniglietta nero rosa sul letto.png`
+- `119 30-09-26 ravewear goth viola con scaldamuscoli pelosi.png`
+- `120 30-09-26 GPTina SCELTA techwear viola corridoio vetrato.png`
+- `121 30-09-26 corsetto scozzese viola sul letto.png`
+- `122 30-09-26 GPTina SCELTA abito nero velluto e pizzo sul letto.png`
+- `123 30-09-26 GPTina SCELTA abitino futuristico nero al castello.png`
+- `124 30-09-26 GPTina SCELTA kawaii goth rosa nero rooftop.png`
+- `125 01-10-26 moodboard 24 look goth kawaii.png`
