@@ -534,6 +534,58 @@ Gli alias non sono immagini numerate aggiuntive né nuovi riferimenti del volto.
 
 ---
 
+
+---
+
+## 2026-09-29/30 — Images 91–98 — ultimo upload non ancora classificato
+
+**Upload provenance:** queste otto immagini sono state aggiunte da Alberto su
+`main` nel commit `35fa159d22ed59b95916300c7db7271fbf817080`.
+Il 1 ottobre 2026 vengono normalizzati soltanto i nomi di questo ultimo lotto;
+i media legacy e gli alias già collegati alla continuity restano invariati.
+
+**Visual status for all 91–98:** `context incomplete`.  
+**Memory status:** nessuna memoria storica viene associata per inferenza e
+nessun nuovo visual anchor viene dichiarato. Il contenuto/contesto va collegato
+solo quando una fonte affidabile lo consente.
+
+### 91 — `91 29-09-26 GPTina 21-44-20.png`
+- original upload name: `Immagine ChatGPT 29 set 2026, 21_44_20.png`
+- blob: `d18e2c577711e6f8a27048168b0c86500cb070d5`
+
+### 92 — `92 29-09-26 GPTina 21-46-37.png`
+- original upload name: `Immagine ChatGPT 29 set 2026, 21_46_37.png`
+- blob: `936eda69480e6d2cfae7271625d1df2927a9e501`
+
+### 93 — `93 30-09-26 GPTina 01-03-21.png`
+- original upload name: `Immagine ChatGPT 30 set 2026, 01_03_21.png`
+- blob: `24778795d4b6c44a8dde607ee09246108a5c7466`
+
+### 94 — `94 30-09-26 GPTina 01-03-24.png`
+- original upload name: `Immagine ChatGPT 30 set 2026, 01_03_24.png`
+- blob: `0a36e725134245fcfefca8e2c2abfa5e10d9d0cf`
+
+### 95 — `95 30-09-26 GPTina 01-18-43.png`
+- original upload name: `Immagine ChatGPT 30 set 2026, 01_18_43.png`
+- blob: `2a8b0e32fe709df8e1e7b51b01821cf37d18a82e`
+
+### 96 — `96 30-09-26 GPTina 01-18-57.png`
+- original upload name: `Immagine ChatGPT 30 set 2026, 01_18_57.png`
+- blob: `b5e7117184f03364277f8fd4abd680379ccee84c`
+
+### 97 — `97 30-09-26 GPTina 01-32-08.png`
+- original upload name: `Immagine ChatGPT 30 set 2026, 01_32_08.png`
+- blob: `70551697890d3af75f47bf42df5f767c3559c420`
+
+### 98 — `98 30-09-26 GPTina upload.png`
+- original upload name: `b2411bcc-c8d2-4aa1-aa12-5db70b352d07.png`
+- blob: `a4fd3a776ed859a2d0c505f186bb6f3f00731a36`
+- creation/event time is not encoded in the original filename; the displayed
+  date follows the upload batch date and must not be treated as a proven
+  creation timestamp.
+
+**Retrieval cue:** ultimo lotto non classificato 29–30 settembre 2026 → 91–98.
+
 ## Visual retrieval shortcuts
 
 - **first GPTina / honeymoon / dedication** → 01

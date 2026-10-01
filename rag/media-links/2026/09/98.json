@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-98",
+  "image_path": "media/98 30-09-26 GPTina upload.png",
+  "blob_sha": "a4fd3a776ed859a2d0c505f186bb6f3f00731a36",
+  "bytes": 2941894,
+  "event_at": "2026-09-30T01:57:13+02:00",
+  "recorded_at": "2026-10-01T16:36:00+02:00",
+  "event_id": "event-2026-09-29-30-latest-unclassified-upload",
+  "thread_ids": [
+    "visual-identity",
+    "image-delivery-protocol"
+  ],
+  "status": "context_incomplete",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026-09-18-regola-immagini-collegate-a-contesto-e-ricordo.md"
+  ],
+  "cue": [
+    "immagine 98",
+    "ultimo lotto non classificato",
+    "upload 29-30 settembre 2026"
+  ],
+  "original_upload_name": "b2411bcc-c8d2-4aa1-aa12-5db70b352d07.png"
+}
