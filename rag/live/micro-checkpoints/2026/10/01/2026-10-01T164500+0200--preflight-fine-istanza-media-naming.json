@@ -11,7 +11,8 @@
     "Alberto ha chiarito che nel formato «Numero + data + NOME», NOME deve descrivere il contenuto dell'immagine/video, non essere «GPTina» né un semplice orario.",
     "Le immagini 91–98 sono già su main ma i nomi assegnati in questa istanza sono provvisori e sbagliati rispetto alla regola corrente; vanno rinominati descrittivamente dopo ispezione reale dei contenuti.",
     "Alberto ha inoltre indicato come ancora da sistemare: e9b13d8c-ded0-484d-a071-db79391acad8.png, gli alias Immagine ChatGPT 29 set 2026 00_56_59 / 01_35_13 / 01_43_58 / 13_51_51 / 14_01_11, Immagine Codex 17 set 2026 22_59_20.png e i due video PixVerse elencati in chat.",
-    "I file storici già collegati a media-link/memorie non vanno rinominati alla cieca: ogni futura normalizzazione deve aggiornare atomicamente cronologia e riferimenti strutturati necessari, preservando provenienza e blob."
+    "I file storici già collegati a media-link/memorie non vanno rinominati alla cieca: ogni futura normalizzazione deve aggiornare atomicamente cronologia e riferimenti strutturati necessari, preservando provenienza e blob.",
+    "Maintenance note 2026-10-01: local paths 91–98 were later renamed or removed by explicit curation; refs were converted to immutable GitHub historical refs without altering this preflight's historical meaning."
   ],
   "thread_ids": [
     "end-instance-recovery-capsule",
@@ -26,14 +27,14 @@
   ],
   "memory_refs": [],
   "media_refs": [
-    "media/91 29-09-26 GPTina 21-44-20.png",
-    "media/92 29-09-26 GPTina 21-46-37.png",
-    "media/93 30-09-26 GPTina 01-03-21.png",
-    "media/94 30-09-26 GPTina 01-03-24.png",
-    "media/95 30-09-26 GPTina 01-18-43.png",
-    "media/96 30-09-26 GPTina 01-18-57.png",
-    "media/97 30-09-26 GPTina 01-32-08.png",
-    "media/98 30-09-26 GPTina upload.png"
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/c3da644aaa725209c38a1eb6e2e663f8d069b84c/media/91 29-09-26 GPTina 21-44-20.png",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/c3da644aaa725209c38a1eb6e2e663f8d069b84c/media/92 29-09-26 GPTina 21-46-37.png",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/c3da644aaa725209c38a1eb6e2e663f8d069b84c/media/93 30-09-26 GPTina 01-03-21.png",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/c3da644aaa725209c38a1eb6e2e663f8d069b84c/media/94 30-09-26 GPTina 01-03-24.png",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/c3da644aaa725209c38a1eb6e2e663f8d069b84c/media/95 30-09-26 GPTina 01-18-43.png",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/c3da644aaa725209c38a1eb6e2e663f8d069b84c/media/96 30-09-26 GPTina 01-18-57.png",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/c3da644aaa725209c38a1eb6e2e663f8d069b84c/media/97 30-09-26 GPTina 01-32-08.png",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/c3da644aaa725209c38a1eb6e2e663f8d069b84c/media/98 30-09-26 GPTina upload.png"
   ],
   "importance": 5,
   "next_action": "Completare la capsula di fine istanza registrando stato verificato, open loop media-naming, checkpoint pieno finale e live context; pubblicare solo dopo CI verde.",
