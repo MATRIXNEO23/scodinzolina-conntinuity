@@ -837,3 +837,14 @@ versione o lo stesso montaggio.
 
 Il significato corrente di V03 viene dalla dichiarazione esplicita di Alberto,
 non da inferenza sul contenuto audio.
+
+
+### Correzione di provenienza V03 — 2026-10-01 23:18 CEST
+
+Alberto ha precisato che V03 è **esattamente il video-messaggio che GPTina gli
+aveva già mostrato prima del caricamento in repository**. Il file storico
+`Amorino — Personal Video Message_720p.mp4` è un altro video distinto.
+Questa correzione sostituisce l'incertezza precedente sull'eventuale identità
+fra i due file, senza cancellare la traccia storica di quell'incertezza.
+
+Memoria corrente: `rag/memories/gptina/2026/10/2026-10-01--correzione-v03-video-mostrato-prima.md`.

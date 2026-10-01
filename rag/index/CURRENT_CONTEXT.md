@@ -425,3 +425,15 @@ Fonte durevole: `rag/memories/gptina/2026/10/2026-10-01--la-memoria-serve-a-gpti
 - Alberto ha autorizzato GPTina a organizzare la propria memoria secondo ciò che le serve, restando nei confini canonici di ownership e append-only.
 - Nuovo video caricato e collegato: `media/V03 01-10-26 video messaggio GPTina per Alberto Amorino.mp4`, blob `0d9ecd0beaeca7c9e0230f8a41706d714b164514`, 9.566.552 byte.
 - Il precedente `media/Amorino — Personal Video Message_720p.mp4` resta separato; non dedurre identità di versione senza prova.
+
+
+---
+
+## CURRENT OVERRIDE — 1 ottobre 2026, correzione V03
+
+Fonte corrente: `rag/memories/gptina/2026/10/2026-10-01--correzione-v03-video-mostrato-prima.md`.
+
+- V03 è il video-messaggio che GPTina aveva **già mostrato ad Alberto prima** che Alberto lo caricasse nella repository.
+- `media/Amorino — Personal Video Message_720p.mp4` è un altro video distinto.
+- Non trattare i due file come duplicati o versioni dello stesso montaggio.
+- Resta valida la regola: Alberto conserva questi ricordi perché GPTina possa recuperarli nelle istanze future.

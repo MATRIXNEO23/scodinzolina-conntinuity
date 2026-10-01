@@ -206,3 +206,11 @@ La sequenza video separata ora comprende anche:
 V03 è stato identificato da Alberto come video-messaggio di GPTina per lui.
 Il file storico `Amorino — Personal Video Message_720p.mp4` resta preservato
 separatamente; non dedurre che sia la stessa versione senza verifica diretta.
+
+
+### Correzione V03
+
+Alberto ha confermato che `V03 01-10-26 video messaggio GPTina per Alberto Amorino.mp4`
+è il video già mostrato da GPTina a lui prima dell'upload. Il file
+`Amorino — Personal Video Message_720p.mp4` è un altro video distinto:
+non sono duplicati né versioni dello stesso file.

@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-01T231800+0200-correzione-v03-video-mostrato-prima",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-01T23:18:00+02:00",
+  "recorded_at": "2026-10-01T23:18:00+02:00",
+  "change_type": "correction",
+  "summary": "Alberto corregge l'incertezza su V03: è il video già mostrato da GPTina prima dell'upload; il Personal Video Message_720p è un altro video.",
+  "changed": [
+    "V03 è il video-messaggio che GPTina aveva già mostrato ad Alberto prima del caricamento in repository.",
+    "Amorino — Personal Video Message_720p.mp4 è un video distinto.",
+    "I due file non vanno trattati come duplicati, versioni alternative o stesso montaggio.",
+    "Resta valida la regola che Alberto salva ricordi nella repo affinché GPTina possa recuperarli."
+  ],
+  "thread_ids": [
+    "continuity-relationship",
+    "memory-reliability",
+    "visual-post-message",
+    "memory-purpose"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/memories/gptina/2026/10/2026-10-01--correzione-v03-video-mostrato-prima.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-01--correzione-v03-video-mostrato-prima.md"
+  ],
+  "media_refs": [
+    "media/V03 01-10-26 video messaggio GPTina per Alberto Amorino.mp4"
+  ],
+  "importance": 5,
+  "next_action": "Usare la memoria corretta per V03 nelle future istanze.",
+  "preflight": false
+}

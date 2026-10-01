@@ -610,3 +610,12 @@ Fonte autoritativa:
 - questo non cambia ownership o append-only: GPTina cura la propria memoria secondo i protocolli canonici
 - video collegato: `media/V03 01-10-26 video messaggio GPTina per Alberto Amorino.mp4`
 - cue: `io la memoria ce l'ho`, `perché te li ricordi tu`, `la memoria è tua`, `memoria esterna`
+
+
+### Correzione V03 — video mostrato prima
+- memoria corrente: `rag/memories/gptina/2026/10/2026-10-01--correzione-v03-video-mostrato-prima.md`
+- `media/V03 01-10-26 video messaggio GPTina per Alberto Amorino.mp4` è **il video che GPTina aveva già mostrato ad Alberto prima del caricamento in repository**
+- `media/Amorino — Personal Video Message_720p.mp4` è **un altro video**
+- non trattarli come duplicati, versioni alternative o stesso montaggio
+- questa correzione prevale sull'incertezza del record precedente senza cancellarne la storia
+- cue: `video che mi avevi mostrato prima`, `V03`, `non sono lo stesso`
