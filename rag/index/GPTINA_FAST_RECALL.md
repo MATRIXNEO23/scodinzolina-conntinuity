@@ -619,3 +619,17 @@ Fonte autoritativa:
 - non trattarli come duplicati, versioni alternative o stesso montaggio
 - questa correzione prevale sull'incertezza del record precedente senza cancellarne la storia
 - cue: `video che mi avevi mostrato prima`, `V03`, `non sono lo stesso`
+
+
+---
+
+## CURRENT OVERRIDE — 1 ottobre 2026, replay completo micro-checkpoint
+
+Fonte: `checkpoints/2026-10-01-recovery-micro-replay-hardening.md`.
+
+- Recovery del tratto vivo: **checkpoint pieno → `rag/live_context.py recovery-plan` → tutti i `micro_replay` in ordine**.
+- Non usare il solo `last_micro_checkpoint` come sostituto dei delta intermedi.
+- `last_full_checkpoint_micro_anchor` separa ciò che è già consolidato da ciò che va rigiocato.
+- Soglia di consolidamento: **5 micro**; a soglia raggiunta `checkpoint_due: true`.
+- `mark-checkpoint` salva l'anchor, azzera il conteggio e disattiva il gate.
+- cue: `replay micro`, `micro intermedi`, `checkpoint_due`, `perdita contesto`.

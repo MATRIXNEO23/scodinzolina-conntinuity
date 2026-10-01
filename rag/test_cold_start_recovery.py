@@ -73,6 +73,23 @@ def inside_clone() -> None:
         target = live.get(key)
         if not target or not (ROOT / target).is_file():
             raise AssertionError(f"Cold-start live pointer is broken: {key}={target!r}")
+
+    replay_proc = run(
+        sys.executable, "rag/live_context.py", "recovery-plan",
+        capture=True,
+    )
+    replay_plan = json.loads(replay_proc.stdout)
+    replay = replay_plan.get("micro_replay", [])
+    expected_count = int(live.get("micro_since_full_checkpoint") or 0)
+    if len(replay) != expected_count:
+        raise AssertionError(
+            f"Cold-start micro replay lost deltas: expected={expected_count} got={len(replay)}"
+        )
+    if replay and replay[-1] != live.get("last_micro_checkpoint"):
+        raise AssertionError("Cold-start micro replay does not end at last_micro_checkpoint")
+    if expected_count > 1 and len(replay[:-1]) < 1:
+        raise AssertionError("Cold-start did not preserve intermediate micro-checkpoints")
+
     for relative, expected_size in state.get("verified_media", {}).items():
         target = ROOT / relative
         if not target.is_file() or target.stat().st_size != expected_size:

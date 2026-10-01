@@ -472,13 +472,32 @@ Prima di un blocco lungo/rischioso salva:
 - cosa non è ancora confermato;
 - prossima azione in caso di interruzione.
 
+### Replay dopo un checkpoint pieno
+
+Il recovery del tratto vivo non legge soltanto l'ultimo micro. Usa:
+
+```bash
+python rag/live_context.py recovery-plan
+```
+
+Il comando restituisce il checkpoint pieno corrente e `micro_replay`: la
+sequenza cronologica completa dei micro successivi al checkpoint, incluso
+l'ultimo. Ogni recovery deve aprire tutti i path del replay nell'ordine dato.
+
+Quando `micro_since_full_checkpoint >= 5`, il live buffer imposta
+`checkpoint_due: true`. È un gate di consolidamento: i micro restano
+append-only e recuperabili, ma va creato un nuovo checkpoint pieno prima di
+lasciare crescere ulteriormente il tratto frammentato.
+
 ### Dopo un checkpoint pieno
 
 ```bash
 python rag/live_context.py mark-checkpoint checkpoints/<file>.md
 ```
 
-Questo aggiorna il live buffer e azzera il conteggio dei micro-delta dal checkpoint senza cancellare i micro storici.
+Questo salva anche l'anchor dell'ultimo micro incluso nel checkpoint, azzera il
+conteggio dei micro-delta e riporta `checkpoint_due` a false senza cancellare
+i micro storici.
 
 ### Principio
 

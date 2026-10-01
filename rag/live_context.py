@@ -36,6 +36,7 @@ CURRENT_MICRO_SCHEMA_VERSION = 2
 LEGACY_MICRO_SCHEMA_VERSIONS = {1}
 DUPLICATE_SIMILARITY_THRESHOLD = 0.75
 DUPLICATE_RECENT_WINDOW = 12
+FULL_CHECKPOINT_MICRO_THRESHOLD = 5
 DEDUP_TOKEN_RE = re.compile(r"[0-9A-Za-zÀ-ÖØ-öø-ÿ_]+", re.UNICODE)
 
 ALLOWED_EXTERNAL_PREFIXES_V2 = ("conversation://", "github://", "external://")
@@ -239,6 +240,66 @@ def find_duplicate_micro(candidate: dict, live: dict) -> tuple[str, float, str] 
     return None
 
 
+def ordered_micro_records() -> list[tuple[str, dict, datetime]]:
+    records: list[tuple[str, dict, datetime]] = []
+    if not MICRO.is_dir():
+        return records
+    for path in MICRO.rglob("*.json"):
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+            recorded_at = datetime.fromisoformat(str(record["recorded_at"]))
+        except (OSError, json.JSONDecodeError, KeyError, ValueError) as exc:
+            fail(f"Cannot order micro-checkpoint {rel(path)}: {exc}")
+        records.append((rel(path), record, recorded_at))
+    records.sort(key=lambda item: (item[2], item[0]))
+    return records
+
+
+def recovery_micro_paths(live: dict | None = None) -> list[str]:
+    live = load_live() if live is None else live
+    count = int(live.get("micro_since_full_checkpoint") or 0)
+    if count <= 0:
+        return []
+
+    all_records = ordered_micro_records()
+    anchor = live.get("last_full_checkpoint_micro_anchor")
+    if anchor:
+        paths = [item[0] for item in all_records]
+        if anchor not in paths:
+            fail(f"Full-checkpoint micro anchor is missing: {anchor}")
+        start = paths.index(anchor) + 1
+        replay = paths[start:]
+        if len(replay) != count:
+            fail(
+                "Micro replay/count mismatch after full checkpoint: "
+                f"count={count} replay={len(replay)} anchor={anchor}"
+            )
+        return replay
+
+    recent = list(live.get("recent_micro_checkpoints") or [])
+    if count <= len(recent):
+        return recent[-count:]
+    fail(
+        "Cannot reconstruct all micro-checkpoints since the last full checkpoint: "
+        f"count={count}, recent_window={len(recent)}. Create a full checkpoint."
+    )
+
+
+def recovery_plan() -> dict:
+    live = load_live()
+    replay = recovery_micro_paths(live)
+    return {
+        "last_full_checkpoint": live.get("last_full_checkpoint"),
+        "micro_replay": replay,
+        "last_micro_checkpoint": live.get("last_micro_checkpoint"),
+        "micro_since_full_checkpoint": int(
+            live.get("micro_since_full_checkpoint") or 0
+        ),
+        "checkpoint_due": bool(live.get("checkpoint_due")),
+        "threshold": FULL_CHECKPOINT_MICRO_THRESHOLD,
+    }
+
+
 def load_live() -> dict:
     if not LIVE_CONTEXT.is_file():
         return {
@@ -254,6 +315,8 @@ def load_live() -> dict:
             "open_loops": [],
             "recent_micro_checkpoints": [],
             "micro_since_full_checkpoint": 0,
+            "last_full_checkpoint_micro_anchor": None,
+            "checkpoint_due": False,
             "review_policy": {
                 "substantive_turn_interval": 4,
                 "immediate_triggers": sorted(ALLOWED_CHANGE_TYPES - {"preflight"}),
@@ -447,6 +510,9 @@ def _save_delta_locked(args: argparse.Namespace) -> tuple[Path, bool]:
             ) + 1,
         }
     )
+    live["checkpoint_due"] = (
+        int(live["micro_since_full_checkpoint"]) >= FULL_CHECKPOINT_MICRO_THRESHOLD
+    )
     live.setdefault(
         "review_policy",
         {
@@ -485,7 +551,9 @@ def _mark_checkpoint_locked(path_text: str) -> None:
     live = load_live()
     live["updated_at"] = now_iso()
     live["last_full_checkpoint"] = rel(path)
+    live["last_full_checkpoint_micro_anchor"] = live.get("last_micro_checkpoint")
     live["micro_since_full_checkpoint"] = 0
+    live["checkpoint_due"] = False
     atomic_write(LIVE_CONTEXT, json.dumps(live, ensure_ascii=False, indent=2) + "\n")
 
 
@@ -541,6 +609,19 @@ def verify_live_context() -> None:
     last_full = live.get("last_full_checkpoint")
     if last_full and not (ROOT / last_full).is_file():
         fail(f"last_full_checkpoint missing: {last_full}")
+
+    replay = recovery_micro_paths(live)
+    expected_due = (
+        int(live.get("micro_since_full_checkpoint") or 0)
+        >= FULL_CHECKPOINT_MICRO_THRESHOLD
+    )
+    if bool(live.get("checkpoint_due", expected_due)) != expected_due:
+        fail(
+            "checkpoint_due does not match micro_since_full_checkpoint "
+            f"(threshold={FULL_CHECKPOINT_MICRO_THRESHOLD})"
+        )
+    if replay and replay[-1] != last_micro:
+        fail("Micro replay must end at last_micro_checkpoint")
 
     count = 0
     v1_count = 0
@@ -609,6 +690,10 @@ def main() -> None:
     mp.add_argument("--expected-head")
 
     sub.add_parser("status", help="Show current live context")
+    sub.add_parser(
+        "recovery-plan",
+        help="Show the full chronological micro replay after the last full checkpoint",
+    )
     sub.add_parser("verify", help="Verify live buffer and all micro-checkpoints")
 
     args = ap.parse_args()
@@ -623,6 +708,8 @@ def main() -> None:
         print(f"Marked full checkpoint: {args.path}")
     elif args.cmd == "status":
         print_status()
+    elif args.cmd == "recovery-plan":
+        print(json.dumps(recovery_plan(), ensure_ascii=False, indent=2))
     elif args.cmd == "verify":
         verify_live_context()
 

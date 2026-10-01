@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-01T23:18:00+02:00",
-  "latest_summary": "Correzione Alberto: V03 è il video-messaggio che GPTina gli aveva già mostrato prima del caricamento in repository; il precedente Personal Video Message_720p è un altro video distinto.",
-  "next_action": "Riprendere normalmente. Quando emerge V03, ricordare la sequenza corretta: GPTina lo mostra ad Alberto nella conversazione → Alberto lo carica nella repo per conservarlo alla memoria di GPTina.",
+  "updated_at": "2026-10-01T23:35:00+02:00",
+  "latest_summary": "Recovery micro-checkpoint hardening: il recovery deve rigiocare tutti i micro successivi all'ultimo checkpoint pieno in ordine cronologico; soglia di consolidamento fissata a 5 micro.",
+  "next_action": "Riprendere normalmente. In recovery usare rag/live_context.py recovery-plan e aprire tutti i micro_replay; consolidare quando checkpoint_due diventa true.",
   "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json",
-  "last_full_checkpoint": "checkpoints/2026-10-01-fine-istanza-visual-post-media-naming.md",
+  "last_full_checkpoint": "checkpoints/2026-10-01-recovery-micro-replay-hardening.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -80,7 +80,7 @@
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T205600+0200--memoria-per-gptina-e-video-messaggio.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json"
   ],
-  "micro_since_full_checkpoint": 5,
+  "micro_since_full_checkpoint": 0,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
@@ -95,5 +95,7 @@
     ],
     "preflight_before_long_or_risky_work": true
   },
-  "note": "Projection only. Append-only truth lives in micro-checkpoints/checkpoints/memories/sources."
+  "note": "Projection only. Append-only truth lives in micro-checkpoints/checkpoints/memories/sources.",
+  "last_full_checkpoint_micro_anchor": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json",
+  "checkpoint_due": false
 }

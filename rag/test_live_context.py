@@ -59,7 +59,9 @@ def main() -> None:
 
         live_path = root / "rag" / "live" / "GPTINA_LIVE_CONTEXT.json"
         live = json.loads(live_path.read_text(encoding="utf-8"))
-        if live["micro_since_full_checkpoint"] != 1:
+        if live["micro_since_full_checkpoint"] != 5:
+            raise AssertionError(live)
+        if not live.get("checkpoint_due"):
             raise AssertionError(live)
         if live["next_action"] != "prossimo passo":
             raise AssertionError(live)
@@ -77,6 +79,10 @@ def main() -> None:
             raise AssertionError(live)
         if live["last_full_checkpoint"] != "checkpoints/test.md":
             raise AssertionError(live)
+        if live["last_full_checkpoint_micro_anchor"] != live["last_micro_checkpoint"]:
+            raise AssertionError(live)
+        if live.get("checkpoint_due"):
+            raise AssertionError(live)
 
         second = run(
             root,
@@ -89,6 +95,31 @@ def main() -> None:
         )
         if "Created rag/live/micro-checkpoints/" not in second.stdout:
             raise AssertionError(second.stdout)
+
+        # Add four more distinct deltas so replay must include intermediate
+        # micro-checkpoints and the consolidation threshold becomes due.
+        for index in range(3, 7):
+            created = run(
+                root,
+                "save-delta",
+                "--summary", f"Delta replay {index}",
+                "--change-type", "decision",
+                "--changed", f"modifica {index}",
+                "--thread", "test-thread",
+                "--source", "conversation://current",
+            )
+            if "Created rag/live/micro-checkpoints/" not in created.stdout:
+                raise AssertionError(created.stdout)
+
+        plan = json.loads(run(root, "recovery-plan").stdout)
+        if len(plan["micro_replay"]) != 5:
+            raise AssertionError(plan)
+        if plan["micro_replay"][-1] != plan["last_micro_checkpoint"]:
+            raise AssertionError(plan)
+        if not plan["checkpoint_due"] or plan["threshold"] != 5:
+            raise AssertionError(plan)
+        if len(set(plan["micro_replay"])) != 5:
+            raise AssertionError(plan)
 
         # The two subprocesses can record within the same second. Give the
         # first record an unambiguously earlier timestamp for ordering tests.
@@ -206,8 +237,8 @@ def main() -> None:
             raise AssertionError(live)
 
         micros = list((root / "rag" / "live" / "micro-checkpoints").rglob("*.json"))
-        if len(micros) != 3:
-            raise AssertionError(f"expected 3 micros, got {len(micros)}")
+        if len(micros) != 7:
+            raise AssertionError(f"expected 7 micros, got {len(micros)}")
 
     print("OK: live-context v1 compatibility and strict v2 round-trip passed.")
 

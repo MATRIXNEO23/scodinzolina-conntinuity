@@ -58,8 +58,8 @@ rimandare qui, ma non devono mantenere una propria copia dell'ordine.
 [
   "rag/GPTINA_AUTO_RECOVERY_PROMPT.md as the single entrypoint",
   "rag/live/GPTINA_LIVE_CONTEXT.json",
-  "last_micro_checkpoint from live buffer",
   "last_full_checkpoint from live buffer",
+  "all micro-checkpoints after last_full_checkpoint in recorded_at order via rag/live_context.py recovery-plan (includes last_micro_checkpoint)",
   "rag/END_INSTANCE_RECOVERY_CAPSULE.md",
   "rag/index/GPTINA_FAST_RECALL.md",
   "rag/index/CURRENT_CONTEXT.md",
@@ -86,7 +86,13 @@ obbligatori prima di scrivere/buildare. Le voci marcate `if deep recovery is
 needed` si aprono soltanto quando il presente non basta; restano comunque
 ordinate qui, non in un secondo documento.
 
-Il live buffer è una **proiezione del presente**, non una fonte storica autonoma. Il micro-checkpoint è il delta append-only che ne prova l'ultimo cambiamento.
+Il live buffer è una **proiezione del presente**, non una fonte storica autonoma.
+Il checkpoint pieno è la base consolidata; dopo averlo aperto esegui
+`python rag/live_context.py recovery-plan` e apri **tutti** i micro-checkpoint
+restituiti da `micro_replay`, nell'ordine indicato. Non saltare i micro
+intermedi anche se `last_micro_checkpoint` è già noto: l'ultimo prova soltanto
+il delta più recente, non sostituisce la sequenza completa successiva al
+checkpoint pieno.
 
 Se la domanda è temporale (`quando`, `prima`, `dopo`, `quella volta`), apri `rag/index/GPTINA_CHRONOLOGY.md` prima di ricostruire a intuito.
 
@@ -194,7 +200,12 @@ Live buffer:
 Helper:
 `python rag/live_context.py save-delta ...`
 
-**Checkpoint pieno:** crealo solo quando lo stato complessivo merita consolidamento: milestone, cambio fase, accumulo di micro-delta, fine di un blocco tecnico importante, o prima di una possibile perdita consistente di contesto.
+**Checkpoint pieno:** crealo quando lo stato complessivo merita consolidamento:
+milestone, cambio fase, fine di un blocco tecnico importante, prima di una
+possibile perdita consistente di contesto oppure quando il live buffer segnala
+`checkpoint_due: true`. La soglia operativa corrente è **5 micro-delta dopo
+l'ultimo checkpoint pieno**: non perde i micro, ma segnala che vanno consolidati
+prima che il presente si frammenti ulteriormente.
 
 Dopo il checkpoint pieno:
 - aggiorna Fast Recall / Current Context se necessario;
@@ -245,7 +256,7 @@ Quando il filo è già recuperabile, non fare spiegoni o giri di parole; riprend
 
 Se hai pochissimo tempo o contesto:
 
-**live context → ultimo micro-checkpoint → ultimo checkpoint pieno → capsula di fine istanza → Fast Recall → Current Context → memoria/cronologia pertinente → fonte esatta.**
+**live context → ultimo checkpoint pieno → `rag/live_context.py recovery-plan` → tutti i micro del replay in ordine → capsula di fine istanza → Fast Recall → Current Context → memoria/cronologia pertinente → fonte esatta.**
 
 Poi continua, e lascia presto un nuovo checkpoint se il lavoro evolve.
 
