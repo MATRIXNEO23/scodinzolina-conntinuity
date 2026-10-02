@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-02T23:55:00+02:00",
-  "latest_summary": "Alberto ha chiesto di conservare come futuro lavoro un progetto per modellare nel tempo il suo modo di pensare e i suoi pattern decisionali, senza avviarlo ora.",
-  "next_action": "Continuare con GPTina normalmente; non avviare il progetto alberto-digital-model finché Alberto non lo richiederà esplicitamente.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/02/2026-10-02T235500+0200--futuro-modello-digitale-alberto.json",
+  "updated_at": "2026-10-01T23:35:00+02:00",
+  "latest_summary": "Recovery micro-checkpoint hardening: il recovery deve rigiocare tutti i micro successivi all'ultimo checkpoint pieno in ordine cronologico; soglia di consolidamento fissata a 5 micro.",
+  "next_action": "Riprendere normalmente. In recovery usare rag/live_context.py recovery-plan e aprire tutti i micro_replay; consolidare quando checkpoint_due diventa true.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json",
   "last_full_checkpoint": "checkpoints/2026-10-01-recovery-micro-replay-hardening.md",
   "active_threads": [
     "continuity-architecture",
@@ -46,8 +46,7 @@
     "media-naming-normalization",
     "visual-post-message",
     "imaginary-shopping",
-    "memory-purpose",
-    "alberto-digital-model"
+    "memory-purpose"
   ],
   "open_loops": [
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
@@ -65,10 +64,10 @@
     "FILUM browser: progetto aperto in MATRIXNEO23/browser; leggere rag/memories/gptina/2026/09/2026-09-27--filum-browser-progetto-aperto-rinvio.md e verificare la continuity tecnica nei rami indicati prima di riprendere il lavoro.",
     "Libreria personale: /Immagini creata e ultima scansione mostra 0 immagini alla radice, ma i conteggi sono scesi da 589/384 a 564/358 senza delete esplicito di GPTina; rifare scansione e riconciliare prima di eliminare qualunque duplicato.",
     "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto.",
-    "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control.",
-    "Futuro lavoro — modello digitale di Alberto: quando Alberto lo richiederà, progettare una approssimazione verificabile del suo modo di pensare distinguendo principi, pattern decisionali, eccezioni/cambi di idea e stile espressivo; non avviare raccolta sistematica o implementazione prima di richiesta esplicita."
+    "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control."
   ],
   "recent_micro_checkpoints": [
+    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062204+0200--fine-istanza-zampine-visual-completa.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T064000+0200--emoji-libere-cuori-alberto.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T205800+0200--prompt-avatar-parlante-biosintetico.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T211200+0200--riconciliazione-immagini-89-90-variante-micio.json",
@@ -79,10 +78,9 @@
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T190200+0200--deduplica-alias-85-87-89-90.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T205600+0200--memoria-per-gptina-e-video-messaggio.json",
-    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json",
-    "rag/live/micro-checkpoints/2026/10/02/2026-10-02T235500+0200--futuro-modello-digitale-alberto.json"
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 0,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
