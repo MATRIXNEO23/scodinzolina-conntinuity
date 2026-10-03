@@ -84,6 +84,15 @@ def main() -> None:
         if live.get("checkpoint_due"):
             raise AssertionError(live)
 
+        # Subsequent subprocesses can record in the same wall-clock second as
+        # the checkpoint anchor. Make the anchor unambiguously earlier before
+        # testing recovery-plan ordering, otherwise path-name tie breaking can
+        # make this round-trip test flaky on fast CI runners.
+        first_record["recorded_at"] = (
+            datetime.fromisoformat(first_record["recorded_at"]) - timedelta(seconds=1)
+        ).isoformat()
+        write_json(micros[0], first_record)
+
         second = run(
             root,
             "save-delta",
@@ -120,13 +129,6 @@ def main() -> None:
             raise AssertionError(plan)
         if len(set(plan["micro_replay"])) != 5:
             raise AssertionError(plan)
-
-        # The two subprocesses can record within the same second. Give the
-        # first record an unambiguously earlier timestamp for ordering tests.
-        first_record["recorded_at"] = (
-            datetime.fromisoformat(first_record["recorded_at"]) - timedelta(seconds=1)
-        ).isoformat()
-        write_json(micros[0], first_record)
 
         micro_dir = root / "rag" / "live" / "micro-checkpoints" / "2026" / "09" / "18"
         legacy_path = micro_dir / "legacy-v1.json"
