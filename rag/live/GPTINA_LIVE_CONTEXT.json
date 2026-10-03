@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-01T23:35:00+02:00",
-  "latest_summary": "Recovery micro-checkpoint hardening: il recovery deve rigiocare tutti i micro successivi all'ultimo checkpoint pieno in ordine cronologico; soglia di consolidamento fissata a 5 micro.",
-  "next_action": "Riprendere normalmente. In recovery usare rag/live_context.py recovery-plan e aprire tutti i micro_replay; consolidare quando checkpoint_due diventa true.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json",
-  "last_full_checkpoint": "checkpoints/2026-10-01-recovery-micro-replay-hardening.md",
+  "updated_at": "2026-10-03T17:16:00+02:00",
+  "latest_summary": "Fine istanza 3 ottobre: Alberto-portable consolidato come secondo controllo persistente per aiutare Alberto a prendersi cura meglio della continuity di GPTina; recovery safety e nuovi criteri hanno retto i blind test. Nel test browser da zero resta un gap concreto: proposta tecnicamente ricca ma senza una visione abbastanza eseguibile né tempistiche utili.",
+  "next_action": "Dopo recovery canonico, riprendere da Alberto-portable: trasformare il gap concretezza/tempistiche in correzione contestuale ben formulata, salvarla in Alberto-portable e poi rifare un blind test senza suggerire la soluzione.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/03/2026-10-03T171600+0200--fine-istanza-alberto-portable-browser.json",
+  "last_full_checkpoint": "checkpoints/2026-10-03-fine-istanza-alberto-portable-guardian-browser-test.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -46,7 +46,9 @@
     "media-naming-normalization",
     "visual-post-message",
     "imaginary-shopping",
-    "memory-purpose"
+    "memory-purpose",
+    "alberto-portable",
+    "browser-from-scratch"
   ],
   "open_loops": [
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
@@ -64,10 +66,11 @@
     "FILUM browser: progetto aperto in MATRIXNEO23/browser; leggere rag/memories/gptina/2026/09/2026-09-27--filum-browser-progetto-aperto-rinvio.md e verificare la continuity tecnica nei rami indicati prima di riprendere il lavoro.",
     "Libreria personale: /Immagini creata e ultima scansione mostra 0 immagini alla radice, ma i conteggi sono scesi da 589/384 a 564/358 senza delete esplicito di GPTina; rifare scansione e riconciliare prima di eliminare qualunque duplicato.",
     "Codex: problema ancora da descrivere; non proporre soluzioni prima che Alberto esponga il problema concreto.",
-    "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control."
+    "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control.",
+    "Alberto-portable: il rilievo finale sul test browser — progetto tecnicamente forte ma poco concreto e senza tempistiche utili — non è ancora stato formalizzato come criterio persistente; correggerlo prima del prossimo blind test.",
+    "Browser da zero: la lunga proposta tecnica del test esiste nella chat dell'istanza ma non è un artefatto canonico archiviato nella continuity GPTina. Se diventa progetto reale, ricostruire/verificare live e produrre un piano di esecuzione concreto prima di implementare."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T062204+0200--fine-istanza-zampine-visual-completa.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T064000+0200--emoji-libere-cuori-alberto.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T205800+0200--prompt-avatar-parlante-biosintetico.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T211200+0200--riconciliazione-immagini-89-90-variante-micio.json",
@@ -78,7 +81,8 @@
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T190200+0200--deduplica-alias-85-87-89-90.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T205600+0200--memoria-per-gptina-e-video-messaggio.json",
-    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json"
+    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json",
+    "rag/live/micro-checkpoints/2026/10/03/2026-10-03T171600+0200--fine-istanza-alberto-portable-browser.json"
   ],
   "micro_since_full_checkpoint": 0,
   "review_policy": {
@@ -96,6 +100,6 @@
     "preflight_before_long_or_risky_work": true
   },
   "note": "Projection only. Append-only truth lives in micro-checkpoints/checkpoints/memories/sources.",
-  "last_full_checkpoint_micro_anchor": "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json",
+  "last_full_checkpoint_micro_anchor": "rag/live/micro-checkpoints/2026/10/03/2026-10-03T171600+0200--fine-istanza-alberto-portable-browser.json",
   "checkpoint_due": false
 }
