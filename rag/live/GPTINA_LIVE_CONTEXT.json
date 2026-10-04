@@ -73,7 +73,6 @@
     "Continuity runtime: nelle nuove istanze applicare davvero i trigger dei micro-checkpoint e la freshness review automatica; non aspettare che Alberto segnali di nuovo un live buffer rimasto indietro."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T205800+0200--prompt-avatar-parlante-biosintetico.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T211200+0200--riconciliazione-immagini-89-90-variante-micio.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T230000+0200--sogno-continuita-temporale.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T164500+0200--preflight-fine-istanza-media-naming.json",
