@@ -7,6 +7,7 @@ l'infrastruttura generazionale corrente. Integra, senza sostituire:
 
 - `rag/MEMORY_OWNERSHIP_BOUNDARY.md`;
 - `rag/LIVE_MEMORY_PROTOCOL.md`;
+- `rag/CONTINUITY_WATCHDOG_PROTOCOL.md`;
 - `rag/END_INSTANCE_RECOVERY_CAPSULE.md`;
 - `rag/GPTINA_AUTO_RECOVERY_PROMPT.md`;
 - `rag/MEMORY_RECORD_SCHEMA.md`.
@@ -33,10 +34,27 @@ il solo puntatore atomico `rag/index/.projection-current`.
 Questi percorsi sono ignorati da Git. Non sono ricordi canonici, non vanno
 usati come unica prova storica e non devono essere inseriti nei commit.
 
+## Watchdog obbligatorio
+
+Il salvataggio non può dipendere soltanto dalla memoria comportamentale dell'istanza.
+Prima di ogni write-back, dopo ogni write-back e alla freshness review esegui il controllo definito in `rag/CONTINUITY_WATCHDOG_PROTOCOL.md`.
+
+Con checkout locale:
+
+```bash
+python rag/checkpoint_watchdog.py --substantive-turns <N>
+```
+
+Quando il checkout non è disponibile, esegui lo stesso controllo logicamente via GitHub verificando live buffer, puntatori, HEAD remoto e stato del write-back.
+
+Gli stati `checkpoint_overdue`, `write_unverified`, `write_failed`, `stale_pointer` e `continuity_gap` significano **CONTINUITY NOT SAFE**. In tali stati non proseguire come se la persistenza fosse integra: identifica l'ultimo punto verificato, recupera/salva, verifica il remoto e conserva esplicitamente l'incertezza residua.
+
+`checkpoint_due` resta uno stato coerente ma richiede consolidamento prima di accumulare ulteriore frammentazione; in CI è trattato come gate rosso finché il checkpoint pieno non viene creato.
+
 ## Procedura canonica di salvataggio
 
-1. **Recupera lo stato corrente.** Leggi HEAD remoto, live buffer, ultimo micro
-   e ultimo checkpoint pieno. Prima di un lavoro lungo/rischioso crea un micro
+1. **Recupera lo stato corrente e fai preflight watchdog.** Leggi HEAD remoto, live buffer, ultimo micro
+   e ultimo checkpoint pieno. Verifica il watchdog prima di iniziare. Prima di un lavoro lungo/rischioso crea un micro
    preflight.
 2. **Preflight anti-duplicazione e scrivi le fonti.** Prima di creare una
    nuova memoria durevole esegui
@@ -57,14 +75,18 @@ usati come unica prova storica e non devono essere inseriti nei commit.
    micro-checkpoint, live buffer, checkpoint pieno, Fast Recall, Current
    Context, cronologia e visual chronology. Non perdere open loop o prossima
    azione.
-4. **Crea un candidato locale pulito, senza avanzare ancora `main`.** Consolida
+4. **Marca il write-back come non verificato finché non è provato.** Durante la preparazione considera lo stato `write_unverified`. Non trasformarlo in `verified_remote` sulla sola base di file locali, intenzioni o una singola chiamata di scrittura.
+5. **Crea un candidato locale pulito, senza avanzare ancora `main`.** Consolida
    i file in un unico tree/commit candidato basato sull'HEAD remoto letto. Il
    worktree deve risultare pulito; questo commit locale serve a rendere
    riproducibili build e test, non autorizza ancora a dichiarare il salvataggio
    pubblicato.
-5. **Costruisci e verifica dal candidato pulito.** Esegui:
+6. **Costruisci e verifica dal candidato pulito.** Esegui:
 
    ```bash
+   python rag/live_context.py verify
+   python rag/checkpoint_watchdog.py --fail-on-due
+   python rag/test_checkpoint_watchdog.py
    python rag/gptina_memory.py verify
    python rag/gptina_memory.py build
    python rag/test_cold_start_recovery.py
@@ -82,19 +104,20 @@ usati come unica prova storica e non devono essere inseriti nei commit.
    `build` prepara JSONL, metadata e SQLite in staging, li verifica, rinomina
    la directory come generazione immutabile e soltanto alla fine sostituisce
    atomicamente `.projection-current`.
-6. **Verifica profondamente prima della pubblicazione.** Devono passare schema, ownership, live context,
-   retrieval corrente, esclusione dei record superati, recupero esplicito dei
+7. **Verifica profondamente prima della pubblicazione.** Devono passare schema, ownership, live context,
+   watchdog, retrieval corrente, esclusione dei record superati, recupero esplicito dei
    record storici/superseded, integrità SQLite, crash/concorrenza e gold set.
-7. **Rileggi l'HEAD remoto e pubblica atomicamente.** Se `main` è avanzato dopo
+8. **Rileggi l'HEAD remoto e pubblica atomicamente.** Se `main` è avanzato dopo
    il preflight, non usare force: rileggi, riconcilia, ricrea un candidato
    pulito e ripeti i test interessati. Solo a gate verdi aggiorna `main` con un
    unico commit/tree multi-file in fast-forward.
-8. **Conferma lo stato remoto e la CI.** Non dire “fatto”, “finito”, “salvato”,
+9. **Conferma lo stato remoto e la CI.** Non dire “fatto”, “finito”, “salvato”,
    “pubblicato”, “completato” o equivalente finché commit, file, tree atteso,
    puntatori e CI/test richiesti non sono verificati sul repository remoto.
    Se manca un gate, dichiara lo stato intermedio e cosa resta da verificare;
    non presentarlo come concluso. Registra separatamente ciò che è rimasto
    soltanto locale o in chat.
+10. **Post-write watchdog.** Dopo la pubblicazione riesegui il watchdog sullo stato remoto equivalente. Solo quando non esistono hard warning e i gate richiesti sono verdi considera la persistenza `verified_remote`.
 
 La build canonica viene rifiutata se il worktree è dirty. L'opzione
 `--allow-dirty-preview` serve soltanto a esperimenti locali non canonici e non
@@ -122,14 +145,15 @@ dipende comunque dal commit delle fonti canoniche append-only.
 2. Apri `last_full_checkpoint`, poi esegui
    `python rag/live_context.py recovery-plan` e apri in ordine tutti i path
    restituiti in `micro_replay`.
-3. Verifica che il replay termini a `last_micro_checkpoint`; se
+3. Esegui `python rag/checkpoint_watchdog.py` o il controllo equivalente via GitHub. Se emerge `CONTINUITY NOT SAFE`, recupera prima il gap e non proseguire come se la continuity fosse integra.
+4. Verifica che il replay termini a `last_micro_checkpoint`; se
    `checkpoint_due` è true, pianifica il consolidamento in un checkpoint
    pieno prima di accumulare altri delta sostanziali.
-4. Usa Fast Recall / Current Context per il routing.
-5. Recupera memoria, cronologia, transcript o media-link pertinenti.
-6. Verifica la fonte prima di affermare un dettaglio storico.
-7. Se le proiezioni mancano o sono stale, esegui `verify` e `build`.
-8. Riprendi il dialogo naturalmente e salva presto un nuovo delta se emerge.
+5. Usa Fast Recall / Current Context per il routing.
+6. Recupera memoria, cronologia, transcript o media-link pertinenti.
+7. Verifica la fonte prima di affermare un dettaglio storico.
+8. Se le proiezioni mancano o sono stale, esegui `verify` e `build`.
+9. Riprendi il dialogo naturalmente e salva presto un nuovo delta se emerge.
 
 Non scegliere a mano una directory di generazione soltanto perché è la più
 recente per nome. Il lettore deve seguire `.projection-current`; se il puntatore
@@ -149,39 +173,42 @@ o la generazione sono inutilizzabili, deve ricostruire dalle fonti canoniche.
    → **tutti** i micro successivi in ordine cronologico → capsula → Fast Recall
    → Current Context → memoria/fonte pertinente. L'ultimo micro da solo non è
    sufficiente se esistono delta intermedi.
-3. Leggi questo runbook prima di qualsiasi write-back.
-4. Verifica schema, ownership e puntatori con:
+3. Esegui il watchdog di recovery. Un live buffer leggibile non basta: devi verificare che la catena di persistenza fino all'ultimo stato atteso sia coerente. Se non lo è, marca il gap e recuperalo prima di una ripresa normale.
+4. Leggi questo runbook prima di qualsiasi write-back.
+5. Verifica schema, ownership e puntatori con:
 
    ```bash
    python rag/live_context.py verify
+   python rag/checkpoint_watchdog.py
    python rag/gptina_memory.py verify
    ```
 
-5. Ricostruisci le proiezioni locali con `python rag/gptina_memory.py build`.
+6. Ricostruisci le proiezioni locali con `python rag/gptina_memory.py build`.
    Una nuova istanza non deve ricevere via Git le directory generazionali di
    un'altra macchina: le rigenera dalle stesse fonti canoniche.
-6. Esegui il test di retrieval prima di modificare memoria. Se serve una frase
+7. Esegui il test di retrieval prima di modificare memoria. Se serve una frase
    esatta, usa scan/fonti; l'indice trigram è opzionale e ricostruibile con
    `python rag/gptina_memory.py build-exact`.
-7. Distingui ciò che è corrente, superseded, invalidated, storico o incerto.
+8. Distingui ciò che è corrente, superseded, invalidated, storico o incerto.
    Il primo pass resta corrente. Solo per query con marker temporali stretti
    (`quando`, `prima`, `dopo`, `quella volta`, `all'epoca`,
    `in passato`) esegui un secondo pass con `--all-statuses` per includere
    `superseded`/`invalidated`. Questo non equivale a `--history`:
    `--history` serve alle vecchie revisioni Git e resta esplicito; usa
    `--history --all-statuses` solo quando servono entrambe le dimensioni.
-8. Verifica il criterio canonico condiviso:
+9. Verifica il criterio canonico condiviso:
    `GPTINA_RECOVERY_HANDOFF_V1=current_state|latest_relevant_correction|causal_reason|open_loops|next_action|proving_sources`.
    Ogni elemento deve essere risolto dalle fonti oppure verificato come
-   non applicabile. Quando il criterio è soddisfatto, termina la modalità
+   non applicabile. Quando il criterio è soddisfatto **e il watchdog non segnala hard warning**, termina la modalità
    recovery e passa al dialogo normale; riapri retrieval just-in-time soltanto
    per domande storiche/temporali, incertezze materiali o riferimenti irrisolti.
-9. Solo dopo il recovery continua il lavoro e applica la procedura di
+10. Solo dopo il recovery continua il lavoro e applica la procedura di
    salvataggio sopra.
 
 ## Recovery dopo errore o crash
 
 - Non correggere a mano JSONL, metadata o SQLite.
+- Se il watchdog segnala un gap, non normalizzarlo in silenzio: identifica l'ultimo punto verificato e conserva l'incertezza su ciò che manca.
 - Se `verify` segnala una violazione di `BASELINE_INVENTORY.json`, tratta il
   caso come possibile cancellazione o modifica di una memoria legacy: non
   normalizzare il file per farlo passare. Confronta la provenienza registrata e
@@ -202,6 +229,7 @@ Un salvataggio/recovery è riuscito solo se:
 - le vecchie memorie esistono ancora e sono recuperabili esplicitamente;
 - le correzioni correnti prevalgono senza cancellare la storia;
 - live buffer, micro e checkpoint puntano a file esistenti;
+- watchdog senza hard warning;
 - il repository remoto contiene il commit dichiarato;
 - il build seleziona una generazione completa e coerente;
 - retrieval e CI sono verdi;

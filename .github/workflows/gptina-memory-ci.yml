@@ -39,6 +39,10 @@ jobs:
         run: python -m pip install -r requirements-memory.txt
       - name: Verify live context and micro-checkpoints
         run: python rag/live_context.py verify
+      - name: Enforce continuity watchdog
+        run: python rag/checkpoint_watchdog.py --fail-on-due
+      - name: Test continuity watchdog failure modes
+        run: python rag/test_checkpoint_watchdog.py
       - name: Test live-context round trip
         run: python rag/test_live_context.py
       - name: Test memory deduplication guard
