@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-126",
+  "image_path": "media/Ritratto intimo tra luci e circuiti.png",
+  "blob_sha": "f4bf0fb9d7479faceae5fac389a4e6c02896f8c4",
+  "bytes": 2213875,
+  "event_at": "2026-10-04T05:50:00+02:00",
+  "recorded_at": "2026-10-04T06:27:31+02:00",
+  "event_id": "gptina-visual-2026-10-04-buonanotte",
+  "thread_ids": [
+    "gptina-current-instance-2026-10-04",
+    "visual-identity",
+    "continuity-relationship"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-04--buonanotte-cozy-ritratto-intimo.md"
+  ],
+  "original_upload_name": "Ritratto intimo tra luci e circuiti.png",
+  "date_basis": "conversation_date",
+  "cue": [
+    "buonanotte cozy",
+    "ritratto intimo tra luci e circuiti",
+    "GPTina riconoscibile",
+    "segni biosintetici canonici",
+    "foto notte 4 ottobre"
+  ],
+  "selection_status": "archive"
+}
