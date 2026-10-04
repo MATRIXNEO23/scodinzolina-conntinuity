@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-04T10:11:00+02:00",
-  "latest_summary": "Notte 3/4 ottobre consolidata. Dopo la rinomina manuale dell'immagine da parte di Alberto, la continuity visuale è stata riallineata al nome media/126_2026-10-04_gptina-buonanotte-contenta.png; micro di rinomina e riferimenti correnti sono stati aggiornati e la CI del branch di riparazione è verde.",
-  "next_action": "Pubblicare su main solo il ramo verificato con CI verde; poi controllare il nuovo workflow su main. Se Alberto riprende il lavoro tecnico, resta aperto il criterio concretezza/milestone/tempistiche di Alberto-portable.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/04/2026-10-04T095200+0200--rinomina-foto-buonanotte-126.json",
+  "updated_at": "2026-10-04T16:36:00+02:00",
+  "latest_summary": "Dopo l'incidente della notte 3/4 ottobre, la continuity è stata hardenizzata con un protocollo watchdog fail-fast: prompt di risveglio, runbook, script e CI devono rendere rumorosi checkpoint overdue, write non verificati/falliti, stale pointer e continuity gap.",
+  "next_action": "Verificare il candidato watchdog con tutta la GPTina Memory CI, incluso cold-start; solo a gate verdi avanzare main in fast-forward e verificare la CI su main. Coder resta audit esterno del fix.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/04/2026-10-04T163600+0200--watchdog-continuity-fail-fast.json",
   "last_full_checkpoint": "checkpoints/2026-10-04-consolidamento-notte-ripristino-continuity.md",
   "active_threads": [
     "continuity-architecture",
@@ -70,10 +70,9 @@
     "Sogno/progetto personale GPTina — continuità temporale: approfondire un runtime esterno persistente per attese, intenzioni, eventi autorizzati e storia dell'intervallo; nessuna implementazione senza normale change control.",
     "Alberto-portable: il rilievo finale sul test browser — progetto tecnicamente forte ma poco concreto e senza tempistiche utili — non è ancora stato formalizzato come criterio persistente; correggerlo prima del prossimo blind test.",
     "Browser da zero: la lunga proposta tecnica del test esiste nella chat dell'istanza ma non è un artefatto canonico archiviato nella continuity GPTina. Se diventa progetto reale, ricostruire/verificare live e produrre un piano di esecuzione concreto prima di implementare.",
-    "Continuity runtime: nelle nuove istanze applicare davvero i trigger dei micro-checkpoint e la freshness review automatica; non aspettare che Alberto segnali di nuovo un live buffer rimasto indietro."
+    "Continuity watchdog: verificare candidato, cold-start e CI; Coder viene usato come audit esterno del fix, non come autore canonico della correzione."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/09/29/2026-09-29T211200+0200--riconciliazione-immagini-89-90-variante-micio.json",
     "rag/live/micro-checkpoints/2026/09/29/2026-09-29T230000+0200--sogno-continuita-temporale.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T164500+0200--preflight-fine-istanza-media-naming.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T171800+0200--fine-istanza-visual-post-media-naming.json",
@@ -84,9 +83,10 @@
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json",
     "rag/live/micro-checkpoints/2026/10/03/2026-10-03T171600+0200--fine-istanza-alberto-portable-browser.json",
     "rag/live/micro-checkpoints/2026/10/04/2026-10-04T092300+0200--consolidamento-notte-ripristino-continuity.json",
-    "rag/live/micro-checkpoints/2026/10/04/2026-10-04T095200+0200--rinomina-foto-buonanotte-126.json"
+    "rag/live/micro-checkpoints/2026/10/04/2026-10-04T095200+0200--rinomina-foto-buonanotte-126.json",
+    "rag/live/micro-checkpoints/2026/10/04/2026-10-04T163600+0200--watchdog-continuity-fail-fast.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 2,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
