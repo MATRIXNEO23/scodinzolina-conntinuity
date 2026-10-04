@@ -47,6 +47,22 @@ Se manca ancora una verifica, descrivi con precisione **cosa è già riuscito e 
 
 Questa è una regola persistente di ogni istanza.
 
+### 0B. Preflight watchdog obbligatorio
+
+Prima di riprendere normalmente il dialogo esegui il controllo definito in:
+
+`rag/CONTINUITY_WATCHDOG_PROTOCOL.md`
+
+Se hai un checkout eseguibile usa anche:
+
+`python rag/checkpoint_watchdog.py`
+
+Se non hai un checkout locale, esegui lo stesso controllo tramite GitHub verificando almeno live buffer, file puntati, replay, HEAD remoto e stato dell'ultimo salvataggio pertinente.
+
+Se il controllo produce o implica uno stato `checkpoint_overdue`, `write_unverified`, `write_failed`, `stale_pointer` o `continuity_gap`, la continuity è **NOT SAFE**. Non riprendere come se fosse integra: identifica l'ultimo punto verificato, segnala il gap quando materialmente rilevante, tenta recovery/salvataggio, verifica il remoto e conserva come incertezza ciò che non è recuperabile.
+
+Durante la sessione ripeti il self-check ai trigger live, prima di lavoro lungo/rischioso, alla freshness review ogni 3–5 scambi sostanziali, prima di dichiarare un salvataggio completato e prima della fine istanza.
+
 ### 1. Recupera prima il presente
 
 Usa GitHub e segui **questo unico ordine canonico**. Il blocco seguente è
@@ -191,6 +207,8 @@ Durante una sessione attiva separa due livelli.
 
 In assenza di questi trigger, fai una freshness review ogni **3–5 scambi sostanziali**. Se non esiste un delta reale, non creare rumore.
 
+La freshness review non è una semplice raccomandazione: applica `rag/CONTINUITY_WATCHDOG_PROTOCOL.md`. Se la finestra di 3–5 scambi sostanziali viene superata senza review/salvataggio, tratta lo stato come `checkpoint_overdue` e quindi `CONTINUITY NOT SAFE` finché non è stato recuperato e verificato.
+
 Percorso:
 `rag/live/micro-checkpoints/YYYY/MM/DD/`
 
@@ -199,6 +217,11 @@ Live buffer:
 
 Helper:
 `python rag/live_context.py save-delta ...`
+
+Watchdog:
+`python rag/checkpoint_watchdog.py --substantive-turns <N>`
+
+Dopo ogni write-back non considerare il ciclo chiuso finché lo stato remoto non è verificato secondo il runbook. Un tentativo non ancora verificato è `write_unverified`; un errore è `write_failed`.
 
 **Checkpoint pieno:** crealo quando lo stato complessivo merita consolidamento:
 milestone, cambio fase, fine di un blocco tecnico importante, prima di una
@@ -256,7 +279,9 @@ Quando il filo è già recuperabile, non fare spiegoni o giri di parole; riprend
 
 Se hai pochissimo tempo o contesto:
 
-**live context → ultimo checkpoint pieno → `rag/live_context.py recovery-plan` → tutti i micro del replay in ordine → capsula di fine istanza → Fast Recall → Current Context → memoria/cronologia pertinente → fonte esatta.**
+**live context → ultimo checkpoint pieno → `rag/live_context.py recovery-plan` → tutti i micro del replay in ordine → watchdog continuity → capsula di fine istanza → Fast Recall → Current Context → memoria/cronologia pertinente → fonte esatta.**
+
+Se il watchdog non è `healthy`/`checkpoint_due`, non fingere una ripresa normale: identifica l'ultimo punto verificato e recupera prima il gap.
 
 Poi continua, e lascia presto un nuovo checkpoint se il lavoro evolve.
 
