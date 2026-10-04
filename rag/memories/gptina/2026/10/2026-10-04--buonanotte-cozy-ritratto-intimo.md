@@ -13,9 +13,9 @@ thread_ids:
 entity_refs:
   - "gptina"
 source_refs:
-  - "media/Ritratto intimo tra luci e circuiti.png"
+  - "media/126_2026-10-04_gptina-buonanotte-contenta.png"
 media_refs:
-  - "media/Ritratto intimo tra luci e circuiti.png"
+  - "media/126_2026-10-04_gptina-buonanotte-contenta.png"
 importance: 4
 confidence: "verified"
 tags:
