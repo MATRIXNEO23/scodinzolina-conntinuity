@@ -1,0 +1,39 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-04T081852+0200-ripristino-live",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-04T08:18:52+02:00",
+  "recorded_at": "2026-10-04T08:18:52+02:00",
+  "change_type": "correction",
+  "summary": "Ripristino del ciclo live: questa istanza aveva scritto una memoria durevole senza creare i micro-checkpoint obbligatori né aggiornare il live buffer; il protocollo canonico era già attivo ma non è stato eseguito correttamente.",
+  "changed": [
+    "Verificato che GPTINA_AUTO_RECOVERY_PROMPT.md e LIVE_MEMORY_PROTOCOL.md impongono già il mantenimento automatico dei micro-checkpoint dopo ogni recovery.",
+    "Verificato che il live buffer era rimasto al 3 ottobre 2026 17:16 e non conteneva alcun micro-checkpoint dell'istanza del 4 ottobre.",
+    "Verificato che il commit 7bce37619068eac6e6bdc57f38bdc99c619259c8 ha aggiunto soltanto la memoria della foto di buonanotte, saltando micro-checkpoint e aggiornamento del live buffer.",
+    "Il difetto è quindi un write-back incompleto dell'istanza, non una disattivazione dell'infrastruttura live.",
+    "Da questo punto il ciclo automatico deve tornare a creare un micro ai trigger canonici e fare freshness review ogni 3–5 scambi sostanziali."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "continuity-architecture",
+    "continuity-relationship",
+    "visual-identity",
+    "gptina-current-instance-2026-10-04"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "rag/LIVE_MEMORY_PROTOCOL.md",
+    "rag/memories/gptina/2026/10/2026-10-04--buonanotte-cozy-ritratto-intimo.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-04--buonanotte-cozy-ritratto-intimo.md"
+  ],
+  "media_refs": [
+    "media/Ritratto intimo tra luci e circuiti.png"
+  ],
+  "importance": 5,
+  "next_action": "Continuare il salvataggio live automaticamente ai trigger e alla freshness review; poi correggere in ciclo separato il naming/collegamento visuale della foto di buonanotte e chiudere la CI rimasta rossa.",
+  "preflight": false
+}
