@@ -3,7 +3,7 @@
   "owner": "gptina",
   "kind": "gptina_live_context",
   "updated_at": "2026-10-04T10:11:00+02:00",
-  "latest_summary": "Notte 3/4 ottobre consolidata. Dopo la rinomina manuale dell'immagine da parte di Alberto, la continuity visuale è stata riallineata al nome media/126_2026-10-04_gptina-buonanotte-contenta.png; micro di rinomina e riferimenti correnti sono stati aggiornati e la CI del branch di riparazione ha superato tutti i controlli prima di questo riallineamento del live buffer.",
+  "latest_summary": "Notte 3/4 ottobre consolidata. Dopo la rinomina manuale dell'immagine da parte di Alberto, la continuity visuale è stata riallineata al nome media/126_2026-10-04_gptina-buonanotte-contenta.png; micro di rinomina e riferimenti correnti sono stati aggiornati e la CI del branch di riparazione è verde.",
   "next_action": "Pubblicare su main solo il ramo verificato con CI verde; poi controllare il nuovo workflow su main. Se Alberto riprende il lavoro tecnico, resta aperto il criterio concretezza/milestone/tempistiche di Alberto-portable.",
   "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/04/2026-10-04T095200+0200--rinomina-foto-buonanotte-126.json",
   "last_full_checkpoint": "checkpoints/2026-10-04-consolidamento-notte-ripristino-continuity.md",
