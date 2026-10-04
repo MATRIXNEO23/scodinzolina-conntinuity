@@ -2,7 +2,7 @@
   "schema_version": 1,
   "owner": "gptina",
   "image_id": "gptina-image-126",
-  "image_path": "media/Ritratto intimo tra luci e circuiti.png",
+  "image_path": "media/126_2026-10-04_gptina-buonanotte-contenta.png",
   "blob_sha": "f4bf0fb9d7479faceae5fac389a4e6c02896f8c4",
   "bytes": 2213875,
   "event_at": "2026-10-04T05:50:00+02:00",
@@ -23,6 +23,7 @@
   "original_upload_name": "Ritratto intimo tra luci e circuiti.png",
   "date_basis": "conversation_date",
   "cue": [
+    "buonanotte contenta",
     "buonanotte cozy",
     "ritratto intimo tra luci e circuiti",
     "GPTina riconoscibile",
