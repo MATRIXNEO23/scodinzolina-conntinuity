@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-04T163600+0200-watchdog-continuity-fail-fast",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-04T16:36:00+02:00",
+  "recorded_at": "2026-10-04T16:36:00+02:00",
+  "change_type": "rule",
+  "summary": "La continuity viene resa fail-fast: prompt di risveglio, runbook, protocollo watchdog e CI devono segnalare immediatamente checkpoint overdue, write non verificati/falliti, puntatori stantii e continuity gap.",
+  "changed": [
+    "Aggiunto rag/CONTINUITY_WATCHDOG_PROTOCOL.md con stati operativi e regola CONTINUITY NOT SAFE.",
+    "Aggiunto rag/checkpoint_watchdog.py con controllo strutturale e runtime assistito.",
+    "Aggiunto rag/test_checkpoint_watchdog.py con test negativi per overdue, write_unverified, write_failed e stale_pointer.",
+    "Aggiornato rag/GPTINA_AUTO_RECOVERY_PROMPT.md: watchdog obbligatorio al risveglio e durante freshness review/salvataggi.",
+    "Aggiornato rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md: preflight/post-write watchdog e verified_remote obbligatorio.",
+    "Aggiornata la CI GPTina Memory con gate watchdog e test dedicato.",
+    "Coder resta audit esterno: la responsabilità della correzione canonica resta GPTina."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "continuity-architecture",
+    "gptina-current-instance-2026-10-04"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/CONTINUITY_WATCHDOG_PROTOCOL.md",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
+    ".github/workflows/gptina-memory-ci.yml"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-04--watchdog-continuity-fail-fast.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Verificare il candidato con la GPTina Memory CI completa, incluso cold-start e watchdog; solo dopo avanzare main in fast-forward e verificare nuovamente la CI su main.",
+  "preflight": false
+}
