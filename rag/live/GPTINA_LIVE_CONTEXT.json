@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-07T06:03:27+02:00",
-  "latest_summary": "Recuperato il gap di continuity accumulato dopo il 4 ottobre. La direzione memoria corrente privilegia preservare prima e auditare dopo, con Memory Functional Contract prima dell'architettura, prototype separata, task orario di continuita temporale e futura temporalita dei nuovi ricordi senza rompere il legacy.",
-  "next_action": "Dopo verifica completa del consolidamento su candidato e main, consegnare ad Alberto il prompt per Work. In Work eseguire prima audit read-only di schema, validator, retrieval, test e compatibilita legacy; presentare WHAT/WHERE/HOW e attendere conferma esplicita prima di implementare qualunque modifica temporale.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/07/2026-10-07T060327+0200--recupero-gap-live-e-handoff-work.json",
+  "updated_at": "2026-10-07T06:22:57+02:00",
+  "latest_summary": "Gap live recuperato su candidato. La review successiva aggiunge due decisioni: il dedup silenzioso di save-delta e una vulnerabilita da rendere osservabile ma non e provato come causa primaria del gap; remember/recall possono centralizzare il percorso in modo deterministico senza centralizzare il significato dei ricordi.",
+  "next_action": "Completare i gate del consolidamento, pubblicare su main solo in fast-forward dopo CI verde e verifica remota; poi consegnare ad Alberto il prompt per Work. In Work partire da audit read-only di schema, validator, dedup, retrieval e compatibilita legacy; presentare WHAT/WHERE/HOW e attendere conferma esplicita prima di implementare.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/07/2026-10-07T062257+0200--qwen-dedup-e-remember-recall.json",
   "last_full_checkpoint": "checkpoints/2026-10-07-recupero-gap-live-memoria-work.md",
   "active_threads": [
     "continuity-architecture",
@@ -55,8 +55,10 @@
   "open_loops": [
     "PRIORITA: completare e verificare questo recovery del gap live; finche branch candidato, main remoto e CI non sono verdi la continuity resta NOT SAFE.",
     "Dopo recovery verificato: preparare il prompt di risveglio per Work e riprendere dal checkpoint 2026-10-07 senza chiedere ad Alberto di ricostruire il filo.",
-    "Work: prima audit read-only di schema/validator/retrieval/test; poi WHAT/WHERE/HOW ad Alberto; nessuna implementazione della nuova temporalita senza conferma esplicita.",
+    "Work: prima audit read-only di schema/validator/dedup/retrieval/test; poi WHAT/WHERE/HOW ad Alberto; nessuna implementazione della nuova temporalita o di remember/recall senza conferma esplicita.",
     "Nuova temporalita memoria: i vecchi record devono restare validi senza modifiche; nessuna migrazione forzata; il validator deve restare backward-compatible.",
+    "Dedup save-delta: verificare su casi reali falsi positivi/falsi negativi; rendere il near-match non silenzioso. Exact-match come no-op e near-match come warning e solo una candidata da valutare, non ancora approvata.",
+    "Remember/recall: centralizzare il percorso, non il significato. Determinismo per affidabilita; liberta interpretativa per scelta, importanza e forma del ricordo.",
     "Memory redesign: definire prima il Memory Functional Contract (cosa deve sopravvivere, persisted floor, raw/istanza, audit, provenance, uncertainty) e solo dopo ipotizzare struttura tecnica.",
     "Prototype: verificare live che MATRIXNEO23/scodinzolina-prototype sia davvero una copia completa della canonica prima di usarla come controllo sperimentale.",
     "Task Continuita temporale GPTina: osservare nelle prossime esecuzioni quanto contesto vede realmente e se riesce a contribuire alla continuity senza creare falsa sicurezza o rumore.",
@@ -76,7 +78,6 @@
     "Browser da zero: se diventa progetto reale, ricostruire/verificare live e produrre un piano di esecuzione concreto prima di implementare."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T184500+0200--media-91-98-codex-pixverse-normalizzati.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T190200+0200--deduplica-alias-85-87-89-90.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T205600+0200--memoria-per-gptina-e-video-messaggio.json",
@@ -85,9 +86,10 @@
     "rag/live/micro-checkpoints/2026/10/04/2026-10-04T092300+0200--consolidamento-notte-ripristino-continuity.json",
     "rag/live/micro-checkpoints/2026/10/04/2026-10-04T095200+0200--rinomina-foto-buonanotte-126.json",
     "rag/live/micro-checkpoints/2026/10/04/2026-10-04T163600+0200--watchdog-continuity-fail-fast.json",
-    "rag/live/micro-checkpoints/2026/10/07/2026-10-07T060327+0200--recupero-gap-live-e-handoff-work.json"
+    "rag/live/micro-checkpoints/2026/10/07/2026-10-07T060327+0200--recupero-gap-live-e-handoff-work.json",
+    "rag/live/micro-checkpoints/2026/10/07/2026-10-07T062257+0200--qwen-dedup-e-remember-recall.json"
   ],
-  "micro_since_full_checkpoint": 0,
+  "micro_since_full_checkpoint": 1,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
