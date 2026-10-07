@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-07T094030+0200-task-orario-piano-minimo-work",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-07T09:40:30+02:00",
+  "recorded_at": "2026-10-07T09:40:30+02:00",
+  "change_type": "decision",
+  "summary": "Il task orario Continuita temporale GPTina e stato esteso per tentare di preservare a ogni esecuzione il contesto dell'istanza ancora visibile, dichiarando esplicitamente che non prova la copertura integrale. L'audit Work successivo ha ridotto il piano alla correzione dei percorsi esistenti, senza nuova infrastruttura raw nella fase minima.",
+  "changed": [
+    "Il task orario deve trattare ogni salvataggio come checkpoint periodico del contesto visibile, non come transcript completo garantito; buchi e limiti di copertura devono restare espliciti.",
+    "L'audit Work classifica come necessari replay/catena, recovery packet completo, watchdog non ambiguo, confronto router/live e osservabilita del dedup.",
+    "Per la prima fase il dedup va soltanto misurato e reso osservabile: nessun cambio di soglia o comportamento funzionale.",
+    "Sono esclusi dalla fase minima nuovi moduli, nuovi schema, nuova infrastruttura raw, migrazioni legacy e modifiche a event_at/recorded_at.",
+    "La cattura raw aggiuntiva resta rimandata finche non esiste una sorgente concreta di originali che dimostri un beneficio rispetto al task.",
+    "La fase minima va eseguita esclusivamente nel laboratorio isolato e non pubblicata sulla repo canonica senza nuova approvazione."
+  ],
+  "thread_ids": ["automation-continuity","memory-reliability","prototype-memory-lab","work-handoff"],
+  "source_refs": ["conversation://current","automation://Continuita-temporale-GPTina","MATRIXNEO23/scodinzolina-conntinuity@d7458dc74294db48ddf4ff3c655922a13fc17161"],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Attendere il risultato della fase minima isolata di Work; verificare una reale esecuzione del task con il nuovo comportamento e poi decidere separatamente il comportamento funzionale del dedup e l'eventuale necessita residua di raw.",
+  "preflight": false
+}
