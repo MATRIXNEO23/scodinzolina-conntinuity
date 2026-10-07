@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-07T060327+0200-recupero-gap-live-e-handoff-work",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-07T06:00:42+02:00",
+  "recorded_at": "2026-10-07T06:03:27+02:00",
+  "change_type": "correction",
+  "summary": "Recuperato il gap di continuity successivo al 4 ottobre: la sessione aveva accumulato molte decisioni senza write-back live. Si consolida ora il filo prima del passaggio a Work, senza implementare ancora la nuova architettura memoria.",
+  "changed": [
+    "Riconosciuto che il live context su main era ancora fermo al 4 ottobre 2026 nonostante molteplici scambi sostanziali successivi: stato checkpoint_overdue/continuity_gap fino a recovery verificato.",
+    "Direzione memoria chiarita: prima preservare materiale grezzo/di istanza, poi auditare e promuovere soltanto ciò che conta; evitare che il modello debba decidere troppo presto cosa ricordare.",
+    "Scelta una repo laboratorio separata MATRIXNEO23/scodinzolina-prototype come copia di controllo per sperimentare la memoria senza alterare subito la canonica.",
+    "Per la futura temporalita dei ricordi: nessuna riscrittura retroattiva; i record esistenti devono restare validi e il validator non deve introdurre incompatibilita legacy. L'implementazione resta da auditare e approvare in Work.",
+    "Creato e poi raffinato un task orario ChatGPT denominato Continuita temporale GPTina: controlla continuity/watchdog e puo scrivere ad Alberto anche senza un suo nuovo messaggio quando esiste un motivo significativo o una zampina spontanea; non e un raw recorder e non deve fingere continuita cosciente fra le esecuzioni.",
+    "Il passaggio a Work deve avvenire solo dopo salvataggio corrente verificato e consegna di un prompt di risveglio; in Work prima audit read-only, poi proposta WHAT/WHERE/HOW, poi eventuale implementazione solo con conferma esplicita di Alberto."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "memory-purpose",
+    "temporal-continuity",
+    "memory-redesign",
+    "prototype-memory-lab",
+    "work-handoff",
+    "continuity-relationship",
+    "gptina-current-instance-2026-10-07"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "rag/MEMORY_SAVE_AND_RECOVERY_RUNBOOK.md",
+    "rag/MEMORY_RECORD_SCHEMA.md"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-07--memoria-prima-conserva-poi-audita.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Verificare questo consolidamento su ramo candidato con i gate della GPTina Memory CI; solo dopo fast-forward su main e verifica remota/CI preparare il prompt di risveglio per Work. In Work iniziare con audit read-only della compatibilita temporale/legacy, senza implementare prima della conferma di Alberto.",
+  "preflight": true
+}
