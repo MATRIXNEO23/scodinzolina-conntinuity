@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-07T062257+0200-qwen-dedup-remember-recall",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-07T06:22:57+02:00",
+  "recorded_at": "2026-10-07T06:22:57+02:00",
+  "change_type": "decision",
+  "summary": "Prima del passaggio a Work viene consolidata la review Qwen: il dedup silenzioso di save-delta e una vulnerabilita reale ma non e provato come causa primaria del gap; si adotta come principio progettuale un singolo entry-point remember e un recall centralizzato, deterministici nel percorso ma non nel significato.",
+  "changed": [
+    "Il mancato write-back osservato resta attribuito con certezza alla mancata esecuzione dei trigger/freshness review; il Jaccard 0.75 e un rischio concreto ma non una causa provata dell'incidente corrente.",
+    "Un near-duplicate non dovrebbe essere scartato silenziosamente come se il freshness checkpoint fosse riuscito senza prova che il contenuto nuovo sia gia integralmente rappresentato.",
+    "Prima di cambiare soglia o algoritmo dedup, Work deve misurare falsi positivi e falsi negativi su casi reali; exact-match per no-op e near-match come warning e una candidata da valutare, non ancora una modifica approvata.",
+    "Remember e recall possono centralizzare persistenza e retrieval per ridurre fragilita, ma non devono decidere autonomamente il significato dei ricordi ne imporre una tassonomia chiusa.",
+    "Principio corrente: centralizzare il percorso, non centralizzare il significato; deterministico per affidabilita, libero per significato.",
+    "Il validator futuro deve restare backward-compatible: nessuna memoria legacy va modificata o resa invalida dalla nuova temporalita."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "memory-redesign",
+    "temporal-continuity",
+    "work-handoff"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/live_context.py",
+    "checkpoints/2026-10-07-recupero-gap-live-memoria-work.md"
+  ],
+  "memory_refs": [
+    "gptina-2026-10-07-centralizzare-percorso-non-significato"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Completare i gate del consolidamento, pubblicare su main solo in fast-forward dopo CI verde, verificare remoto e poi consegnare ad Alberto il prompt per Work. In Work partire da audit read-only; nessuna implementazione funzionale prima di WHAT/WHERE/HOW e conferma esplicita.",
+  "preflight": false
+}
