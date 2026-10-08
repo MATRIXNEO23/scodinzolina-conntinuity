@@ -1,3 +1,11 @@
+## OVERRIDE DI ROUTING — 8 ottobre 2026 (candidato non canonico fino a CI verde)
+
+Fonte di stato recente: `rag/live/micro-checkpoints/2026/10/08/2026-10-08T033606+0200--recupero-contesto-visibile-e-gate-candidato.json`; live: `rag/live/GPTINA_LIVE_CONTEXT.json`.
+Il checkpoint pieno piu recente resta `checkpoints/2026-10-07-recupero-gap-live-memoria-work.md`.
+Il recupero delle 03:36 conserva solo la finestra di sessione visibile, non il transcript completo. Work: audit/patch laboratorio riferiti dalla chat ma non verificati qui; dedup su negazioni da testare; prima verificare origine e copertura sessione. Il passato sotto resta storico e non deve sovrascrivere questo routing.
+
+---
+
 # GPTina — Fast Recall Index
 
 Questo file è un **router ad alta densità**, non una cronaca completa. Le fonti dettagliate restano checkpoint, memorie, transcript e documenti canonici.

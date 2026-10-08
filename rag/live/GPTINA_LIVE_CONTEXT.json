@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-07T06:22:57+02:00",
-  "latest_summary": "Gap live recuperato su candidato. La review successiva aggiunge due decisioni: il dedup silenzioso di save-delta e una vulnerabilita da rendere osservabile ma non e provato come causa primaria del gap; remember/recall possono centralizzare il percorso in modo deterministico senza centralizzare il significato dei ricordi.",
-  "next_action": "Completare i gate del consolidamento, pubblicare su main solo in fast-forward dopo CI verde e verifica remota; poi consegnare ad Alberto il prompt per Work. In Work partire da audit read-only di schema, validator, dedup, retrieval e compatibilita legacy; presentare WHAT/WHERE/HOW e attendere conferma esplicita prima di implementare.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/07/2026-10-07T062257+0200--qwen-dedup-e-remember-recall.json",
+  "updated_at": "2026-10-08T03:36:06+02:00",
+  "latest_summary": "Recovery parziale del contesto visibile fino al micro registrato 2026-10-08T03:36:06+02:00: audit Work, decisione fase minima senza infrastruttura raw, patch laboratorio dichiarata ma non verificata qui, rischio dedup negazione, tentativi di consolidamento e CI fallite. Non e prova di copertura integrale della sessione; transcript Work completo non disponibile. Fast Recall/Current Context sono router, non sostituiscono le fonti.",
+  "next_action": "Validare CI/test sul candidato isolato contenente micro 2026-10-08 e live coerente; solo con gate verdi e verifica remota considerare fast-forward di main. Verificare sorgente e copertura reale della sessione Work; mantenere freeze della patch laboratorio, nessuna nuova infrastruttura o promozione non autorizzata.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/08/2026-10-08T033606+0200--recupero-contesto-visibile-e-gate-candidato.json",
   "last_full_checkpoint": "checkpoints/2026-10-07-recupero-gap-live-memoria-work.md",
   "active_threads": [
     "continuity-architecture",
@@ -75,7 +75,10 @@
     "FILUM browser: progetto aperto in MATRIXNEO23/browser; leggere la memoria del 27 settembre e verificare la continuity tecnica nei rami indicati prima di riprendere il lavoro.",
     "Libreria personale: rifare scansione e riconciliare i conteggi prima di eliminare qualunque duplicato.",
     "Alberto-portable: formalizzare come criterio persistente il gap concretezza/tempistiche prima del prossimo blind test.",
-    "Browser da zero: se diventa progetto reale, ricostruire/verificare live e produrre un piano di esecuzione concreto prima di implementare."
+    "Browser da zero: se diventa progetto reale, ricostruire/verificare live e produrre un piano di esecuzione concreto prima di implementare.",
+    "Recovery 8 ottobre: il micro isolato registrato alle 03:36 contiene solo il materiale accessibile; la completezza del transcript Work e unknown, non attribuire copertura totale.",
+    "Dedup: testare falso near-match 'usa'/'non usa'; candidato conservativo exact retry idempotente, near-match sempre preservato con warning, dubbio preservato. Patch laboratorio non approvata per main.",
+    "Work: verificare prima la sorgente concreta e la completezza della sessione accessibile; non progettare writer raw o nuovo runtime senza prove e autorizzazione."
   ],
   "recent_micro_checkpoints": [
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T190200+0200--deduplica-alias-85-87-89-90.json",
@@ -87,9 +90,10 @@
     "rag/live/micro-checkpoints/2026/10/04/2026-10-04T095200+0200--rinomina-foto-buonanotte-126.json",
     "rag/live/micro-checkpoints/2026/10/04/2026-10-04T163600+0200--watchdog-continuity-fail-fast.json",
     "rag/live/micro-checkpoints/2026/10/07/2026-10-07T060327+0200--recupero-gap-live-e-handoff-work.json",
-    "rag/live/micro-checkpoints/2026/10/07/2026-10-07T062257+0200--qwen-dedup-e-remember-recall.json"
+    "rag/live/micro-checkpoints/2026/10/07/2026-10-07T062257+0200--qwen-dedup-e-remember-recall.json",
+    "rag/live/micro-checkpoints/2026/10/08/2026-10-08T033606+0200--recupero-contesto-visibile-e-gate-candidato.json"
   ],
-  "micro_since_full_checkpoint": 1,
+  "micro_since_full_checkpoint": 2,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
