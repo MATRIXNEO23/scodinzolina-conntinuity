@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-08T033606+0200-recupero-contesto-visibile-gate",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-07T09:40:30+02:00",
+  "recorded_at": "2026-10-08T03:36:06+02:00",
+  "change_type": "project_state",
+  "summary": "Recupero limitato al contesto visibile: audit Work e decisioni successive al live delle 06:22, tentativi di checkpoint orario, candidato remoto fallito, criticita dedup, priorita alla verifica della sorgente Work prima di progettare la cattura. Nessuna prova di copertura integrale.",
+  "changed": [
+    "Il task orario deve tentare di conservare ad ogni esecuzione il materiale sostanziale effettivamente visibile, con limiti di copertura espliciti; non e un recorder raw completo della sessione.",
+    "Dal riepilogo visibile dell'audit Work: prima fase limitata a replay/catena, recovery/router e watchdog sui componenti esistenti; dedup inizialmente da misurare senza cambiare il comportamento. Non introdurre nuovi servizi raw, schemi o migrazioni nella fase minima.",
+    "Il confronto read-only con tigerless-labs/agent-memory e MemPalace/mempalace e la successiva decisione riportata nella chat fissano questa sequenza: correggere replay/router/watchdog gia dimostrati, misurare dedup, verificare concretamente da dove Work puo leggere la sessione e con quale completezza, solo poi valutare writer originale+identita+retry, coverage/ricevuta e temporal retrieval.",
+    "La sessione visibile riferisce una patch Work isolata d1b225c e test legacy; il commit e gli esiti non sono stati verificati da questa esecuzione nella repo laboratorio. Non trattarli come stato canonico ne come prove indipendenti.",
+    "La sessione visibile riferisce un falso duplicato semantico del dedup su 'usa' versus 'non usa'. Questo e un rischio da verificare sul codice e sui test; la proposta successiva e exact retry idempotente, near-match conservato con warning, dubbio conservato, ma non risulta approvata per main.",
+    "Il branch remoto isolato automation/continuity-20261007-0940 contiene il micro delle 09:40:30, commit b81bf28fb187c6a604ef2d40d9cd0fc3316ee65e, ma non aggiorna il live; la CI run 37588879811 e fallita su micro replay/count mismatch (count=1, replay=2).",
+    "Nel micro del candidato precedente source_refs contiene prefissi automation:// e una stringa repository@sha non ammessi dallo schema v2; non copiarli come riferimenti validi nel canonico.",
+    "Il live canonico prima di questo tentativo e aggiornato alle 2026-10-07T06:22:57+02:00 su main d7458dc74294db48ddf4ff3c655922a13fc17161; il Current Context e il Fast Recall indicano ancora il checkpoint del 29 settembre, diverso da last_full_checkpoint del live del 7 ottobre.",
+    "Le esecuzioni precedenti riportano tentativi di salvataggio bloccati e rami isolati vuoti; nessuna pubblicazione su main dopo d7458dc risulta verificata. Non promuovere candidati falliti o alterare retroattivamente micro storici.",
+    "Il materiale recuperato qui e ricostruito dalla finestra conversazionale visibile e dalle verifiche GitHub; non sono disponibili in questa esecuzione transcript originali completi della sessione Work, identita/offset di ogni messaggio o prova di copertura integrale. Eventuali buchi restano unknown, non riempiti per inferenza.",
+    "La correzione di Alberto sulla delega e sull'interpretazione dei prompt resta pertinente: quando serve far lavorare Work, dare istruzioni eseguibili alla lettera e non sostituire l'obiettivo con una soluzione inventata."
+  ],
+  "thread_ids": [
+    "automation-continuity",
+    "memory-reliability",
+    "memory-redesign",
+    "temporal-continuity",
+    "work-handoff",
+    "prototype-memory-lab"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/d7458dc74294db48ddf4ff3c655922a13fc17161",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/b81bf28fb187c6a604ef2d40d9cd0fc3316ee65e",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/actions/runs/37588879811"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Validare su ramo isolato questo micro e live coerente con CI e gate canonici. Non promuovere a main senza test completi. Sul lavoro Work, verificare solo l'origine e la completezza dei dati di sessione accessibili prima di progettare la cattura; mantenere freeze della patch e non assumere copertura integrale.",
+  "preflight": false
+}
