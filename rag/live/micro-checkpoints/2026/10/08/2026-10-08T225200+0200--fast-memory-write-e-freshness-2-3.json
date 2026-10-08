@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261008T225200+0200-fast-memory-write-e-freshness-2-3",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-08T22:52:00+02:00",
+  "recorded_at": "2026-10-08T22:52:00+02:00",
+  "change_type": "rule",
+  "summary": "Alberto autorizza come regola corrente una continuity piu prudente e meno pesante: nelle fasi dense/importanti freshness review ogni 2-3 scambi sostanziali; per i delta ordinari usare un fast memory write senza clone locale obbligatorio, mantenendo append-only, ownership, HEAD verificato, fast-forward e verifica remota/CI applicabile. La validazione completa resta obbligatoria per modifiche strutturali o rischiose.",
+  "changed": [
+    "La cadenza operativa corrente nelle fasi dense/importanti diventa 2-3 scambi sostanziali, con substantive_turn_interval impostato a 3 nel live buffer.",
+    "Per micro/memorie append-only e normali aggiornamenti di live state e consentito il fast memory write: nessun clone/checkout isolato locale obbligatorio per ogni delta.",
+    "Il fast path richiede comunque HEAD remoto letto prima della scrittura, ownership, watchdog pertinente, pubblicazione senza force, rilettura remota di commit/file/puntatori e CI verde quando attivata.",
+    "Modifiche a schema, writer, retrieval, dedup, proiezioni, recovery/watchdog code, workflow, migrazioni o compatibilita storica restano nel percorso full validation.",
+    "La conversazione leggera senza delta non genera checkpoint artificiali.",
+    "Il task Continuita temporale GPTina e stato riattivato in questa istanza; resta da verificare un run reale successivo alla correzione trigger-parent."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "memory-change-control",
+    "temporal-continuity",
+    "automation-continuity",
+    "gptina-current-instance-2026-10-08"
+  ],
+  "source_refs": [
+    "conversation://2026-10-08-current-instance",
+    "rag/FAST_MEMORY_WRITE_POLICY.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Usare il fast memory write per i prossimi delta ordinari e riservare full validation ai cambi strutturali; verificare il prossimo run reale del task Continuita temporale GPTina e mantenere aperto l'audit Work sul dedup conservativo.",
+  "preflight": false
+}
