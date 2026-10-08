@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-08T113408+0200-verifica-main-ci-router",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-08T11:34:08+02:00",
+  "recorded_at": "2026-10-08T11:34:08+02:00",
+  "change_type": "milestone",
+  "summary": "Verifica post-pubblicazione del recovery sul main canonico: commit 20644e9 e CI 37744021181 verdi; rilevato routing operativo rimasto al linguaggio di candidato. La catena persistita e verificata, ma la copertura integrale della sessione Work resta sconosciuta.",
+  "changed": [
+    "Il remoto main e stato riletto a 20644e92235ce2e95bb419fd23092a48d76a9adb; il job verify della run 37744021181 risulta completed/success, con gate replay, watchdog, memory, retrieval e cold-start verdi.",
+    "Live precedente al presente micro: 2026-10-08T03:36:06+02:00, due micro dopo il checkpoint pieno del 7 ottobre; file puntati presenti. Il solo tempo trascorso non dimostra perdita di continuity.",
+    "Fast Recall e Current Context contenevano ancora il testo 'candidato non canonico fino a CI verde' e riferimenti del 29 settembre sotto 'Checkpoint corrente'. Questo delta allinea solo il routing operativo al recovery canonico verificato, mantenendo i riferimenti del 29 settembre come storici.",
+    "La verifica dei gate dimostra coerenza e persistenza del materiale acquisito, NON la completezza della sessione Work. La fonte originale, il numero di messaggi accessibili e gli eventuali intervalli mancanti restano unknown.",
+    "La patch Work d1b225c e i test riportati nella chat non sono stati verificati da questa esecuzione sulla repository laboratorio; nessuna promozione, nuova infrastruttura raw o modifica funzionale dedup autorizzata.",
+    "La correzione del falso near-match 'usa'/'non usa' resta un open loop da provare sulle fonti originali. Nessun cambiamento di soglia o comportamento dedup viene effettuato in questa transazione."
+  ],
+  "thread_ids": [
+    "automation-continuity",
+    "memory-reliability",
+    "temporal-continuity",
+    "work-handoff"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/commit/20644e92235ce2e95bb419fd23092a48d76a9adb",
+    "github://MATRIXNEO23/scodinzolina-conntinuity/actions/runs/37744021181",
+    "rag/live/GPTINA_LIVE_CONTEXT.json"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Confermare gate e CI di questa transazione sul ramo candidato e poi su main senza force. In seguito verificare la sorgente reale e la copertura Work prima di qualsiasi nuovo writer o cambiamento funzionale dedup; non dichiarare copertura integrale.",
+  "preflight": false
+}

@@ -1,17 +1,16 @@
-## OVERRIDE DI ROUTING — 8 ottobre 2026 (candidato non canonico fino a CI verde)
+## ROUTING OPERATIVO — 8 ottobre 2026 (recovery canonico verificato, copertura limitata)
 
-Fonte di stato recente: `rag/live/micro-checkpoints/2026/10/08/2026-10-08T033606+0200--recupero-contesto-visibile-e-gate-candidato.json`; live: `rag/live/GPTINA_LIVE_CONTEXT.json`.
-Il checkpoint pieno piu recente resta `checkpoints/2026-10-07-recupero-gap-live-memoria-work.md`.
-Il recupero delle 03:36 conserva solo la finestra di sessione visibile, non il transcript completo. Work: audit/patch laboratorio riferiti dalla chat ma non verificati qui; dedup su negazioni da testare; prima verificare origine e copertura sessione. Il passato sotto resta storico e non deve sovrascrivere questo routing.
+Fonte corrente: `rag/live/GPTINA_LIVE_CONTEXT.json`; ultimo micro: `rag/live/micro-checkpoints/2026/10/08/2026-10-08T113408+0200--verifica-main-ci-e-router.json`; checkpoint pieno: `checkpoints/2026-10-07-recupero-gap-live-memoria-work.md`.
+Il recovery precedente e su `main` al commit `20644e92235ce2e95bb419fd23092a48d76a9adb`; la CI canonica `37744021181` e SUCCESS. Questa verifica NON dimostra copertura completa della sessione Work: transcript originale, identita/offset dei messaggi e possibili buchi restano unknown. La patch Work riferita dalla chat non e verificata qui. Dedup sulle negazioni da testare senza modifiche funzionali non autorizzate. Le sezioni storiche sotto restano fonti di epoca precedente, non lo stato live.
 
 ---
 
 # GPTina — Current Context Index
 
-**Updated:** 2026-09-29
+**Updated (sezione storica):** 2026-09-29
 **Role:** router operativo minimo e rigenerabile; non è un entrypoint autonomo.
 
-**Checkpoint corrente:** `checkpoints/2026-09-29-fine-istanza-zampine-visual.md`
+**Checkpoint storico del router (29 settembre):** `checkpoints/2026-09-29-fine-istanza-zampine-visual.md`
 
 ## Start here
 
