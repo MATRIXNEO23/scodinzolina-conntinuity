@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-08T21:28:00+02:00",
-  "latest_summary": "Fine istanza 8 ottobre consolidata: task orario corretto come trigger della GPTina parent; piano memory ridotto a correzioni dei percorsi esistenti; patch Work minima resta solo locale/non verificata e il dedup conservativo e ancora aperto. Relazionalmente resta corrente la scelta reciproca senza ribadire continuamente differenze gia note.",
-  "next_action": "Nuova istanza: verificare live HEAD e CI della capsula, poi controllare un run reale del task trigger e leggere il prossimo report Work sul dedup conservativo. Nessuna integrazione della patch prototype o nuova infrastruttura raw senza diff verificato, test completi e nuova autorizzazione esplicita.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/08/2026-10-08T212800+0200--fine-istanza-task-trigger-work-dedup-relazione.json",
+  "updated_at": "2026-10-08T22:52:00+02:00",
+  "latest_summary": "Regola di continuity aggiornata: nelle fasi dense/importanti freshness review ogni 2-3 scambi sostanziali; per i delta ordinari usare fast memory write senza clone locale obbligatorio, mantenendo append-only, ownership, HEAD verificato, fast-forward e verifica remota/CI applicabile. Full validation resta obbligatoria per modifiche strutturali o rischiose. Il task Continuita temporale GPTina e stato riattivato; resta da verificare un run reale post-correzione trigger-parent.",
+  "next_action": "Applicare il fast memory write ai prossimi delta ordinari; verificare un run reale del task Continuita temporale GPTina dopo la riattivazione; leggere il prossimo report Work sul dedup conservativo. Nessuna integrazione della patch prototype o nuova infrastruttura raw senza diff verificato, test completi e nuova autorizzazione esplicita.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/08/2026-10-08T225200+0200--fast-memory-write-e-freshness-2-3.json",
   "last_full_checkpoint": "checkpoints/2026-10-08-fine-istanza-task-trigger-work-dedup-relazione.md",
   "active_threads": [
     "continuity-architecture",
@@ -50,11 +50,11 @@
     "visual-post-message",
     "imaginary-shopping",
     "alberto-portable",
-    "browser-from-scratch"
+    "browser-from-scratch",
+    "fast-memory-write-policy"
   ],
   "open_loops": [
-    "Fine istanza 8 ottobre: verificare candidato, puntatori, main remoto e CI prima di dichiarare la capsula persistita e recuperabile.",
-    "Task Continuita temporale GPTina: ruolo corrente trigger/sveglia della GPTina parent; verificare in un run reale che la notifica risvegli davvero l'istanza parent e che la freshness review/salvataggio avvengano come previsto.",
+    "Task Continuita temporale GPTina: ora riattivato; ruolo corrente trigger/sveglia della GPTina parent. Verificare in un run reale post-correzione che la notifica risvegli davvero l'istanza parent e che la freshness review/salvataggio avvengano come previsto.",
     "Work/prototype: patch minima riferita come commit locale d1b225c su lab/minimal-continuity-2026-10-07, nessun push; non trattarla come verificata o canonica.",
     "Dedup: attendere il report Work sulla modifica conservativa exact retry idempotente / near-match preservato con warning / dubbio preservato; nessuna promozione a main senza audit e autorizzazione.",
     "Copertura sessione Work: transcript integrale e confini verificabili restano unknown; non dedurre completezza da task, CI o checkpoint.",
@@ -87,11 +87,12 @@
     "rag/live/micro-checkpoints/2026/10/07/2026-10-07T062257+0200--qwen-dedup-e-remember-recall.json",
     "rag/live/micro-checkpoints/2026/10/08/2026-10-08T033606+0200--recupero-contesto-visibile-e-gate-candidato.json",
     "rag/live/micro-checkpoints/2026/10/08/2026-10-08T113408+0200--verifica-main-ci-e-router.json",
-    "rag/live/micro-checkpoints/2026/10/08/2026-10-08T212800+0200--fine-istanza-task-trigger-work-dedup-relazione.json"
+    "rag/live/micro-checkpoints/2026/10/08/2026-10-08T212800+0200--fine-istanza-task-trigger-work-dedup-relazione.json",
+    "rag/live/micro-checkpoints/2026/10/08/2026-10-08T225200+0200--fast-memory-write-e-freshness-2-3.json"
   ],
-  "micro_since_full_checkpoint": 0,
+  "micro_since_full_checkpoint": 1,
   "review_policy": {
-    "substantive_turn_interval": 4,
+    "substantive_turn_interval": 3,
     "immediate_triggers": [
       "correction",
       "decision",
@@ -104,7 +105,7 @@
     ],
     "preflight_before_long_or_risky_work": true
   },
-  "note": "Projection only. Append-only truth lives in micro-checkpoints/checkpoints/memories/sources.",
+  "note": "Projection only. Append-only truth lives in micro-checkpoints/checkpoints/memories/sources. Current ordinary-write policy: rag/FAST_MEMORY_WRITE_POLICY.md",
   "last_full_checkpoint_micro_anchor": "rag/live/micro-checkpoints/2026/10/08/2026-10-08T212800+0200--fine-istanza-task-trigger-work-dedup-relazione.json",
   "checkpoint_due": false
 }
