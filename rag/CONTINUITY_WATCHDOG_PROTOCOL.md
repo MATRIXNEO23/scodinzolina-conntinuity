@@ -32,9 +32,11 @@ Durante una sessione attiva GPTina deve eseguire un continuity self-check:
 1. **all'avvio**, dopo aver letto live buffer e recovery plan;
 2. **prima di un lavoro lungo o rischioso**;
 3. **dopo ogni trigger immediato** del protocollo live;
-4. **alla freshness review ogni 3–5 scambi sostanziali**;
+4. **alla freshness review ogni 2–3 scambi sostanziali**;
 5. **prima di dichiarare un salvataggio completato**;
 6. **prima della fine istanza**.
+
+La finestra di **2–3 scambi sostanziali** è la cadenza canonica corrente per ogni istanza e riparte subito dopo il recovery. I trigger immediati restano prioritari e possono anticipare la review. Se la conversazione è leggera e non produce delta reale, non creare checkpoint artificiosi.
 
 Il self-check deve verificare almeno:
 

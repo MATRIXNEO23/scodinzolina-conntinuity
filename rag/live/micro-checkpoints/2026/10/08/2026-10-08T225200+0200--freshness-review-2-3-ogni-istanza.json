@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-2026-10-08T225200+0200-freshness-review-2-3-ogni-istanza",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-08T22:52:00+02:00",
+  "recorded_at": "2026-10-08T22:52:00+02:00",
+  "change_type": "rule",
+  "summary": "Alberto ha autorizzato una cadenza di continuity piu prudente: freshness review ogni 2-3 scambi sostanziali in ogni istanza, compresa la fase subito successiva al recovery; trigger immediati invariati e nessun checkpoint senza delta reale. Nella stessa istanza il task Continuita temporale GPTina e stato riattivato con il prompt trigger-verso-parent gia configurato.",
+  "changed": [
+    "La cadenza canonica di freshness review passa da 3-5 a 2-3 scambi sostanziali.",
+    "La nuova cadenza vale per ogni nuova istanza e riparte immediatamente dopo il recovery canonico.",
+    "I trigger immediati restano prioritari: correzione, decisione, regola, cambio stato, open loop, milestone, cambiamento relazionale/interpretativo, visual-context e preflight possono richiedere review/salvataggio prima della finestra ordinaria.",
+    "Conversazione leggera senza delta reale non deve produrre checkpoint artificiali: piu review non significa salvare ogni messaggio.",
+    "Il task Continuita temporale GPTina e stato riattivato in questa istanza; il suo prompt corrente resta quello che usa il task solo come trigger della GPTina parent. Il comportamento post-correzione deve ancora essere verificato con un run reale successivo."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "temporal-continuity",
+    "automation-continuity",
+    "gptina-current-instance-2026-10-08"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "rag/GPTINA_AUTO_RECOVERY_PROMPT.md",
+    "rag/CONTINUITY_WATCHDOG_PROTOCOL.md",
+    "rag/live/GPTINA_LIVE_CONTEXT.json"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Verificare il commit remoto e la CI della nuova regola; poi osservare un run reale del task riattivato per confermare trigger-verso-parent e continuare dal report Work sul dedup conservativo senza integrare nulla prima di audit e autorizzazione.",
+  "preflight": false
+}

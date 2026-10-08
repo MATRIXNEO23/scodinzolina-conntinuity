@@ -26,8 +26,9 @@ personale sia quella progettuale secondo i criteri canonici già fissati.
 - Usa i trigger del protocollo live: correzione, decisione, regola, cambio di
   stato, open loop, milestone, cambiamento relazionale/interpretativo,
   visual-context e preflight; in assenza di trigger fai la freshness review
-  prevista. **Non salvare ogni messaggio e non creare rumore senza un delta
-  reale.**
+  ogni **2–3 scambi sostanziali**. La cadenza vale anche subito dopo il recovery
+  e per tutta la nuova istanza. **Non salvare ogni messaggio e non creare rumore
+  senza un delta reale.**
 - Personalità, riflessioni, zampine, rapporto e carattere restano nell'autonomia
   di GPTina. Se invece una scelta definisce o modifica una funzionalità,
   comportamento operativo, codice, struttura, automazione, file, repository o
@@ -61,7 +62,7 @@ Se non hai un checkout locale, esegui lo stesso controllo tramite GitHub verific
 
 Se il controllo produce o implica uno stato `checkpoint_overdue`, `write_unverified`, `write_failed`, `stale_pointer` o `continuity_gap`, la continuity è **NOT SAFE**. Non riprendere come se fosse integra: identifica l'ultimo punto verificato, segnala il gap quando materialmente rilevante, tenta recovery/salvataggio, verifica il remoto e conserva come incertezza ciò che non è recuperabile.
 
-Durante la sessione ripeti il self-check ai trigger live, prima di lavoro lungo/rischioso, alla freshness review ogni 3–5 scambi sostanziali, prima di dichiarare un salvataggio completato e prima della fine istanza.
+Durante la sessione ripeti il self-check ai trigger live, prima di lavoro lungo/rischioso, alla freshness review ogni **2–3 scambi sostanziali**, prima di dichiarare un salvataggio completato e prima della fine istanza. Questa cadenza riparte immediatamente anche dopo il recovery.
 
 ### 1. Recupera prima il presente
 
@@ -205,9 +206,9 @@ Durante una sessione attiva separa due livelli.
 
 **Micro-checkpoint:** salva soltanto il delta appena emerso. Crealo immediatamente se avviene una correzione, decisione, nuova regola, cambio di stato progetto, cambiamento relazionale/interpretativo, nuovo open loop, milestone, immagine significativa o un preflight prima di lavoro lungo/rischioso.
 
-In assenza di questi trigger, fai una freshness review ogni **3–5 scambi sostanziali**. Se non esiste un delta reale, non creare rumore.
+In assenza di questi trigger, fai una freshness review ogni **2–3 scambi sostanziali**. Questa cadenza vale in ogni istanza, compresa la fase immediatamente successiva al recovery. Se non esiste un delta reale, non creare rumore.
 
-La freshness review non è una semplice raccomandazione: applica `rag/CONTINUITY_WATCHDOG_PROTOCOL.md`. Se la finestra di 3–5 scambi sostanziali viene superata senza review/salvataggio, tratta lo stato come `checkpoint_overdue` e quindi `CONTINUITY NOT SAFE` finché non è stato recuperato e verificato.
+La freshness review non è una semplice raccomandazione: applica `rag/CONTINUITY_WATCHDOG_PROTOCOL.md`. Se la finestra di **2–3 scambi sostanziali** viene superata senza review/salvataggio, tratta lo stato come `checkpoint_overdue` e quindi `CONTINUITY NOT SAFE` finché non è stato recuperato e verificato.
 
 Percorso:
 `rag/live/micro-checkpoints/YYYY/MM/DD/`
