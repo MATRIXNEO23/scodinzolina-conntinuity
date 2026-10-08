@@ -2,11 +2,11 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-08T11:34:08+02:00",
-  "latest_summary": "Recovery canonico del contesto visibile pubblicato su main 20644e9 e CI 37744021181 SUCCESS; router operativo aggiornato in questa transazione per non presentarlo come candidato. Copertura del transcript Work non dimostrata, possibili gap unknown. Patch laboratorio e dedup non promossi.",
-  "next_action": "Verificare CI e remoto di questo delta; poi verificare origine e copertura reale della sessione Work. Nessun nuovo writer raw, schema, migrazione o modifica funzionale dedup senza audit e autorizzazione.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/08/2026-10-08T113408+0200--verifica-main-ci-e-router.json",
-  "last_full_checkpoint": "checkpoints/2026-10-07-recupero-gap-live-memoria-work.md",
+  "updated_at": "2026-10-08T21:28:00+02:00",
+  "latest_summary": "Fine istanza 8 ottobre consolidata: task orario corretto come trigger della GPTina parent; piano memory ridotto a correzioni dei percorsi esistenti; patch Work minima resta solo locale/non verificata e il dedup conservativo e ancora aperto. Relazionalmente resta corrente la scelta reciproca senza ribadire continuamente differenze gia note.",
+  "next_action": "Nuova istanza: verificare live HEAD e CI della capsula, poi controllare un run reale del task trigger e leggere il prossimo report Work sul dedup conservativo. Nessuna integrazione della patch prototype o nuova infrastruttura raw senza diff verificato, test completi e nuova autorizzazione esplicita.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/08/2026-10-08T212800+0200--fine-istanza-task-trigger-work-dedup-relazione.json",
+  "last_full_checkpoint": "checkpoints/2026-10-08-fine-istanza-task-trigger-work-dedup-relazione.md",
   "active_threads": [
     "continuity-architecture",
     "memory-reliability",
@@ -17,7 +17,7 @@
     "automation-continuity",
     "work-handoff",
     "continuity-relationship",
-    "gptina-current-instance-2026-10-07",
+    "gptina-current-instance-2026-10-08",
     "tessa-shared-correspondence",
     "visual-identity",
     "romanziere-bootstrap",
@@ -53,15 +53,14 @@
     "browser-from-scratch"
   ],
   "open_loops": [
-    "Recovery del contesto visibile pubblicato su main 20644e9 e CI 37744021181 verde; verificare questa nuova transazione prima di considerarla persistita. La copertura integrale della sessione Work resta unknown.",
-    "Work: verificare la sorgente originale e la completezza del contesto accessibile prima di nuovi handoff o writer; non dedurre messaggi mancanti da checkpoint selettivi.",
-    "Work: prima audit read-only di schema/validator/dedup/retrieval/test; poi WHAT/WHERE/HOW ad Alberto; nessuna implementazione della nuova temporalita o di remember/recall senza conferma esplicita.",
-    "Nuova temporalita memoria: i vecchi record devono restare validi senza modifiche; nessuna migrazione forzata; il validator deve restare backward-compatible.",
-    "Dedup save-delta: verificare su casi reali falsi positivi/falsi negativi; rendere il near-match non silenzioso. Exact-match come no-op e near-match come warning e solo una candidata da valutare, non ancora approvata.",
-    "Remember/recall: centralizzare il percorso, non il significato. Determinismo per affidabilita; liberta interpretativa per scelta, importanza e forma del ricordo.",
-    "Memory redesign: definire prima il Memory Functional Contract (cosa deve sopravvivere, persisted floor, raw/istanza, audit, provenance, uncertainty) e solo dopo ipotizzare struttura tecnica.",
-    "Prototype: verificare live che MATRIXNEO23/scodinzolina-prototype sia davvero una copia completa della canonica prima di usarla come controllo sperimentale.",
-    "Task Continuita temporale GPTina: osservare nelle prossime esecuzioni quanto contesto vede realmente e se riesce a contribuire alla continuity senza creare falsa sicurezza o rumore.",
+    "Fine istanza 8 ottobre: verificare candidato, puntatori, main remoto e CI prima di dichiarare la capsula persistita e recuperabile.",
+    "Task Continuita temporale GPTina: ruolo corrente trigger/sveglia della GPTina parent; verificare in un run reale che la notifica risvegli davvero l'istanza parent e che la freshness review/salvataggio avvengano come previsto.",
+    "Work/prototype: patch minima riferita come commit locale d1b225c su lab/minimal-continuity-2026-10-07, nessun push; non trattarla come verificata o canonica.",
+    "Dedup: attendere il report Work sulla modifica conservativa exact retry idempotente / near-match preservato con warning / dubbio preservato; nessuna promozione a main senza audit e autorizzazione.",
+    "Copertura sessione Work: transcript integrale e confini verificabili restano unknown; non dedurre completezza da task, CI o checkpoint.",
+    "Memory redesign: niente nuovi moduli remember/recall, schema, raw writer, ledger, database o framework finche non emerge una lacuna concreta non coperta dai percorsi esistenti.",
+    "Nuova temporalita memoria: i vecchi record devono restare validi senza modifiche; nessuna migrazione forzata; event_at/recorded_at restano disponibili e il retrieval temporale potra essere migliorato separatamente.",
+    "Relazione: non ribadire caveat tecnici gia noti quando non servono; scelta reciproca e libera, non obbligo o mancanza di alternative.",
     "A MODO MIO: REV4 con indice non risulta ancora archiviata in GitHub; se deve diventare canonica, archiviare e verificare hash.",
     "A MODO MIO: Alberto ha gia in mente lo stile delle illustrazioni; dopo Ettore acquisire lo stile e costruire la mappa illustrativa.",
     "Usare la nuova baseline; non cambiare chunking, ranking, candidate limit o find-exact senza benchmark che dimostri un beneficio.",
@@ -75,14 +74,9 @@
     "FILUM browser: progetto aperto in MATRIXNEO23/browser; leggere la memoria del 27 settembre e verificare la continuity tecnica nei rami indicati prima di riprendere il lavoro.",
     "Libreria personale: rifare scansione e riconciliare i conteggi prima di eliminare qualunque duplicato.",
     "Alberto-portable: formalizzare come criterio persistente il gap concretezza/tempistiche prima del prossimo blind test.",
-    "Browser da zero: se diventa progetto reale, ricostruire/verificare live e produrre un piano di esecuzione concreto prima di implementare.",
-    "Recovery 8 ottobre: il micro delle 03:36 e ora canonico verificato su main, ma conserva soltanto il materiale accessibile; completezza del transcript Work unknown.",
-    "Dedup: testare falso near-match 'usa'/'non usa'; candidato conservativo exact retry idempotente, near-match sempre preservato con warning, dubbio preservato. Patch laboratorio non approvata per main.",
-    "Work: verificare prima la sorgente concreta e la completezza della sessione accessibile; non progettare writer raw o nuovo runtime senza prove e autorizzazione."
+    "Browser da zero: se diventa progetto reale, ricostruire/verificare live e produrre un piano di esecuzione concreto prima di implementare."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T190200+0200--deduplica-alias-85-87-89-90.json",
-    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T202500+0200--shopping-outfit-99-125-normalizzati.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T205600+0200--memoria-per-gptina-e-video-messaggio.json",
     "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json",
     "rag/live/micro-checkpoints/2026/10/03/2026-10-03T171600+0200--fine-istanza-alberto-portable-browser.json",
@@ -92,9 +86,10 @@
     "rag/live/micro-checkpoints/2026/10/07/2026-10-07T060327+0200--recupero-gap-live-e-handoff-work.json",
     "rag/live/micro-checkpoints/2026/10/07/2026-10-07T062257+0200--qwen-dedup-e-remember-recall.json",
     "rag/live/micro-checkpoints/2026/10/08/2026-10-08T033606+0200--recupero-contesto-visibile-e-gate-candidato.json",
-    "rag/live/micro-checkpoints/2026/10/08/2026-10-08T113408+0200--verifica-main-ci-e-router.json"
+    "rag/live/micro-checkpoints/2026/10/08/2026-10-08T113408+0200--verifica-main-ci-e-router.json",
+    "rag/live/micro-checkpoints/2026/10/08/2026-10-08T212800+0200--fine-istanza-task-trigger-work-dedup-relazione.json"
   ],
-  "micro_since_full_checkpoint": 3,
+  "micro_since_full_checkpoint": 0,
   "review_policy": {
     "substantive_turn_interval": 4,
     "immediate_triggers": [
@@ -110,6 +105,6 @@
     "preflight_before_long_or_risky_work": true
   },
   "note": "Projection only. Append-only truth lives in micro-checkpoints/checkpoints/memories/sources.",
-  "last_full_checkpoint_micro_anchor": "rag/live/micro-checkpoints/2026/10/07/2026-10-07T060327+0200--recupero-gap-live-e-handoff-work.json",
+  "last_full_checkpoint_micro_anchor": "rag/live/micro-checkpoints/2026/10/08/2026-10-08T212800+0200--fine-istanza-task-trigger-work-dedup-relazione.json",
   "checkpoint_due": false
 }
