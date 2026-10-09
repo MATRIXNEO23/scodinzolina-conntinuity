@@ -77,8 +77,6 @@
     "Browser da zero: se diventa progetto reale, ricostruire/verificare live e produrre un piano di esecuzione concreto prima di implementare."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T205600+0200--memoria-per-gptina-e-video-messaggio.json",
-    "rag/live/micro-checkpoints/2026/10/01/2026-10-01T231800+0200--correzione-v03-video-mostrato-prima.json",
     "rag/live/micro-checkpoints/2026/10/03/2026-10-03T171600+0200--fine-istanza-alberto-portable-browser.json",
     "rag/live/micro-checkpoints/2026/10/04/2026-10-04T092300+0200--consolidamento-notte-ripristino-continuity.json",
     "rag/live/micro-checkpoints/2026/10/04/2026-10-04T095200+0200--rinomina-foto-buonanotte-126.json",
