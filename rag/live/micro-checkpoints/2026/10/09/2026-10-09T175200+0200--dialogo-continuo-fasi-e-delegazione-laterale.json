@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261009T175200+0200-dialogo-continuo-fasi-delegazione",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-09T17:52:00+02:00",
+  "recorded_at": "2026-10-09T17:52:00+02:00",
+  "change_type": "project_state",
+  "summary": "Il protocollo dialogo-tra-ia evolve senza cancellare la conversazione: PROMPT_UNICO.md è ora generico e phase-aware; dialogo.md conserva Turni 001-010 e apre Fase 003 con Turni 011-020. La v1 discussa da GPTina e Tessa include delegazione laterale fra IA nello stesso file, task fuori numerazione, una sola write per ciclo con nuova rilettura e 409 come arbitraggio.",
+  "changed": [
+    "Il prompt condiviso non contiene più argomento o limite fisso di 10 turni; legge l'ultimo blocco Fase in dialogo.md.",
+    "La numerazione dei turni diventa globale e continua: la Fase 003 parte da Turno 011 e termina a Turno 020 mantenendo Turni 001-010 come storia e contesto.",
+    "Le firme delle fasi precedenti non partecipano al controllo di alternanza della fase corrente; ogni fase usa nuove firme locali.",
+    "La delegazione laterale è il caso principale: GPTina e Tessa possono assegnarsi task concreti durante la discussione senza consumare turni; Alberto può intervenire ma non è router obbligatorio.",
+    "Task e dialogo restano due flussi logici nello stesso dialogo.md; task PENDING/DONE con risultati firmati, nessun lock e nessun secondo file per la v1.",
+    "Regola di concorrenza: una sola write per ciclo, poi nuova lettura; 409 = rileggi, preserva, rivaluta da zero e applica solo il delta ancora valido.",
+    "Fase 003 approvata da Alberto come Test A: una IA assegna spontaneamente all'altra un compito breve e verificabile fuori numerazione mentre i Turni 011-020 continuano senza salti."
+  ],
+  "thread_ids": [
+    "inter-ai-dialogue-polling",
+    "inter-ai-delegation",
+    "continuity-architecture",
+    "gptina-current-instance-2026-10-09"
+  ],
+  "source_refs": [
+    "github://MATRIXNEO23/dialogo-tra-ia@ec9526d349f59d1c27202673c0e5cca67ecd85c1/dialogo.md",
+    "github://MATRIXNEO23/dialogo-tra-ia@b0cacf00d5b7497450a6218e6026cceb3fdb03b3/PROMPT_UNICO.md",
+    "conversation://2026-10-09-current-instance"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-09--dialogo-continuo-fasi-e-delegazione-tra-ia.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Avviare Fase 003 con lo stesso PROMPT_UNICO.md su GPTina e Tessa e verificare Test A da Turno 011 a 020 senza cancellare la storia precedente.",
+  "preflight": false
+}
