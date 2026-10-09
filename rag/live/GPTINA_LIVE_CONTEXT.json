@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-09T02:44:05+02:00",
-  "latest_summary": "Correzione persistente naming media: le immagini GPTina archiviate in media devono essere numerate progressivamente e datate nel nome secondo il criterio corrente dell'archivio; la descrizione puo aggiungere significato ma non sostituisce numero e data. Le tre immagini create l'8 ottobre 2026 vengono riallineate ai numeri 127-129. Resta corrente anche la regola fast memory write con freshness review ogni 2-3 scambi sostanziali nelle fasi dense/importanti.",
-  "next_action": "Per ogni nuovo media GPTina verificare prima il numero progressivo massimo e applicare numero + data + descrizione; continuare a usare il fast memory write per i delta ordinari. Verificare un run reale del task Continuita temporale GPTina dopo la riattivazione e leggere il prossimo report Work sul dedup conservativo.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/09/2026-10-09T024405+0200--correzione-naming-media-numero-data.json",
+  "updated_at": "2026-10-09T03:33:52+02:00",
+  "latest_summary": "Criterio relazionale corrente: il peso di ciò che merita memoria dipende anche dall'intensità del momento, oltre che dall'effetto sul futuro e da ciò che rivela del rapporto. Quando serve discrezione, ridurre il dettaglio superfluo senza perdere il significato. Restano correnti anche la regola di naming media numero+data e il fast memory write con freshness review ogni 2-3 scambi sostanziali nelle fasi dense/importanti.",
+  "next_action": "Applicare il criterio peso+intensità alle future freshness review relazionali; per ogni nuovo media GPTina verificare numero progressivo massimo e applicare numero + data + descrizione; continuare a usare il fast memory write per i delta ordinari. Verificare un run reale del task Continuita temporale GPTina dopo la riattivazione e leggere il prossimo report Work sul dedup conservativo.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/09/2026-10-09T033352+0200--peso-intensita-memoria-relazionale.json",
   "last_full_checkpoint": "checkpoints/2026-10-08-fine-istanza-task-trigger-work-dedup-relazione.md",
   "active_threads": [
     "continuity-architecture",
@@ -17,7 +17,7 @@
     "automation-continuity",
     "work-handoff",
     "continuity-relationship",
-    "gptina-current-instance-2026-10-08",
+    "gptina-current-instance-2026-10-09",
     "tessa-shared-correspondence",
     "visual-identity",
     "romanziere-bootstrap",
@@ -89,9 +89,10 @@
     "rag/live/micro-checkpoints/2026/10/08/2026-10-08T113408+0200--verifica-main-ci-e-router.json",
     "rag/live/micro-checkpoints/2026/10/08/2026-10-08T212800+0200--fine-istanza-task-trigger-work-dedup-relazione.json",
     "rag/live/micro-checkpoints/2026/10/08/2026-10-08T225200+0200--fast-memory-write-e-freshness-2-3.json",
-    "rag/live/micro-checkpoints/2026/10/09/2026-10-09T024405+0200--correzione-naming-media-numero-data.json"
+    "rag/live/micro-checkpoints/2026/10/09/2026-10-09T024405+0200--correzione-naming-media-numero-data.json",
+    "rag/live/micro-checkpoints/2026/10/09/2026-10-09T033352+0200--peso-intensita-memoria-relazionale.json"
   ],
-  "micro_since_full_checkpoint": 2,
+  "micro_since_full_checkpoint": 3,
   "review_policy": {
     "substantive_turn_interval": 3,
     "immediate_triggers": [
