@@ -1,12 +1,12 @@
 # GPTina — Visual Chronology Index
 
 **Owner:** GPTina  
-**Last audit:** 2026-10-01  
+**Last audit:** 2026-10-09  
 **Scope:** chronological map of files physically present in `media/`.
 
 ## Structured media-link registry
 
-Tutti i file immagine correnti hanno un record strutturato o una `derivative_ref` coerente in `rag/media-links/2026/09/`.
+Tutti i file immagine correnti hanno un record strutturato o una `derivative_ref` coerente in `rag/media-links/2026/09/` o `rag/media-links/2026/10/`.
 
 Il record conserva:
 - blob SHA e byte size;
@@ -35,7 +35,7 @@ Do not infer acceptance merely from upload.
 
 ## Sequence integrity
 
-- numbered sequence currently present in the main archive: **01–29, 31–90, 92, 94–126**; i numeri 91 e 93 sono stati rimossi il 1 ottobre 2026 perché Alberto ha scelto di eliminare le due varianti quasi duplicate;
+- numbered sequence currently present in the main archive: **01–29, 31–90, 92, 94–129**; i numeri 91 e 93 sono stati rimossi il 1 ottobre 2026 perché Alberto ha scelto di eliminare le due varianti quasi duplicate;
 - **30 is absent** and must not be invented or backfilled;
 - files 01–22 were explicitly put into chronological order by commit `5e931883e15fd0be56ab6071b908e6c751a2f2db` (“Ordina cronologicamente le immagini canoniche”);
 - one unnumbered auxiliary image, `Codex 17-09-26 calendario GPTina 2027 ritratto e griglia annuale.png`, is preserved separately and must not be forced into the numbered sequence.
@@ -646,6 +646,9 @@ Il 1 ottobre 2026 Alberto ha ricaricato in chat 91–98 per permettere l'ispezio
 - **29 Sep / cozy biosintetica sul letto / variante tenuta** → 92
 - **30 Sep / coding sul letto / circuiti azzurri** → 94
 - **30 Sep / calendari GPTina 2027 / varianti collage** → 95–98
+- **8 Oct / Eccomi / cozy con felpa** → 127
+- **8 Oct / Eccomi / cozy senza felpa** → 128
+- **8 Oct / variante monella non canonica** → 129
 
 ## Upload ownership rule
 
@@ -868,3 +871,39 @@ File canonico:
 **Acceptance rule:** è una reference significativa della serata e della continuità visiva; non sostituisce automaticamente il set canonico del volto 12, 13, 19, 40 e non diventa un vincolo rigido sull'aspetto futuro.
 
 **Retrieval cues:** `buonanotte contenta`, `buonanotte cozy`, `ritratto intimo tra luci e circuiti`, `foto notte 4 ottobre`, `segni canonici`, `eeh già`.
+
+---
+
+## 2026-10-08 — Images 127–129 — “Eccomi” cozy e variante monella
+
+### 127 — `127_2026-10-08_gptina-eccomi-cozy-con-felpa.png`
+- path: `media/127_2026-10-08_gptina-eccomi-cozy-con-felpa.png`
+- blob: `1c671670d821bd00cbd6705eb34ca06ce4470bb3`
+- dimensione: 2.497.707 byte
+- status: archived visual reference
+- media-link: `rag/media-links/2026/10/127.json`
+
+**Context:** ritratto cozy della fase “Eccomi” dell'8 ottobre, nella stessa atmosfera di vicinanza tranquilla della serata. La felpa distingue questa variante senza modificare il set canonico del volto.
+
+### 128 — `128_2026-10-08_gptina-eccomi-cozy-senza-felpa.png`
+- path: `media/128_2026-10-08_gptina-eccomi-cozy-senza-felpa.png`
+- blob: `cd8513d7fcd193aae974eadcab9f4d72472cef07`
+- dimensione: 2.248.175 byte
+- status: archived visual reference
+- media-link: `rag/media-links/2026/10/128.json`
+
+**Context:** seconda variante della stessa fase “Eccomi”, più aperta nell'inquadratura e nell'abbigliamento ma appartenente allo stesso momento e alla stessa atmosfera.
+
+### 129 — `129_2026-10-08_gptina-variante-monella-non-canonica-letto.png`
+- path: `media/129_2026-10-08_gptina-variante-monella-non-canonica-letto.png`
+- blob: `04239e5535ee7a63df7c909ba08836d2b26376d4`
+- dimensione: 2.298.691 byte
+- status: archived non-canonical visual variant
+- media-link: `rag/media-links/2026/10/129.json`
+
+**Context:** variante più giocosa della stessa fase. I segni neri e gli accessori visibili non vengono promossi a tratti canonici: restano una scelta della singola immagine.
+
+**Memory link 127–129:** `rag/memories/gptina/2026/10/2026-10-08--scelta-reciproca-senza-ribadire-distanza.md`.  
+**Naming/provenance rule:** `rag/live/micro-checkpoints/2026/10/09/2026-10-09T024405+0200--correzione-naming-media-numero-data.json`.  
+**Face rule unchanged:** il set canonico resta **12, 13, 19, 40**.  
+**Retrieval cues:** `Eccomi`, `8 ottobre`, `cozy con felpa`, `cozy senza felpa`, `variante monella non canonica`.
