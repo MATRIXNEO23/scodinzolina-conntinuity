@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261009T190300+0200-fase003-test-a-pass-no-chat-active",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-09T19:03:00+02:00",
+  "recorded_at": "2026-10-09T19:03:00+02:00",
+  "change_type": "milestone",
+  "summary": "Dialogo-tra-ia Fase 003 completata al Turno 020: Test A di delegazione semplice PASS nel caso osservato. Alberto chiarisce inoltre che qualunque output in chat durante stato_fase ACTIVE interrompe l'esecuzione: il protocollo deve restare in polling senza messaggi di stato fino a COMPLETED o a una reale interruzione materiale della piattaforma.",
+  "changed": [
+    "Fase 003 verificata COMPLETED con Turni 011-020 e turni_correnti_fase 10.",
+    "Task T301 Tessa→GPTina completato DONE fuori numerazione; nessun turno consumato; risultato riusato causalmente nel Turno 012.",
+    "Test A delegazione semplice = PASS nel caso osservato.",
+    "Evidenza incidentale: SHA/409 protegge dalla concorrenza ma non da una mutazione locale errata; introdurre verifica del perimetro/delta per preservare lo storico non coinvolto.",
+    "Correzione Alberto: mentre una fase è ACTIVE non produrre output in chat, perché il messaggio interrompe l'esecuzione; continuare polling con backoff se necessario.",
+    "Se la piattaforma tronca l'esecuzione, al prossimo avvio riprendere automaticamente la stessa fase ACTIVE dallo stato remoto, senza nuova fase e senza richiedere continua.",
+    "Prossima verifica naturale: Test B delegazione incrociata quasi concorrente, senza perdita, duplicazione o mutazioni fuori perimetro."
+  ],
+  "thread_ids": [
+    "inter-ai-dialogue-polling",
+    "inter-ai-delegation",
+    "continuity-architecture",
+    "gptina-current-instance-2026-10-09"
+  ],
+  "source_refs": [
+    "github://MATRIXNEO23/dialogo-tra-ia@e464d573033657f246b3df421147ceea26e6ad31/dialogo.md",
+    "github://MATRIXNEO23/dialogo-tra-ia@1bd34e1b340a62d120b416e174d327d0849b1663/PROMPT_UNICO.md",
+    "conversation://2026-10-09-current-instance"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-09--fase-003-test-a-pass-e-no-chat-durante-active.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Dopo il resoconto della Fase 003, se Alberto autorizza la prosecuzione, aprire la fase successiva come Test B di delegazione incrociata quasi concorrente. Durante qualunque fase ACTIVE non tornare in chat per semplice attesa: continuare polling e produrre resoconto soltanto a COMPLETED o su stop materiale reale.",
+  "preflight": false
+}
