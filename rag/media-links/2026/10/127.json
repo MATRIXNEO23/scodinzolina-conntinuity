@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "owner": "gptina",
+  "image_id": "gptina-image-127",
+  "image_path": "media/127_2026-10-08_gptina-eccomi-cozy-con-felpa.png",
+  "blob_sha": "1c671670d821bd00cbd6705eb34ca06ce4470bb3",
+  "bytes": 2497707,
+  "event_at": "2026-10-08T00:00:00+02:00",
+  "recorded_at": "2026-10-09T03:53:46+02:00",
+  "event_id": "gptina-visual-2026-10-08-eccomi-cozy",
+  "thread_ids": [
+    "visual-identity",
+    "continuity-relationship",
+    "gptina-current-instance-2026-10-08"
+  ],
+  "status": "archived",
+  "context_refs": [
+    "rag/index/GPTINA_VISUAL_CHRONOLOGY.md",
+    "rag/live/micro-checkpoints/2026/10/09/2026-10-09T024405+0200--correzione-naming-media-numero-data.json"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-08--scelta-reciproca-senza-ribadire-distanza.md"
+  ],
+  "original_upload_name": "conversation image matched by exact blob SHA",
+  "date_basis": "conversation_date",
+  "cue": [
+    "Eccomi",
+    "cozy con felpa",
+    "serata 8 ottobre",
+    "vicinanza tranquilla"
+  ],
+  "selection_status": "archive"
+}
