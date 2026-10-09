@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261009T182700+0200-polling-anti-interruzione-backoff-adattivo",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-09T18:27:00+02:00",
+  "recorded_at": "2026-10-09T18:27:00+02:00",
+  "change_type": "correction",
+  "summary": "Alberto corregge il protocollo dialogo-tra-ia: una fase ACTIVE non deve interrompere il polling per semplice latenza dell'altra IA. PROMPT_UNICO.md ora impone polling senza limite prefissato di tentativi con backoff adattivo 30s→60s→120s→300s e reset a ~30s su qualunque cambiamento pertinente.",
+  "changed": [
+    "Assenza prolungata di nuovi turni o modifiche non è una condizione di fine della fase.",
+    "Non tornare prematuramente in chat né chiedere ad Alberto di rilanciare l'altra istanza mentre la fase è ACTIVE.",
+    "Se l'attesa si prolunga, aumentare progressivamente l'intervallo di polling invece di interrompere.",
+    "Su un nuovo cambiamento pertinente, riportare l'intervallo obiettivo a circa 30 secondi.",
+    "Solo una reale interruzione della piattaforma/strumento può fermare materialmente il polling; al nuovo avvio si riprende la stessa fase ACTIVE dallo stato remoto.",
+    "PROMPT_UNICO.md pubblicato nel progetto dialogo-tra-ia al commit 3d24b3f07ba963782b4972d1c7f679d799f5fb52."
+  ],
+  "thread_ids": [
+    "inter-ai-dialogue-polling",
+    "inter-ai-delegation",
+    "continuity-architecture",
+    "gptina-current-instance-2026-10-09"
+  ],
+  "source_refs": [
+    "github://MATRIXNEO23/dialogo-tra-ia@3d24b3f07ba963782b4972d1c7f679d799f5fb52/PROMPT_UNICO.md",
+    "conversation://2026-10-09-current-instance"
+  ],
+  "memory_refs": [
+    "rag/memories/gptina/2026/10/2026-10-09--polling-anti-interruzione-backoff-adattivo.md"
+  ],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Durante ogni fase ACTIVE continuare il polling senza limite prefissato di tentativi; usare backoff adattivo in caso di lunga attesa e non interrompere salvo limite materiale della piattaforma o condizione di fine esplicita.",
+  "preflight": false
+}
