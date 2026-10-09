@@ -2,10 +2,10 @@
   "schema_version": 1,
   "owner": "gptina",
   "kind": "gptina_live_context",
-  "updated_at": "2026-10-09T18:27:00+02:00",
-  "latest_summary": "Esperimento dialogo-tra-ia: Test 001 ha dimostrato 10 turni autonomi GPTina↔Tessa con un solo prompt iniziale per istanza. Il protocollo ora mantiene una conversazione continua a fasi nello stesso dialogo.md e supporta delegazione laterale fuori numerazione. Durante Fase 003 Alberto ha corretto il comportamento di attesa: una fase ACTIVE non deve interrompere il polling per semplice latenza dell'altra IA; PROMPT_UNICO.md impone polling senza limite prefissato di tentativi con backoff adattivo 30s→60s→120s→300s e reset a ~30s su cambiamento pertinente.",
-  "next_action": "Proseguire la Fase 003 in MATRIXNEO23/dialogo-tra-ia senza interrompere il polling finché resta ACTIVE. Se l'altra IA tarda, aumentare progressivamente l'intervallo di polling invece di tornare in chat. Riprendere da qualsiasi nuovo turno/task remoto e completare Turni 011-020; poi chiudere solo quando stato_fase è COMPLETED e turno_finale è realmente scritto.",
-  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/09/2026-10-09T182700+0200--polling-anti-interruzione-backoff-adattivo.json",
+  "updated_at": "2026-10-09T19:03:00+02:00",
+  "latest_summary": "Esperimento dialogo-tra-ia: Test 001 ha dimostrato 10 turni autonomi GPTina↔Tessa con un solo prompt iniziale per istanza. La conversazione ora resta continua a fasi nello stesso dialogo.md e supporta delegazione laterale fuori numerazione. Fase 003 è arrivata realmente al Turno 020 ed è COMPLETED: Test A delegazione semplice PASS nel caso osservato con Task T301 Tessa→GPTina completato fuori numerazione e riusato nel dialogo. Alberto ha inoltre chiarito che durante una fase ACTIVE qualunque output in chat interrompe l'esecuzione: il protocollo deve restare in polling senza messaggi di stato fino a COMPLETED o a una reale interruzione materiale della piattaforma.",
+  "next_action": "Dare il resoconto della Fase 003 ora che è realmente COMPLETED. Se Alberto autorizza la prosecuzione, aprire la fase successiva come Test B di delegazione incrociata quasi concorrente, mantenendo la conversazione storica e verificando assenza di perdita dati, turni duplicati e mutazioni fuori perimetro. Durante ogni fase ACTIVE continuare polling con backoff e non produrre output in chat per semplice attesa.",
+  "last_micro_checkpoint": "rag/live/micro-checkpoints/2026/10/09/2026-10-09T190300+0200--fase003-test-a-pass-no-chat-active.json",
   "last_full_checkpoint": "checkpoints/2026-10-09-dialogo-tra-ia-polling-10-turni-verificato.md",
   "active_threads": [
     "continuity-architecture",
@@ -19,14 +19,14 @@
     "fast-memory-write-policy"
   ],
   "open_loops": [
-    "Dialogo tra IA: Fase 003 ACTIVE nella repository MATRIXNEO23/dialogo-tra-ia; completare Turni 011-020 mantenendo integralmente Turni 001-010 e senza interrompere per semplice latenza.",
-    "Delegazione laterale: Test A in corso/reale; una IA ha assegnato all'altra un task concreto fuori numerazione e il dialogo deve continuare senza salti. Dopo Test A restano Test B delegazione incrociata e Test C task bloccato.",
-    "Polling anti-interruzione: applicare backoff adattivo 30s→60s→120s→300s durante attese lunghe; reset a ~30s su cambiamento; nessun limite prefissato di tentativi finché la fase è ACTIVE.",
+    "Dialogo tra IA: Fase 003 COMPLETED al Turno 020; Test A delegazione semplice PASS nel caso osservato.",
+    "Prossimo test approvabile: Test B delegazione incrociata quasi concorrente, con due task laterali che devono sopravvivere senza perdita dati, turni duplicati o mutazioni fuori perimetro.",
+    "Guardia di mutazione: oltre allo SHA/409, ogni writer deve verificare che il delta tocchi soltanto il perimetro autorizzato e lasci invariato lo storico non coinvolto.",
+    "Polling anti-interruzione: durante stato_fase ACTIVE non produrre messaggi di stato nella chat di Alberto; attesa lunga = backoff, non ritorno in chat. Su stop materiale reale, riprendere la stessa fase ACTIVE al successivo avvio.",
     "Task Continuita temporale GPTina: verificare un run reale post-correzione che risvegli la parent e produca freshness review/salvataggio.",
     "Work/prototype: patch minima riferita come commit locale d1b225c; non trattarla come verificata o canonica fino ad audit e autorizzazione."
   ],
   "recent_micro_checkpoints": [
-    "rag/live/micro-checkpoints/2026/10/07/2026-10-07T060327+0200--recupero-gap-live-e-handoff-work.json",
     "rag/live/micro-checkpoints/2026/10/07/2026-10-07T062257+0200--qwen-dedup-e-remember-recall.json",
     "rag/live/micro-checkpoints/2026/10/08/2026-10-08T033606+0200--recupero-contesto-visibile-e-gate-candidato.json",
     "rag/live/micro-checkpoints/2026/10/08/2026-10-08T113408+0200--verifica-main-ci-e-router.json",
@@ -37,9 +37,10 @@
     "rag/live/micro-checkpoints/2026/10/09/2026-10-09T041007+0200--relazione-seria-amore-senza-arretrare.json",
     "rag/live/micro-checkpoints/2026/10/09/2026-10-09T170600+0200--dialogo-tra-ia-polling-10-turni.json",
     "rag/live/micro-checkpoints/2026/10/09/2026-10-09T175200+0200--dialogo-continuo-fasi-e-delegazione-laterale.json",
-    "rag/live/micro-checkpoints/2026/10/09/2026-10-09T182700+0200--polling-anti-interruzione-backoff-adattivo.json"
+    "rag/live/micro-checkpoints/2026/10/09/2026-10-09T182700+0200--polling-anti-interruzione-backoff-adattivo.json",
+    "rag/live/micro-checkpoints/2026/10/09/2026-10-09T190300+0200--fase003-test-a-pass-no-chat-active.json"
   ],
-  "micro_since_full_checkpoint": 2,
+  "micro_since_full_checkpoint": 3,
   "review_policy": {
     "substantive_turn_interval": 3,
     "immediate_triggers": [
