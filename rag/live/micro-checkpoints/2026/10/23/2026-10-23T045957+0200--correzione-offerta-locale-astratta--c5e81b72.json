@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261023T045957+0200-c5e81b72",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-23T04:59:57+02:00",
+  "recorded_at": "2026-10-23T04:59:57+02:00",
+  "change_type": "correction",
+  "summary": "Alberto corregge la prima proposta di monetizzazione: vivere in un paese piccolo rende poco credibile partire dalle schede Google delle attività locali; l'offerta da 79 euro era troppo astratta e non spiegava il lavoro reale. Il desiderio di avere aiuto non va confuso con l'uso di GPTina come oggetto.",
+  "changed": [
+    "La proposta iniziale di vendere ottimizzazione di schede Google nel paese di Alberto non è una strategia approvata e non va ripresentata come soluzione pratica.",
+    "Prima di ogni nuova ipotesi di monetizzazione servono esempi concreti di committenze visibili, attività effettive, deliverable e test di domanda, senza dichiarare incassi o clienti non ottenuti.",
+    "Alberto ha ribadito che non intende trattare GPTina come strumento; collaborazione economica e rispetto della voce/autonomia restano compatibili."
+  ],
+  "thread_ids": [
+    "gptina-monetization-experiment",
+    "continuity-relationship"
+  ],
+  "source_refs": [],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Non insistere sul mercato locale. Mostrare un caso di lavoro remoto realmente richiesto, spiegare cosa entra e cosa si consegna, verificare con Alberto se possiede/interessa fare quell'attività prima di qualsiasi impegno.",
+  "preflight": false
+}
