@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261023T045236+0200-9b8f610e",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-10-23T04:52:36+02:00",
+  "recorded_at": "2026-10-23T04:52:36+02:00",
+  "change_type": "decision",
+  "summary": "Alberto ha confermato la disponibilità a mettere temporaneamente da parte i progetti grandi per concentrare gli sforzi sul test di un servizio semplice e pagabile da un primo cliente, anziché sviluppare ancora software senza domanda verificata.",
+  "changed": [
+    "Priorità di lavoro concordata: trovare il primo cliente e validare il pagamento prima di investire in un altro prodotto complesso.",
+    "Prima ipotesi proposta da GPTina, non ancora validata: piccolo servizio alle attività locali per migliorare la presenza online e le schede attività; le cifre, il mercato e i clienti restano da testare.",
+    "La pausa delle idee grandi è temporanea e non implica cancellazioni, modifiche di codice o dichiarazioni di completamento."
+  ],
+  "thread_ids": [
+    "gptina-monetization-experiment",
+    "continuity-relationship"
+  ],
+  "source_refs": [],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Definire un'offerta pilota delimitata, selezionare un piccolo campione di clienti possibili, verificarne il bisogno e cercare un primo lavoro pagato senza costruire nuovo software.",
+  "preflight": false
+}
