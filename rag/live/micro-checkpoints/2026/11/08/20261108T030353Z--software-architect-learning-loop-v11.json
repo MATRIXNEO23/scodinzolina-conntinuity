@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261108t030353z-software-learning-v11",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-11-08T03:03:53.307Z",
+  "recorded_at": "2026-11-08T03:03:53.307Z",
+  "change_type": "project_state",
+  "summary": "L'utente ha chiesto alla Skill Software Architect di correggere e migliorare il metodo durante il lavoro sulla base di feedback («no, stai sbagliando») e test sia in CI/repo sia sul PC target. Revisionato candidato v1.0 → v1.1 con reference learning-loop e registro CSV. Audit statico PASS, nessun collaudo funzionale, installazione o write-back del pacchetto su GitHub.",
+  "changed": [
+    "Skill Software Architect v1.1 candidata ZIP solo in chat: /mnt/data/gptina-software-architect-v1.1.zip; SHA256 22db34ae1984630231262673e441dbcd3570e660a30ad2787ef0c4a0bbc5828b, 14 file; non recuperabile automaticamente da una nuova chat.",
+    "Nuovo workflow OBSERVE → DIAGNOSE → ADJUST → RETEST → DECIDE, registra prove positive e negative e feedback, separando repo/CI da PC target. Un PASS singolo non promuove il metodo generale; review prima di modifiche permanenti della Skill e guardrail.",
+    "Audit v1.1 locale /mnt/data/gptina-software-architect-v1.1-audit.md: 12/12 controlli statici PASS, validatore preesistente PASS; test funzionali, test target e installazione non eseguiti.",
+    "Memoria metodo: MODELLO assets/METHOD_LEARNING_LOG.csv per annotazione persistente solo in workspace autorizzato del progetto, non memoria canonica GPTina né meccanismo di auto-training; assenza persistenza deve essere dichiarata."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "gptina-jarvis"
+  ],
+  "source_refs": [],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "Installare v1.1 se la piattaforma supporta la Skill; collaudarla su una codebase e un PC target reale con correzioni e test PASS/FAIL; revisionare evidenze e decidere se promuoverne il metodo. Non dichiarare installazione, test o persistenza del pacchetto.",
+  "preflight": false
+}
