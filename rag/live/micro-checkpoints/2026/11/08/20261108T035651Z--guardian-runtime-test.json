@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261108t035651z-guardian-runtime-test",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-11-08T03:56:51.224Z",
+  "recorded_at": "2026-11-08T03:56:51.224Z",
+  "change_type": "project_state",
+  "summary": "Guardian v1.0 disponibile e letta nel runtime Work: primo collaudo reale richiesto da Alberto, recovery GitHub live-first e review del delta. Il precedente stato non installata è storico; nessuna modifica a Jarvis.",
+  "changed": [
+    "Verificati catalogo executor e lettura completa SKILL.md con tutti i sei riferimenti Guardian v1.0. Non attestata installazione universale in altre chat.",
+    "Recovery da main 826703cdca6411d12c6d149607cd25eedebaeed0: full checkpoint e micro anchor esistenti; zero micro successivi, contatore zero, checkpoint_due false; CI Memory 42441334640 success. Verifica logica via connector, nessun checkout o test Python locale.",
+    "Prompt esemplificativo generato dall'assistente su ripresa Jarvis: contenuto sintetico di prova, non nuova richiesta reale né autorizzazione a modificare Jarvis. Stato Jarvis tecnico non verificato.",
+    "Collaudo parziale: recovery e rilevamento delta reale eseguiti; errori forzati, soglia cadenza, scritture altrui, chiusura istanza e riavvio cieco non testati. Questo micro e live buffer richiedono successiva verifica remota/CI prima di dichiarare persistenza conclusa."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "continuity-architecture",
+    "gptina-jarvis"
+  ],
+  "source_refs": [
+    "conversation://current",
+    "checkpoints/2026-11-08-fine-istanza-test-skill-gptina.md"
+  ],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Continuare il collaudo Guardian con scenari isolati di errore, cadenza, ownership e fine istanza; Jarvis richiede verifica della propria repo prima di affermazioni tecniche.",
+  "preflight": false
+}
