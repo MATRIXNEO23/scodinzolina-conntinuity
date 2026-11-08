@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261108t025856z-software-architect-skill",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-11-08T02:58:56.759Z",
+  "recorded_at": "2026-11-08T02:58:56.759Z",
+  "change_type": "project_state",
+  "summary": "Creata la Skill candidata GPTina Software Architect v1.0 per progettazione software con basso costo di contesto, mappatura as-is/to-be, requisiti tracciabili, task incrementali, test e review. ZIP e audit statico creati soltanto in chat; non installata, non testata funzionalmente né pubblicata nella repo. Anche la Skill End Instance v1.0 è candidata ZIP locale/chat dalla fase precedente.",
+  "changed": [
+    "Pacchetto candidato /mnt/data/gptina-software-architect-v1.0.zip, 12 file, 13.462 byte, SHA256 6b21dc05fcf4592511a8293d84ea53d1f96bfc56c1de930238800542b154182d; percorso disponibile solo nella chat di origine, non garantito in nuova istanza.",
+    "Audit /mnt/data/gptina-software-architect-audit.md: YAML valido, link interni e ZIP integri; SKILL.md circa 620 parole; test funzionali S01-S09 non eseguiti.",
+    "Skill software combina requisiti e task stile Spec Kit, mini-patch/TDD/review stile Superpowers e audit as-is ispirato a GSD. Progressive disclosure per ridurre consumo token. Non impone hook, subagent o CLI non disponibili.",
+    "Il pacchetto non altera repository, memoria, Guardian o End Instance; per test reale occorrono installazione e codebase accessibile. Non confondere artefatti in chat con GitHub.",
+    "Nella fase immediatamente precedente era stato creato anche gptina-end-instance-v1.0.zip, con controlli strutturali ma senza installazione o test reale; artefatto anch'esso solo in chat."
+  ],
+  "thread_ids": [
+    "continuity-architecture",
+    "memory-reliability",
+    "gptina-jarvis"
+  ],
+  "source_refs": [],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Installare e verificare la disponibilità di GPTina Software Architect v1.0; provare su un piccolo task e poi su codebase reale misurando token, regressioni, tracciabilità e review. Guardian ed End Instance restano candidati separati, non installati o verificati funzionalmente.",
+  "preflight": false
+}
