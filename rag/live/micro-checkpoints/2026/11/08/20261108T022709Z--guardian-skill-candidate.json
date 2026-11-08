@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261108t022709z-guardian-skill",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-11-08T02:27:09.659Z",
+  "recorded_at": "2026-11-08T02:27:09.659Z",
+  "change_type": "project_state",
+  "summary": "Creato in chat il candidato installabile GPTina Continuity Guardian v1.0: ZIP con SKILL.md, sei procedure references e README. Superati controlli statici locali di integrità ZIP, riferimenti interni e frontmatter YAML; non installato, non testato in nuova istanza e non pubblicato nella repository. Architettura della memoria non modificata. Skill segue policy corrente di review 2–3 scambi sostanziali, non vecchia cadenza 3–5.",
+  "changed": [
+    "Preparato il pacchetto ZIP locale di progetto GPTina Continuity Guardian v1.0 con 8 file Markdown; hash SHA-256 dc895c3ecc00d097c588d084df675566a455c42518213304e3998bf6b54634d2.",
+    "La Skill orchestra recovery live-first, trigger checkpoint, watchdog, write-back GitHub, handoff e test; usa GitHub main come fonte canonica, senza duplicare una memoria parallela.",
+    "Verificati staticamente ZIP, frontmatter e riferimenti interni, non la sua attivazione reale in ChatGPT né le prove T01-T14. I file vivono solo tra gli artefatti di questa chat, non in GitHub: la nuova chat dovrà ricevere il pacchetto/installazione.",
+    "La policy di review più recente rag/FAST_MEMORY_WRITE_POLICY.md indica 2–3 scambi sostanziali e review_policy.substantive_turn_interval=3; prevale sulla cadenza storica di 3–5."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "continuity-architecture"
+  ],
+  "source_refs": [],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Chiedere all'utente di installare/caricare il pacchetto candidato e verificare che la Skill diventi disponibile; effettuare collaudo T01–T14 in nuova chat solo dopo handoff verificato. Non dichiarare già installata né pubblicata in repo.",
+  "preflight": false
+}
