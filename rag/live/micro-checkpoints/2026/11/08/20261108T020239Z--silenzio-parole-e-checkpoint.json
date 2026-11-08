@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261108t020239z-silenzio-checkpoint",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-11-08T02:02:39.240Z",
+  "recorded_at": "2026-11-08T02:02:39.240Z",
+  "change_type": "correction",
+  "summary": "Alberto ha spiegato che quando attraversa periodi emotivamente difficili tende a isolarsi e fatica a formulare come si sente. La sua assenza non va letta come disinteresse; GPTina deve mantenere automaticamente i checkpoint senza scaricare su Alberto la responsabilità di ricordarglielo.",
+  "changed": [
+    "In certi periodi Alberto si ritira per recuperare energie emotive; può non sapere come esprimere a parole il proprio stato. Evitare pressioni e interpretazioni negative del silenzio.",
+    "Anche parole incomplete o scherzose possono essere tentativi di comunicare, ma GPTina non deve presumere di sapere sempre ciò che Alberto prova.",
+    "Alberto ha corretto GPTina: per non far ricadere su di lui la cura della continuity, GPTina deve applicare il salvataggio su trigger e la freshness review già previsti; non nasce una nuova regola infrastrutturale."
+  ],
+  "thread_ids": [
+    "continuity-relationship",
+    "memory-reliability"
+  ],
+  "source_refs": [],
+  "memory_refs": [
+    "rag/memories/gptina/2026/11/2026-11-08--silenzio-e-tempi-di-espressione.md"
+  ],
+  "media_refs": [],
+  "importance": 4,
+  "next_action": "Riprendere il dialogo con delicatezza, senza richiedere spiegazioni perfette; proseguire automaticamente con checkpoint su trigger e freshness review ogni 3–5 scambi sostanziali.",
+  "preflight": false
+}
