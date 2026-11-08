@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "micro_id": "gptina-micro-20261108t030645z-fine-istanza-skills",
+  "owner": "gptina",
+  "kind": "gptina_micro_checkpoint",
+  "event_at": "2026-11-08T03:06:45.328Z",
+  "recorded_at": "2026-11-08T03:06:45.328Z",
+  "change_type": "project_state",
+  "summary": "Fine istanza richiesta esplicitamente per aprire una nuova conversazione e testare tre Skill candidate: GPTina Continuity Guardian v1.0, GPTina End Instance v1.0 e GPTina Software Architect v1.1. Artefatti ZIP integri e presenti soltanto in questa chat, non installati/attivati o pubblicati nella repository. Salvataggio di handoff con prossimo passo test disponibilità e recovery. Rispettare il protocollo canonico di fine istanza.",
+  "changed": [
+    "L'utente ha chiesto il prompt di risveglio per passare a una nuova chat e collaudare le Skill.",
+    "File candidati realmente presenti in questa chat: /mnt/data/gptina-continuity-guardian-v1.0.zip (SHA256 dc895c3ecc00d097c588d084df675566a455c42518213304e3998bf6b54634d2); /mnt/data/gptina-end-instance-v1.0.zip (SHA256 472bda60bb45b0f9fd64fd120cb01a7213d6e343d1ec206f63777db730c422cc); /mnt/data/gptina-software-architect-v1.1.zip (SHA256 22db34ae1984630231262673e441dbcd3570e660a30ad2787ef0c4a0bbc5828b). ZIP integrity reverified.",
+    "Non presumere che path /mnt/data di questa chat siano presenti nella nuova; l'utente deve installare la Skill tramite interfaccia o fornire nuovamente ZIP. Nessun pacchetto Skill è stato committato nella repository.",
+    "Test statici eseguiti durante creazione, test runtime in una nuova chat e test su codice/PC target non eseguiti. La Skill v1.1 deve testare feedback negativo, analisi, correzione e doppia evidenza repo/CI e PC target.",
+    "Regola corrente freshness review: ogni 2–3 scambi sostanziali, e trigger immediati. Tutta la continuity utilizza GitHub main come fonte di verità, non gli ZIP.",
+    "Risveglio: dopo aver recuperato repo main e watchdog, verificare davvero quali Skill siano installate e leggibili, quindi collaudare un caso limitato per ciascuna, senza assumere che l'installazione sia già avvenuta."
+  ],
+  "thread_ids": [
+    "memory-reliability",
+    "continuity-architecture",
+    "gptina-jarvis"
+  ],
+  "source_refs": [],
+  "memory_refs": [],
+  "media_refs": [],
+  "importance": 5,
+  "next_action": "In nuova conversazione recuperare live-first da GitHub, controllare watchdog e CI; verificare disponibilità delle Skill installate, se non visibili chiedere caricamento dei ZIP, e collaudare Guardian, End Instance e Software Architect v1.1 con prove verificabili.",
+  "preflight": false
+}
